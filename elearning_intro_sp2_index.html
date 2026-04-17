@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Eラーニングシステム 導入案内 | もみかるFC本部</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@700&display=swap');
+
+  :root {
+    --navy: #1A3A5C;
+    --navy-mid: #2C5282;
+    --orange: #E85D26;
+    --orange-light: #FFF3EE;
+    --gold: #D4A017;
+    --gold-light: #FFF8E1;
+    --green: #1B6B3A;
+    --green-light: #EBF7F0;
+    --purple: #6D28D9;
+    --purple-light: #F5F3FF;
+    --blue-light: #EEF4FB;
+    --blue-mid: #4A6FA5;
+    --border: #D1DCE8;
+    --text: #1C1C1C;
+    --gray: #6B7280;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #F0F4F8;
+    color: var(--text);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--white);
+    min-height: 100vh;
+  }
+
+  /* ── STICKY ── */
+  .sticky-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(0,0,0,.25);
+  }
+  .sticky-title { font-size: 12px; font-weight: 700; color: var(--white); letter-spacing: .04em; }
+  .sticky-badge {
+    background: var(--orange);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, var(--navy) 0%, #2C5282 100%);
+    padding: 32px 20px 26px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; right: -50px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(232,93,38,.15);
+    pointer-events: none;
+  }
+  .hero-label {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.45;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .hero h1 span { color: #F9C74F; }
+  .hero-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,.7);
+    margin-bottom: 18px;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 4px;
+    line-height: 1.5;
+    box-shadow: 0 4px 14px rgba(232,93,38,.4);
+    position: relative;
+  }
+  .hero-badge .big { font-size: 20px; font-weight: 900; display: block; }
+
+  /* ── SECTION ── */
+  .section { padding: 26px 18px; }
+  .section + .section { border-top: 1px solid var(--border); }
+
+  .sec-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .sec-num {
+    background: var(--navy);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .sec-title { font-size: 16px; font-weight: 700; color: var(--navy); }
+
+  /* ── PAIN ── */
+  .pain-list { display: flex; flex-direction: column; gap: 8px; }
+  .pain-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--blue-light);
+    border-left: 3px solid var(--orange);
+    padding: 12px 14px;
+    border-radius: 0 4px 4px 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .pain-icon { color: var(--orange); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .pain-resolve {
+    margin-top: 12px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 13px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* ── MERIT CARDS ── */
+  .merit-grid { display: flex; flex-direction: column; gap: 10px; }
+  .merit-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .merit-head {
+    background: var(--navy);
+    color: var(--white);
+    padding: 11px 16px;
+    font-size: 13.5px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .merit-badge {
+    background: var(--orange);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .merit-body { background: var(--blue-light); padding: 13px 16px; }
+  .merit-body ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .merit-body li { font-size: 13px; padding-left: 16px; position: relative; line-height: 1.65; }
+  .merit-body li::before { content: '→'; position: absolute; left: 0; color: var(--blue-mid); font-weight: 700; }
+  .merit-body li strong { color: var(--navy); }
+
+  /* ── KPI カード ── */
+  .kpi-cards { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+  .kpi-card {
+    background: var(--blue-light);
+    border-radius: 6px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .kpi-label { font-size: 13px; flex: 1; }
+  .kpi-formula { font-size: 11px; color: var(--gray); margin-top: 2px; }
+  .kpi-amount { font-size: 16px; font-weight: 700; color: var(--orange); white-space: nowrap; }
+  .kpi-total {
+    background: var(--gold-light);
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .kpi-total-label { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .kpi-total-amount { font-size: 20px; font-weight: 700; color: var(--orange); }
+  .result-box {
+    margin-top: 14px;
+    background: var(--gold-light);
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 18px 14px;
+    text-align: center;
+  }
+  .result-label { font-size: 12px; color: var(--gray); margin-bottom: 6px; }
+  .result-main { font-size: 14.5px; font-weight: 700; color: var(--navy); line-height: 1.7; }
+  .result-main span { color: var(--orange); font-size: 26px; display: block; margin: 4px 0; }
+
+  /* ── PHASE LABEL ── */
+  .phase-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+  .phase-base { background: var(--navy); }
+  .phase-option { background: var(--purple); }
+
+  /* ── FLOW LIST（縦タイムライン） ── */
+  .flow-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+  .flow-item {
+    display: flex;
+    gap: 12px;
+    position: relative;
+  }
+  .flow-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 36px;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .flow-circle {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--white);
+    flex-shrink: 0;
+    margin-top: 6px;
+    position: relative;
+    z-index: 1;
+  }
+  .fc-admin { background: var(--navy); }
+  .fc-video { background: var(--blue-mid); }
+  .fc-test  { background: var(--gold); }
+  .fc-jitsu { background: var(--orange); }
+  .fc-debut { background: var(--green); }
+  .fc-opt   { background: var(--purple); }
+
+  .flow-right { flex: 1; padding: 4px 0 18px; }
+  .flow-step-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 5px;
+    line-height: 1.45;
+  }
+  .flow-step-title.debut { color: var(--green); }
+  .flow-step-body {
+    font-size: 12.5px;
+    color: var(--text);
+    background: var(--blue-light);
+    border-radius: 4px;
+    padding: 10px 12px;
+    line-height: 1.65;
+    margin-bottom: 5px;
+  }
+  .flow-step-body.opt { background: var(--purple-light); }
+  .flow-step-body strong { color: var(--navy); }
+  .flow-goal {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 2px;
+    color: var(--white);
+  }
+  .fg-navy { background: var(--navy); }
+  .fg-orange { background: var(--orange); }
+  .fg-green { background: var(--green); }
+  .fg-purple { background: var(--purple); }
+  .fg-gold { background: var(--gold); }
+
+  .rule-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    background: var(--orange-light);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 4px 4px 0;
+    padding: 9px 12px;
+    font-size: 11.5px;
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+  .rule-note-icon { color: var(--orange); font-weight: 700; flex-shrink: 0; }
+
+  .time-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 5px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 11px;
+  }
+  .time-before { color: var(--gray); text-decoration: line-through; }
+  .time-after { font-weight: 700; color: var(--orange); }
+  .time-save { color: var(--green); font-weight: 700; }
+
+  /* ── FREE BOX ── */
+  .free-grid { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .free-item {
+    border: 1.5px solid var(--navy);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+  }
+  .free-item-head {
+    background: var(--navy);
+    color: var(--white);
+    padding: 0 14px;
+    font-size: 11.5px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    width: 108px;
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+  .free-item-body {
+    background: var(--blue-light);
+    padding: 14px 16px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .free-num { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; color: var(--orange); line-height: 1; }
+  .free-unit { font-size: 11px; color: var(--gray); }
+  .free-note {
+    background: var(--blue-light);
+    border-left: 3px solid var(--blue-mid);
+    border-radius: 0 4px 4px 0;
+    padding: 12px 14px;
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+
+  /* ── FAQ ── */
+  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .faq-item { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .faq-q {
+    background: var(--blue-light);
+    padding: 12px 14px 12px 40px;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--navy);
+    position: relative;
+    line-height: 1.55;
+  }
+  .faq-q::before {
+    content: 'Q';
+    position: absolute; left: 12px; top: 12px;
+    background: var(--navy); color: var(--white);
+    font-size: 10px; font-weight: 700;
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .faq-a {
+    padding: 12px 14px 12px 40px;
+    font-size: 13px;
+    background: var(--white);
+    position: relative;
+    line-height: 1.65;
+  }
+  .faq-a::before {
+    content: 'A';
+    position: absolute; left: 12px; top: 12px;
+    background: var(--orange); color: var(--white);
+    font-size: 10px; font-weight: 700;
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── CTA FOOTER ── */
+  .cta-footer {
+    background: linear-gradient(160deg, var(--navy) 0%, #2C5282 100%);
+    padding: 32px 20px;
+    text-align: center;
+    color: var(--white);
+  }
+  .cta-footer h2 { font-size: 16px; font-weight: 700; margin-bottom: 8px; line-height: 1.5; }
+  .cta-footer p { font-size: 12.5px; color: rgba(255,255,255,.7); margin-bottom: 20px; line-height: 1.7; }
+  .cta-tel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 900;
+    padding: 16px 24px;
+    border-radius: 50px;
+    margin-bottom: 8px;
+    letter-spacing: .04em;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(232,93,38,.4);
+  }
+  .cta-tantou { font-size: 12px; color: rgba(255,255,255,.7); margin-bottom: 16px; }
+  .cta-company { font-size: 11px; color: rgba(255,255,255,.4); line-height: 1.8; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- STICKY -->
+  <div class="sticky-bar">
+    <span class="sticky-title">Eラーニング導入案内</span>
+    <span class="sticky-badge">半年間 無料</span>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">もみかるFC加盟店オーナー様へ</div>
+    <h1>スタッフ教育を、<br><span>武器</span>に変える。</h1>
+    <p class="hero-sub">Eラーニングシステム　導入のご案内</p>
+    <div class="hero-badge">
+      <span class="big">半年間 完全無料</span>
+      でお試しいただけます
+    </div>
+  </div>
+
+  <!-- 1. 課題提起 -->
+  <div class="section">
+    <div class="sec-label">
+      <div class="sec-num">1</div>
+      <div class="sec-title">こんな課題はありませんか？</div>
+    </div>
+    <div class="pain-list">
+      <div class="pain-item">
+        <span class="pain-icon">✗</span>
+        新人研修はエーススタッフが担当するため、その間の施術売上がまるごと消える
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">✗</span>
+        研修中の売上ダウンがわかっているから、「短時間しか働けない人」を採用するとコストの無駄に感じてしまう
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">✗</span>
+        エーススタッフの研修コストが重くのしかかり、週2〜3日勤務の短時間スタッフは採用に踏み切れない
+      </div>
+    </div>
+    <div class="pain-resolve">→ これらすべて、Eラーニングシステムで解決できます</div>
+  </div>
+
+  <!-- 2. 3つのメリット -->
+  <div class="section">
+    <div class="sec-label">
+      <div class="sec-num">2</div>
+      <div class="sec-title">導入で変わる「3つのこと」</div>
+    </div>
+    <div class="merit-grid">
+      <div class="merit-card">
+        <div class="merit-head"><span class="merit-badge">01</span>教育コストの極小化</div>
+        <div class="merit-body">
+          <ul>
+            <li>40時間の対面研修を動画自習に置き換え、研修時間を<strong>半分以下に短縮</strong></li>
+            <li>エーススタッフの研修時間を大幅削減。<strong>減った時間をそのまま施術売上に変えられる</strong></li>
+            <li>新人1人採用するごとに<strong>最大16万円のコスト削減効果</strong>（後述）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="merit-card">
+        <div class="merit-head"><span class="merit-badge">02</span>採用戦略の劇的変化</div>
+        <div class="merit-body">
+          <ul>
+            <li>週2〜3日の短時間スタッフも<strong>利益の出る戦力として採用可能</strong>に</li>
+            <li>「スマホで学べる最新研修」が<strong>求人での強力な差別化ポイント</strong>に</li>
+            <li>採用母集団が広がり、<strong>慢性的な人手不足から脱却</strong>できる</li>
+          </ul>
+        </div>
+      </div>
+      <div class="merit-card">
+        <div class="merit-head"><span class="merit-badge">03</span>品質の均一化と向上</div>
+        <div class="merit-body">
+          <ul>
+            <li>座学・技術の流れを動画で予習・復習・テスト。<strong>格段に理解度が高まった状態</strong>で対面研修をスタート</li>
+            <li>対面研修では<strong>手技のポイントや修正・検定だけに集中</strong>できる</li>
+            <li>デビュー後も動画を辞書として活用し、<strong>自己流化・品質劣化を防ぐ</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 数字のインパクト -->
+  <div class="section">
+    <div class="sec-label">
+      <div class="sec-num">3</div>
+      <div class="sec-title">数字で見るインパクト</div>
+    </div>
+    <p style="font-size:12px; color:var(--gray); margin-bottom:12px;">新人1名・対面研修40時間で育成した場合のコスト試算：</p>
+    <div class="kpi-cards">
+      <div class="kpi-card">
+        <div>
+          <div class="kpi-label">教育担当者の人件費ロス</div>
+          <div class="kpi-formula">時給 2,000円 × 40時間</div>
+        </div>
+        <div class="kpi-amount">80,000円</div>
+      </div>
+      <div class="kpi-card">
+        <div>
+          <div class="kpi-label">教育担当者の売上機会ロス</div>
+          <div class="kpi-formula">施術単価 6,000円 × 40時間分</div>
+        </div>
+        <div class="kpi-amount">240,000円</div>
+      </div>
+    </div>
+    <div class="kpi-total">
+      <div class="kpi-total-label">合計（新人1人あたり）</div>
+      <div class="kpi-total-amount">320,000円</div>
+    </div>
+    <div class="result-box">
+      <div class="result-label">Eラーニングで研修時間を20時間削減すると…</div>
+      <div class="result-main">
+        新人1人採用するごとに
+        <span>約16万円</span>
+        が手元に残ります
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 研修フロー -->
+  <div class="section">
+    <div class="sec-label">
+      <div class="sec-num">4</div>
+      <div class="sec-title">導入後の研修フロー（3フェーズ）</div>
+    </div>
+    <p style="font-size:12px; color:var(--gray); margin-bottom:16px;"><strong style="color:var(--navy);">テスト合格が実技参加の絶対条件</strong>です（例外なし）。もみほぐし → フット → ヘッド・ハンドの順に進みます。</p>
+
+    <!-- PHASE 1 -->
+    <div class="phase-tag phase-base">PHASE 1　もみほぐし基本研修</div>
+    <div class="flow-list">
+      <div class="flow-item">
+        <div class="flow-circle fc-admin">①</div>
+        <div class="flow-right">
+          <div class="flow-step-title">アカウント作成</div>
+          <div class="flow-step-body">採用決定後、オーナー自身で管理画面からアカウントを発行。当日中にEラーニングを開始させる。</div>
+          <span class="flow-goal fg-navy">受講準備完了</span>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-circle fc-video">②</div>
+        <div class="flow-right">
+          <div class="flow-step-title">Eラーニング受講</div>
+          <div class="flow-step-body">【リラクゼーション基礎知識】〜【もみほぐし全体の流れ】を動画で自習。自宅・移動中にスマホから受講可能。</div>
+          <span class="flow-goal fg-navy">言葉と流れを理解</span>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-circle fc-test">③</div>
+        <div class="flow-right">
+          <div class="flow-step-title">テスト合格（必須）</div>
+          <div class="flow-step-body">【リラクゼーション基本手技】【もみほぐし全体手順】の両テストに合格。</div>
+          <div class="rule-note">
+            <span class="rule-note-icon">⚠</span>
+            <span><strong>合格前に実技研修は開始しない。例外なし。</strong></span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-circle fc-jitsu">④</div>
+        <div class="flow-right">
+          <div class="flow-step-title">実技研修（短縮版）</div>
+          <div class="flow-step-body">流れ・用語は習得済みのため、インストラクターは手技の修正・ポイント・検定だけに集中できる。</div>
+          <div class="time-chip">
+            <span class="time-before">従来 40時間</span>
+            <span>→</span>
+            <span class="time-after">約20〜27時間</span>
+            <span class="time-save">▲最大20h削減</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-circle fc-debut">⑤</div>
+        <div class="flow-right">
+          <div class="flow-step-title debut">デビュー（もみほぐし）</div>
+          <div class="flow-step-body">実技検定合格でもみほぐしのデビューが可能。この時点から施術売上に貢献できる。</div>
+          <span class="flow-goal fg-green">店舗デビュー</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-tag phase-option">PHASE 2　フット オプション研修</div>
+    <div class="flow-list">
+      <div class="flow-item">
+        <div class="flow-circle fc-opt">⑥</div>
+        <div class="flow-right">
+          <div class="flow-step-title">Eラーニング ＋ テスト合格</div>
+          <div class="flow-step-body opt">フットの動画を視聴し手順テストに合格。もみほぐしと同じルールを適用（テスト合格が実技の絶対条件）。</div>
+          <span class="flow-goal fg-purple">実技参加権利発生</span>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-circle fc-opt">⑦</div>
+        <div class="flow-right">
+          <div class="flow-step-title">実技研修 → 合格</div>
+          <div class="flow-step-body opt">フット手技の修正・検定を対面で実施。</div>
+          <div class="time-chip">
+            <span class="time-before">従来 10時間</span>
+            <span>→</span>
+            <span class="time-after">約5〜7時間</span>
+            <span class="time-save">▲最大5h削減</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-tag phase-option">PHASE 3　ヘッド・ハンド オプション研修</div>
+    <div class="flow-list">
+      <div class="flow-item">
+        <div class="flow-circle fc-opt">⑧</div>
+        <div class="flow-right">
+          <div class="flow-step-title">実技研修（動画補助）</div>
+          <div class="flow-step-body opt">研修時間が2〜3時間と短いためテストは実施しない。動画を補助的に活用しながら対面で実施。</div>
+          <span class="flow-goal fg-purple">ヘッド・ハンド習得</span>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-circle fc-debut">⑨</div>
+        <div class="flow-right">
+          <div class="flow-step-title debut">フルメニューデビュー</div>
+          <div class="flow-step-body">全メニュー対応が可能なスタッフとして稼働開始。デビュー後も動画を辞書として活用し、品質を維持。</div>
+          <span class="flow-goal fg-green">フルデビュー完了</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 無料トライアル -->
+  <div class="section">
+    <div class="sec-label">
+      <div class="sec-num">5</div>
+      <div class="sec-title">まずは「半年間・完全無料」で</div>
+    </div>
+    <div class="free-grid">
+      <div class="free-item">
+        <div class="free-item-head">導入費用</div>
+        <div class="free-item-body">
+          <div class="free-num">0円</div>
+          <div class="free-unit">初期費用なし</div>
+        </div>
+      </div>
+      <div class="free-item">
+        <div class="free-item-head">月額費用<br>（6ヶ月間）</div>
+        <div class="free-item-body">
+          <div class="free-num">0円</div>
+          <div class="free-unit">半年間完全無料</div>
+        </div>
+      </div>
+      <div class="free-item">
+        <div class="free-item-head">サポート</div>
+        <div class="free-item-body">
+          <div>
+            <div style="font-size:14px; font-weight:700; color:var(--green);">導入・操作<br>サポートあり</div>
+            <div class="free-unit">本部が丁寧に対応</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="free-note">半年間、コストゼロで実際に使いながら効果を体感してください。まずは「試してみる」ところから始めていただければと思います。</div>
+  </div>
+
+  <!-- 6. FAQ -->
+  <div class="section">
+    <div class="sec-label">
+      <div class="sec-num">6</div>
+      <div class="sec-title">よくあるご質問</div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">スタッフがスマホを持っていない場合は？</div>
+        <div class="faq-a">店舗の共有タブレットやPCでも受講できます。専用機器の購入は不要です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">動画コンテンツは本部が用意するのですか？</div>
+        <div class="faq-a">はい。基礎コンテンツは本部側で制作・提供します。店舗独自のコンテンツを追加することも可能です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">ITに不慣れなスタッフでも使えますか？</div>
+        <div class="faq-a">YouTube感覚でスマホから視聴できる設計です。管理画面も極力シンプルにしています。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">6ヶ月後の費用は？</div>
+        <div class="faq-a">無料期間終了後の料金は別途ご案内します。継続しないことも可能ですので、まずはお気軽にご利用ください。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA FOOTER -->
+  <div class="cta-footer">
+    <h2>お気軽にご質問・<br>お申し込みください</h2>
+    <p>電話でのご説明も承っています。<br>まずはお気軽にご連絡ください。</p>
+    <a class="cta-tel" href="tel:0503172-1405">📞　050-3172-1405</a>
+    <div class="cta-tantou">担当：村松</div>
+    <div class="cta-company">
+      株式会社ドラミカンパニー<br>もみかるフランチャイズ本部
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
