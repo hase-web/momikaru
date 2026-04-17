@@ -472,6 +472,28 @@
     </div>
   </div>
 
+  <!-- 動画 -->
+  <div style="background:var(--navy); padding:20px 18px;">
+    <p style="font-size:11px; font-weight:700; color:rgba(255,255,255,.6); letter-spacing:.1em; margin-bottom:10px;">▶ まずはこちらをご覧ください</p>
+    <div id="yt-wrap" style="position:relative; width:100%; padding-top:56.25%; border-radius:8px; overflow:hidden; cursor:pointer;" onclick="document.getElementById('yt-wrap').innerHTML='<iframe src=\'https://www.youtube.com/embed/0d9CO6Si4mI?autoplay=1\' style=\'position:absolute;top:0;left:0;width:100%;height:100%;border:none;\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen></iframe>'">
+      <!-- サムネイル画像 -->
+      <img
+        src="https://img.youtube.com/vi/0d9CO6Si4mI/maxresdefault.jpg"
+        onerror="this.src='https://img.youtube.com/vi/0d9CO6Si4mI/hqdefault.jpg'"
+        style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;"
+        alt="Eラーニング研修システム紹介動画"
+      />
+      <!-- 再生ボタンオーバーレイ -->
+      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:64px; height:64px; background:rgba(0,0,0,.7); border-radius:50%; display:flex; align-items:center; justify-content:center;">
+        <div style="width:0; height:0; border-style:solid; border-width:14px 0 14px 26px; border-color:transparent transparent transparent white; margin-left:6px;"></div>
+      </div>
+      <!-- 下部グラデーション＋テキスト -->
+      <div style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent, rgba(0,0,0,.75)); padding:20px 14px 12px;">
+        <p style="color:white; font-size:12.5px; font-weight:700; margin:0; line-height:1.4;">業界初！もみかるEラーニング研修システム紹介</p>
+      </div>
+    </div>
+  </div>
+
   <!-- 1. 課題提起 -->
   <div class="section">
     <div class="sec-label">
