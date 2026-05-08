@@ -1,0 +1,29 @@
+# OSが自動生成するファイル
+.DS_Store
+Thumbs.db
+
+# エディタの一時ファイル
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Node関連(将来用)
+node_modules/
+package-lock.json
+*.log
+
+# 環境変数(秘密情報)
+.env
+.env.local
+.env.*.local
+
+# Netlify
+.netlify/
+
+# サーバスクリプト(必要に応じて)
+no-cache-server.py
+
+# バックアップフォルダは除外しない(履歴として残す)
+# _backup/  ← コメントアウトで含める
