@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>もみかる フランチャイズ加盟募集 | 株式会社ドラミカンパニー</title>
+<meta name="description" content="リラクゼーションサロン「もみかる」のフランチャイズ加盟募集。創業12年、136店舗の実績。堅実な第二の収益柱をお探しの事業家・独立志望の方へ。" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: {
+            900: '#0A1F44',
+            700: '#13315C',
+            500: '#2C4A7A',
+          },
+          gold: {
+            500: '#C9A227',
+            700: '#8C6F0F',
+          },
+          offwhite: '#F8F6F1',
+          ink: {
+            900: '#0D1117',
+            600: '#4A5264',
+          },
+          line: {
+            200: '#D9D5C8',
+          },
+          success: '#047857',
+          danger: '#B91C1C',
+        },
+        fontFamily: {
+          sans: ['"Noto Sans JP"', '"Hiragino Sans"', '"Yu Gothic"', 'sans-serif'],
+        },
+        maxWidth: {
+          container: '1200px',
+          reading: '720px',
+          form: '640px',
+        },
+        borderRadius: {
+          card: '8px',
+          btn: '4px',
+        },
+        boxShadow: {
+          e1: '0 1px 2px rgba(10, 31, 68, 0.04)',
+          e2: '0 8px 24px rgba(10, 31, 68, 0.08)',
+          e3: '0 16px 48px rgba(10, 31, 68, 0.16)',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: #0D1117;
+    background-color: #F8F6F1;
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+  }
+
+  /* Typography scale (desktop) */
+  .t-display { font-size: 56px; line-height: 1.25; letter-spacing: -0.01em; font-weight: 900; }
+  .t-h1 { font-size: 40px; line-height: 1.3; letter-spacing: -0.005em; font-weight: 700; }
+  .t-h2 { font-size: 32px; line-height: 1.35; font-weight: 700; }
+  .t-h3 { font-size: 24px; line-height: 1.4; font-weight: 700; }
+  .t-h4 { font-size: 20px; line-height: 1.5; font-weight: 500; }
+  .t-body-l { font-size: 18px; line-height: 1.8; letter-spacing: 0.01em; }
+  .t-body { font-size: 16px; line-height: 1.8; letter-spacing: 0.01em; }
+  .t-caption { font-size: 14px; line-height: 1.6; letter-spacing: 0.02em; }
+  .t-label { font-size: 12px; line-height: 1.4; letter-spacing: 0.08em; font-weight: 500; }
+  .t-numeric { font-size: 72px; line-height: 1.0; letter-spacing: -0.02em; font-weight: 900; }
+
+  @media (max-width: 767px) {
+    .t-display { font-size: 36px; }
+    .t-h1 { font-size: 28px; }
+    .t-h2 { font-size: 24px; }
+    .t-h3 { font-size: 20px; }
+    .t-numeric { font-size: 48px; }
+  }
+
+  /* Section heading accent bar */
+  .section-bar::before {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #C9A227;
+    margin-bottom: 16px;
+  }
+
+  /* Primary CTA */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 56px;
+    min-width: 280px;
+    padding: 16px 32px;
+    background-color: #C9A227;
+    color: #0A1F44;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: background-color 200ms ease, color 200ms ease;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background-color: #8C6F0F; color: #FFFFFF; }
+  .btn-primary:focus-visible { outline: 3px solid #C9A227; outline-offset: 2px; }
+
+  /* Secondary CTA */
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 56px;
+    min-width: 280px;
+    padding: 16px 32px;
+    background-color: transparent;
+    color: #13315C;
+    border: 2px solid #13315C;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: background-color 200ms ease, color 200ms ease;
+    text-decoration: none;
+  }
+  .btn-secondary:hover { background-color: #13315C; color: #FFFFFF; }
+  .btn-secondary:focus-visible { outline: 3px solid #C9A227; outline-offset: 2px; }
+
+  /* Secondary CTA on dark background */
+  .btn-secondary-on-dark {
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+  }
+  .btn-secondary-on-dark:hover { background-color: #FFFFFF; color: #0A1F44; }
+
+  /* Hero background pattern */
+  .hero-bg {
+    background-color: #0A1F44;
+    background-image:
+      repeating-linear-gradient(
+        135deg,
+        rgba(201, 162, 39, 0.10) 0 1px,
+        transparent 1px 80px
+      );
+  }
+
+  /* Placeholder image */
+  .placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D9D5C8;
+    color: #4A5264;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+
+  /* Form input */
+  .input-field {
+    width: 100%;
+    height: 56px;
+    padding: 16px;
+    border: 1px solid #D9D5C8;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #FFFFFF;
+    color: #0D1117;
+    transition: border-color 200ms ease;
+  }
+  .input-field:focus { border: 2px solid #13315C; outline: none; padding: 15px; }
+  textarea.input-field { height: auto; min-height: 120px; padding: 16px; }
+
+  /* FAQ accordion */
+  details.faq-item { border-bottom: 1px solid #D9D5C8; padding: 24px 0; }
+  details.faq-item > summary { list-style: none; cursor: pointer; display: flex; align-items: flex-start; gap: 16px; font-weight: 700; font-size: 18px; color: #0A1F44; }
+  details.faq-item > summary::-webkit-details-marker { display: none; }
+  details.faq-item > summary .q-mark { color: #C9A227; font-weight: 900; flex-shrink: 0; }
+  details.faq-item > summary .q-toggle { margin-left: auto; color: #13315C; transition: transform 200ms ease; flex-shrink: 0; }
+  details.faq-item[open] > summary .q-toggle { transform: rotate(45deg); }
+  details.faq-item .faq-a { margin-top: 16px; padding-left: 36px; color: #4A5264; line-height: 1.8; }
+
+  /* Mobile sticky CTA bar spacer */
+  @media (max-width: 767px) {
+    body { padding-bottom: 64px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="sticky top-0 z-10 bg-navy-900 text-white">
+  <div class="mx-auto max-w-container px-5 md:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3" aria-label="もみかる トップへ">
+      <span class="t-h3 font-black tracking-tight">もみかる</span>
+      <span class="t-label text-gold-500 hidden md:inline">FRANCHISE</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 t-caption">
+      <a href="#numbers" class="hover:text-gold-500 transition-colors">実績</a>
+      <a href="#reasons" class="hover:text-gold-500 transition-colors">選ばれる理由</a>
+      <a href="#owners" class="hover:text-gold-500 transition-colors">オーナー</a>
+      <a href="#simulation" class="hover:text-gold-500 transition-colors">収益</a>
+      <a href="#faq" class="hover:text-gold-500 transition-colors">FAQ</a>
+    </nav>
+    <a href="#form" class="hidden md:inline-flex items-center justify-center h-11 px-5 bg-gold-500 text-navy-900 font-bold rounded-btn hover:bg-gold-700 hover:text-white transition-colors" style="min-width: auto;">資料請求</a>
+  </div>
+</header>
+
+<!-- ===== 1. Hero ===== -->
+<section id="top" class="hero-bg text-white">
+  <div class="mx-auto max-w-container px-5 md:px-8 py-16 md:py-0 md:h-[680px] min-h-[560px] grid md:grid-cols-5 items-center gap-10">
+    <div class="md:col-span-3">
+      <span class="inline-block t-label bg-navy-900 text-gold-500 px-3 py-1 mb-6 border border-gold-500">FRANCHISE RECRUITMENT 2026</span>
+      <h1 class="t-display mb-6">
+        リラクゼーション業界で<span class="text-gold-500">12年</span>、<br class="hidden md:inline" /><span class="text-gold-500">136店舗</span>の実績
+      </h1>
+      <p class="t-body-l mb-10 text-white/90 max-w-reading">
+        堅実な事業として、第二の収益柱を。<br />
+        事業家・独立志望の方へ、もみかるのフランチャイズ加盟をご案内します。
+      </p>
+      <div class="flex flex-col md:flex-row gap-4">
+        <a href="#form" class="btn-primary">
+          資料を請求する（無料）
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="#form" class="btn-secondary btn-secondary-on-dark">
+          個別面談を予約する
+        </a>
+      </div>
+    </div>
+    <div class="md:col-span-2">
+      <div class="placeholder w-full h-60 md:h-[400px] rounded-card" role="img" aria-label="もみかる店舗外観のイメージ写真">
+        店舗写真プレースホルダー<br />1200×1600px 推奨
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. Numbers ===== -->
+<section id="numbers" class="py-20 md:py-[120px]">
+  <div class="mx-auto max-w-container px-5 md:px-8">
+    <div class="section-bar mb-12 md:mb-16">
+      <span class="t-label text-ink-600 block mb-2">NUMBERS</span>
+      <h2 class="t-h1 text-navy-900">数値で見るもみかるFC</h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      <div class="bg-white rounded-card p-6 md:p-8 shadow-e1 border border-line-200">
+        <p class="t-label text-ink-600 mb-4">創業からの年数</p>
+        <p class="flex items-baseline gap-1">
+          <span class="t-numeric text-gold-500">12</span>
+          <span class="text-navy-900 text-2xl font-bold">年</span>
+        </p>
+      </div>
+      <div class="bg-white rounded-card p-6 md:p-8 shadow-e1 border border-line-200">
+        <p class="t-label text-ink-600 mb-4">総店舗数</p>
+        <p class="flex items-baseline gap-1">
+          <span class="t-numeric text-gold-500">136</span>
+          <span class="text-navy-900 text-2xl font-bold">店舗</span>
+        </p>
+      </div>
+      <div class="bg-white rounded-card p-6 md:p-8 shadow-e1 border border-line-200">
+        <p class="t-label text-ink-600 mb-4">平均月商</p>
+        <p class="flex items-baseline gap-1">
+          <span class="t-numeric text-gold-500">450</span>
+          <span class="text-navy-900 text-2xl font-bold">万円</span>
+        </p>
+      </div>
+      <div class="bg-white rounded-card p-6 md:p-8 shadow-e1 border border-line-200">
+        <p class="t-label text-ink-600 mb-4">ロイヤリティ率</p>
+        <p class="flex items-baseline gap-1">
+          <span class="t-numeric text-gold-500">5</span>
+          <span class="text-navy-900 text-2xl font-bold">%</span>
+        </p>
+      </div>
+    </div>
+    <p class="t-caption text-ink-600 mt-6">※ 2026年4月時点の実績および想定値。個別の店舗収益を保証するものではありません。</p>
+  </div>
+</section>
+
+<!-- ===== 3. Reasons ===== -->
+<section id="reasons" class="py-20 md:py-[120px] bg-white">
+  <div class="mx-auto max-w-container px-5 md:px-8">
+    <div class="section-bar mb-12 md:mb-16">
+      <span class="t-label text-ink-600 block mb-2">WHY MOMIKARU</span>
+      <h2 class="t-h1 text-navy-900">もみかるが選ばれる3つの理由</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+      <article class="rounded-card p-8 border border-line-200 shadow-e1 hover:shadow-e2 transition-shadow bg-offwhite">
+        <span class="t-numeric text-gold-500 block mb-4" style="font-size: 48px;">01</span>
+        <h3 class="t-h3 text-navy-900 mb-4">実績ある成功スキームの提供</h3>
+        <p class="t-body text-ink-900">
+          直営15店舗で検証された接客マニュアル、メニュー構成、価格設計をそのまま提供。
+          開業初月から安定稼働を目指せる運営モデルです。
+        </p>
+      </article>
+
+      <article class="rounded-card p-8 border border-line-200 shadow-e1 hover:shadow-e2 transition-shadow bg-offwhite">
+        <span class="t-numeric text-gold-500 block mb-4" style="font-size: 48px;">02</span>
+        <h3 class="t-h3 text-navy-900 mb-4">本部による運営サポート</h3>
+        <p class="t-body text-ink-900">
+          開業前研修、スーパーバイザー定期訪問、採用支援、販促物の提供まで一貫対応。
+          本業を持ちながらの運営にも対応可能な体制です。
+        </p>
+      </article>
+
+      <article class="rounded-card p-8 border border-line-200 shadow-e1 hover:shadow-e2 transition-shadow bg-offwhite">
+        <span class="t-numeric text-gold-500 block mb-4" style="font-size: 48px;">03</span>
+        <h3 class="t-h3 text-navy-900 mb-4">低リスクな初期投資</h3>
+        <p class="t-body text-ink-900">
+          居抜き物件活用により、初期投資1500万円からの開業が可能。
+          24ヶ月の投資回収を目安とした堅実な事業計画を設計できます。
+        </p>
+      </article>
+    </div>
+
+    <div class="mt-12 md:mt-16 text-center">
+      <a href="#form" class="btn-primary">
+        詳しい資料を請求する
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. Owner Voices ===== -->
+<section id="owners" class="py-20 md:py-[120px]">
+  <div class="mx-auto max-w-container px-5 md:px-8">
+    <div class="section-bar mb-12 md:mb-16">
+      <span class="t-label text-ink-600 block mb-2">OWNERS</span>
+      <h2 class="t-h1 text-navy-900">オーナー実績</h2>
+      <p class="t-body-l text-ink-900 mt-4 max-w-reading">異なる経歴を持つ3名のオーナーが、もみかるFCでどのような事業展開を実現しているかをご紹介します。</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+      <!-- Owner 1 -->
+      <article class="bg-white rounded-card overflow-hidden border border-line-200 shadow-e1">
+        <div class="placeholder w-full aspect-square" role="img" aria-label="オーナーA様のポートレート写真">
+          オーナー写真<br />600×600px 推奨
+        </div>
+        <div class="p-6 md:p-8">
+          <span class="inline-block t-label bg-navy-900 text-gold-500 px-3 py-1 mb-4">静岡エリア</span>
+          <h3 class="t-h3 text-navy-900 mb-1">A.K 様</h3>
+          <p class="t-caption text-ink-600 mb-4">42歳／元・飲食店経営</p>
+          <p class="t-body text-ink-900">
+            「飲食業からの業態転換で加盟。開業8ヶ月目で月商520万円を達成し、2店舗目の出店準備に入っています。」
+          </p>
+        </div>
+      </article>
+
+      <!-- Owner 2 -->
+      <article class="bg-white rounded-card overflow-hidden border border-line-200 shadow-e1">
+        <div class="placeholder w-full aspect-square" role="img" aria-label="オーナーB様のポートレート写真">
+          オーナー写真<br />600×600px 推奨
+        </div>
+        <div class="p-6 md:p-8">
+          <span class="inline-block t-label bg-navy-900 text-gold-500 px-3 py-1 mb-4">富山エリア</span>
+          <h3 class="t-h3 text-navy-900 mb-1">T.M 様</h3>
+          <p class="t-caption text-ink-600 mb-4">38歳／元・大手メーカー勤務</p>
+          <p class="t-body text-ink-900">
+            「会社員からの独立で加盟。本部研修で運営知識を身につけ、開業12ヶ月目で月商480万円まで成長しました。」
+          </p>
+        </div>
+      </article>
+
+      <!-- Owner 3 -->
+      <article class="bg-white rounded-card overflow-hidden border border-line-200 shadow-e1">
+        <div class="placeholder w-full aspect-square" role="img" aria-label="オーナーC様のポートレート写真">
+          オーナー写真<br />600×600px 推奨
+        </div>
+        <div class="p-6 md:p-8">
+          <span class="inline-block t-label bg-navy-900 text-gold-500 px-3 py-1 mb-4">岐阜エリア</span>
+          <h3 class="t-h3 text-navy-900 mb-1">S.N 様</h3>
+          <p class="t-caption text-ink-600 mb-4">51歳／不動産会社経営</p>
+          <p class="t-body text-ink-900">
+            「第二の収益柱として加盟。本業と並行しながら3店舗を運営し、合計月商1400万円規模となっています。」
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. Simulation ===== -->
+<section id="simulation" class="py-20 md:py-[120px] bg-navy-900 text-white">
+  <div class="mx-auto max-w-container px-5 md:px-8">
+    <div class="section-bar mb-12 md:mb-16">
+      <span class="t-label text-gold-500 block mb-2">SIMULATION</span>
+      <h2 class="t-h1 text-white">投資回収シミュレーション</h2>
+      <p class="t-body-l text-white/90 mt-4 max-w-reading">標準的な1店舗あたりのモデルケースです。物件条件・立地により変動します。</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8 mb-10">
+      <div class="bg-white/5 border border-white/20 rounded-card p-8">
+        <p class="t-label text-gold-500 mb-4">初期投資</p>
+        <p class="flex items-baseline gap-1">
+          <span class="t-numeric text-white">1,500</span>
+          <span class="text-white text-2xl font-bold">万円</span>
+        </p>
+        <p class="t-caption text-white/70 mt-3">物件取得費・内装・研修費・開業販促含む</p>
+      </div>
+      <div class="bg-white/5 border border-white/20 rounded-card p-8">
+        <p class="t-label text-gold-500 mb-4">想定月商</p>
+        <p class="flex items-baseline gap-1">
+          <span class="t-numeric text-white">450</span>
+          <span class="text-white text-2xl font-bold">万円</span>
+        </p>
+        <p class="t-caption text-white/70 mt-3">開業12ヶ月目以降のモデル値</p>
+      </div>
+      <div class="bg-white/5 border border-white/20 rounded-card p-8">
+        <p class="t-label text-gold-500 mb-4">月次ロイヤリティ</p>
+        <p class="flex items-baseline gap-1">
+          <span class="t-numeric text-white">5</span>
+          <span class="text-white text-2xl font-bold">%</span>
+        </p>
+        <p class="t-caption text-white/70 mt-3">売上に対する比率</p>
+      </div>
+      <div class="bg-gold-500 text-navy-900 rounded-card p-8">
+        <p class="t-label text-navy-900 mb-4">回収目安</p>
+        <p class="flex items-baseline gap-1">
+          <span class="t-numeric">24</span>
+          <span class="text-navy-900 text-2xl font-bold">ヶ月</span>
+        </p>
+        <p class="t-caption text-navy-900 mt-3">初期投資の回収期間モデル</p>
+      </div>
+    </div>
+
+    <p class="t-caption text-white/70 mb-8">※ 本シミュレーションは標準的なモデルケースであり、個別の店舗収益・回収期間を保証するものではありません。詳細な試算は資料請求後の個別面談にてご案内します。</p>
+
+    <div class="flex flex-col md:flex-row gap-4 justify-center">
+      <a href="#form" class="btn-primary">
+        詳細資料を請求する
+        <span aria-hidden="true">→</span>
+      </a>
+      <a href="#form" class="btn-secondary btn-secondary-on-dark">
+        個別面談を予約する
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6. Steps ===== -->
+<section id="steps" class="py-20 md:py-[120px] bg-white">
+  <div class="mx-auto max-w-container px-5 md:px-8">
+    <div class="section-bar mb-12 md:mb-16">
+      <span class="t-label text-ink-600 block mb-2">STEPS</span>
+      <h2 class="t-h1 text-navy-900">開業までの5ステップ</h2>
+    </div>
+
+    <ol class="grid md:grid-cols-5 gap-4 md:gap-6">
+      <li class="bg-offwhite rounded-card p-6 border border-line-200 relative">
+        <span class="t-label text-gold-500 block mb-2">STEP 01</span>
+        <h3 class="t-h4 text-navy-900 mb-3 font-bold">資料請求</h3>
+        <p class="t-caption text-ink-900">本LPのフォームよりお申込み。最短翌営業日に資料をお送りします。</p>
+      </li>
+      <li class="bg-offwhite rounded-card p-6 border border-line-200 relative">
+        <span class="t-label text-gold-500 block mb-2">STEP 02</span>
+        <h3 class="t-h4 text-navy-900 mb-3 font-bold">個別面談</h3>
+        <p class="t-caption text-ink-900">オンラインまたは本部（静岡）にて、事業内容・契約条件をご説明します。</p>
+      </li>
+      <li class="bg-offwhite rounded-card p-6 border border-line-200 relative">
+        <span class="t-label text-gold-500 block mb-2">STEP 03</span>
+        <h3 class="t-h4 text-navy-900 mb-3 font-bold">物件選定</h3>
+        <p class="t-caption text-ink-900">本部が商圏分析を実施し、出店候補物件を共同で選定します。</p>
+      </li>
+      <li class="bg-offwhite rounded-card p-6 border border-line-200 relative">
+        <span class="t-label text-gold-500 block mb-2">STEP 04</span>
+        <h3 class="t-h4 text-navy-900 mb-3 font-bold">契約・研修</h3>
+        <p class="t-caption text-ink-900">加盟契約後、本部にて3週間の開業前研修を実施します。</p>
+      </li>
+      <li class="bg-gold-500 rounded-card p-6 relative">
+        <span class="t-label text-navy-900 block mb-2">STEP 05</span>
+        <h3 class="t-h4 text-navy-900 mb-3 font-bold">開業</h3>
+        <p class="t-caption text-navy-900">開業日から3ヶ月間、スーパーバイザーが週次で訪問サポートします。</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== 7. FAQ ===== -->
+<section id="faq" class="py-20 md:py-[120px]">
+  <div class="mx-auto max-w-container px-5 md:px-8">
+    <div class="section-bar mb-12 md:mb-16">
+      <span class="t-label text-ink-600 block mb-2">FAQ</span>
+      <h2 class="t-h1 text-navy-900">よくあるご質問</h2>
+    </div>
+
+    <div class="max-w-reading mx-auto">
+      <details class="faq-item">
+        <summary>
+          <span class="q-mark">Q.</span>
+          <span>未経験でも加盟できますか？</span>
+          <span class="q-toggle" aria-hidden="true">＋</span>
+        </summary>
+        <div class="faq-a">
+          リラクゼーション業界未経験の方でも加盟いただけます。加盟者のうち約70%が異業種出身です。開業前研修3週間と開業後のスーパーバイザー訪問により、業界知識ゼロからでも運営可能な体制を整えています。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="q-mark">Q.</span>
+          <span>本業と並行して運営できますか？</span>
+          <span class="q-toggle" aria-hidden="true">＋</span>
+        </summary>
+        <div class="faq-a">
+          可能です。店長職を雇用し、オーナーは週1〜2回の店舗訪問と月次の売上管理を担う運営モデルを採用するオーナーが全体の約60%を占めています。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="q-mark">Q.</span>
+          <span>初期投資の資金調達サポートはありますか？</span>
+          <span class="q-toggle" aria-hidden="true">＋</span>
+        </summary>
+        <div class="faq-a">
+          日本政策金融公庫および提携地方銀行への融資申込サポートを本部が行います。事業計画書の作成支援も含まれます。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="q-mark">Q.</span>
+          <span>出店可能エリアに制限はありますか？</span>
+          <span class="q-toggle" aria-hidden="true">＋</span>
+        </summary>
+        <div class="faq-a">
+          現時点では全国対応可能ですが、既存店舗との商圏重複を避けるため、候補エリアごとに可否を判定します。詳細は個別面談にてご確認ください。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="q-mark">Q.</span>
+          <span>契約期間と更新条件を教えてください。</span>
+          <span class="q-toggle" aria-hidden="true">＋</span>
+        </summary>
+        <div class="faq-a">
+          基本契約期間は5年、以降は双方合意により5年単位で更新可能です。更新時の追加費用は発生しません。
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8. Final CTA / Form ===== -->
+<section id="form" class="py-20 md:py-[120px] bg-offwhite">
+  <div class="mx-auto max-w-container px-5 md:px-8">
+    <div class="text-center mb-12 md:mb-16">
+      <span class="t-label text-ink-600 block mb-4">CONTACT</span>
+      <h2 class="t-h1 text-navy-900 mb-6">まずは資料をご請求ください</h2>
+      <p class="t-body-l text-ink-900 max-w-reading mx-auto">
+        加盟条件・収益モデル・契約詳細をまとめた資料を無料でお送りします。<br />
+        個別面談をご希望の場合は、フォーム下部よりご選択ください。
+      </p>
+    </div>
+
+    <form class="max-w-form mx-auto bg-white rounded-card p-6 md:p-10 shadow-e2 border border-line-200" onsubmit="event.preventDefault(); window.location.href='form/thanks.html';">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <label for="name" class="block t-caption font-medium text-ink-900 mb-2">お名前<span class="text-danger ml-1">*</span></label>
+          <input id="name" name="name" type="text" required class="input-field" autocomplete="name" />
+        </div>
+        <div>
+          <label for="kana" class="block t-caption font-medium text-ink-900 mb-2">フリガナ<span class="text-danger ml-1">*</span></label>
+          <input id="kana" name="kana" type="text" required class="input-field" />
+        </div>
+        <div>
+          <label for="email" class="block t-caption font-medium text-ink-900 mb-2">メールアドレス<span class="text-danger ml-1">*</span></label>
+          <input id="email" name="email" type="email" required class="input-field" autocomplete="email" />
+        </div>
+        <div>
+          <label for="tel" class="block t-caption font-medium text-ink-900 mb-2">電話番号<span class="text-danger ml-1">*</span></label>
+          <input id="tel" name="tel" type="tel" required class="input-field" autocomplete="tel" />
+        </div>
+        <div class="md:col-span-2">
+          <label for="prefecture" class="block t-caption font-medium text-ink-900 mb-2">検討エリア（都道府県）<span class="text-danger ml-1">*</span></label>
+          <input id="prefecture" name="prefecture" type="text" required class="input-field" placeholder="例: 静岡県" />
+        </div>
+        <div class="md:col-span-2">
+          <label for="occupation" class="block t-caption font-medium text-ink-900 mb-2">現在のご職業</label>
+          <input id="occupation" name="occupation" type="text" class="input-field" />
+        </div>
+        <div class="md:col-span-2">
+          <label class="block t-caption font-medium text-ink-900 mb-2">ご希望<span class="text-danger ml-1">*</span></label>
+          <div class="flex flex-col gap-3">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="radio" name="purpose" value="document" required class="w-5 h-5 accent-navy-700" />
+              <span class="t-body">資料請求のみ希望</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="radio" name="purpose" value="meeting" class="w-5 h-5 accent-navy-700" />
+              <span class="t-body">資料請求＋個別面談を希望</span>
+            </label>
+          </div>
+        </div>
+        <div class="md:col-span-2">
+          <label for="message" class="block t-caption font-medium text-ink-900 mb-2">ご質問・ご要望</label>
+          <textarea id="message" name="message" class="input-field" rows="4"></textarea>
+        </div>
+      </div>
+
+      <div class="mt-8 flex items-start gap-3">
+        <input id="agree" name="agree" type="checkbox" required class="w-5 h-5 mt-1 accent-navy-700" />
+        <label for="agree" class="t-caption text-ink-900">
+          <a href="#" class="text-navy-700 underline">プライバシーポリシー</a>に同意します<span class="text-danger ml-1">*</span>
+        </label>
+      </div>
+
+      <div class="mt-8 text-center">
+        <button type="submit" class="btn-primary w-full md:w-auto">
+          資料を請求する（無料）
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="bg-navy-900 text-white py-16">
+  <div class="mx-auto max-w-container px-5 md:px-8">
+    <div class="grid md:grid-cols-3 gap-10 mb-10">
+      <div>
+        <p class="t-h3 font-black mb-4">もみかる</p>
+        <p class="t-caption text-white/80">リラクゼーションサロン<br />フランチャイズ加盟募集</p>
+      </div>
+      <div>
+        <p class="t-label text-gold-500 mb-4">運営会社</p>
+        <p class="t-body mb-1">株式会社ドラミカンパニー</p>
+        <p class="t-caption text-white/80">代表取締役 長谷川幸弘</p>
+      </div>
+      <div>
+        <p class="t-label text-gold-500 mb-4">店舗展開</p>
+        <p class="t-caption text-white/80">直営15店舗（静岡6・富山7・岐阜2）<br />FC約85店舗／合計約100店舗</p>
+      </div>
+    </div>
+    <div class="border-t border-white/20 pt-6 t-caption text-white/60">
+      © 2026 DORAMI Company, Inc. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Mobile fixed CTA bar ===== -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-gold-500 shadow-e3" style="z-index: 20; height: 64px;">
+  <div class="flex items-center justify-center h-full px-4 gap-3">
+    <a href="#form" class="flex-1 flex items-center justify-center h-12 bg-navy-900 text-white font-bold rounded-btn text-sm">資料請求</a>
+    <a href="#form" class="flex-1 flex items-center justify-center h-12 bg-white text-navy-900 font-bold rounded-btn text-sm border-2 border-navy-900">面談予約</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,2771 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<title>SALON de MOMIKARU 採用｜エステ業界の方へ</title>
+<meta name="description" content="エステ業界に、自分で技術と働き方を選ぶ自由を。SALON de MOMIKARU 業務委託採用LP。エステ業界経験者向け。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Serif+JP:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+============================================================ */
+:root{
+  --bg:#FAF6EF;
+  --bg-2:#F1EBDF;
+  --bg-3:#E8DFCC;
+  --ink:#1A1614;
+  --ink-2:#4A3F35;
+  --mute:#8E8478;
+  --line:#E8DFD0;
+  --accent:#8B2A1E;
+  --accent-2:#B8826F;
+  --accent-3:#D4B5A0;
+  --gold:#9B7B3A;
+  --paper:#FFFEFB;
+  --danger:#A23B2A;
+  --line-jp:1.85;
+  --line-tight:1.35;
+  --serif-jp:"Noto Serif JP", serif;
+  --sans-jp:"Noto Sans JP", sans-serif;
+  --serif-en:"Cormorant Garamond", serif;
+  --shadow-soft:0 18px 48px -24px rgba(26,22,20,.32);
+  --shadow-strong:0 24px 60px -20px rgba(139,42,30,.42);
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ============================================================
+   OPENING OVERLAY
+============================================================ */
+.opening{
+  position:fixed;inset:0;
+  width:100vw;height:100vh;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  z-index:9999;
+  cursor:pointer;
+  transition:opacity .5s ease;
+}
+.opening.is-fading{opacity:0;}
+.opening.is-hidden{display:none;}
+.opening__text{
+  font-family:var(--serif-jp);
+  font-weight:900;
+  font-size:clamp(32px,7vw,88px);
+  line-height:1.4;
+  letter-spacing:.04em;
+  color:var(--ink);
+  text-align:center;
+  padding:0 24px;
+  opacity:0;
+  transform:translateY(12px) scale(1);
+  animation:openingIn .7s cubic-bezier(.2,.7,.2,1) forwards,
+            openingOut .6s cubic-bezier(.4,0,.2,1) forwards 1.6s;
+}
+.opening__text .ac{color:var(--accent);}
+@keyframes openingIn{
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+@keyframes openingOut{
+  from{opacity:1;transform:translateY(0) scale(1);}
+  to{opacity:0;transform:translateY(0) scale(1.05);}
+}
+.opening__skip{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  font-family:var(--serif-en);font-style:italic;font-weight:500;
+  font-size:11px;letter-spacing:.32em;
+  color:var(--mute);text-transform:uppercase;
+  opacity:0;animation:openingHint 1s ease forwards .8s;
+  pointer-events:none;
+}
+@keyframes openingHint{to{opacity:1;}}
+
+/* Hold hero animations until overlay finishes */
+body.is-opening .hero__anim>*,
+body.is-opening .hero__panel{animation-play-state:paused;}
+
+/* ============================================================
+   BASE
+============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  font-family:var(--sans-jp);
+  font-weight:400;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:var(--line-jp);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+ul,ol{list-style:none;}
+
+.container{
+  width:100%;
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 24px;
+}
+@media (min-width:768px){ .container{padding:0 40px;} }
+
+/* Section structure */
+section{position:relative;}
+.section-pad{padding:96px 0;}
+@media (min-width:768px){ .section-pad{padding:140px 0;} }
+
+.eyebrow{
+  font-family:var(--serif-en);
+  font-style:italic;
+  font-weight:500;
+  font-size:14px;
+  letter-spacing:.18em;
+  color:var(--accent);
+  text-transform:uppercase;
+}
+.eyebrow.on-dark{color:var(--accent-2);}
+.lead{
+  font-family:var(--serif-jp);
+  font-weight:700;
+  letter-spacing:.02em;
+  line-height:1.45;
+  color:var(--ink);
+  font-size:clamp(26px,4.6vw,44px);
+}
+.lead.on-dark{color:#F4ECDF;}
+.body-jp{
+  font-size:15px;
+  line-height:var(--line-jp);
+  color:var(--ink-2);
+}
+.body-jp.on-dark{color:#D8CFBF;}
+
+.hr-thin{
+  width:48px;height:1px;background:var(--accent);border:0;margin:24px 0;
+}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease;}
+.reveal.is-visible{opacity:1;transform:none;}
+
+/* ============================================================
+   HEADER
+============================================================ */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(250,246,239,.84);
+  backdrop-filter:saturate(140%) blur(10px);
+  -webkit-backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s ease,background .3s ease;
+}
+.site-header.scrolled{
+  border-bottom-color:var(--line);
+  background:rgba(250,246,239,.96);
+}
+.site-header__inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;
+  max-width:1240px;margin:0 auto;
+}
+.site-header__brand{display:flex;align-items:center;gap:10px;}
+.hdr-divider{margin:0 10px;color:var(--mute);font-size:14px;}
+.hdr-sub-brand{display:flex;flex-direction:column;align-items:flex-start;line-height:1;}
+.hdr-sub-eye{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:9px;letter-spacing:.15em;color:var(--mute);
+}
+.hdr-sub-name{
+  font-family:var(--sans-jp);font-weight:700;
+  font-size:13px;letter-spacing:.12em;color:var(--ink);margin-top:2px;
+}
+@media (max-width:640px){
+  .hdr-divider{margin:0 6px;font-size:12px;}
+  .hdr-sub-name{font-size:11px;letter-spacing:.08em;}
+  .hdr-sub-eye{font-size:8px;}
+}
+.site-header__logo-wrap{
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.site-header__logo{height:32px;width:auto;display:block;}
+.site-header__brand-mark{
+  font-family:var(--serif-en);
+  font-style:italic;font-weight:500;
+  font-size:11px;letter-spacing:.32em;
+  color:var(--ink-2);
+  text-transform:uppercase;
+  padding-left:10px;border-left:1px solid var(--line);
+}
+.site-header__actions{display:flex;align-items:center;gap:10px;}
+.site-header__phone{
+  width:44px;height:44px;border-radius:50%;
+  background:transparent;color:var(--ink);
+  border:1px solid var(--ink);
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:background-color .25s ease,color .25s ease,transform .3s ease;
+  flex:0 0 auto;
+}
+.site-header__phone svg{width:18px;height:18px;}
+.site-header__phone:hover{background:var(--ink);color:var(--paper);transform:translateY(-1px);}
+.site-header__cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ink);color:#FFFEFB;
+  padding:11px 18px;
+  font-size:13px;font-weight:700;
+  border-radius:999px;
+  box-shadow:0 8px 22px -10px rgba(139,42,30,.6);
+  transition:transform .3s ease,box-shadow .3s ease;
+  white-space:nowrap;
+}
+.site-header__cta:hover{transform:translateY(-1px);box-shadow:0 12px 28px -10px rgba(139,42,30,.7);}
+.site-header__cta .dot{
+  position:relative;
+  width:8px;height:8px;border-radius:50%;
+  background:#22C55E;
+  box-shadow:0 0 6px rgba(34,197,94,.55);
+}
+.site-header__cta .dot::before{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:rgba(34,197,94,.5);
+  animation:pulseDot 2s ease-out infinite;
+}
+@keyframes pulseDot{
+  0%{transform:scale(1);opacity:.55;}
+  70%{transform:scale(2.6);opacity:0;}
+  100%{transform:scale(2.6);opacity:0;}
+}
+@media (max-width:767px){
+  .site-header__actions{gap:8px;}
+  .site-header__phone{width:38px;height:38px;}
+  .site-header__phone svg{width:16px;height:16px;}
+}
+@media (max-width:520px){
+  .site-header__inner{padding:12px 14px;}
+  .site-header__logo{height:28px;}
+  .site-header__brand-mark{display:none;}
+  .site-header__cta{padding:8px 12px;font-size:11.5px;}
+  .site-header__cta .label-full{display:none;}
+  .site-header__cta .label-short{display:inline;}
+}
+.site-header__cta .label-short{display:none;}
+
+/* ============================================================
+   L1 HERO
+============================================================ */
+.hero{
+  position:relative;
+  min-height:100vh;
+  padding:120px 0 80px;
+  background:
+    radial-gradient(60% 40% at 100% 0%, rgba(199,131,58,.22), transparent 65%),
+    radial-gradient(50% 50% at 0% 100%, rgba(139,42,30,.18), transparent 60%),
+    var(--bg);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:var(--grain);
+  opacity:.45;mix-blend-mode:multiply;pointer-events:none;
+}
+.hero__decor-word{
+  position:absolute;
+  top:-12px;right:-30px;
+  font-family:var(--serif-en);
+  font-style:italic;font-weight:500;
+  font-size:clamp(180px,22vw,320px);
+  color:var(--ink);
+  opacity:.04;
+  letter-spacing:-.02em;
+  pointer-events:none;
+  user-select:none;
+  line-height:1;
+  white-space:nowrap;
+}
+@media (max-width:1024px){.hero__decor-word{display:none;}}
+/* Site-wide editorial vertical label (fixed) */
+.vertical-label{
+  position:fixed;
+  top:50%;left:24px;
+  transform:translateY(-50%);
+  writing-mode:vertical-rl;
+  font-family:"Noto Serif JP",serif;
+  font-weight:500;
+  font-size:13px;letter-spacing:.4em;
+  color:var(--mute);
+  z-index:30;
+  pointer-events:none;user-select:none;
+  transition:color .3s ease;
+  display:flex;flex-direction:column;align-items:center;
+}
+.vertical-label::before{
+  content:"";display:block;
+  width:1px;height:40px;
+  background:var(--accent);
+  margin-bottom:14px;
+  transition:background-color .3s ease;
+}
+.vertical-label.on-dark{color:rgba(255,255,255,.55);}
+.vertical-label.on-dark::before{background:var(--accent-2);}
+@media (min-width:768px) and (max-width:1024px){
+  .vertical-label{
+    left:16px;
+    font-size:11px;
+    letter-spacing:.3em;
+  }
+  .vertical-label::before{height:30px;margin-bottom:10px;}
+}
+@media (max-width:767px){
+  .vertical-label{
+    left:8px;
+    font-size:9px;
+    letter-spacing:.25em;
+    color:var(--mute);
+    opacity:.6;
+  }
+  .vertical-label::before{height:24px;margin-bottom:8px;width:1px;}
+  .vertical-label.on-dark{color:rgba(255,255,255,.7);opacity:.55;}
+}
+
+/* Reserve left gutter for fixed vertical-label */
+@media (max-width:767px){
+  .container{padding-left:28px;padding-right:20px;}
+}
+@media (min-width:1025px){
+  .container{padding-left:80px;}
+  .site-header__inner{padding-left:80px;}
+}
+
+.hero__circle{
+  position:absolute;
+  right:-160px;top:-120px;
+  width:520px;height:520px;
+  border:1px dashed rgba(139,42,30,.18);
+  border-radius:50%;
+  animation:rotate 30s linear infinite;
+  pointer-events:none;
+}
+.hero__circle::after{
+  content:"";position:absolute;
+  inset:50px;border:1px dashed rgba(155,123,58,.16);border-radius:50%;
+  animation:rotate-rev 45s linear infinite;
+}
+@keyframes rotate{to{transform:rotate(360deg);}}
+@keyframes rotate-rev{to{transform:rotate(-360deg);}}
+
+.hero__inner{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:56px;
+  align-items:center;
+}
+@media (min-width:960px){
+  .hero__inner{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:72px;}
+}
+
+.hero__tag-top{
+  font-family:var(--serif-en);
+  font-style:italic;font-weight:500;
+  font-size:13px;letter-spacing:.32em;
+  color:var(--accent);
+  text-transform:uppercase;
+}
+.hero__tag-bottom{
+  font-family:var(--serif-jp);
+  font-weight:500;font-size:14px;
+  color:var(--ink-2);
+  margin-top:6px;letter-spacing:.06em;
+}
+.hero__heading{
+  margin-top:28px;
+  font-family:var(--serif-jp);
+  font-weight:900;
+  font-size:clamp(26px,4.2vw,46px);
+  line-height:1.45;
+  letter-spacing:.02em;
+  color:var(--ink);
+  max-width:760px;
+}
+@media (max-width:768px){
+  .hero__heading{font-size:clamp(24px,6vw,32px);line-height:1.5;}
+  .hero__heading br{display:none;}
+}
+.hero__heading .ac{color:var(--accent);}
+.hero__heading .quote{
+  display:inline-block;
+  position:relative;
+  padding:0 .15em;
+}
+.hero__heading .quote::before,
+.hero__heading .quote::after{
+  font-family:var(--serif-jp);
+  color:var(--accent);
+  font-weight:700;
+}
+.hero__heading .quote::before{content:"「";}
+.hero__heading .quote::after{content:"」";}
+
+.hero__scenario{
+  margin-top:28px;
+  font-size:15px;
+  line-height:2;
+  color:var(--ink-2);
+  letter-spacing:.02em;
+  max-width:560px;
+}
+.hero__scenario p+p{margin-top:6px;}
+
+.hero__meta{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px 18px;
+  margin-top:32px;
+  padding-top:28px;
+  border-top:1px solid var(--line);
+  max-width:560px;
+}
+.hero__meta li{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:13px;color:var(--ink-2);font-weight:500;
+}
+.hero__meta li svg{
+  width:16px;height:16px;flex:0 0 auto;
+  color:var(--accent);margin-top:5px;
+}
+
+.hero__cta{
+  display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:18px 28px;
+  border-radius:999px;
+  font-weight:700;font-size:14.5px;letter-spacing:.04em;
+  transition:transform .3s ease,box-shadow .3s ease,background .3s ease,color .3s ease,border-color .3s ease;
+  white-space:nowrap;
+}
+.btn--primary{
+  background:var(--ink);color:#FFFEFB;
+  box-shadow:0 18px 32px -16px rgba(139,42,30,.65),0 4px 10px -4px rgba(26,22,20,.4);
+}
+.btn--primary:hover{transform:translateY(-2px);box-shadow:0 24px 40px -16px rgba(139,42,30,.75);}
+.btn--ghost{
+  background:transparent;color:var(--ink);
+  border:1.5px solid var(--ink);
+}
+.btn--ghost:hover{background:var(--ink);color:#FFFEFB;}
+.btn--line{background:#06C755;color:#fff;box-shadow:0 18px 32px -16px rgba(6,199,85,.55),0 4px 10px -4px rgba(6,199,85,.35);}
+.btn--line:hover{transform:translateY(-2px);box-shadow:0 24px 40px -16px rgba(6,199,85,.65);}
+.btn--phone{
+  background:transparent;color:var(--ink);
+  border:1.5px solid var(--ink);
+}
+.btn--phone:hover{background:var(--ink);color:#FFFEFB;}
+.btn--phone .num{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  letter-spacing:.04em;margin-left:6px;
+}
+.btn--white{
+  background:var(--paper);color:var(--ink);
+  box-shadow:0 18px 32px -16px rgba(139,42,30,.45),0 4px 10px -4px rgba(26,22,20,.18);
+}
+.btn--white:hover{transform:translateY(-2px);box-shadow:0 24px 40px -16px rgba(139,42,30,.55);}
+.btn--white .num{font-family:var(--serif-en);font-style:italic;font-weight:600;letter-spacing:.04em;margin-left:6px;}
+.btn--sm{padding:14px 20px;font-size:13.5px;}
+.btn .arrow{display:inline-flex;}
+.btn .arrow svg{width:16px;height:16px;}
+
+/* Hero right card */
+.hero__panel{
+  position:relative;
+  background:linear-gradient(180deg,var(--paper) 0%, var(--bg-2) 100%);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:36px 28px;
+  box-shadow:var(--shadow-soft);
+}
+.hero__panel-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;border-bottom:1px solid var(--line);
+}
+.hero__panel-head .label{
+  font-family:var(--serif-en);font-style:italic;font-weight:500;
+  font-size:12px;letter-spacing:.28em;color:var(--mute);text-transform:uppercase;
+}
+.hero__panel-head .doctor-badge{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--ink);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero__panel-head .doctor-badge svg{width:24px;height:24px;color:var(--accent-2);}
+.hero__stats{
+  margin-top:24px;
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:18px 22px;
+}
+.stat{
+  padding:18px 4px;border-bottom:1px solid var(--line);
+}
+.stat:nth-last-child(-n+2){border-bottom:0;padding-bottom:0;}
+.stat__num{
+  font-family:var(--serif-en);font-weight:600;font-style:italic;
+  font-size:clamp(36px,5.2vw,48px);
+  color:var(--ink);
+  line-height:1;
+  letter-spacing:-.01em;
+}
+.stat__num .suffix{font-size:.55em;font-style:normal;color:var(--accent);margin-left:2px;font-weight:600;}
+.stat__num .unit{font-size:.45em;font-style:normal;color:var(--ink-2);margin-left:4px;font-weight:500;font-family:var(--serif-jp);}
+.stat__caption{margin-top:6px;font-size:12px;color:var(--mute);letter-spacing:.06em;}
+
+/* hero animation */
+.hero__anim>*{opacity:0;transform:translateY(24px);animation:fadeUp .9s cubic-bezier(.2,.7,.2,1) forwards;}
+.hero__anim>*:nth-child(1){animation-delay:.10s;}
+.hero__anim>*:nth-child(2){animation-delay:.20s;}
+.hero__anim>*:nth-child(3){animation-delay:.30s;}
+.hero__anim>*:nth-child(4){animation-delay:.40s;}
+.hero__anim>*:nth-child(5){animation-delay:.50s;}
+.hero__anim>*:nth-child(6){animation-delay:.60s;}
+.hero__anim>*:nth-child(7){animation-delay:.70s;}
+.hero__panel{opacity:0;transform:translateY(24px);animation:fadeUp 1s cubic-bezier(.2,.7,.2,1) forwards .55s;}
+@keyframes fadeUp{to{opacity:1;transform:none;}}
+
+/* ============================================================
+   L2 REALITY
+============================================================ */
+.reality{
+  background:var(--ink);
+  color:#EEE5D5;
+  padding:120px 0;
+  position:relative;overflow:hidden;
+}
+.reality::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(40% 30% at 10% 0%, rgba(199,131,58,.15), transparent 65%),
+    radial-gradient(30% 40% at 100% 100%, rgba(139,42,30,.22), transparent 60%);
+  pointer-events:none;
+}
+.reality::after{
+  content:"";position:absolute;inset:0;
+  background-image:var(--grain);opacity:.25;mix-blend-mode:overlay;pointer-events:none;
+}
+.reality__inner{position:relative;z-index:1;}
+.reality__head{max-width:780px;}
+.reality__title{
+  font-family:var(--serif-jp);font-weight:900;
+  font-size:clamp(26px,4.4vw,44px);
+  line-height:1.45;letter-spacing:.02em;
+  color:#F4ECDF;
+  margin-top:18px;
+}
+.reality__title .ac{color:var(--accent-2);position:relative;}
+.reality__title .ac::after{
+  content:"";position:absolute;left:0;right:0;bottom:.05em;height:.18em;
+  background:rgba(199,131,58,.22);z-index:-1;
+}
+
+.fear-list{margin-top:72px;display:flex;flex-direction:column;gap:36px;}
+.fear{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:18px;
+  padding:32px 28px;
+  border:1px solid rgba(217,207,190,.16);
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,254,251,.02),rgba(255,254,251,.05));
+  position:relative;overflow:hidden;
+}
+@media (min-width:768px){
+  .fear{grid-template-columns:96px 1fr;gap:28px;padding:40px 36px;}
+}
+.fear__icon{
+  width:64px;height:64px;border-radius:50%;
+  background:rgba(199,131,58,.1);
+  border:1px solid rgba(199,131,58,.3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent-2);
+}
+.fear__icon svg{width:28px;height:28px;}
+.fear__num{
+  font-family:var(--serif-en);font-style:italic;font-weight:500;
+  font-size:14px;letter-spacing:.32em;color:var(--accent-2);
+  text-transform:uppercase;
+}
+.fear__title{
+  font-family:var(--serif-jp);font-weight:700;
+  font-size:clamp(19px,2.6vw,24px);
+  line-height:1.55;color:#F4ECDF;
+  margin-top:8px;
+}
+.fear__body{
+  margin-top:14px;
+  font-size:14.5px;line-height:1.95;color:#C7BBA6;
+}
+
+/* L2 charts */
+.reality__charts{
+  margin-top:80px;
+  display:grid;grid-template-columns:1fr;gap:32px;
+}
+@media (min-width:768px){
+  .reality__charts{grid-template-columns:repeat(2,1fr);gap:36px;}
+}
+.chart-card{
+  padding:28px 24px 24px;
+  background:rgba(255,254,251,.04);
+  border:1px solid rgba(217,207,190,.16);
+  border-radius:18px;
+}
+.chart-card__title{
+  font-family:var(--serif-jp);font-weight:700;
+  font-size:16px;color:#F4ECDF;
+  margin-bottom:18px;
+}
+.chart-card__title .badge{
+  display:inline-block;font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.28em;color:var(--accent-2);
+  margin-right:10px;text-transform:uppercase;
+}
+.chart-card svg{display:block;width:100%;height:auto;}
+.chart-card__caption{
+  margin-top:14px;font-size:12.5px;line-height:1.85;color:#9F9583;
+}
+
+.reality__close{
+  margin-top:80px;
+  padding:36px 28px;
+  border-left:3px solid var(--accent);
+  background:rgba(255,254,251,.04);
+  font-family:var(--serif-jp);font-weight:500;
+  font-size:clamp(16px,2.2vw,20px);
+  line-height:1.85;color:#F4ECDF;
+}
+.reality__close strong{color:var(--accent-2);font-weight:700;}
+
+/* ============================================================
+   L3 INCOME
+============================================================ */
+.income{
+  background:var(--bg);
+  padding:120px 0;
+}
+.income__head{text-align:center;max-width:760px;margin:0 auto;}
+.income__title{
+  margin-top:18px;
+  font-family:var(--serif-jp);font-weight:900;
+  font-size:clamp(26px,4.2vw,42px);
+  line-height:1.45;color:var(--ink);
+}
+.income__title .ac{color:var(--accent);}
+.income__sub{
+  margin-top:18px;font-size:14.5px;line-height:1.95;color:var(--ink-2);
+}
+
+.income-cards{
+  margin-top:64px;
+  display:grid;grid-template-columns:1fr;gap:18px;
+  align-items:stretch;
+}
+@media (min-width:880px){
+  .income-cards{grid-template-columns:repeat(3,1fr);gap:22px;align-items:start;}
+}
+.icard{
+  position:relative;overflow:hidden;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:32px 26px 28px;
+  display:flex;flex-direction:column;
+  transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease;
+}
+.icard::before{
+  content:"";position:absolute;inset:auto 0 0 0;height:0%;
+  background:linear-gradient(180deg,rgba(139,42,30,.04),rgba(139,42,30,.08));
+  transition:height .5s ease;z-index:0;
+}
+.icard:hover::before{height:100%;}
+.icard:hover{transform:translateY(-8px);box-shadow:var(--shadow-soft);}
+.icard>*{position:relative;z-index:1;}
+.icard__tag{
+  font-family:var(--serif-en);font-style:italic;font-weight:500;
+  font-size:12px;letter-spacing:.32em;color:var(--mute);
+  text-transform:uppercase;
+}
+.icard__pat{
+  margin-top:6px;font-family:var(--serif-jp);font-weight:700;font-size:13px;color:var(--ink-2);
+}
+.icard__attrs{
+  margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;
+}
+.icard__attrs span{
+  font-size:11px;color:var(--ink-2);
+  background:var(--bg-2);
+  padding:4px 10px;border-radius:99px;letter-spacing:.04em;
+}
+.icard--featured .icard__attrs span{background:rgba(255,254,251,.08);color:#C7BBA6;}
+
+.icard__money-block{margin-top:20px;}
+.icard__money-eye{
+  font-family:var(--serif-en);font-style:italic;font-weight:500;
+  font-size:11px;letter-spacing:.24em;color:var(--mute);
+  text-transform:uppercase;
+}
+.icard__money-eye .jp{
+  display:inline-block;margin-left:8px;
+  font-family:var(--serif-jp);font-style:normal;
+  font-size:12px;letter-spacing:.04em;color:var(--ink-2);
+  text-transform:none;
+}
+.icard__money-val{
+  margin-top:6px;
+  font-family:var(--serif-en);font-weight:500;
+  font-size:clamp(36px,5vw,52px);
+  line-height:1;letter-spacing:-.02em;
+  display:flex;align-items:baseline;gap:6px;
+}
+.icard__money-val.gross{color:var(--ink);}
+.icard__money-val.net{color:var(--accent);}
+.icard__money-val .unit{
+  font-family:var(--serif-jp);font-weight:500;
+  font-size:16px;letter-spacing:.04em;color:var(--ink-2);
+}
+
+.icard--featured .icard__money-eye{color:rgba(255,255,255,.5);}
+.icard--featured .icard__money-eye .jp{color:rgba(255,255,255,.7);}
+.icard--featured .icard__money-val.gross{color:var(--paper);}
+.icard--featured .icard__money-val.net{color:var(--accent-2);}
+.icard--featured .icard__money-val .unit{color:rgba(255,255,255,.6);}
+
+.income-breakdown{
+  margin:14px 0 20px;
+  padding:14px 16px;
+  background:var(--bg-2);
+  border-left:2px solid var(--accent-2);
+  font-size:12px;line-height:1.7;color:var(--mute);
+  border-radius:0 6px 6px 0;
+}
+.income-breakdown .bd-eye{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.18em;color:var(--accent);
+  margin-bottom:6px;text-transform:uppercase;
+}
+.income-breakdown .bd-row{
+  display:flex;justify-content:space-between;flex-wrap:wrap;
+  gap:4px 10px;padding:3px 0;
+}
+.income-breakdown .bd-label{color:var(--ink-2);font-weight:500;min-width:64px;}
+.income-breakdown .bd-formula{
+  color:var(--mute);font-family:var(--serif-en);font-style:italic;flex:1;
+}
+.income-breakdown .bd-result{color:var(--ink);font-weight:600;font-family:var(--serif-en);font-style:italic;}
+
+.icard--featured .income-breakdown{
+  background:rgba(255,255,255,.06);
+  border-left-color:var(--accent-2);
+  color:rgba(255,255,255,.7);
+}
+.icard--featured .income-breakdown .bd-eye{color:var(--accent-2);}
+.icard--featured .income-breakdown .bd-label{color:rgba(255,255,255,.85);}
+.icard--featured .income-breakdown .bd-formula{color:rgba(255,255,255,.5);}
+.icard--featured .income-breakdown .bd-result{color:var(--paper);}
+.icard__bar{
+  margin-top:22px;
+}
+.icard__bar-label{
+  display:flex;justify-content:space-between;
+  font-size:11.5px;color:var(--mute);letter-spacing:.08em;
+  margin-bottom:8px;
+}
+.icard__bar-track{
+  height:5px;background:var(--bg-2);border-radius:99px;overflow:hidden;
+}
+.icard__bar-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--accent-2),var(--accent));
+  border-radius:99px;transition:width 1.4s cubic-bezier(.2,.7,.2,1);
+}
+.icard__detail{margin-top:22px;display:flex;flex-direction:column;gap:10px;}
+.icard__detail li{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--ink-2);}
+.icard__detail li svg{width:16px;height:16px;color:var(--accent);margin-top:5px;flex:0 0 auto;}
+.icard__detail li.is-highlight{color:var(--accent);font-weight:600;}
+.icard__detail li.is-highlight svg{color:var(--accent);}
+.icard--featured .icard__detail li.is-highlight{color:var(--accent-2);font-weight:600;}
+.icard--featured .icard__detail li.is-highlight svg{color:var(--accent-2);}
+
+.icard--featured{
+  background:var(--ink);color:#F4ECDF;
+  border-color:var(--ink);
+  transform:translateY(0);
+}
+@media (min-width:880px){
+  .icard--featured{transform:translateY(-20px);}
+  .icard--featured:hover{transform:translateY(-32px);}
+}
+.icard--featured .icard__tag{color:var(--accent-2);}
+.icard--featured .icard__pat{color:#F4ECDF;}
+.icard--featured .icard__bar-track{background:rgba(255,254,251,.08);}
+.icard--featured .icard__bar-label{color:#A89E8B;}
+.icard--featured .icard__detail li{color:#D8CFBF;}
+.icard--featured::before{display:none;}
+.icard--featured .ribbon{
+  position:absolute;top:18px;right:18px;
+  background:var(--accent);color:#fff;
+  font-size:10.5px;font-weight:700;letter-spacing:.18em;
+  padding:5px 12px;border-radius:99px;text-transform:uppercase;
+  font-family:var(--serif-en);font-style:italic;
+}
+
+.income__note{
+  margin-top:48px;
+  border-left:3px solid var(--accent);
+  background:var(--bg-2);
+  padding:24px 26px;
+  font-size:13px;line-height:1.95;color:var(--ink-2);
+  border-radius:0 12px 12px 0;
+}
+
+/* First Mover (esthe) */
+.first-mover{
+  margin:50px 0;
+  padding:40px 36px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-left:3px solid var(--accent);
+  position:relative;
+  border-radius:4px;
+}
+.fm-eye{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:12px;letter-spacing:.25em;color:var(--accent);
+  margin-bottom:10px;text-transform:uppercase;
+}
+.fm-title{
+  font-family:var(--serif-jp);font-weight:700;
+  font-size:clamp(20px,2.5vw,26px);line-height:1.5;
+  color:var(--ink);margin-bottom:16px;
+}
+.fm-lede{font-size:14px;line-height:1.85;color:var(--ink-2);margin-bottom:32px;}
+.fm-points{display:grid;grid-template-columns:1fr;gap:18px;}
+@media (min-width:768px){
+  .fm-points{grid-template-columns:repeat(3,1fr);gap:22px;}
+}
+.fm-point{
+  padding:24px 22px;background:var(--bg-2);
+  border-top:2px solid var(--accent-3);border-radius:0 0 4px 4px;
+}
+.fm-point-no{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;
+}
+.fm-point h4{
+  font-family:var(--serif-jp);font-weight:700;font-size:15px;line-height:1.5;
+  color:var(--ink);margin:8px 0 10px;
+}
+.fm-point p{font-size:13px;line-height:1.75;color:var(--ink-2);}
+@media (max-width:640px){
+  .first-mover{padding:28px 22px;margin:36px 0;}
+}
+
+/* Voice */
+.voice{
+  margin-top:96px;
+  display:grid;grid-template-columns:1fr;gap:0;
+  border:1px solid var(--line);
+  border-radius:22px;overflow:hidden;
+  background:var(--paper);
+  box-shadow:var(--shadow-soft);
+}
+@media (min-width:768px){
+  .voice{grid-template-columns:280px 1fr;}
+}
+.voice__visual{
+  position:relative;min-height:240px;
+  background:linear-gradient(140deg,var(--accent) 0%,var(--accent-2) 100%);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.voice__visual::before{
+  content:"";position:absolute;inset:0;
+  background-image:var(--grain);opacity:.25;mix-blend-mode:overlay;
+}
+.voice__visual svg{width:200px;height:auto;color:rgba(255,254,251,.95);position:relative;z-index:1;}
+.voice__body{padding:36px 28px;}
+@media (min-width:768px){.voice__body{padding:42px 40px;}}
+.voice__tag{
+  font-family:var(--serif-en);font-style:italic;font-weight:500;
+  font-size:12px;letter-spacing:.28em;color:var(--accent);
+  text-transform:uppercase;
+}
+.voice__tag .sep{color:var(--mute);margin:0 6px;}
+.voice__tag .jp{font-family:var(--serif-jp);font-style:normal;letter-spacing:.04em;color:var(--ink-2);}
+.voice__quote{
+  margin-top:18px;
+  font-family:var(--serif-jp);font-weight:500;
+  font-size:clamp(15px,2vw,17px);
+  line-height:2;color:var(--ink);
+}
+.voice__quote p + p{margin-top:.9em;}
+.voice__quote .hl{
+  background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);
+  padding:0 .04em;
+  font-weight:700;color:var(--accent);
+}
+.voice__stats{
+  margin-top:24px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  padding:18px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.voice__stats .v{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;font-size:22px;color:var(--ink);
+}
+.voice__stats .v.ac{color:var(--accent);}
+.voice__stats .l{font-size:11px;color:var(--mute);letter-spacing:.08em;margin-top:2px;}
+.voice__author{margin-top:18px;font-size:13px;color:var(--ink-2);letter-spacing:.04em;}
+.voice__author strong{color:var(--ink);}
+
+/* ============================================================
+   L4 OFFER
+============================================================ */
+.offer{
+  background:var(--bg-2);
+  padding:120px 0;
+}
+.offer__head{max-width:760px;}
+.offer__title{
+  margin-top:18px;
+  font-family:var(--serif-jp);font-weight:900;
+  font-size:clamp(26px,4.2vw,42px);
+  line-height:1.45;color:var(--ink);
+}
+.offer__title .ac{color:var(--accent);}
+.offer__sub{
+  margin-top:18px;font-size:14.5px;line-height:1.95;color:var(--ink-2);max-width:620px;
+}
+
+.offer-grid{
+  margin-top:56px;
+  display:grid;grid-template-columns:1fr;gap:18px;
+}
+@media (min-width:768px){
+  .offer-grid{grid-template-columns:repeat(2,1fr);gap:24px;}
+}
+.ocard{
+  position:relative;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:36px 28px;
+  transition:transform .35s ease,box-shadow .35s ease;
+}
+.ocard:hover{transform:translateY(-4px);box-shadow:var(--shadow-soft);}
+.ocard__icon{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--bg-3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent);
+  transition:transform .45s cubic-bezier(.2,.7,.2,1),background .35s ease,color .35s ease;
+}
+.ocard__icon svg{width:30px;height:30px;}
+.ocard:hover .ocard__icon{
+  background:var(--accent);color:#FFFEFB;
+  transform:rotate(-8deg);
+}
+.ocard__num{
+  margin-top:24px;
+  font-family:var(--serif-en);font-style:italic;font-weight:500;
+  font-size:13px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;
+}
+.ocard__title{
+  margin-top:6px;
+  font-family:var(--serif-jp);font-weight:700;
+  font-size:clamp(18px,2.4vw,22px);
+  line-height:1.55;color:var(--ink);
+}
+.ocard__body{
+  margin-top:14px;
+  font-size:14px;line-height:1.95;color:var(--ink-2);
+}
+
+/* ============================================================
+   L5 FUTURE
+============================================================ */
+.future{
+  background:var(--bg);
+  padding:120px 0;position:relative;
+}
+.future__head{max-width:760px;}
+.future__title{
+  margin-top:18px;
+  font-family:var(--serif-jp);font-weight:900;
+  font-size:clamp(26px,4.2vw,42px);
+  line-height:1.45;color:var(--ink);
+}
+.future__banner{
+  margin-top:32px;
+  padding:22px 24px;
+  background:var(--bg-2);
+  border:1px dashed var(--line);
+  border-radius:14px;
+  font-size:13px;line-height:1.95;color:var(--ink-2);
+  max-width:780px;
+}
+
+.bp-explain{
+  margin:0 0 50px;
+  padding:40px 36px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  position:relative;
+  border-radius:4px;
+}
+.bp-explain::before{
+  content:"";position:absolute;top:0;left:0;
+  width:60px;height:3px;background:var(--accent);
+}
+.bp-eye{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:12px;letter-spacing:.25em;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.bp-title{
+  font-family:var(--serif-jp);font-weight:900;
+  font-size:clamp(22px,3.2vw,30px);line-height:1.45;
+  color:var(--ink);margin-bottom:32px;
+}
+.bp-title em{font-style:normal;color:var(--accent);}
+.bp-compare{
+  display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:28px;
+}
+@media (min-width:768px){
+  .bp-compare{grid-template-columns:1fr 1fr;gap:24px;}
+}
+.bp-col{
+  padding:26px 24px;border:1px solid var(--line);border-radius:6px;
+}
+.bp-col-normal{background:var(--bg-2);}
+.bp-col-momikaru{background:var(--bg);border-left:3px solid var(--accent);}
+.bp-col h4{
+  font-family:var(--serif-jp);font-weight:700;
+  font-size:16px;margin-bottom:16px;padding-bottom:12px;
+  border-bottom:1px dashed var(--line);
+}
+.bp-col-normal h4{color:var(--mute);}
+.bp-col-momikaru h4{color:var(--accent);}
+.bp-col ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.bp-col li{
+  font-size:13.5px;line-height:1.7;padding-left:20px;
+  position:relative;color:var(--ink-2);
+}
+.bp-col li::before{position:absolute;left:0;top:0;font-weight:700;}
+.bp-col-normal li::before{content:"✕";color:var(--mute);}
+.bp-col-momikaru li::before{content:"✓";color:var(--accent);}
+.bp-conclusion{
+  padding:18px 22px;background:rgba(199,131,58,.12);
+  border-left:3px solid var(--accent-2);border-radius:0 6px 6px 0;
+  font-size:14.5px;line-height:1.85;color:var(--ink-2);
+}
+.bp-conclusion strong{color:var(--accent);font-weight:700;}
+
+.future-comic,
+.story-comic{
+  margin:50px 0;
+  padding:40px 36px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  position:relative;
+  border-radius:4px;
+}
+.future-comic::before,
+.story-comic::before{
+  content:"";position:absolute;top:0;left:0;
+  width:60px;height:3px;background:var(--accent);
+}
+.bridge-copy{
+  text-align:center;margin:40px 0;padding:0 20px;
+}
+.bridge-copy p{
+  font-family:"Noto Serif JP",serif;font-weight:500;
+  font-size:clamp(15px,1.8vw,18px);line-height:1.85;
+  color:var(--ink-2);font-style:italic;
+}
+.comic-eye{
+  font-family:"Cormorant Garamond",serif;
+  font-style:italic;font-size:12px;letter-spacing:.25em;
+  color:var(--accent);text-transform:uppercase;
+  margin-bottom:10px;
+}
+.comic-title{
+  font-family:"Noto Serif JP",serif;font-weight:700;
+  font-size:clamp(20px,2.5vw,26px);line-height:1.5;
+  color:var(--ink);margin-bottom:12px;
+}
+.comic-lede{
+  font-size:14px;line-height:1.85;color:var(--ink-2);
+  margin-bottom:28px;
+}
+.comic-image-wrap{
+  width:100%;overflow:hidden;border-radius:4px;
+  background:var(--bg-2);position:relative;
+}
+.comic-image-wrap img{
+  width:100%;height:auto;display:block;
+  transition:transform .6s cubic-bezier(.2,.8,.2,1);
+}
+.comic-image-wrap:hover img{transform:scale(1.02);}
+@media (max-width:640px){
+  .future-comic,.story-comic{padding:28px 22px;margin:36px 0;}
+}
+/* Dark-context overrides for L2 comic + bridge */
+.reality .story-comic{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+}
+.reality .story-comic::before{background:var(--accent-2);}
+.reality .story-comic .comic-eye{color:var(--accent-2);}
+.reality .story-comic .comic-title{color:var(--paper);}
+.reality .story-comic .comic-lede{color:rgba(255,255,255,.7);}
+.reality .bridge-copy p{color:rgba(255,255,255,.85);}
+
+.future__investment{
+  margin-top:64px;
+  background:var(--ink);color:#F4ECDF;
+  border-radius:24px;
+  padding:48px 28px;
+  position:relative;overflow:hidden;
+}
+@media (min-width:768px){
+  .future__investment{padding:64px 56px;}
+}
+.future__investment::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(40% 50% at 100% 0%, rgba(199,131,58,.18),transparent 60%);
+  pointer-events:none;
+}
+.future__investment-h{
+  position:relative;
+  font-family:var(--serif-jp);font-weight:900;
+  font-size:clamp(22px,3.4vw,34px);
+  line-height:1.5;color:#F4ECDF;
+}
+.future__investment-h .ac{color:var(--accent-2);}
+
+.equation{
+  margin-top:36px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;
+  font-family:var(--serif-en);font-style:italic;
+  position:relative;
+}
+.equation .term{
+  font-weight:500;font-size:clamp(15px,2vw,18px);
+  color:#D8CFBF;
+}
+.equation .op{color:var(--accent-2);font-weight:600;font-size:18px;}
+.equation .result{
+  background:rgba(199,131,58,.12);
+  border:1px solid rgba(199,131,58,.4);
+  color:#FFFEFB;font-weight:600;
+  padding:8px 16px;border-radius:99px;font-size:15px;
+}
+
+.progress{
+  position:relative;margin-top:36px;
+  background:rgba(255,254,251,.06);
+  border:1px solid rgba(217,207,190,.18);
+  border-radius:99px;
+  height:32px;overflow:hidden;
+}
+.progress__fill{
+  position:absolute;inset:0 100% 0 0;
+  background:linear-gradient(90deg,var(--accent-2),var(--accent));
+  border-radius:99px;
+  transition:right 2s cubic-bezier(.2,.7,.2,1);
+}
+.progress__fill.is-active{right:0%;}
+.progress__shimmer{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.18) 50%,transparent 100%);
+  background-size:200% 100%;
+  animation:shimmer 2.6s linear infinite;
+  border-radius:99px;
+}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+
+.progress__labels{
+  margin-top:14px;display:flex;justify-content:space-between;
+  font-size:12px;color:#A89E8B;letter-spacing:.06em;
+}
+.progress__markers{
+  margin-top:18px;display:flex;justify-content:space-between;
+  font-size:11.5px;color:#9F9583;
+  border-top:1px dashed rgba(217,207,190,.18);padding-top:14px;
+}
+.progress__markers div span{display:block;color:#F4ECDF;font-weight:700;font-family:var(--serif-en);font-style:italic;font-size:14px;}
+
+.invest-desc{
+  position:relative;margin-top:32px;
+  font-size:14px;line-height:2;color:#C7BBA6;max-width:680px;
+}
+
+/* Cost compare */
+.cost-compare{
+  margin-top:64px;
+}
+.cost-compare__h{
+  font-family:var(--serif-jp);font-weight:700;
+  font-size:clamp(18px,2.4vw,22px);color:var(--ink);
+}
+.cost-bars{margin-top:28px;display:flex;flex-direction:column;gap:18px;}
+.cost-bar__label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--ink-2);}
+.cost-bar__label strong{font-family:var(--serif-en);font-style:italic;font-weight:600;font-size:18px;color:var(--ink);margin-left:8px;}
+.cost-bar__track{
+  margin-top:8px;height:22px;background:var(--bg-2);border-radius:6px;overflow:hidden;
+}
+.cost-bar__fill{
+  height:100%;width:0%;border-radius:6px;
+  transition:width 1.8s cubic-bezier(.2,.7,.2,1);
+}
+.cost-bar__fill--bad{background:linear-gradient(90deg,#A23B2A,#8B2A1E);}
+.cost-bar__fill--good{background:linear-gradient(90deg,#D69D54,var(--accent-2));}
+.cost-callout{
+  margin-top:24px;
+  background:var(--bg-2);border-left:3px solid var(--accent-2);
+  padding:18px 22px;border-radius:0 10px 10px 0;
+  font-size:13.5px;color:var(--ink-2);line-height:1.85;
+}
+
+/* Detailed cost comparison table (dark) */
+.cost-box{
+  margin-top:48px;
+  background:var(--ink);color:#F4ECDF;
+  border-radius:24px;
+  padding:40px 28px;
+  position:relative;overflow:hidden;
+}
+@media (min-width:768px){.cost-box{padding:56px 48px;}}
+.cost-box::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(40% 50% at 0% 0%, rgba(199,131,58,.12),transparent 60%);
+  pointer-events:none;
+}
+.cost-box>*{position:relative;z-index:1;}
+.cost-box__h{
+  font-family:var(--serif-jp);font-weight:900;
+  font-size:clamp(20px,3vw,28px);line-height:1.5;
+  color:#F4ECDF;
+}
+.cost-box__sub{
+  margin-top:10px;font-size:13.5px;line-height:1.85;color:rgba(255,255,255,.7);max-width:680px;
+}
+
+.cost-table{
+  margin-top:28px;
+  width:100%;border-collapse:collapse;
+  font-size:13.5px;
+}
+.cost-table th,.cost-table td{
+  padding:14px 14px;
+  text-align:left;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  vertical-align:top;
+}
+.cost-table th{
+  font-family:var(--serif-en);font-style:italic;font-weight:500;
+  font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+}
+.cost-table th.col-jp{
+  font-family:var(--serif-jp);font-style:normal;font-weight:700;
+  font-size:13px;letter-spacing:.04em;color:#F4ECDF;text-transform:none;
+}
+.cost-table td{color:rgba(255,255,255,.78);}
+.cost-table td small{display:inline-block;margin-left:4px;font-size:11px;color:rgba(255,255,255,.45);}
+.cost-table td.is-self{color:rgba(255,255,255,.55);}
+.cost-table td.is-mom{color:#F4ECDF;}
+.cost-table td.is-mom .ck{color:var(--accent-2);font-weight:700;margin-right:4px;}
+.cost-table tr.is-total td{
+  background:rgba(199,131,58,.08);
+  font-family:var(--serif-jp);font-weight:700;
+  color:#F4ECDF;font-size:14.5px;
+  border-top:1px solid rgba(255,255,255,.18);
+  border-bottom:1px solid rgba(255,255,255,.18);
+}
+.cost-table tr.is-total td.is-mom{color:var(--accent-2);}
+.cost-table tr.is-init td{background:rgba(255,255,255,.04);}
+@media (max-width:640px){
+  .cost-table th,.cost-table td{padding:11px 8px;font-size:12.5px;}
+  .cost-table td small{display:block;margin-left:0;margin-top:2px;}
+}
+
+.cc-note{
+  margin-top:18px;
+  font-size:12px;line-height:1.7;
+  color:rgba(255,255,255,.6);letter-spacing:.03em;
+}
+
+.fc-plans{
+  margin-top:40px;padding-top:36px;
+  border-top:1px dashed rgba(255,255,255,.15);
+}
+.fc-plans-eye{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.25em;
+  color:var(--accent-2);text-transform:uppercase;
+  margin-bottom:10px;
+}
+.fc-plans-title{
+  font-family:var(--serif-jp);font-weight:700;
+  font-size:clamp(16px,2.2vw,20px);line-height:1.5;
+  color:var(--paper);margin-bottom:10px;
+}
+.fc-plans-lede{
+  font-size:13px;line-height:1.85;
+  color:rgba(255,255,255,.7);margin-bottom:24px;
+}
+.fc-plans-buttons{display:grid;grid-template-columns:1fr;gap:16px;}
+@media (min-width:768px){
+  .fc-plans-buttons{grid-template-columns:1fr 1fr;gap:18px;}
+}
+.fc-plan-btn{
+  display:flex;flex-direction:column;gap:6px;
+  padding:22px 24px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  border-left:3px solid var(--accent-2);
+  text-decoration:none;
+  transition:all .35s cubic-bezier(.2,.8,.2,1);
+  position:relative;
+}
+.fc-plan-btn:hover{
+  background:rgba(255,255,255,.08);
+  border-left-color:var(--accent);
+  transform:translateY(-3px);
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.4);
+}
+.fp-no{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:12px;letter-spacing:.15em;
+  color:var(--accent-2);text-transform:uppercase;
+}
+.fp-name{
+  font-family:var(--serif-jp);font-weight:700;
+  font-size:17px;color:var(--paper);margin-top:2px;
+}
+.fp-desc{
+  font-size:12.5px;color:rgba(255,255,255,.65);
+  line-height:1.6;margin-top:2px;
+}
+.fp-arrow{
+  margin-top:14px;font-size:12px;letter-spacing:.08em;
+  color:var(--accent-2);font-weight:600;
+  transition:transform .3s;
+}
+.fc-plan-btn:hover .fp-arrow{transform:translateX(4px);}
+
+/* Bonus cards */
+.bonus-grid{
+  margin-top:64px;
+  display:grid;grid-template-columns:1fr;gap:18px;
+}
+@media (min-width:768px){.bonus-grid{grid-template-columns:repeat(3,1fr);}}
+.bcard{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:28px 24px;
+  transition:transform .35s ease,box-shadow .35s ease;
+}
+.bcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-soft);}
+.bcard__icon{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--bg-3);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+}
+.bcard__icon svg{width:24px;height:24px;}
+.bcard__num{margin-top:18px;font-family:var(--serif-en);font-style:italic;font-size:11.5px;color:var(--accent);letter-spacing:.3em;text-transform:uppercase;}
+.bcard__title{margin-top:6px;font-family:var(--serif-jp);font-weight:700;font-size:17px;line-height:1.55;color:var(--ink);}
+.bcard__body{margin-top:12px;font-size:13.5px;line-height:1.9;color:var(--ink-2);}
+
+.future__close{
+  margin-top:64px;
+  border:1.5px dashed var(--line);
+  background:var(--bg-2);
+  border-radius:18px;padding:32px 28px;
+  font-family:var(--serif-jp);font-weight:500;
+  font-size:clamp(15px,2vw,18px);line-height:1.95;color:var(--ink);
+  text-align:center;
+}
+
+/* ============================================================
+   L6 FLOW
+============================================================ */
+.flow{background:var(--bg-2);padding:120px 0;}
+.flow__head{max-width:760px;}
+.flow__title{
+  margin-top:18px;
+  font-family:var(--serif-jp);font-weight:900;
+  font-size:clamp(26px,4.2vw,42px);line-height:1.45;color:var(--ink);
+}
+.flow__steps{
+  margin-top:56px;position:relative;
+  display:flex;flex-direction:column;gap:16px;
+  padding-left:18px;
+}
+.flow__steps::before{
+  content:"";position:absolute;left:30px;top:18px;bottom:18px;
+  width:2px;
+  background:linear-gradient(180deg,rgba(139,42,30,.4),rgba(139,42,30,.05));
+  opacity:.5;
+}
+@media (min-width:640px){
+  .flow__steps{padding-left:0;}
+  .flow__steps::before{left:46px;}
+}
+.fstep{
+  display:grid;
+  grid-template-columns:60px 1fr;
+  gap:18px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:24px 22px;
+  position:relative;z-index:1;
+}
+@media (min-width:640px){
+  .fstep{grid-template-columns:96px 1fr;gap:24px;padding:28px 28px;}
+}
+.fstep__left{position:relative;display:flex;flex-direction:column;align-items:center;}
+.fstep__num{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:38px;color:var(--accent);line-height:1;
+}
+.fstep__icon{
+  margin-top:10px;width:36px;height:36px;border-radius:50%;
+  background:var(--bg-3);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+}
+.fstep__icon svg{width:18px;height:18px;}
+.fstep__title{
+  font-family:var(--serif-jp);font-weight:700;
+  font-size:17px;line-height:1.5;color:var(--ink);
+}
+.fstep__body{margin-top:8px;font-size:13.5px;line-height:1.9;color:var(--ink-2);}
+.fstep__time{
+  margin-top:12px;display:inline-block;
+  font-family:var(--serif-en);font-style:italic;font-weight:500;
+  font-size:12px;letter-spacing:.18em;color:var(--accent);
+  background:var(--bg-2);padding:5px 12px;border-radius:99px;
+}
+
+/* ============================================================
+   L7 FINAL CTA
+============================================================ */
+.final{
+  background:var(--ink);color:#F4ECDF;
+  padding:140px 0;position:relative;overflow:hidden;
+}
+.final::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(50% 40% at 50% 0%, rgba(199,131,58,.16),transparent 70%),
+    radial-gradient(35% 50% at 100% 100%, rgba(139,42,30,.22),transparent 70%);
+  pointer-events:none;
+}
+.final::after{
+  content:"";position:absolute;inset:0;
+  background-image:var(--grain);opacity:.25;mix-blend-mode:overlay;pointer-events:none;
+}
+.final__inner{position:relative;z-index:2;text-align:center;max-width:780px;margin:0 auto;}
+
+.ripple-stack{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:520px;height:520px;pointer-events:none;z-index:1;
+}
+.ripple{
+  position:absolute;inset:0;
+  border:1px solid rgba(199,131,58,.4);
+  border-radius:50%;
+  transform:scale(.4);opacity:0;
+  animation:ripple 6s cubic-bezier(.4,0,.2,1) infinite;
+}
+.ripple:nth-child(1){animation-delay:0s;}
+.ripple:nth-child(2){animation-delay:2s;}
+.ripple:nth-child(3){animation-delay:4s;}
+@keyframes ripple{
+  0%{transform:scale(.4);opacity:0;}
+  20%{opacity:.6;}
+  100%{transform:scale(1.6);opacity:0;}
+}
+
+.final__title{
+  font-family:var(--serif-jp);font-weight:900;
+  font-size:clamp(26px,4.6vw,46px);
+  line-height:1.45;color:#F4ECDF;
+}
+.final__title .ac{color:var(--accent-2);}
+.final__desc{
+  margin-top:28px;
+  font-size:15px;line-height:2;color:#C7BBA6;max-width:620px;margin-left:auto;margin-right:auto;
+}
+.final__cta{
+  margin-top:44px;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
+}
+.final__phone{
+  margin-top:24px;
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:8px 14px;
+}
+.final__phone-num{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:22px;letter-spacing:.04em;color:#F4ECDF;
+  text-decoration:none;
+}
+.final__phone-num:hover{color:var(--accent-2);}
+.final__phone-hours{
+  font-size:12px;letter-spacing:.06em;color:#8C8270;
+}
+.final__alt{
+  margin-top:36px;font-size:12.5px;color:#8C8270;letter-spacing:.04em;
+}
+.final__alt a{color:#A89E8B;text-decoration:underline;text-underline-offset:4px;transition:color .25s;}
+.final__alt a:hover{color:var(--accent-2);}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.site-footer{
+  background:var(--bg-2);
+  padding:48px 0 56px;
+  border-top:1px solid var(--line);
+}
+.site-footer__inner{
+  display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;
+}
+.site-footer__logo-wrap{
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.site-footer__logo{height:36px;width:auto;display:block;}
+.site-footer__copy{font-size:12px;color:var(--mute);letter-spacing:.06em;line-height:1.85;}
+.site-footer__back{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:12px;letter-spacing:.18em;color:var(--ink-2);
+  text-decoration:underline;text-underline-offset:4px;
+}
+.site-footer__back:hover{color:var(--accent);}
+
+/* ============================================================
+   UTIL
+============================================================ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important;}
+  .reveal{opacity:1;transform:none;}
+}
+</style>
+</head>
+<body class="is-opening">
+
+<!-- ============================================================
+     OPENING OVERLAY
+============================================================ -->
+<div class="opening" id="openingOverlay" role="presentation">
+  <div class="opening__text"><span class="ac">エステ</span>業界の方へ</div>
+  <div class="opening__skip">tap to skip</div>
+</div>
+
+<!-- ============================================================
+     SVG SPRITE
+============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3 L20 6 V12 C20 16.5 16.5 20.5 12 21.5 C7.5 20.5 4 16.5 4 12 V6 Z"/>
+      <path d="M9 12 L11.2 14.2 L15.2 10.2"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12.5 L10 17 L19 7.5"/>
+    </symbol>
+    <symbol id="i-doctor" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="20" r="9"/>
+      <path d="M14 54 C14 42 22 36 32 36 C42 36 50 42 50 54"/>
+      <path d="M26 36 V44 C26 46 28 47 30 47 H34 C36 47 38 46 38 44 V36"/>
+      <path d="M30 44 H34 M32 42 V46" stroke-width="1.2"/>
+      <path d="M40 40 V52" stroke-dasharray="2 2"/>
+      <circle cx="40" cy="54" r="2"/>
+    </symbol>
+    <symbol id="i-decline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 7 L9 13 L13 9 L21 17"/>
+      <path d="M21 12 V17 H16"/>
+    </symbol>
+    <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M9 8 L12 13 L15 8"/>
+      <path d="M9 13 H15"/>
+      <path d="M9 16 H15"/>
+      <path d="M12 13 V18"/>
+    </symbol>
+    <symbol id="i-alarm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="13" r="8"/>
+      <path d="M12 8 V13 L15 15"/>
+      <path d="M5 5 L7 3 M19 5 L17 3"/>
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 11 V16"/>
+      <circle cx="12" cy="8" r=".6" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 17 L9 11 L13 15 L21 7"/>
+      <path d="M16 7 H21 V12"/>
+    </symbol>
+    <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="9" r="6"/>
+      <path d="M9 14 L7.5 21 L12 18.5 L16.5 21 L15 14"/>
+      <path d="M10.5 9 L11.5 10 L13.5 8" stroke-width="1.4"/>
+    </symbol>
+    <symbol id="i-case" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="7" width="18" height="13" rx="2"/>
+      <path d="M9 7 V5 C9 4 9.5 3.5 10.5 3.5 H13.5 C14.5 3.5 15 4 15 5 V7"/>
+      <path d="M3 13 H21"/>
+    </symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 6 H20 V16 H13 L9 19.5 V16 H4 Z"/>
+      <path d="M8 11 H16 M8 13.5 H13" stroke-width="1.4"/>
+    </symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 14 L7 10 L10 12 L13 9 L17 12"/>
+      <path d="M21 10 L17 14 L14 12 L11 15 L7 12"/>
+      <path d="M10 12 L13 14"/>
+    </symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 12 C5 7 8.5 5 12 5 C15.5 5 19 7 22 12 C19 17 15.5 19 12 19 C8.5 19 5 17 2 12 Z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 4 L20 10 L9 21 L3 21 L3 15 Z"/>
+      <path d="M13 5 L19 11"/>
+    </symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M10 8 L16 12 L10 16 Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12 H19"/>
+      <path d="M14 7 L19 12 L14 17"/>
+    </symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="9" width="18" height="11" rx="1"/>
+      <path d="M3 13 H21"/>
+      <path d="M12 9 V20"/>
+      <path d="M8 9 C6 9 5 7.5 6 6 C7 4.5 9 5 10 6 L12 9 L14 6 C15 5 17 4.5 18 6 C19 7.5 18 9 16 9"/>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </symbol>
+    <symbol id="i-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5c0 4-4 7-9 7-1 0-2-.1-3-.4l-4 1.4 1.4-3.5C5 14.5 3 13 3 11.5 3 7.5 7 4 12 4s9 3.5 9 7.5z"/>
+      <path d="M8 11h.01M12 11h.01M16 11h.01" stroke-width="2"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <polyline points="12 7 12 12 15 14"/>
+    </symbol>
+    <symbol id="i-name" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="6" width="18" height="13" rx="2"/>
+      <line x1="3" y1="10" x2="21" y2="10"/>
+      <line x1="7" y1="14" x2="13" y2="14"/>
+      <line x1="7" y1="16" x2="11" y2="16"/>
+    </symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <line x1="10" y1="9" x2="10" y2="15"/>
+      <line x1="14" y1="9" x2="14" y2="15"/>
+    </symbol>
+    <symbol id="i-future" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 3 L19 3"/>
+      <path d="M5 21 L19 21"/>
+      <path d="M5 3 C5 8, 19 8, 19 3"/>
+      <path d="M5 21 C5 16, 19 16, 19 21"/>
+      <path d="M9 11 L15 11"/>
+    </symbol>
+    <symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="5" width="18" height="11" rx="1"/>
+      <line x1="2" y1="20" x2="22" y2="20"/>
+      <line x1="2" y1="20" x2="4" y2="16"/>
+      <line x1="22" y1="20" x2="20" y2="16"/>
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="17" rx="2"/>
+      <line x1="3" y1="9" x2="21" y2="9"/>
+      <line x1="8" y1="2" x2="8" y2="6"/>
+      <line x1="16" y1="2" x2="16" y2="6"/>
+      <circle cx="12" cy="14" r="1.5" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+    </symbol>
+    <symbol id="i-mom" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="22" cy="20" r="6"/>
+      <circle cx="42" cy="22" r="4"/>
+      <path d="M10 56v-6a12 12 0 0 1 24 0v6"/>
+      <path d="M34 56v-4a8 8 0 0 1 16 0v4"/>
+    </symbol>
+    <symbol id="i-therapist" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="18" r="6"/>
+      <path d="M16 56v-8a16 16 0 0 1 32 0v8"/>
+      <path d="M22 38c4 4 16 4 20 0"/>
+      <circle cx="26" cy="32" r="1.5" fill="currentColor"/>
+      <circle cx="38" cy="32" r="1.5" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-esthe" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="22" r="8"/>
+      <path d="M16 56v-6a16 16 0 0 1 32 0v6"/>
+      <path d="M22 22 L20 16"/>
+      <path d="M42 22 L44 16"/>
+      <circle cx="32" cy="38" r="2" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="site-header" id="siteHeader">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="#top" aria-label="SALON de MOMIKARU 採用 トップへ">
+      <span class="site-header__logo-wrap">
+        <img class="site-header__logo" src="./momikaru-logo.png" alt="もみかる">
+      </span>
+      <span class="hdr-divider" aria-hidden="true">×</span>
+      <span class="hdr-sub-brand">
+        <span class="hdr-sub-eye">SALON de</span>
+        <span class="hdr-sub-name">MOMIKARU</span>
+      </span>
+      <span class="site-header__brand-mark">RECRUIT</span>
+    </a>
+    <div class="site-header__actions">
+      <a class="site-header__phone" href="tel:05031721405" aria-label="電話で相談する 050-3172-1405" title="電話で相談する 050-3172-1405" data-action="phone-consult">
+        <svg aria-hidden="true"><use href="#i-phone"/></svg>
+      </a>
+      <a class="site-header__cta" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="label-full">今すぐ無料相談</span>
+        <span class="label-short">LINE相談</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<aside class="vertical-label" id="verticalLabel" aria-hidden="true">FOR BEAUTY PROFESSIONALS</aside>
+
+<main id="top">
+
+<!-- ============================================================
+     L1 : HERO
+============================================================ -->
+<section class="hero">
+  <div class="hero__circle" aria-hidden="true"></div>
+  <span class="hero__decor-word" aria-hidden="true">Beauty</span>
+
+  <div class="container">
+    <div class="hero__inner">
+      <div class="hero__anim">
+        <div class="hero__tag-top">For Beauty Professionals</div>
+        <div class="hero__tag-bottom">— エステ業界で働く方へ</div>
+        <div class="hero__sub-brand-line" style="margin-top:8px;font-family:var(--serif-en);font-style:italic;font-size:13px;letter-spacing:.18em;color:var(--accent-2);text-transform:uppercase;">SALON de MOMIKARU — Total Beauty</div>
+
+        <h1 class="hero__heading">
+          エステ業界に、<br>
+          <span class="hl" style="background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);color:var(--accent);font-weight:900;padding:0 .04em;">"自分で技術と働き方を選ぶ"</span> <span class="hl" style="background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);color:var(--accent);font-weight:900;padding:0 .04em;">自由</span>を。
+        </h1>
+
+        <div class="hero__scenario">
+          <p>専門特化、雇用、ノルマ、シフト。</p>
+          <p>エステ業界の常識を、SALON de MOMIKARU は <span style="color:var(--accent);font-weight:700;">業務委託の自由さ</span> で覆します。</p>
+          <p>&nbsp;</p>
+          <p>エステを続けるのも、リラクゼーションへ広げるのも。</p>
+          <p>今までの技術を独自メニューとして残すのも、</p>
+          <p>すべては、<span style="color:var(--accent);font-weight:700;">あなたの選択</span> です。</p>
+        </div>
+
+        <ul class="hero__meta">
+          <li><svg><use href="#i-check"/></svg>業務委託で自由な働き方</li>
+          <li><svg><use href="#i-check"/></svg>物販ノルマ一切なし</li>
+          <li><svg><use href="#i-check"/></svg>15の美容＆癒しメニュー</li>
+          <li><svg><use href="#i-check"/></svg>既存技術を独自メニュー化可能</li>
+        </ul>
+
+        <div class="hero__cta">
+          <a class="btn btn--ghost" href="#income">
+            収入の目安を見る
+            <span class="arrow"><svg><use href="#i-arrow"/></svg></span>
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero__panel" aria-label="もみかる主要指標">
+        <div class="hero__panel-head">
+          <span class="label">By the numbers</span>
+          <span class="doctor-badge" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-esthe"/></svg></span>
+        </div>
+        <div class="hero__stats">
+          <div class="stat">
+            <div class="stat__num"><span data-count="136">0</span><span class="suffix">+</span><span class="unit">店舗</span></div>
+            <div class="stat__caption">グループ合計</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num"><span data-count="1000" data-format="comma">0</span><span class="unit">名</span></div>
+            <div class="stat__caption">活躍中のスタッフ</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num"><span data-count="15">0</span><span class="unit">メニュー</span></div>
+            <div class="stat__caption">業界最多級の習得</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num"><span data-count="13">0</span><span class="unit">年</span></div>
+            <div class="stat__caption">創業以来の運営</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     L2 : REALITY (Fear)
+============================================================ -->
+<section class="reality is-dark-zone" id="reality">
+  <div class="container reality__inner">
+    <div class="reality__head reveal">
+      <span class="eyebrow on-dark">The Reality</span>
+      <h2 class="reality__title">
+        華やかなエステの裏側で、<br>何があなたを<span class="ac">すり減らしている</span>のか。
+      </h2>
+      <p class="body-jp on-dark" style="margin-top:18px;max-width:720px;">
+        高単価サービスを提供しながら、自分の歩合は低い。<br>
+        売れなければ給料が下がる、物販ノルマと押し売りの罪悪感。<br>
+        シフトで縛られ、休みは自分で決められない。<br>
+        そして気づけば、フェイシャルだけ・痩身だけの専門技術しか身についていない。<br>
+        <br>
+        「このまま続けて、5年後、10年後、私はどうなっているんだろう」<br>
+        そう感じている方へ、業界の構造を一緒に見つめてみませんか。
+      </p>
+    </div>
+
+    <div class="story-comic comic-esthe-1 reveal">
+      <div class="comic-eye">— Story 00</div>
+      <h3 class="comic-title">エステ業界で消耗する、ある日々の物語。</h3>
+      <p class="comic-lede">朝の売上目標プレッシャーから、夜の鏡に映る疲れた自分まで。業界経験者なら誰もが知る、6コマの現実を。</p>
+      <div class="comic-image-wrap">
+        <img src="./comic_4.png" alt="エステ業界で物販ノルマと専門特化に消耗する女性エステティシャンの6コマ漫画" loading="lazy">
+      </div>
+    </div>
+
+    <div class="bridge-copy reveal" style="margin-top:36px;margin-bottom:30px;">
+      <p>これは、彼女一人の話ではありません。<br>業界全体に広がる、構造的な現実です。</p>
+    </div>
+
+    <div class="fear-list">
+      <article class="fear reveal">
+        <div class="fear__icon"><svg><use href="#i-decline"/></svg></div>
+        <div>
+          <div class="fear__num">— 01</div>
+          <h3 class="fear__title">物販ノルマと、押し売りの罪悪感。</h3>
+          <p class="fear__body">売上ノルマ、商品ノルマ、回数券ノルマ。<strong>売らなければ給料が下がる構造</strong>のなかで、本当はそれほど必要としないお客様にも、商品を勧めなければならない毎日。「ありがとう」と言われたいから始めたこの仕事で、なぜ罪悪感を抱えなければならないのでしょうか。</p>
+        </div>
+      </article>
+
+      <article class="fear reveal">
+        <div class="fear__icon"><svg><use href="#i-pause"/></svg></div>
+        <div>
+          <div class="fear__num">— 02</div>
+          <h3 class="fear__title">専門特化という、見えない檻。</h3>
+          <p class="fear__body">フェイシャル専門。痩身専門。脱毛専門。<strong>5年・10年勤めても、身につくのは限られた技術だけ</strong>。専門店だから磨かれる技術と、専門店だからこそ広がらない世界。あなたの技術と未来の選択肢が、見えない檻に閉じ込められていませんか。</p>
+        </div>
+      </article>
+
+      <article class="fear reveal">
+        <div class="fear__icon"><svg><use href="#i-coin"/></svg></div>
+        <div>
+          <div class="fear__num">— 03</div>
+          <h3 class="fear__title">高単価でも、低い歩合という構造。</h3>
+          <p class="fear__body">お客様には1万円、2万円のメニューを提供しているのに、自分の歩合は数百円から数千円。<strong>高単価サービスの売上のほとんどが店に残る構造</strong>のなかで、自分の技術がどこまで経済価値として返ってくるのか、計算しても計算しても腑に落ちない。</p>
+        </div>
+      </article>
+
+      <article class="fear reveal">
+        <div class="fear__icon"><svg><use href="#i-alarm"/></svg></div>
+        <div>
+          <div class="fear__num">— 04</div>
+          <h3 class="fear__title">30代、40代と続けるほど見えてくる、限界。</h3>
+          <p class="fear__body">体力の限界、加齢への恐怖、人間関係の複雑さ。<strong>美容業界にいながら、自分自身のケアができていない違和感</strong>。続けるほどに「この働き方の終わり」が見えてきます。それは多くのエステティシャンが、口に出さないだけで気づいている事実です。</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="reality__charts">
+      <div class="chart-card reveal">
+        <div class="chart-card__title"><span class="badge">Fig 01</span>エステ業界経験者の3年後の進路</div>
+        <svg viewBox="0 0 320 160" preserveAspectRatio="none" aria-label="エステ業界経験者の3年後 進路">
+          <g stroke="rgba(217,207,190,.12)" stroke-width="1">
+            <line x1="120" y1="10" x2="120" y2="150"/>
+            <line x1="190" y1="10" x2="190" y2="150"/>
+            <line x1="260" y1="10" x2="260" y2="150"/>
+          </g>
+          <g font-size="9" fill="#9F9583" font-family="Noto Sans JP">
+            <text x="112" y="22" text-anchor="end">同業転職</text>
+            <text x="112" y="48" text-anchor="end">異業種転職</text>
+            <text x="112" y="74" text-anchor="end">独立／開業</text>
+            <text x="112" y="100" text-anchor="end">業界引退</text>
+            <text x="112" y="126" text-anchor="end">同店在籍</text>
+          </g>
+          <rect class="hbar" x="120" y="13" data-w="128" width="0" height="12" fill="#A23B2A" rx="2"/>
+          <rect class="hbar" x="120" y="39" data-w="112" width="0" height="12" fill="#8B2A1E" rx="2"/>
+          <rect class="hbar" x="120" y="65" data-w="24" width="0" height="12" fill="#B8826F" rx="2"/>
+          <rect class="hbar" x="120" y="91" data-w="88" width="0" height="12" fill="#9B7B3A" rx="2"/>
+          <rect class="hbar" x="120" y="117" data-w="48" width="0" height="12" fill="#5B514A" rx="2"/>
+          <g font-size="10" font-family="Cormorant Garamond" font-style="italic" font-weight="600" fill="#F4ECDF">
+            <text class="hval" x="254" y="23" opacity="0">32%</text>
+            <text class="hval" x="238" y="49" opacity="0">28%</text>
+            <text class="hval" x="150" y="75" opacity="0">6%</text>
+            <text class="hval" x="214" y="101" opacity="0">22%</text>
+            <text class="hval" x="174" y="127" opacity="0">12%</text>
+          </g>
+        </svg>
+        <p class="chart-card__caption">業界経験者の88%が、3年以内に何らかの転換を選んでいます。"このまま" を選ぶ人は、わずか12%です。</p>
+      </div>
+
+      <div class="chart-card reveal">
+        <div class="chart-card__title"><span class="badge">Fig 02</span>エステ業界の悩みランキング（TOP5）</div>
+        <svg viewBox="0 0 320 160" preserveAspectRatio="none" aria-label="エステ業界 悩みランキング 横棒">
+          <g stroke="rgba(217,207,190,.12)" stroke-width="1">
+            <line x1="150" y1="10" x2="150" y2="150"/>
+            <line x1="210" y1="10" x2="210" y2="150"/>
+            <line x1="270" y1="10" x2="270" y2="150"/>
+          </g>
+          <g font-size="8" fill="#9F9583" font-family="Noto Sans JP">
+            <text x="142" y="22" text-anchor="end">物販ノルマ</text>
+            <text x="142" y="48" text-anchor="end">シフト自由度</text>
+            <text x="142" y="74" text-anchor="end">給与・歩合</text>
+            <text x="142" y="100" text-anchor="end">技術の偏り</text>
+            <text x="142" y="126" text-anchor="end">人間関係</text>
+          </g>
+          <rect class="hbar" x="150" y="13" data-w="130" width="0" height="12" fill="#A23B2A" rx="2"/>
+          <rect class="hbar" x="150" y="39" data-w="118" width="0" height="12" fill="#8B2A1E" rx="2"/>
+          <rect class="hbar" x="150" y="65" data-w="106" width="0" height="12" fill="#B8826F" rx="2"/>
+          <rect class="hbar" x="150" y="91" data-w="83" width="0" height="12" fill="#9B7B3A" rx="2"/>
+          <rect class="hbar" x="150" y="117" data-w="75" width="0" height="12" fill="#5B514A" rx="2"/>
+          <g font-size="10" font-family="Cormorant Garamond" font-style="italic" font-weight="600" fill="#F4ECDF">
+            <text class="hval" x="286" y="23" opacity="0">64%</text>
+            <text class="hval" x="274" y="49" opacity="0">58%</text>
+            <text class="hval" x="262" y="75" opacity="0">52%</text>
+            <text class="hval" x="239" y="101" opacity="0">41%</text>
+            <text class="hval" x="231" y="127" opacity="0">37%</text>
+          </g>
+        </svg>
+        <p class="chart-card__caption">これは、あなた一人の悩みではありません。業界全体に広がる構造的な現実です。</p>
+      </div>
+    </div>
+
+    <p class="reality__close reveal">
+      エステ業界の "常識" を続けるのか、<br>
+      それとも <strong style="background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);color:var(--accent);padding:0 .04em;">"自分の選択"</strong> を取り戻すのか。<br>
+      <br>
+      選ぶのは、あなた自身です。
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     L3 : INCOME
+============================================================ -->
+<section class="income" id="income">
+  <div class="container">
+    <div class="income__head reveal">
+      <span class="eyebrow">Your Income</span>
+      <h2 class="income__title">で、結局<span class="ac">いくら稼げる</span>のか。</h2>
+      <p class="income__sub">業務委託だから、稼ぎは自分の働き方で決まります。<br>副業から専業まで、3つの稼動パターンを用意しました。<br>SALON de MOMIKARU では、あなたの技術が、ノルマではなく純粋な歩合として返ってきます。</p>
+    </div>
+
+    <div class="income-cards">
+      <article class="icard reveal" data-pattern="A" data-gross="47" data-net="28" data-sessions="91" data-nominations="27" data-nomination-rate="30">
+        <div class="icard__tag">Pattern A — Light</div>
+        <div class="icard__pat">副業・自分のペース／週3勤務</div>
+
+        <div class="icard__money-block">
+          <div class="icard__money-eye">Gross<span class="jp">月収（売上）</span></div>
+          <div class="icard__money-val gross"><span data-count="47">0</span><span class="unit">万円</span></div>
+        </div>
+
+        <div class="income-breakdown">
+          <div class="bd-eye">— Breakdown</div>
+          <div class="bd-row">
+            <span class="bd-label">施術売上</span>
+            <span class="bd-formula">5,000円 × 91回</span>
+            <span class="bd-result">= 45.5万円</span>
+          </div>
+          <div class="bd-row">
+            <span class="bd-label">指名料</span>
+            <span class="bd-formula">500円 × 27件</span>
+            <span class="bd-result">= 1.4万円</span>
+          </div>
+        </div>
+
+        <div class="icard__money-block">
+          <div class="icard__money-eye">Net<span class="jp">手取り</span></div>
+          <div class="icard__money-val net"><span data-count="28">0</span><span class="unit">万円</span></div>
+        </div>
+
+        <div class="icard__bar">
+          <div class="icard__bar-label"><span>稼働強度</span><span>40%</span></div>
+          <div class="icard__bar-track"><div class="icard__bar-fill" data-bar="40"></div></div>
+        </div>
+        <ul class="icard__detail">
+          <li><svg><use href="#i-check"/></svg>月施術数：91回（単価5,000円）</li>
+          <li><svg><use href="#i-check"/></svg>指名件数：月27件（指名比率30%）</li>
+          <li class="is-highlight"><svg><use href="#i-check"/></svg>指名料 500円／件 → 全額スタッフ還元</li>
+          <li><svg><use href="#i-check"/></svg>週3日／前職と並行・自分のペース重視</li>
+        </ul>
+      </article>
+
+      <article class="icard icard--featured reveal" data-pattern="B" data-gross="70" data-net="42" data-sessions="133" data-nominations="67" data-nomination-rate="50">
+        <span class="ribbon">Most Common</span>
+        <div class="icard__tag">Pattern B — Standard</div>
+        <div class="icard__pat">専業として安定／週5勤務</div>
+
+        <div class="icard__money-block">
+          <div class="icard__money-eye">Gross<span class="jp">月収（売上）</span></div>
+          <div class="icard__money-val gross"><span data-count="70">0</span><span class="unit">万円</span></div>
+        </div>
+
+        <div class="income-breakdown">
+          <div class="bd-eye">— Breakdown</div>
+          <div class="bd-row">
+            <span class="bd-label">施術売上</span>
+            <span class="bd-formula">5,000円 × 133回</span>
+            <span class="bd-result">= 66.5万円</span>
+          </div>
+          <div class="bd-row">
+            <span class="bd-label">指名料</span>
+            <span class="bd-formula">500円 × 67件</span>
+            <span class="bd-result">= 3.4万円</span>
+          </div>
+        </div>
+
+        <div class="icard__money-block">
+          <div class="icard__money-eye">Net<span class="jp">手取り</span></div>
+          <div class="icard__money-val net"><span data-count="42">0</span><span class="unit">万円</span></div>
+        </div>
+
+        <div class="icard__bar">
+          <div class="icard__bar-label"><span>稼働強度</span><span>70%</span></div>
+          <div class="icard__bar-track"><div class="icard__bar-fill" data-bar="70"></div></div>
+        </div>
+        <ul class="icard__detail">
+          <li><svg><use href="#i-check"/></svg>月施術数：133回（単価5,000円）</li>
+          <li><svg><use href="#i-check"/></svg>指名件数：月67件（指名比率50%）</li>
+          <li class="is-highlight"><svg><use href="#i-check"/></svg>指名料 500円／件 → 全額スタッフ還元</li>
+          <li><svg><use href="#i-check"/></svg>週5日／専業として安定収入＋技術習得の幅</li>
+        </ul>
+      </article>
+
+      <article class="icard reveal" data-pattern="C" data-gross="120" data-net="72" data-sessions="224" data-nominations="157" data-nomination-rate="70">
+        <div class="icard__tag">Pattern C — TOP</div>
+        <div class="icard__pat">本気で稼ぐ／週6勤務</div>
+        <div class="icard__attrs">
+          <span>50代女性</span>
+          <span>無資格</span>
+          <span>在籍5年</span>
+        </div>
+
+        <div class="icard__money-block">
+          <div class="icard__money-eye">Gross<span class="jp">月収（売上）</span></div>
+          <div class="icard__money-val gross"><span data-count="120">0</span><span class="unit">万円</span></div>
+        </div>
+
+        <div class="income-breakdown">
+          <div class="bd-eye">— Breakdown</div>
+          <div class="bd-row">
+            <span class="bd-label">施術売上</span>
+            <span class="bd-formula">5,000円 × 224回</span>
+            <span class="bd-result">= 112.0万円</span>
+          </div>
+          <div class="bd-row">
+            <span class="bd-label">指名料</span>
+            <span class="bd-formula">500円 × 157件</span>
+            <span class="bd-result">= 7.9万円</span>
+          </div>
+        </div>
+
+        <div class="icard__money-block">
+          <div class="icard__money-eye">Net<span class="jp">手取り</span></div>
+          <div class="icard__money-val net"><span data-count="72">0</span><span class="unit">万円</span></div>
+        </div>
+
+        <div class="icard__bar">
+          <div class="icard__bar-label"><span>稼働強度</span><span>95%</span></div>
+          <div class="icard__bar-track"><div class="icard__bar-fill" data-bar="95"></div></div>
+        </div>
+        <ul class="icard__detail">
+          <li><svg><use href="#i-check"/></svg>月施術数：224回（単価5,000円）</li>
+          <li><svg><use href="#i-check"/></svg>指名件数：月157件（指名比率70%）</li>
+          <li class="is-highlight"><svg><use href="#i-check"/></svg>指名料 500円／件 → 全額スタッフ還元</li>
+          <li><svg><use href="#i-check"/></svg>週6日稼働／在籍5年で到達した実績水準</li>
+        </ul>
+      </article>
+    </div>
+
+    <p class="income__note reveal">
+      ※ 月収（売上）は施術売上＋指名料の合計です。施術単価は基本5,000円（メニュー・指名により変動）、指名料は1件500円で全額スタッフ還元となります。手取りは売上から税金・社会保険・想定経費（業務関連の交通費・備品・通信費等）を差し引いた概算値で、手取り率は約60%を想定。確定申告時の経費計上状況により変動します。Pattern Cは実在する最上位スタッフ（50代女性／無資格／在籍5年／週6日稼働）の実績例です。
+    </p>
+
+    <div class="first-mover reveal">
+      <div class="fm-eye">— First Mover</div>
+      <h3 class="fm-title">SALON de MOMIKARU の "1人目" になる方へ。</h3>
+      <p class="fm-lede">
+        SALON de MOMIKARU は、2024年に本格始動した新しいブランドです。全国に20店舗以上を展開していますが、業務委託スタッフとしてのキャリアパスは、これからあなたと一緒に作っていく段階にあります。
+      </p>
+      <div class="fm-points">
+        <div class="fm-point">
+          <span class="fm-point-no">— 01</span>
+          <h4>制度を、自分で形にできる立場</h4>
+          <p>「持っている技術を独自メニュー化」「もみかる本体への技術拡張」など、これから運用が確立される制度を、あなたの声で形にできます。</p>
+        </div>
+        <div class="fm-point">
+          <span class="fm-point-no">— 02</span>
+          <h4>急成長ブランドの初期メンバー</h4>
+          <p>2024年から急速に展開している全国ブランドの初期スタッフとして、あなたの実績がブランドの実例になります。</p>
+        </div>
+        <div class="fm-point">
+          <span class="fm-point-no">— 03</span>
+          <h4>もみかるグループ13年の運営基盤</h4>
+          <p>新しいブランドですが、運営はもみかるを13年運営してきた実績ある企業。安定した基盤の上で、新しい挑戦ができます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     L4 : WHAT WE OFFER
+============================================================ -->
+<section class="offer">
+  <div class="container">
+    <div class="offer__head reveal">
+      <span class="eyebrow">What We Offer</span>
+      <h2 class="offer__title">エステ業界の<span class="ac">"檻"</span>から、自由を取り戻す4つの仕組み。</h2>
+      <p class="offer__sub">業務委託・物販ノルマなし・15メニュー習得・既存技術の独自メニュー化。SALON de MOMIKARU が提供する、業界の常識を覆す4つの形です。</p>
+    </div>
+
+    <div class="story-comic comic-esthe-2 reveal">
+      <div class="comic-eye">— Story 01</div>
+      <h3 class="comic-title">SALON de MOMIKARU との出会い、そして移籍。</h3>
+      <p class="comic-lede">「業務委託のエステ？ ノルマなし？ 本当に？」という疑問から、「移籍してよかった」と心から思えるまでの物語。</p>
+      <div class="comic-image-wrap">
+        <img src="./comic_5.png" alt="エステ経験者がSALON de MOMIKARU に出会い、移籍を決意し、新しい働き方を手に入れるまでの6コマ漫画" loading="lazy">
+      </div>
+    </div>
+
+    <div class="bridge-copy reveal" style="margin-top:36px;margin-bottom:30px;">
+      <p>なぜ彼女は、こんなに変われたのか。<br>SALON de MOMIKARU が提供する、4つの解決策をご紹介します。</p>
+    </div>
+
+    <div class="offer-grid">
+      <article class="ocard reveal">
+        <div class="ocard__icon"><svg><use href="#i-trend"/></svg></div>
+        <div class="ocard__num">— 01</div>
+        <h3 class="ocard__title">15メニューから、自由に選んで習得できる。</h3>
+        <p class="ocard__body">フェイシャル、コルギ、ハーブピーリング、脱毛、ホワイトニング、ヘッドスパ、ボディ。<strong>専門特化の檻から抜け出して、好きなメニューを好きなだけ習得できます</strong>。さらに、もみかる本体のリラクゼーションメニュー（もみほぐし、リフレ、足つぼ、ストレッチ等）への拡張も可能。エステを軸にしながら、リラクへの広がりも視野に入れられます。</p>
+      </article>
+
+      <article class="ocard reveal">
+        <div class="ocard__icon"><svg><use href="#i-shield"/></svg></div>
+        <div class="ocard__num">— 02</div>
+        <h3 class="ocard__title">物販ノルマ一切なし。純粋に、施術と向き合える。</h3>
+        <p class="ocard__body">SALON de MOMIKARU は「無理な勧誘なし」「シンプルな都度払い料金」が基本。<strong>あなたが商品を売る必要はありません</strong>。お客様に押し売りする罪悪感から解放されて、純粋に施術と向き合える毎日。「ありがとう」と言われたい気持ちで始めたこの仕事を、その気持ちのまま続けられます。</p>
+      </article>
+
+      <article class="ocard reveal">
+        <div class="ocard__icon"><svg><use href="#i-coin"/></svg></div>
+        <div class="ocard__num">— 03</div>
+        <h3 class="ocard__title">業務委託の自由＋指名料500円全額還元。</h3>
+        <p class="ocard__body">エステ業界では珍しい業務委託契約で、シフトも休日も自分で決められます。雇用の縛りから解放され、<strong>「自分のペースで働く」が当たり前</strong>に。さらに指名料は1件500円を全額スタッフへ還元。あなたの技術と人柄が、確実に経済価値として返ってくる仕組みです。</p>
+      </article>
+
+      <article class="ocard reveal">
+        <div class="ocard__icon"><svg><use href="#i-case"/></svg></div>
+        <div class="ocard__num">— 04</div>
+        <h3 class="ocard__title">持っている技術を、独自メニューとして残せる。</h3>
+        <p class="ocard__body">前職で習得した独自の技術を、SALON de MOMIKARU 内で<strong>あなた自身の独自メニューとして提供できます</strong>。5年・10年積み上げた技術が、転職と同時にゼロになる業界の常識を、もみかるグループは覆します。あなたが築いた専門性は、何ひとつ失われません。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     L5 : FOR YOUR FUTURE
+============================================================ -->
+<section class="future" id="future">
+  <div class="container">
+    <div class="future__head reveal">
+      <span class="eyebrow">For Your Future</span>
+      <h2 class="future__title">いつか<span class="ac">自分のサロン</span>を、と考えている方へ。</h2>
+      <p class="body-jp" style="margin-top:18px;max-width:780px;">
+        今すぐ独立を考えていなくても、構いません。ただ、エステ業界経験者なら一度は考える「いつか自分のサロンを」。<br>
+        その日が来たとき、SALON de MOMIKARU は<span class="hl" style="background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);color:var(--accent);font-weight:700;padding:0 .04em;">業界唯一の選択肢</span>を持っています。
+      </p>
+      <p class="future__banner">このセクションは、独立を考えていない方には飛ばしていただいて構いません。当サイトは「独立を勧める」ためのものではなく、いつか自分のサロンを持ちたいと考えている方に、業界唯一の仕組みを誤解なく伝えるためのものです。</p>
+    </div>
+
+    <div class="bp-explain reveal">
+      <div class="bp-eye">— Bed Partner Independence</div>
+      <h3 class="bp-title">独立しても、<em>明日からの仕事は何も変わらない。</em></h3>
+      <div class="bp-compare">
+        <div class="bp-col bp-col-normal">
+          <h4>通常の独立</h4>
+          <ul>
+            <li>新しい場所で開業</li>
+            <li>顧客に「移転しました」と通知</li>
+            <li>集客ゼロから始める</li>
+            <li>3年以内の廃業率が高い</li>
+          </ul>
+        </div>
+        <div class="bp-col bp-col-momikaru">
+          <h4>もみかるベッドパートナー独立</h4>
+          <ul>
+            <li>同じ店内のベッドでそのまま独立</li>
+            <li>顧客は変化に気づかない</li>
+            <li>明日から売上が立つ</li>
+            <li>もみかる屋号のまま続けられる</li>
+          </ul>
+        </div>
+      </div>
+      <p class="bp-conclusion">
+        変わるのは、契約形態と収益構造だけ。<strong>あなたが築いた信頼関係は、何ひとつ失われません。</strong>
+      </p>
+    </div>
+
+    <div class="future__investment is-dark-zone reveal">
+      <h3 class="future__investment-h">
+        施術時間が、独立時の<span class="ac">加盟金</span>を<br>そのまま削っていく。
+      </h3>
+
+      <div class="equation">
+        <span class="term">1時間の施術</span>
+        <span class="op">＝</span>
+        <span class="term">¥500 の加盟金減額</span>
+        <span class="op">／</span>
+        <span class="term">1,000時間</span>
+        <span class="op">→</span>
+        <span class="result">加盟金 0円</span>
+      </div>
+
+      <div class="progress">
+        <div class="progress__fill" id="progressFill"></div>
+        <div class="progress__shimmer" aria-hidden="true"></div>
+      </div>
+      <div class="progress__labels">
+        <span>施術時間が増えるほど、加盟金は減っていく</span>
+        <span>達成率 100%</span>
+      </div>
+      <div class="progress__markers">
+        <div>施術 0時間<span>50万円</span></div>
+        <div>施術 500時間<span>25万円</span></div>
+        <div>施術 1,000時間<span>0円</span></div>
+      </div>
+
+      <p class="invest-desc">1日5施術ペース・週6日稼働なら、約7〜8ヶ月で50万円の加盟金が完全にゼロになります。他社で同じ時間施術しても、それは「収入」だけ。もみかるでの施術時間は「収入＋<strong style="color:#F4ECDF;font-weight:700;">独立資金の積立</strong>」になります。</p>
+    </div>
+
+    <div class="story-comic comic-esthe-3 reveal">
+      <div class="comic-eye">— Story 02</div>
+      <h3 class="comic-title">そして5年後、自分のサロンを持つ日。</h3>
+      <p class="comic-lede">SALON de MOMIKARU で技術を磨き、信頼を築き、ついに独立を決意するまでの物語。同じ場所で、新しい屋号で。</p>
+      <div class="comic-image-wrap">
+        <img src="./comic_6.png" alt="SALON de MOMIKARU で5年経験を積んだエステティシャンが、店内独立で自分のサロンをオープンする6コマ漫画" loading="lazy">
+      </div>
+    </div>
+
+    <div class="bridge-copy reveal" style="margin-top:36px;margin-bottom:30px;">
+      <p>この物語が、あなたの未来になる仕組みを、<br>具体的な数字で見てみませんか。</p>
+    </div>
+
+    <div class="cost-box reveal">
+      <h3 class="cost-box__h">お店を始めるときの月額固定費を、内訳で比較。</h3>
+      <p class="cost-box__sub">「もみかるベッドパートナー」プランは、自分のお店を持つために必要な項目のほとんどが、月額固定費の中に含まれています。</p>
+
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th class="col-jp">ゼロから自分で開業</th>
+            <th class="col-jp">もみかるベッドパートナー</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>物件家賃</td>
+            <td class="is-self">8〜15万円</td>
+            <td class="is-mom"><span class="ck">✓</span>設備使用料に含む</td>
+          </tr>
+          <tr>
+            <td>設備・ベッド・備品</td>
+            <td class="is-self">月割 3〜5万円<small>（初期150〜300万円を5年償却）</small></td>
+            <td class="is-mom"><span class="ck">✓</span>設備使用料に含む</td>
+          </tr>
+          <tr>
+            <td>集客・広告費</td>
+            <td class="is-self">月3〜8万円</td>
+            <td class="is-mom"><span class="ck">✓</span>不要<small>（本部が集客）</small></td>
+          </tr>
+          <tr>
+            <td>ホームページ・予約システム</td>
+            <td class="is-self">月1〜2万円</td>
+            <td class="is-mom"><span class="ck">✓</span>システム利用料に含む</td>
+          </tr>
+          <tr>
+            <td>損害保険・賠償保険</td>
+            <td class="is-self">月5千〜1万円</td>
+            <td class="is-mom"><span class="ck">✓</span>含まれる</td>
+          </tr>
+          <tr>
+            <td>開業時の研修・ノウハウ</td>
+            <td class="is-self">自己負担<small>（独学または通学）</small></td>
+            <td class="is-mom"><span class="ck">✓</span>eラーニングで習得</td>
+          </tr>
+          <tr>
+            <td>経営相談・サポート</td>
+            <td class="is-self">個別契約で月3〜5万円</td>
+            <td class="is-mom"><span class="ck">✓</span>独立後も無料</td>
+          </tr>
+          <tr class="is-total">
+            <td>月額固定費 合計</td>
+            <td class="is-self">26〜42万円</td>
+            <td class="is-mom">12.5〜15万円<small>（3ヶ月キャンペーン中は12.5万円／通常15万円）</small></td>
+          </tr>
+          <tr class="is-init">
+            <td>初期投資</td>
+            <td class="is-self">200〜400万円</td>
+            <td class="is-mom">50万円（加盟金、施術時間で減額可）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="cc-note">
+        ※ こちらはベッドパートナープランでの数値です。<br>
+        自分で物件を借りるスモールプランも別途ご用意しています。
+      </p>
+
+      <div class="fc-plans">
+        <div class="fc-plans-eye">— FC Plans</div>
+        <h4 class="fc-plans-title">FC加盟プランの詳細</h4>
+        <p class="fc-plans-lede">
+          あなたのキャリアフェーズや、目指す独立スタイルに合わせて、2つのプランから選べます。<br>
+          詳細は専用サイトでご確認ください。
+        </p>
+        <div class="fc-plans-buttons">
+          <a href="https://momikaru-staff-special.netlify.app/" target="_blank" rel="noopener noreferrer" class="fc-plan-btn">
+            <span class="fp-no">Plan 01</span>
+            <span class="fp-name">ベッドパートナープラン</span>
+            <span class="fp-desc">本部物件で、設備込みで始める</span>
+            <span class="fp-arrow">→ 詳細を見る</span>
+          </a>
+          <a href="https://momikaru-fc-professional.netlify.app/" target="_blank" rel="noopener noreferrer" class="fc-plan-btn">
+            <span class="fp-no">Plan 02</span>
+            <span class="fp-name">スモールプラン</span>
+            <span class="fp-desc">自分の物件で、自分のお店を持つ</span>
+            <span class="fp-arrow">→ 詳細を見る</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bonus-grid">
+      <article class="bcard reveal">
+        <div class="bcard__icon"><svg><use href="#i-gift"/></svg></div>
+        <div class="bcard__num">— 01</div>
+        <h4 class="bcard__title">取りこぼし新規客が、あなたの永続指名客に。</h4>
+        <p class="bcard__body">直営店で対応しきれない新規来店者を紹介。初回は本部40％／あなた60％、指名化後は<strong>100%あなたの売上</strong>。</p>
+      </article>
+      <article class="bcard reveal">
+        <div class="bcard__icon"><svg><use href="#i-chat"/></svg></div>
+        <div class="bcard__num">— 02</div>
+        <h4 class="bcard__title">経営相談サポートが、独立後も無料で継続。</h4>
+        <p class="bcard__body">集客判断・営業電話の見極め・事業計画を、<strong>独立した瞬間からゼロで始めなくて済む</strong>のは大きな差。</p>
+      </article>
+      <article class="bcard reveal">
+        <div class="bcard__icon"><svg><use href="#i-case"/></svg></div>
+        <div class="bcard__num">— 03</div>
+        <h4 class="bcard__title">段階的に成長できる、2つのFCプラン。</h4>
+        <p class="bcard__body">ベッドパートナーで始めて、軌道に乗ったらスモールに移行。<span style="color:var(--accent);font-weight:700;">エステを軸に、リラクへの広がりも視野に入れた成長設計</span>が可能です。</p>
+      </article>
+    </div>
+
+    <div class="future__close reveal">
+      独立しないなら、しなくて構いません。<br>
+      ただ、いつかその日が来たときのために、SALON de MOMIKARU で働く時間が、<br>
+      そのまま<strong style="background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);color:var(--accent);padding:0 .04em;">準備と足がかり</strong>になります。
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     L6 : FLOW
+============================================================ -->
+<section class="flow">
+  <div class="container">
+    <div class="flow__head reveal">
+      <span class="eyebrow">Flow</span>
+      <h2 class="flow__title">応募ではなく、相談から始めてください。</h2>
+    </div>
+
+    <div class="flow__steps">
+      <article class="fstep reveal">
+        <div class="fstep__left">
+          <div class="fstep__num">01</div>
+          <div class="fstep__icon"><svg><use href="#i-chat"/></svg></div>
+        </div>
+        <div>
+          <h3 class="fstep__title">LINEまたはフォームで問い合わせ</h3>
+          <p class="fstep__body">所要時間は60秒。「話を聞きたい」だけでも歓迎です。応募ではなく相談からスタートしてください。</p>
+          <span class="fstep__time">所要 1分</span>
+        </div>
+      </article>
+
+      <article class="fstep reveal">
+        <div class="fstep__left">
+          <div class="fstep__num">02</div>
+          <div class="fstep__icon"><svg><use href="#i-hand"/></svg></div>
+        </div>
+        <div>
+          <h3 class="fstep__title">30分のオンラインまたは対面相談</h3>
+          <p class="fstep__body">あなたのエステ経験年数・得意分野・希望条件を聞いた上で、SALON de MOMIKARU で提供できる収入レンジ・働き方・既存技術の独自メニュー化の可能性を具体的に提示します。エステ業界経験者ならではの質問にもお答えします。</p>
+          <span class="fstep__time">所要 30分</span>
+        </div>
+      </article>
+
+      <article class="fstep reveal">
+        <div class="fstep__left">
+          <div class="fstep__num">03</div>
+          <div class="fstep__icon"><svg><use href="#i-eye"/></svg></div>
+        </div>
+        <div>
+          <h3 class="fstep__title">店舗見学・現場の雰囲気確認</h3>
+          <p class="fstep__body">現役スタッフと話す時間を設けます。求人情報には書かれない「リアル」を、入る前に確認してください。</p>
+          <span class="fstep__time">所要 1〜2時間</span>
+        </div>
+      </article>
+
+      <article class="fstep reveal">
+        <div class="fstep__left">
+          <div class="fstep__num">04</div>
+          <div class="fstep__icon"><svg><use href="#i-pen"/></svg></div>
+        </div>
+        <div>
+          <h3 class="fstep__title">業務委託契約の締結</h3>
+          <p class="fstep__body">条件を確認し契約締結。研修費・登録料・制服費用は無料。経験者は研修期間を短縮できる場合があります。エステ業界での経験は、SALON de MOMIKARU では正当に評価されます。</p>
+          <span class="fstep__time">所要 当日</span>
+        </div>
+      </article>
+
+      <article class="fstep reveal">
+        <div class="fstep__left">
+          <div class="fstep__num">05</div>
+          <div class="fstep__icon"><svg><use href="#i-play"/></svg></div>
+        </div>
+        <div>
+          <h3 class="fstep__title">稼働開始</h3>
+          <p class="fstep__body">国家資格者は基礎研修を一部免除可能。最短2週間で施術現場に立てます。</p>
+          <span class="fstep__time">問い合わせから 2〜4週間</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     L7 : FINAL CTA
+============================================================ -->
+<section class="final is-dark-zone">
+  <div class="ripple-stack" aria-hidden="true">
+    <span class="ripple"></span>
+    <span class="ripple"></span>
+    <span class="ripple"></span>
+  </div>
+  <div class="container final__inner">
+    <span class="eyebrow on-dark reveal">Final CTA</span>
+    <h2 class="final__title reveal">応募の前に、<span class="ac">30分だけ</span>情報交換しませんか。</h2>
+    <p class="final__desc reveal">
+      この決断は、今後のあなたのキャリアと、エステ業界での生き方を変えます。<br>
+      業務委託の自由、独自メニュー化、ベッドパートナー独立。<br>
+      SALON de MOMIKARU の仕組みを、30分でしっかり理解してもらえれば、<br>
+      それで判断できるはずです。<br>
+      あなたの経験・希望条件・既存技術をベースに、具体的な収入試算と働き方の選択肢を提示します。<br>
+      <small style="display:inline-block;margin-top:10px;font-size:12.5px;color:#A89E8B;letter-spacing:.04em;">LINEなら最短10秒、お電話でも直接ご相談いただけます。</small>
+    </p>
+    <div class="final__cta reveal">
+      <a class="btn btn--line" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
+        <span class="arrow"><svg><use href="#i-line"/></svg></span>
+        LINEで相談する
+      </a>
+      <a class="btn btn--white" href="tel:05031721405" data-action="phone-consult">
+        <span class="arrow"><svg><use href="#i-phone"/></svg></span>
+        電話で相談する
+      </a>
+    </div>
+    <p class="final__phone reveal">
+      <a href="tel:05031721405" class="final__phone-num" data-action="phone-consult">050-3172-1405</a>
+      <span class="final__phone-hours">受付：平日 9:00〜18:00</span>
+    </p>
+    <p class="final__alt reveal">ご自身の状況に合わない場合は → <a href="index.html">他のキャリアパスを見る</a></p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span class="site-footer__logo-wrap">
+      <img class="site-footer__logo" src="./momikaru-logo.png" alt="もみかる" loading="lazy">
+    </span>
+    <small class="site-footer__copy">
+      © 株式会社ドラミカンパニー<br>
+      All rights reserved.
+    </small>
+    <a class="site-footer__back" href="index.html">← 他のキャリアパスを見る</a>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+============================================================ -->
+<script>
+(function(){
+  'use strict';
+
+  /* Opening overlay */
+  var opening = document.getElementById('openingOverlay');
+  if (opening){
+    var dismissed = false;
+    var dismiss = function(immediate){
+      if (dismissed) return;
+      dismissed = true;
+      if (immediate){
+        opening.style.transition = 'opacity .25s ease';
+      }
+      opening.classList.add('is-fading');
+      setTimeout(function(){
+        opening.classList.add('is-hidden');
+        document.body.classList.remove('is-opening');
+      }, immediate ? 260 : 520);
+    };
+    setTimeout(function(){ dismiss(false); }, 2200);
+    opening.addEventListener('click', function(){ dismiss(true); });
+    opening.addEventListener('touchstart', function(){ dismiss(true); }, {passive:true});
+  } else {
+    document.body.classList.remove('is-opening');
+  }
+
+  /* Header scrolled state */
+  var header = document.getElementById('siteHeader');
+  var onScroll = function(){
+    if (window.scrollY > 8) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* IntersectionObserver — reveal */
+  var revealEls = document.querySelectorAll('.reveal');
+  var revealIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        revealIO.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12});
+  revealEls.forEach(function(el){ revealIO.observe(el); });
+
+  /* Count up */
+  var formatComma = function(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); };
+  var animateCount = function(el){
+    var target = parseFloat(el.getAttribute('data-count')) || 0;
+    var format = el.getAttribute('data-format');
+    var decimals = parseInt(el.getAttribute('data-decimals'),10) || 0;
+    var dur = 1600;
+    var start = performance.now();
+    var ease = function(t){ return 1 - Math.pow(1 - t, 3); };
+    var fmt = function(v){
+      var s = decimals ? v.toFixed(decimals) : String(Math.round(v));
+      return format === 'comma' ? formatComma(s) : s;
+    };
+    var step = function(now){
+      var p = Math.min(1, (now - start) / dur);
+      var v = target * ease(p);
+      el.textContent = fmt(v);
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = fmt(target);
+    };
+    requestAnimationFrame(step);
+  };
+  var counters = document.querySelectorAll('[data-count]');
+  var countIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        animateCount(entry.target);
+        countIO.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.4});
+  counters.forEach(function(el){ countIO.observe(el); });
+
+  /* Bar fills (income, cost) */
+  var fillBar = function(el, attr){
+    var pct = parseFloat(el.getAttribute(attr)) || 0;
+    el.style.width = pct + '%';
+  };
+  var barIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        var el = entry.target;
+        if (el.hasAttribute('data-bar')) fillBar(el, 'data-bar');
+        else if (el.hasAttribute('data-cost')) fillBar(el, 'data-cost');
+        barIO.unobserve(el);
+      }
+    });
+  }, {threshold:.5});
+  document.querySelectorAll('[data-bar],[data-cost]').forEach(function(el){ barIO.observe(el); });
+
+  /* Progress bar (L5) */
+  var progressFill = document.getElementById('progressFill');
+  if (progressFill){
+    var progressIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          progressFill.classList.add('is-active');
+          progressIO.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.5});
+    progressIO.observe(progressFill);
+  }
+
+  /* L2 Fig 01 line — stroke draw */
+  var lineDecline = document.querySelector('.line-decline');
+  if (lineDecline){
+    var len = lineDecline.getTotalLength();
+    lineDecline.style.strokeDasharray = len;
+    lineDecline.style.strokeDashoffset = len;
+    lineDecline.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1)';
+    var lineIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          lineDecline.style.strokeDashoffset = '0';
+          lineIO.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.4});
+    lineIO.observe(lineDecline);
+  }
+
+  /* L2 Fig 02 — horizontal bars (hbar) */
+  var hbars = document.querySelectorAll('.hbar');
+  var hvals = document.querySelectorAll('.hval');
+  if (hbars.length){
+    var animHbars = function(){
+      var dur = 1400;
+      var start = performance.now();
+      var ease = function(t){ return 1 - Math.pow(1-t,3); };
+      var step = function(now){
+        var p = Math.min(1, (now - start)/dur);
+        var e = ease(p);
+        hbars.forEach(function(b){
+          var w = parseFloat(b.getAttribute('data-w')) || 0;
+          b.setAttribute('width', w * e);
+        });
+        hvals.forEach(function(v){ v.setAttribute('opacity', p); });
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    var hbarIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){ animHbars(); hbarIO.unobserve(entry.target); }
+      });
+    }, {threshold:.4});
+    hbarIO.observe(hbars[0]);
+  }
+
+  /* L2 Fig 02 — pre/post vertical bars (bbar) */
+  var bbars = document.querySelectorAll('.bbar');
+  if (bbars.length){
+    var animBbars = function(){
+      var dur = 1400;
+      var start = performance.now();
+      var yBase = 125;
+      var ease = function(t){ return 1 - Math.pow(1-t,3); };
+      var step = function(now){
+        var p = Math.min(1, (now - start)/dur);
+        var e = ease(p);
+        bbars.forEach(function(b){
+          var h = parseFloat(b.getAttribute('data-h')) || 0;
+          var ah = h * e;
+          b.setAttribute('y', yBase - ah);
+          b.setAttribute('height', ah);
+        });
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    var bbarIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){ animBbars(); bbarIO.unobserve(entry.target); }
+      });
+    }, {threshold:.4});
+    bbarIO.observe(bbars[0]);
+  }
+
+  /* Vertical label dark/light switch — center-line crossing with scroll fallback */
+  var verticalLabel = document.getElementById('verticalLabel');
+  if (verticalLabel){
+    var darkZones = Array.prototype.slice.call(document.querySelectorAll('.is-dark-zone'));
+    var checkDark = function(){
+      var mid = window.innerHeight / 2;
+      var hit = false;
+      for (var i = 0; i < darkZones.length; i++){
+        var r = darkZones[i].getBoundingClientRect();
+        if (r.top <= mid && r.bottom >= mid){ hit = true; break; }
+      }
+      verticalLabel.classList.toggle('on-dark', hit);
+    };
+    checkDark();
+    window.addEventListener('scroll', checkDark, {passive:true});
+    window.addEventListener('resize', checkDark);
+  }
+
+  /* Smooth anchor offset for fixed header */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      var target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.scrollY - 64;
+      window.scrollTo({top:top, behavior:'smooth'});
+    });
+  });
+})();
+</script>
+</body>
+</html>
