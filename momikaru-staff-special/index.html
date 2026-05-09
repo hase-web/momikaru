@@ -799,6 +799,142 @@ strong { font-weight: 700; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============== Character Portrait ============== */
+.character-portrait {
+  display: flex; flex-direction: column; align-items: center;
+  margin: 40px auto;
+}
+.character-portrait--small { margin: 24px auto; }
+.character-portrait__image {
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--white);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+.character-portrait--small .character-portrait__image {
+  width: 140px; height: 140px;
+}
+.character-portrait__caption {
+  font-size: 13px; color: var(--ink-600);
+  margin-top: 12px; text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* =========================================
+   キャラ語り：画像 + フキダシレイアウト
+   ========================================= */
+.character-speaker {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin: 32px auto;
+  max-width: 720px;
+}
+
+.character-speaker__image {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--ink-100, #f0f0f0);
+}
+
+.character-speaker__image--large {
+  width: 160px;
+  height: 160px;
+}
+
+.character-speaker__bubble {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--line-200, #E5E7EB);
+  border-radius: 16px;
+  padding: 20px 24px;
+  flex: 1;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-900, #222);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.character-speaker__bubble::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 28px;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-right: 12px solid #ffffff;
+  filter: drop-shadow(-1px 1px 0 var(--line-200, #E5E7EB));
+}
+
+.character-speaker__name {
+  font-size: 0.85em;
+  color: var(--ink-600, #777);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .character-speaker {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .character-speaker__image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .character-speaker__image--large {
+    width: 140px;
+    height: 140px;
+  }
+
+  .character-speaker__bubble::before {
+    left: 50%;
+    top: -12px;
+    transform: translateX(-50%);
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid #ffffff;
+    border-top: none;
+    filter: drop-shadow(-1px -1px 0 var(--line-200, #E5E7EB));
+  }
+}
+
+/* ============== MANGA Section §02.5 ============== */
+.manga-section { background: var(--offwhite); }
+.manga-section__subtitle {
+  font-size: 14px; color: var(--ink-600);
+  margin-bottom: 8px; letter-spacing: 0.02em;
+}
+.manga-section__image {
+  display: block; max-width: 800px; width: 100%; height: auto;
+  margin: 60px auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.10);
+}
+.manga-section__caption {
+  text-align: center; font-size: 13px;
+  color: var(--ink-500);
+  margin-bottom: 24px; letter-spacing: 0.02em;
+}
+.manga-section__continue {
+  display: block; text-align: center;
+  font-size: 14px; font-weight: 600;
+  color: var(--brand-deep);
+  text-decoration: underline; text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+.manga-section__continue:hover { color: var(--brand-700); }
 </style>
 </head>
 <body>
@@ -819,9 +955,9 @@ strong { font-weight: 700; }
 <section class="hero" id="top">
   <div class="container fx-stagger">
     <p class="hero-eyebrow">01 / 08 <span class="sep">·</span> FOR MOMIKARU STAFF</p>
-    <h1 class="hero-h1">もみかるで頑張る<span class="accent">あなたへ</span>。<br>独立という選択肢、<br>考えてみませんか？</h1>
+    <h1 class="hero-h1">このページを開いてくれた、<span class="accent">あなたへ</span>。</h1>
     <p class="hero-sub">もみかるスタッフ限定<br>ベッドパートナー独立プログラムのご案内</p>
-    <p class="hero-note">※ このページは、もみかる直営店スタッフの方向けにご用意した、独立を検討するための情報サイトです。</p>
+    <p class="hero-note">※ このページは、もみかる直営店スタッフの方向けに用意した、独立を検討するための情報サイトです。</p>
   </div>
 </section>
 
@@ -829,16 +965,34 @@ strong { font-weight: 700; }
 <section class="section message" id="message">
   <div class="container">
     <p class="eyebrow fx fx-fade">02 / 08 &nbsp;·&nbsp; MESSAGE</p>
-    <h2 class="h-section fx fx-slide-up">もみかるで本業として<br>頑張ってくれる<span class="accent">あなたへ</span></h2>
-    <div class="message-body fx-stagger">
-      <p>もみかる直営店で、本業として日々お客様と向き合ってくれているスタッフへ。<br>本部から、ひとつご提案があります。</p>
-      <p>「いつかは独立したい」<br>そう思いながら働いている方も、いらっしゃるのではないでしょうか。</p>
-      <p>施術者として一人前になり、自分のお店を持つ。<br>それは、施術業界で働く方なら、誰もが一度は考える道だと思います。</p>
-      <p>ただ、独立は決して簡単な選択ではありません。<br>多くの先輩たちが、独立後に予想外の壁にぶつかっています。</p>
-      <p>このページでは、<br>個人で独立した場合の現実と、<br>もみかるが用意している「ベッドパートナー独立プログラム」を、<br>冷静に比較できる情報をご用意しました。</p>
-      <p>押し付けるつもりはありません。<br>「いつか独立したい」と思っているなら、<br>事前に知っておいてほしい情報、というだけです。</p>
-      <p>少しお時間をいただいて、最後まで読んでいただけたら幸いです。</p>
+    <h2 class="h-section fx fx-slide-up">これを読んでくれている<span class="accent">あなたへ</span></h2>
+    <div class="character-speaker">
+      <img src="images/yukari-01.png" alt="ゆかり" class="character-speaker__image character-speaker__image--large" />
+      <div class="character-speaker__bubble">
+        <p>もみかる施術歴8年目の、ゆかりです。<br>このページの案内役を、私が務めさせてもらいます。</p>
+        <div class="character-speaker__name">— ゆかり</div>
+      </div>
     </div>
+    <div class="message-body fx-stagger">
+      <p>——「いつかは独立したい」<br>そう、ふと思うことがあると思います。<br>私も、ありました。</p>
+      <p>施術者として、自分のお店を持つ。<br>それって、この仕事を選んだ多くの人が、<br>どこかで一度は考える道だと思います。</p>
+      <p>でも、独立って、思っているより難しい。<br>お金のこと、集客のこと、固定費のこと——<br>私の周りでも、独立した先輩が予想外の壁にぶつかる姿を、何人も見てきました。</p>
+      <p>だから、もみかるには「ベッドパートナー独立」という、もう一つの道があります。<br>このページは、その仕組みを、個人で独立した場合と並べて見られるようにまとめたものです。</p>
+      <p>別に、独立を勧めているわけじゃないんです。<br>今のまま続けるのも、ぜんぜんアリだと思う。<br>ただ、「いつか考えるかも」と思っているなら、<br>事前に知っておいて、損はないかなと。</p>
+      <p>それだけの話です。<br>お時間あるときに、ゆっくり読んでみてください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== §02.5 MANGA STORY 01 ===================== -->
+<section class="section manga-section" id="manga-01">
+  <div class="container">
+    <p class="eyebrow fx fx-fade">STORY 01 &nbsp;·&nbsp; MANGA</p>
+    <h2 class="h-section fx fx-slide-up">ふと、考える夜</h2>
+    <p class="manga-section__subtitle fx fx-fade">業務委託歴4年目・美月の話</p>
+    <img class="manga-section__image fx fx-fade" src="images/manga-01.png" alt="もみかる漫画 第1話「ふと、考える夜」" />
+    <p class="manga-section__caption fx fx-fade">— 続きは、第2話・第3話で。</p>
+    <a class="manga-section__continue fx fx-fade" href="#reality">↓ 続きを読む</a>
   </div>
 </section>
 
@@ -846,12 +1000,19 @@ strong { font-weight: 700; }
 <section class="section reality" id="reality">
   <div class="container">
     <p class="eyebrow fx fx-fade">03 / 08 &nbsp;·&nbsp; THE REALITY</p>
-    <h2 class="h-section fx fx-slide-up">でも、独立って実は…<span class="accent">大変です</span>。<br><span style="font-size: 0.65em; font-weight: 600; color: var(--ink-600);">〜サービス業素人あるある〜</span></h2>
+    <h2 class="h-section fx fx-slide-up">独立って、実は<span class="accent">大変なんです</span></h2>
+    <div class="character-speaker">
+      <img src="images/yukari-02.png" alt="ゆかり" class="character-speaker__image" />
+      <div class="character-speaker__bubble">
+        <p>ここからまた、ゆかりです。</p>
+        <div class="character-speaker__name">— ゆかり</div>
+      </div>
+    </div>
     <p class="lede fx fx-fade">
-      施術の技術には自信がある。<br>
-      お客様からも「独立すれば成功する」と言われる。<br><br>
-      でも実は、独立後にぶつかる壁は、施術技術とは別のところにあります。<br>
-      よくあるパターンを、3つご紹介します。
+      施術の技術には自信がある、お客様からも「独立すれば成功するよ」と言われる——<br>
+      そう感じている人、多いと思います。私も以前はそう思ってました。<br><br>
+      でも、独立後にぶつかる壁って、実は施術の技術とは別のところにあるんです。<br>
+      私の周りで独立した先輩たちを見てきて、よく聞くパターンを3つ、お話しします。
     </p>
 
     <div class="reality-grid fx-stagger">
@@ -860,10 +1021,9 @@ strong { font-weight: 700; }
         <p class="reality-card__no">あるある①</p>
         <h3 class="reality-card__title">集客の判断ができない</h3>
         <div class="reality-card__body">
-          <p>開業して、最初の数週間は知人の応援で客が来ます。<br>でも1ヶ月もすれば、お客様の足は遠のき始めます。</p>
-          <p>「集客しないと…」と思った時、<br>何にお金をかければいいか、判断できますか？</p>
-          <p>ホットペッパー？ チラシ？ Web広告？ SNS？<br>どれも「やったほうがいい」と言われそうですが、予算は限られています。</p>
-          <p>施術業界での経営経験がない場合、何を優先すべきか判断するのは、想像以上に難しいものです。</p>
+          <p>開業して最初の数週間は、知人の応援で結構お客さんが来るそうです。<br>でも、1ヶ月もすると、その勢いはピタッと止まるみたいで。</p>
+          <p>「集客しなきゃ」って焦って、いざお金をかけようとした時——<br>ホットペッパー、チラシ、Web広告、SNS。<br>どれにいくら使えばいいか、判断できますか？</p>
+          <p>施術歴が長くても、経営の経験がないと、ここで詰まる人が多いんです。</p>
         </div>
       </article>
 
@@ -871,10 +1031,9 @@ strong { font-weight: 700; }
         <p class="reality-card__no">あるある②</p>
         <h3 class="reality-card__title">営業を断り切れない</h3>
         <div class="reality-card__body">
-          <p>開業すると、様々な業者から営業の電話や訪問が来ます。</p>
+          <p>独立すると、いろんな業者から営業の電話や訪問が来るらしいです。<br>こんな感じで——</p>
           <p>「ホットペッパーのプレミアムプラン、いかがですか？」<br>「Web集客のコンサル、月10万円で売上3倍も可能です」<br>「SEO対策で必ず上位表示を実現します」<br>「LINE構築で顧客リストを資産化しませんか？」</p>
-          <p>良さそうな話に思えます。<br>でも、本当に必要かどうか、冷静に判断できますか？</p>
-          <p>経営経験のある人でも、判断は簡単ではありません。<br>営業のプロは「断れない話術」を持っているからです。</p>
+          <p>どれも良さそうに聞こえる。でも、本当に必要かどうか、冷静に判断できる人は少ないです。<br>営業のプロは「断れない話術」のプロでもあるので。</p>
         </div>
       </article>
 
@@ -882,21 +1041,20 @@ strong { font-weight: 700; }
         <p class="reality-card__no">あるある③</p>
         <h3 class="reality-card__title">固定費が雪だるま式に増える</h3>
         <div class="reality-card__body">
-          <p>「とりあえずやってみよう」と契約を重ねていくと、気づいた時には固定費が膨らんでいます。</p>
-          <p>家賃 + 光熱費 + ホットペッパー + コンサル + 広告費 + システム費...</p>
-          <p>月の固定費が30万、40万を超えてくると、それを払うために月100人、150人の客が必要になります。</p>
-          <p>でも、客数は思うように増えません。<br>広告にお金をかけても、結果が出るとは限りません。</p>
+          <p>「とりあえず試してみよう」で契約を重ねていくと、気づいたら固定費が膨らんでいる。</p>
+          <p>家賃 + 光熱費 + ホットペッパー + コンサル + 広告費 + システム費……</p>
+          <p>月の固定費が30万、40万を超えてくると、それを払うだけで月100人、150人のお客さんが必要になります。<br>でも、お客さんは思うように増えてくれないんです。広告にお金をかけても、結果が出るとは限らない。</p>
         </div>
       </article>
 
     </div>
 
     <div class="reality-result fx fx-zoom-in">
-      <p class="reality-result__label">そして…</p>
-      <h3 class="reality-result__title">引き返せない状況になっていた、というのが現実です。</h3>
+      <p class="reality-result__label">そして……</p>
+      <h3 class="reality-result__title">気づいた時には、引き返せない状況になっている。</h3>
       <div class="reality-result__body">
-        <p>固定費が払えなくなり、独立を断念せざるを得ない方も、少なくありません。</p>
-        <p>「自分は大丈夫」と思っていた先輩たちも、気づいた時には、引き返せない状況になっていた、というのが現実です。</p>
+        <p>固定費が払えなくて、独立を断念した先輩を、私は実際に何人か知っています。<br>みんな、最初は「自分は大丈夫」って思ってたんです。</p>
+        <p>これが、私の見てきた現実です。</p>
       </div>
     </div>
   </div>
@@ -906,11 +1064,21 @@ strong { font-weight: 700; }
 <section class="section numbers" id="numbers">
   <div class="container">
     <p class="eyebrow fx fx-fade">04 / 08 &nbsp;·&nbsp; NUMBERS</p>
-    <h2 class="h-section fx fx-slide-up">数字で見る、<span class="accent">個人独立の現実</span></h2>
-    <p class="lede fx fx-fade">感覚論ではなく、数字で見てみましょう。</p>
+    <h2 class="h-section fx fx-slide-up">で、<span class="accent">いくらかかるの？</span></h2>
+    <div class="character-speaker">
+      <img src="images/kenta-01.png" alt="健太" class="character-speaker__image" />
+      <div class="character-speaker__bubble">
+        <p>ここからは、私（健太）が話します。</p>
+        <div class="character-speaker__name">— 健太</div>
+      </div>
+    </div>
+    <p class="lede fx fx-fade">
+      独立を考え始めたとき、いちばん気になるのが「お金」だと思います。<br>
+      感覚論じゃなくて、数字で見たほうが早いので、調べた内容をそのまま共有します。
+    </p>
 
     <div class="cost-block fx fx-fade">
-      <h3 class="cost-block__title">個人独立の初期費用</h3>
+      <h3 class="cost-block__title">個人で独立した場合の、初期費用</h3>
       <table class="cost-table">
         <tbody>
           <tr><th>物件取得費（家賃の6ヶ月分）</th><td>48〜120万円</td></tr>
@@ -923,11 +1091,17 @@ strong { font-weight: 700; }
           <tr class="is-total"><th>合計</th><td>約<span class="count-up" data-count-to="423">423</span>〜850万円</td></tr>
         </tbody>
       </table>
-      <p class="cost-note">これだけの資金を、銀行融資なしで用意できる方は多くありません。<br>そして、銀行融資を受ければ、毎月の返済も固定費に加わります。</p>
+      <p class="cost-note">
+        正直、自分も最初は「そんなにかかるんだ」と驚きました。<br>
+        しかも、これは家賃10万円くらいの小さい店を想定した数字です。<br>
+        もう少し広い物件、いい立地を狙うなら、ここからさらに上乗せされていきます。<br><br>
+        これを全部、銀行融資なしで用意できる人は、そう多くないと思います。<br>
+        そして、もし融資を受けるなら、毎月の返済も固定費に乗っかってきます。
+      </p>
     </div>
 
     <div class="cost-block fx fx-fade">
-      <h3 class="cost-block__title">個人独立の月額固定費</h3>
+      <h3 class="cost-block__title">個人で独立した場合の、月額固定費</h3>
       <table class="cost-table">
         <tbody>
           <tr><th>家賃</th><td>8〜20万円</td></tr>
@@ -940,18 +1114,26 @@ strong { font-weight: 700; }
           <tr class="is-total"><th>合計</th><td>約<span class="count-up" data-count-to="28">28</span>〜44万円</td></tr>
         </tbody>
       </table>
+      <p class="cost-note">
+        家賃の幅で月額固定費が大きく変わるのが、わかると思います。<br>
+        広い店、いい立地を選べば家賃20万円超え、月額固定費は44万円以上。<br>
+        逆に、こぢんまりとした店なら家賃8万円で抑えて、月額28万円台に収まります。<br><br>
+        どちらにしても、毎月この額が「お客さんが来ようが来まいが」発生する。<br>
+        これが、固定費の重さです。
+      </p>
     </div>
 
     <div class="breakeven-box fx fx-zoom-in">
       <p class="breakeven-box__label">損益分岐点</p>
       <p class="breakeven-box__formula">月額固定費32万円 ÷ 客単価5,000円 = <span class="accent pulse-num">月64人</span>の客が必要</p>
       <div class="breakeven-box__body">
-        <p>つまり、開業初月から月64人の客が来ないと、赤字になり、自己資金から固定費を払う必要があります。</p>
-        <p>開業して、いきなり月64人。<br>それを集めるには、何が必要でしょうか？</p>
+        <p>中央値で考えてみると——<br>月額固定費 32万円 ÷ 客単価 5,000円 = 月64人</p>
+        <p>つまり、開業初月から月64人のお客さんが来てくれないと、赤字になる。<br>不足分は、貯金から払うことになります。</p>
+        <p>開業初月で、いきなり月64人。<br>これ、自分で集客して達成できるか？——というのが、独立の最初の関門です。</p>
       </div>
     </div>
 
-    <p class="price-note fx">※ 表示価格は全て税別です。別途消費税がかかります。</p>
+    <p class="price-note fx">※ 本部関連費用は全て税別表示です（家賃・光熱費は事業者ごとに異なります）</p>
   </div>
 </section>
 
@@ -959,14 +1141,23 @@ strong { font-weight: 700; }
 <section class="section bedpartner" id="bedpartner">
   <div class="container">
     <p class="eyebrow fx fx-fade">05 / 08 &nbsp;·&nbsp; BED PARTNER</p>
-    <h2 class="h-section fx fx-slide-up">一方、もみかる<span class="accent">ベッドパートナー</span>なら</h2>
+    <h2 class="h-section fx fx-slide-up">じゃあ、ベッドパートナーだと<span class="accent">どうなる？</span></h2>
+    <div class="character-speaker">
+      <img src="images/kenta-02.png" alt="健太" class="character-speaker__image" />
+      <div class="character-speaker__bubble">
+        <p>ここからは、また私（健太）です。</p>
+        <div class="character-speaker__name">— 健太</div>
+      </div>
+    </div>
     <p class="lede fx fx-fade">
-      ベッドパートナーは、もみかる直営店のスペースを使って、あなた自身の事業として施術をする独立プログラムです。<br><br>
-      個人独立とは、必要な資金も、月額固定費も、そして経営の負担も、まったく違います。
+      §04で個人独立の数字を見ました。正直、結構ハードルが高い。<br>
+      じゃあ、もみかるが用意している「ベッドパートナー」という独立の形だと、どうなるのか。<br>
+      同じ視点で並べてみます。<br><br>
+      ベッドパートナーは、ざっくり言うと、もみかる直営店のスペースを使って、自分の事業として施術をする仕組みです。
     </p>
 
     <div class="cost-block fx fx-fade">
-      <h3 class="cost-block__title">ベッドパートナー独立の初期費用</h3>
+      <h3 class="cost-block__title">ベッドパートナー独立の、初期費用</h3>
       <table class="cost-table">
         <tbody>
           <tr><th>加盟金 <span style="font-size:11px; color: var(--ink-500); font-weight:500;">※スタッフ特典で実質無料（後述）</span></th><td>50万円</td></tr>
@@ -980,10 +1171,15 @@ strong { font-weight: 700; }
           <tr class="is-total"><th>実質的な合計</th><td>約<span class="count-up" data-count-to="15">15</span>万円</td></tr>
         </tbody>
       </table>
+      <p class="cost-note">
+        §04の個人独立だと約423〜850万円でした。それに対して、ここでは約15万円。<br>
+        桁が一つ違います。<br><br>
+        正直、最初に見た時は「本当に？」と思いました。でも、自分のスペースを建てるのではなく、既にあるお店のスペースを使う仕組みだから、こうなるんです。
+      </p>
     </div>
 
     <div class="cost-block fx fx-fade">
-      <h3 class="cost-block__title">ベッドパートナーの月額固定費</h3>
+      <h3 class="cost-block__title">ベッドパートナーの、月額固定費</h3>
       <table class="cost-table">
         <tbody>
           <tr><th>ベッドパートナー料金</th><td>15万円</td></tr>
@@ -992,27 +1188,39 @@ strong { font-weight: 700; }
           <tr class="is-total"><th>合計</th><td><span class="count-up" data-count-to="15">15</span>万円</td></tr>
         </tbody>
       </table>
+      <p class="cost-note">
+        個人独立は月28〜44万円。ベッドパートナーは月15万円。<br>
+        この差額が、毎月の経営の余裕になります。
+      </p>
     </div>
 
     <div class="breakeven-box fx fx-zoom-in">
       <p class="breakeven-box__label">損益分岐点</p>
       <p class="breakeven-box__formula">15万円 ÷ 客単価5,000円 = <span class="accent pulse-num">月30人</span>の客で損益分岐</p>
       <div class="breakeven-box__body">
-        <p>個人独立が月64人必要なのに対して、ベッドパートナーは月30人で損益分岐。</p>
-        <p>しかも、もみかる勤務時代に作った指名客が、そのままあなたの初月の売上を支えてくれます。</p>
+        <p>個人独立だと月64人必要だったのが、ベッドパートナーだと月30人で損益分岐。<br>しかも、もみかる勤務時代に積み上げた指名客が、そのまま初月の売上を支えてくれます。</p>
+        <p>つまり、初月から黒字化できる可能性が高い、ということです。</p>
+      </div>
+    </div>
+
+    <div class="character-speaker">
+      <img src="images/yukari-03.png" alt="ゆかり" class="character-speaker__image" />
+      <div class="character-speaker__bubble">
+        <p>ゆかりに戻ります。</p>
+        <div class="character-speaker__name">— ゆかり</div>
       </div>
     </div>
 
     <div class="key-promise fx fx-zoom-in">
-      <p class="key-promise__label">そして、何より大切なこと</p>
-      <h3 class="key-promise__title">ベッドパートナー独立では、<br>あなたの今までの頑張りが、<br><span class="accent">そのまま経営に反映します</span>。</h3>
-      <p class="key-promise__lead">つまり、まったく怖くもなく、リスクもありません。</p>
+      <p class="key-promise__label">そして、何より大事なこと</p>
+      <h3 class="key-promise__title">今まで頑張ってきたことが、<br><span class="accent">そのまま自分の経営に繋がります</span>。</h3>
+      <p class="key-promise__lead">数字の話は健太がしてくれました。私が言いたいのは、もう少し別のこと。<br><br>ベッドパートナーなら——</p>
       <ul class="key-promise__list">
         <li>集客に悩む必要はありません。</li>
         <li>営業に騙される心配もありません。</li>
         <li>経営判断で疲弊することもありません。</li>
       </ul>
-      <p class="key-promise__close">ただ、お客様と向き合う時間を、今までよりも自分のものにできる。<br>それが、もみかるベッドパートナー独立です。</p>
+      <p class="key-promise__close">施術に集中できる時間が、今より増えます。<br>お客様と向き合う時間を、自分のものにできる。<br>それが、私から見たベッドパートナーの一番の価値かなと思います。</p>
     </div>
 
     <p class="bridge fx fx-fade"><span class="arrow">↓</span>そして、もみかるスタッフの方には、<br>さらに3つの特別な仕組みがあります。</p>
@@ -1021,16 +1229,34 @@ strong { font-weight: 700; }
   </div>
 </section>
 
+<!-- ===================== §05.5 MANGA STORY 02 ===================== -->
+<section class="section manga-section" id="manga-02">
+  <div class="container">
+    <p class="eyebrow fx fx-fade">STORY 02 &nbsp;·&nbsp; MANGA</p>
+    <h2 class="h-section fx fx-slide-up">数字を、知る</h2>
+    <p class="manga-section__subtitle fx fx-fade">業務委託歴6年目・健太の話</p>
+    <img class="manga-section__image fx fx-fade" src="images/manga-02.png" alt="もみかる漫画 第2話「数字を、知る」" />
+    <p class="manga-section__caption fx fx-fade">— もうすこし、続きます。</p>
+    <a class="manga-section__continue fx fx-fade" href="#exclusive">↓ 続きを読む</a>
+  </div>
+</section>
+
 <!-- ===================== §06 STAFF EXCLUSIVE ===================== -->
 <section class="section staff-exclusive" id="exclusive">
   <div class="container">
     <p class="eyebrow fx fx-fade">06 / 08 &nbsp;·&nbsp; STAFF EXCLUSIVE</p>
-    <h2 class="h-section fx fx-slide-up">もみかるスタッフだけの、<br><span class="accent">3つの特別な仕組み</span></h2>
+    <h2 class="h-section fx fx-slide-up">スタッフだけの、<span class="accent">3つの仕組み</span></h2>
+    <div class="character-speaker">
+      <img src="images/honbu-01.png" alt="本部担当者" class="character-speaker__image" />
+      <div class="character-speaker__bubble">
+        <p>ここから少し、私から。<br>もみかる本部で、ベッドパートナー制度の責任者をしている者です。</p>
+        <div class="character-speaker__name">— 本部担当者</div>
+      </div>
+    </div>
     <p class="lede fx fx-fade">
-      ここまでお読みいただいた方の中には、<br>
-      「ベッドパートナーが圧倒的に有利なのは分かった。でも、もみかるスタッフだから特別何か優遇されるの？」<br>
-      と思った方もいらっしゃるかもしれません。<br><br>
-      はい、もみかるスタッフだけが受けられる、3つの特別な仕組みがあります。
+      ここまでゆかりさんと健太さんがお話ししてきた内容に加えて、もみかるスタッフの方にだけ用意している3つの仕組みがあります。<br>
+      正直、これは外部から独立される方には提供していない、スタッフ限定のものです。<br><br>
+      順にご説明します。
     </p>
 
     <div class="perks-list fx-stagger">
@@ -1039,12 +1265,11 @@ strong { font-weight: 700; }
         <span class="perk-card__no">特典 ①</span>
         <h3 class="perk-card__title">加盟金実質無料制度</h3>
         <div class="perk-card__body">
-          <p>通常、ベッドパートナー独立には加盟金<strong>50万円</strong>が必要です。</p>
-          <p>しかし、もみかるスタッフとして勤務した方は、施術1時間あたり<strong>500円</strong>が、加盟金から自動的に減額されます。</p>
+          <p>通常、ベッドパートナー独立には加盟金として<strong>50万円</strong>をいただいています。</p>
+          <p>ただし、もみかるスタッフとして勤務した方には、施術1時間あたり<strong>500円</strong>が、加盟金から自動的に減額される仕組みになっています。</p>
           <p class="perk-formula">500円 × 1,000時間 = 50万円</p>
-          <p>つまり、もみかるで<strong>1,000時間施術すれば、加盟金は完全にゼロ</strong>。</p>
-          <p>1日4施術（4時間）ペースなら、週6日勤務で<strong>約10ヶ月</strong>で達成できる時間です。</p>
-          <p>頑張った時間が、そのまま独立の負担を減らしていく。<br>これは、外部から独立する方にはない、スタッフだけの仕組みです。</p>
+          <p>つまり、スタッフ期間中に<strong>1,000時間の施術をすれば、加盟金は完全にゼロ</strong>になります。<br>1日4時間の施術ペースで、週6日勤務なら、約10ヶ月で達成できる時間です。</p>
+          <p>頑張った時間が、そのまま独立の資金になる——<br>これは、スタッフとして頑張ってくださっている方への、本部からの感謝の形でもあります。</p>
         </div>
       </article>
 
@@ -1052,8 +1277,8 @@ strong { font-weight: 700; }
         <span class="perk-card__no">特典 ②</span>
         <h3 class="perk-card__title">新規客紹介制度</h3>
         <div class="perk-card__body">
-          <p>もみかる直営店には、毎日新規のお客様が来店します。<br>しかし、店舗のキャパシティの関係で、すべてのお客様にすぐ対応できないことがあります。</p>
-          <p>そんな時、「取りこぼし」が発生したお客様を、ベッドパートナーであるあなたに紹介します。</p>
+          <p>直営店には、毎日新規のお客様がいらっしゃいます。<br>ですが、店舗のキャパシティの関係で、すべてのお客様にすぐ対応できないこともあります。</p>
+          <p>そんな「取りこぼし」が発生した時、独立しているスタッフ、つまりベッドパートナーの皆さんに、お客様をご紹介する仕組みです。</p>
           <div class="perk-flow">
             <p class="perk-flow__label">制度の流れ</p>
             <ol>
@@ -1072,8 +1297,7 @@ strong { font-weight: 700; }
               <dd>100% あなたの売上</dd>
             </dl>
           </div>
-          <p>つまり、<strong>直営店で取りこぼされたお客様が、あなたの指名客として、永続的な収益源になります</strong>。</p>
-          <p>集客に悩む必要がない、スタッフだけの仕組みです。</p>
+          <p>つまり、<strong>直営店で取りこぼされたお客様が、ベッドパートナーの永続的な収益源になる</strong>、という仕組みです。<br>集客に悩まなくていい、というのはこの制度があるからです。</p>
         </div>
       </article>
 
@@ -1081,16 +1305,15 @@ strong { font-weight: 700; }
         <span class="perk-card__no">特典 ③</span>
         <h3 class="perk-card__title">経営・運営の随時相談サポート</h3>
         <div class="perk-card__body">
-          <p>個人独立で多くの方がぶつかる壁が、<strong>「相談できる人がいない」</strong>ことです。</p>
-          <p>ベッドパートナーで独立した方には、経営・運営に関する相談を、随時お受けする体制を用意しています。</p>
+          <p>個人で独立した方が、いちばん多くぶつかる壁——それが<strong>「相談できる人がいない」</strong>という問題です。</p>
+          <p>ベッドパートナーで独立した方には、経営や運営に関する相談を、いつでもお受けする体制を用意しています。</p>
           <ul class="perk-questions">
             <li>集客の判断に迷う</li>
             <li>営業電話が来たけど、契約すべきか分からない</li>
             <li>お客様対応で困っている</li>
             <li>事業計画について相談したい</li>
           </ul>
-          <p>どんな段階の相談でも、もみかる本部があなたの味方です。</p>
-          <p><strong>「営業に騙される」「経営判断で迷う」</strong>という、個人独立で起こりがちなリスクを、根本から減らせます。</p>
+          <p>どんな段階の相談でも、本部があなたの味方です。<br><strong>「営業に騙される」「経営判断で迷う」</strong>という、独立後あるあるのリスクを、根本から減らせる仕組みになっています。</p>
         </div>
       </article>
 
@@ -1104,8 +1327,8 @@ strong { font-weight: 700; }
         <li><strong>特典 ③</strong>経営相談サポート → 判断不安の解消</li>
       </ul>
       <p class="perks-summary__close">
-        <span class="accent">「お金」「集客」「判断」</span><br>
-        独立で多くの方がぶつかる3つの壁を、もみかるスタッフは、ほぼゼロに近い形でクリアできます。<br><br>
+        <span class="accent">「お金」「集客」「判断」</span>——<br>
+        独立で多くの方がぶつかる3つの壁を、もみかるスタッフの方は、ほぼゼロに近い形でクリアできます。<br><br>
         これが、もみかるスタッフだけのベッドパートナー独立です。
       </p>
     </div>
@@ -1118,21 +1341,30 @@ strong { font-weight: 700; }
 <section class="section path" id="path">
   <div class="container">
     <p class="eyebrow fx fx-fade">07 / 08 &nbsp;·&nbsp; THE PATH</p>
-    <h2 class="h-section fx fx-slide-up">ベッドパートナー独立の<span class="accent">流れ</span></h2>
+    <h2 class="h-section fx fx-slide-up">で、<span class="accent">実際どう進めるの？</span></h2>
+    <div class="character-speaker">
+      <img src="images/sakura-01.png" alt="さくら" class="character-speaker__image" />
+      <div class="character-speaker__bubble">
+        <p>最後に、実際の流れを、私（さくら）からお話しします。</p>
+        <div class="character-speaker__name">— さくら</div>
+      </div>
+    </div>
     <p class="lede fx fx-fade">
-      急いで独立する必要はありません。<br>
-      今のもみかるでの仕事を続けながら、じっくり準備を進めてください。
+      私は今、ちょうどベッドパートナー独立を検討している立場です。<br>
+      本部の担当者さんと話して、自分が辿る予定の道のりを整理したので、それを共有します。<br><br>
+      ちなみに、急ぐ必要は全然ないみたいです。<br>
+      今のもみかるでの仕事を続けながら、自分のペースで準備すればいい、と言われました。
     </p>
 
     <div class="path-steps fx-stagger">
 
       <article class="path-step">
         <p class="path-step__no">STEP 01</p>
-        <h3 class="path-step__title">もみかるで指名客を増やす</h3>
+        <h3 class="path-step__title">今のままで、指名客を増やしていく</h3>
         <div class="path-step__body">
-          <p>今まで通り、もみかるで業務委託として勤務しながら、自分の指名客を着実に増やしていきます。</p>
-          <p>直営店の集客力を活用できるので、個人で営業する必要はありません。</p>
-          <p>そして、施術時間が加盟金減額に積み上がっていきます。<strong>1,000時間達成で、加盟金は完全にゼロ</strong>です。</p>
+          <p>まずは、今までと同じ。もみかるで業務委託として働きながら、指名客を増やしていきます。</p>
+          <p>直営店の集客力を使えるから、自分で営業しなくていい。<br>そして、施術した時間が、そのまま加盟金の減額に積み上がっていく。<strong>1,000時間で完全にゼロ</strong>。</p>
+          <p>ここは、今やっていることがそのまま「独立準備」になっているので、特別なことはしなくていいんです。</p>
         </div>
       </article>
 
@@ -1140,9 +1372,9 @@ strong { font-weight: 700; }
         <p class="path-step__no">STEP 02</p>
         <h3 class="path-step__title">自分のタイミングで判断する</h3>
         <div class="path-step__body">
-          <p>独立に必要な顧客基盤ができてきたと感じたら、独立を検討するタイミングです。</p>
-          <p>「いつ独立するか」は、あなた自身が決めます。本部から急かすことはありません。</p>
-          <p>ベッドパートナーへの移行は、<strong>あなたが「準備ができた」と感じた時</strong>で構いません。</p>
+          <p>「お客さんもついてきた、自分の指名で生活できそう」と感じたら、独立を検討するタイミングです。</p>
+          <p>「いつ独立するか」は、自分で決めます。<br>本部から急かされることはありません（私も実際に確認しました）。</p>
+          <p><strong>「準備ができた」と感じた時</strong>で構いません。</p>
         </div>
       </article>
 
@@ -1150,9 +1382,9 @@ strong { font-weight: 700; }
         <p class="path-step__no">STEP 03</p>
         <h3 class="path-step__title">ベッドパートナーとして独立</h3>
         <div class="path-step__body">
-          <p>ベッドパートナーとして契約し、あなた自身の事業として施術を始めます。</p>
-          <p>もみかるで作った指名客が、そのままあなたのお客様として続いてくれます。</p>
-          <p>加盟金が実質無料、集客も継続的にサポート。独立後も、経営相談はいつでも受けられます。</p>
+          <p>ベッドパートナーとして契約を結んで、自分の事業として施術を始めます。</p>
+          <p>もみかる時代に作った指名客は、そのままお客様として続いてくれます。<br>加盟金は実質無料、集客サポートも続く、経営相談もいつでもできる。</p>
+          <p>つまり、独立した瞬間から急にハードモード、という感じではなくて、<br>「今までやってきたことが、そのまま自分の事業になる」という感覚かなと、私は理解しています。</p>
         </div>
       </article>
 
@@ -1170,12 +1402,30 @@ strong { font-weight: 700; }
   </div>
 </section>
 
+<!-- ===================== §07.5 MANGA STORY 03 ===================== -->
+<section class="section manga-section" id="manga-03">
+  <div class="container">
+    <p class="eyebrow fx fx-fade">STORY 03 &nbsp;·&nbsp; MANGA</p>
+    <h2 class="h-section fx fx-slide-up">話だけ、聞いてみる</h2>
+    <p class="manga-section__subtitle fx fx-fade">業務委託歴3年目・さくらの話</p>
+    <img class="manga-section__image fx fx-fade" src="images/manga-03.png" alt="もみかる漫画 第3話「話だけ、聞いてみる」" />
+    <p class="manga-section__caption fx fx-fade">— 物語は、ここで完結します。</p>
+    <a class="manga-section__continue fx fx-fade" href="#contact">↓ 最後のメッセージへ</a>
+  </div>
+</section>
+
 <!-- ===================== §08 CONTACT ===================== -->
 <section class="section contact" id="contact">
   <div class="container">
     <p class="eyebrow fx fx-fade">08 / 08 &nbsp;·&nbsp; CONTACT</p>
-    <h2 class="h-section fx fx-slide-up">まずは、<span class="accent">気軽にチャットで相談を</span></h2>
-    <p class="lede fx fx-fade">ここまで読んでいただき、ありがとうございました。</p>
+    <h2 class="h-section fx fx-slide-up">気軽に、<span class="accent">話だけ聞いてみてください</span></h2>
+    <div class="character-speaker">
+      <img src="images/honbu-02.png" alt="本部担当者" class="character-speaker__image" />
+      <div class="character-speaker__bubble">
+        <p>ここまで読んでいただき、ありがとうございました。<br>もう一度、本部担当者の私からお話しします。</p>
+        <div class="character-speaker__name">— 本部担当者</div>
+      </div>
+    </div>
 
     <ul class="contact-questions fx-stagger">
       <li>もう少し詳しく聞いてみたい</li>
@@ -1192,10 +1442,10 @@ strong { font-weight: 700; }
     </div>
 
     <div class="contact-closing fx-stagger">
-      <p>このページは、あなたに何かを売るためのものではありません。<br>独立を検討する上で、知っておいてほしい情報をまとめただけです。</p>
-      <p>「独立しない」という選択も、もちろんあります。<br>今のもみかるでの仕事に専念するのも、立派な選択です。</p>
-      <p>ただ、もし「独立したい」と思った時に、個人独立ではなく、ベッドパートナーという選択肢もあることを、ぜひ覚えておいてください。</p>
-      <p>これからも、もみかるでよろしくお願いします。</p>
+      <p>このページは、何かを売るためのものではありません。<br>「独立を考える時」のための情報を、まとめただけです。</p>
+      <p>「独立しない」という選択も、もちろん大事です。<br>今のもみかるでの仕事に集中するのも、立派な選択です。</p>
+      <p>ただ、もし「いつかは独立したい」と思った時に、<br>個人独立だけじゃなく、ベッドパートナーという道もあることを、覚えておいていただけたらと思います。</p>
+      <p>結論は、急がなくていいですよ。<br>これからも、もみかるをよろしくお願いします。</p>
     </div>
   </div>
 </section>
