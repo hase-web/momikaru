@@ -1,5 +1,6 @@
 import { getStaffList } from "../../lib/config.mjs";
-import { createOAuthClient } from "../../lib/google.mjs";
+import { createOAuthClient, getOAuthForStaff } from "../../lib/google.mjs";
+import { google } from "googleapis";
 
 function mask(value, head = 6, tail = 4) {
   if (!value) return null;
@@ -34,6 +35,14 @@ export const handler = async () => {
       set: Boolean(env("STAFF_A_CALENDAR_ID")),
       value: env("STAFF_A_CALENDAR_ID") || null,
     },
+    STAFF_A_NAME: {
+      set: Boolean(env("STAFF_A_NAME")),
+      value: env("STAFF_A_NAME") || null,
+    },
+    STAFF_A_NOTIFY_EMAIL: {
+      set: Boolean(env("STAFF_A_NOTIFY_EMAIL")),
+      value: env("STAFF_A_NOTIFY_EMAIL") || env("STAFF_A_CALENDAR_ID") || null,
+    },
     STAFF_A_REFRESH_TOKEN: {
       set: Boolean(env("STAFF_A_REFRESH_TOKEN")),
       length: env("STAFF_A_REFRESH_TOKEN")?.length || 0,
@@ -44,23 +53,33 @@ export const handler = async () => {
   };
 
   for (const staff of getStaffList()) {
+    const entry = {
+      staffId: staff.id,
+      name: staff.name,
+      calendarId: staff.calendarId,
+      notifyEmail: staff.notifyEmail,
+      calendarTokenOk: false,
+      gmailSendOk: false,
+    };
     try {
       const oauth2 = createOAuthClient();
       oauth2.setCredentials({ refresh_token: staff.refreshToken });
       const { credentials } = await oauth2.refreshAccessToken();
-      checks.tokenTests.push({
-        staffId: staff.id,
-        calendarId: staff.calendarId,
-        ok: Boolean(credentials.access_token),
-      });
+      entry.calendarTokenOk = Boolean(credentials.access_token);
     } catch (err) {
-      checks.tokenTests.push({
-        staffId: staff.id,
-        calendarId: staff.calendarId,
-        ok: false,
-        error: err.message,
-      });
+      entry.calendarTokenError = err.message;
     }
+    try {
+      const gmail = google.gmail({ version: "v1", auth: getOAuthForStaff(staff) });
+      const profile = await gmail.users.getProfile({ userId: "me" });
+      entry.gmailSendOk = true;
+      entry.gmailAccount = profile.data.emailAddress;
+    } catch (err) {
+      entry.gmailSendError = err.message;
+      entry.gmailSendHint =
+        "Refresh Token に gmail.send 権限がありません。OAuth Playground で calendar + gmail.send を選び直してください。";
+    }
+    checks.tokenTests.push(entry);
   }
 
   return {
