@@ -84,9 +84,9 @@
     } else if (state.step === 5) {
       actions.innerHTML =
         '<button type="button" class="fc-booking-btn fc-booking-btn--primary" data-action="close">閉じる</button>';
-    } else if (state.step === 2 && state.selectedSlot) {
+    } else if (state.step === 1 && state.selectedSlot) {
       actions.innerHTML =
-        '<button type="button" class="fc-booking-btn fc-booking-btn--ghost" data-action="back">戻る</button>' +
+        '<button type="button" class="fc-booking-btn fc-booking-btn--ghost" data-action="clear-slot">戻る</button>' +
         '<button type="button" class="fc-booking-btn fc-booking-btn--primary" data-action="next">次へ</button>';
     } else {
       actions.innerHTML = "";
@@ -95,8 +95,18 @@
       btn.addEventListener("click", function () {
         var action = btn.getAttribute("data-action");
         if (action === "back") {
-          state.step = Math.max(1, state.step - 1);
-          render();
+          if (state.step === 4) {
+            state.step = 1;
+            render();
+            if (state.slots.length) renderCalendar();
+          } else {
+            state.step = Math.max(1, state.step - 1);
+            render();
+          }
+        } else if (action === "clear-slot") {
+          state.selectedSlot = null;
+          renderCalendar();
+          renderActions();
         } else if (action === "next") {
           state.step = 4;
           render();
@@ -275,7 +285,21 @@
     var daySlots = days.find(function (d) {
       return d.key === state.selectedDay;
     });
-    var slotHtml =
+    var slotHtml = "";
+    if (state.selectedSlot) {
+      var when = tzFormat(new Date(state.selectedSlot.start), {
+        month: "long",
+        day: "numeric",
+        weekday: "short",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      slotHtml +=
+        '<div class="fc-booking-selected-time">選択中: <strong>' +
+        when +
+        "</strong></div>";
+    }
+    slotHtml +=
       '<div class="fc-booking-slots">' +
       (daySlots
         ? daySlots.slots
@@ -318,10 +342,11 @@
         state.selectedSlot = state.slots.find(function (s) {
           return s.start === start;
         });
-        state.step = 2;
-        render();
+        renderCalendar();
+        renderActions();
       });
     });
+    renderActions();
   }
 
   function loadSlots() {
