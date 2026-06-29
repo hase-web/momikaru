@@ -6,8 +6,8 @@ window.FC_BOOKING_CONFIG = {
   apiBase: "https://fc-booking-api.netlify.app",
 
   brand: {
-    phone: "0120-000-000",
-    phoneDisplay: "0120-000-000",
+    phone: "09091088725",
+    phoneDisplay: "090-9108-8725",
     email: "matsumura@dorami.co.jp",
     businessHours: "平日 10:00〜18:00",
   },
@@ -17,9 +17,6 @@ window.FC_BOOKING_CONFIG = {
     briefing: { label: "オンライン説明会", durationMinutes: 60 },
   },
 
-  /** 表示名（API の STAFF_A_NAME 等と揃える） */
-  staff: [
-    { id: "a", name: "担当A" },
-    { id: "b", name: "担当B" },
-  ],
+  /** 表示名（API の STAFF_A_NAME と揃える） */
+  staff: [{ id: "a", name: "松村" }],
 };

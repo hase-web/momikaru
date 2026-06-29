@@ -128,7 +128,12 @@
   }
 
   function renderStaffChips() {
-    var staff = [{ id: "any", name: "どちらでもOK" }].concat(cfg.staff || []);
+    var staffList = cfg.staff || [];
+    if (staffList.length <= 1) {
+      if (staffList.length === 1) state.staffId = staffList[0].id;
+      return "";
+    }
+    var staff = [{ id: "any", name: "どちらでもOK" }].concat(staffList);
     return (
       '<div class="fc-booking-step-label">担当者</div>' +
       '<div class="fc-booking-chips" id="fc-staff-chips">' +
@@ -174,7 +179,9 @@
 
     if (state.step === 1) {
       body.innerHTML =
+        '<div id="fc-staff-block">' +
         renderStaffChips() +
+        "</div>" +
         '<div class="fc-booking-step-label">' +
         ev.label +
         "（" +
@@ -345,13 +352,23 @@
         state.slots = result.data.slots || [];
         if (result.data.staff && result.data.staff.length) {
           cfg.staff = result.data.staff;
+          var block = document.getElementById("fc-staff-block");
+          if (block) {
+            block.innerHTML = renderStaffChips();
+            bindStaffChips();
+          }
         }
         renderCalendar();
       })
       .catch(function (err) {
         var el = document.getElementById("fc-booking-loading");
+        var msg = err.message || "空き時間の取得に失敗しました";
+        if (msg === "Failed to fetch") {
+          msg =
+            "予約APIに接続できませんでした。しばらくしてから再度お試しください。";
+        }
         if (el) {
-          el.textContent = err.message || "空き時間の取得に失敗しました";
+          el.textContent = msg;
           el.classList.add("fc-booking-msg--error");
         }
       });
