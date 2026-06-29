@@ -23,7 +23,7 @@ export function renderPricing(): HTMLElement {
 
   let leadHtml = escapeHtml(pricing.lead);
   leadHtml = emphasizeFirst(leadHtml, escapeHtml(pricing.leadHighlight));
-  leadHtml = emphasizeFirst(leadHtml, '届く深さが違います');
+  leadHtml = emphasizeFirst(leadHtml, 'かけられる時間の深さが違います');
   // Split into paragraphs on blank lines
   leadHtml = leadHtml
     .split(/\n\n+/)
@@ -50,7 +50,7 @@ export function renderPricing(): HTMLElement {
           </div>
           <dl class="spec-list">
             <div><dt>施術範囲</dt><dd>${escapeHtml(plan.area)}</dd></div>
-            <div><dt>届く深さ</dt><dd>${escapeHtml(plan.depth)}</dd></div>
+            <div><dt>届く時間</dt><dd>${escapeHtml(plan.depth)}</dd></div>
             <div><dt>アプローチ</dt><dd>${escapeHtml(plan.approach)}</dd></div>
             <div><dt>こんな日に</dt><dd>${escapeHtml(plan.use)}</dd></div>
             <div><dt>1分あたり</dt><dd>${escapeHtml(plan.perMinute)}</dd></div>

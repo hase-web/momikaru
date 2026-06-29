@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第108回 夏の高校野球 静岡大会｜もみかる タイアップキャンペーン</title>
+<meta name="description" content="球児は熱戦、もみかるは熱狂応援。うちわ持参で300円割引、#もみかる静岡高校野球 投稿キャンペーン、店舗別の特別メニューを実施中。">
+
+<!-- ===================== OGP / SNSシェア用メタタグ ===================== -->
+<!-- ★要差し替え：下記URLの「REPLACE-WITH-PRODUCTION-DOMAIN」を本番ドメインに置換してください。
+     og:image の ogp.jpg（1200×630px）は後日 /yakyu/images/ に配置予定。 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="手もみ屋 もみかる">
+<meta property="og:title" content="第108回 夏の高校野球 静岡大会｜もみかる タイアップキャンペーン">
+<meta property="og:description" content="球児は熱戦、もみかるは熱狂応援。うちわ持参で300円割引、#もみかる静岡高校野球 投稿キャンペーン、店舗別の特別メニューを実施中。">
+<meta property="og:image" content="https://REPLACE-WITH-PRODUCTION-DOMAIN/yakyu/images/ogp.jpg"><!-- 画像待ち：1200×630px -->
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="もみかる × 夏の高校野球 静岡大会 タイアップキャンペーン">
+<meta property="og:url" content="https://REPLACE-WITH-PRODUCTION-DOMAIN/yakyu/">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第108回 夏の高校野球 静岡大会｜もみかる タイアップキャンペーン">
+<meta name="twitter:description" content="球児は熱戦、もみかるは熱狂応援。うちわ持参で300円割引、#もみかる静岡高校野球 投稿キャンペーン、店舗別の特別メニューを実施中。">
+<meta name="twitter:image" content="https://REPLACE-WITH-PRODUCTION-DOMAIN/yakyu/images/ogp.jpg"><!-- 画像待ち -->
+<meta name="theme-color" content="#0a5a94">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Teko:wght@500;600;700&family=Yusei+Magic&family=Yuji+Boku&display=swap" rel="stylesheet">
+<!-- アニメーション有効時のみ reveal を初期非表示に（reduced-motion / JS無効 / CDN失敗時は常に表示） -->
+<script>if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('anim');}</script>
+<style>
+  :root{
+    --sky:#1390cf;
+    --sky-deep:#0a5a94;
+    --sky-night:#073355;
+    --red:#d8362c;
+    --red-deep:#a8231b;
+    --red-ink:#9b2018;
+    --sand:#e7b46a;
+    --sand-deep:#c8742e;
+    --ink:#1a1714;
+    --ink-soft:#2a251f;
+    --paper:#f7f3e9;
+    --white:#ffffff;
+    --grass:#3a8c4e;
+    --score-yellow:#f6c544;
+    --shadow:0 10px 40px rgba(7,51,85,.18);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:"Noto Sans JP",sans-serif;color:var(--ink);background:var(--paper);line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  .score-num{font-family:"Teko",sans-serif;font-weight:600;line-height:.9;letter-spacing:.02em;font-feature-settings:"tnum";}
+  .fude{font-family:"Yuji Boku",serif;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:"Teko",sans-serif;font-weight:600;font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;}
+  .eyebrow::before{content:"";width:26px;height:3px;background:currentColor;display:inline-block;}
+
+  /* ============ HERO ============ */
+  /* 背景：球場写真 hero-baseball.webp。
+     レイヤー（上→下）：① 可読性確保の暗めオーバーレイ → ② 写真 → ③ 青空グラデ（画像読込前/失敗時のフォールバック）。
+     背景が賑やかなため、なびく旗SVG(.flag) と砂ぼこり(.ground) は撤去（HTML側）。 */
+  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    background-color:var(--sky-deep);
+    background-image:
+      linear-gradient(180deg, rgba(7,51,85,.64) 0%, rgba(7,51,85,.40) 34%, rgba(7,51,85,.50) 64%, rgba(7,51,85,.80) 100%),
+      url('images/hero-baseball.webp'),
+      radial-gradient(130% 90% at 72% -5%, #4dbdee 0%, var(--sky) 36%, var(--sky-deep) 74%, var(--sky-night) 100%);
+    background-size:cover, cover, cover;
+    background-position:center, center, center;
+    background-repeat:no-repeat, no-repeat, no-repeat;
+    color:var(--white);overflow:hidden;padding:90px 0 0;}
+  .sun{position:absolute;top:-110px;right:-70px;width:360px;height:360px;border-radius:50%;
+    background:radial-gradient(circle,#fff3cf 0%,rgba(255,233,168,.4) 48%,transparent 72%);animation:sunpulse 6s ease-in-out infinite;}
+  @keyframes sunpulse{0%,100%{transform:scale(1);opacity:.9;}50%{transform:scale(1.08);opacity:1;}}
+  .cloud{position:absolute;background:#fff;border-radius:50%;filter:blur(3px);opacity:.5;}
+  .cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%;}
+  .c1{width:150px;height:42px;top:120px;left:-160px;animation:drift1 38s linear infinite;}
+  .c1::before{width:70px;height:70px;top:-28px;left:30px;}
+  .c2{width:210px;height:54px;top:210px;left:-230px;opacity:.38;animation:drift2 54s linear infinite;}
+  .c2::before{width:90px;height:90px;top:-40px;left:50px;}
+  .c3{width:110px;height:32px;top:330px;left:-130px;opacity:.32;animation:drift1 46s linear infinite;animation-delay:-12s;}
+  @keyframes drift1{from{transform:translateX(0);}to{transform:translateX(calc(100vw + 320px));}}
+  @keyframes drift2{from{transform:translateX(0);}to{transform:translateX(calc(100vw + 460px));}}
+
+  /* なびく応援旗 */
+  .flag{position:absolute;top:30%;left:50%;width:min(112%,1180px);height:340px;transform:translate(-50%,-50%);z-index:1;pointer-events:none;}
+  .flag svg{width:100%;height:100%;filter:drop-shadow(0 18px 30px rgba(7,51,85,.35));}
+  .flag .wavepath{animation:flagwave 5s ease-in-out infinite;transform-origin:center;}
+  @keyframes flagwave{0%,100%{transform:translateY(0) skewY(0deg);}50%{transform:translateY(-8px) skewY(-.6deg);}}
+
+  .hero-inner{position:relative;z-index:3;text-align:center;}
+  .tournament-badge{display:inline-flex;flex-direction:column;align-items:center;background:rgba(7,51,85,.5);
+    border:2px solid rgba(255,255,255,.5);border-radius:6px;padding:8px 24px;margin-bottom:24px;backdrop-filter:blur(4px);}
+  .tournament-badge .yr{font-family:"Teko",sans-serif;font-size:1rem;letter-spacing:.22em;color:var(--score-yellow);font-weight:600;}
+  .tournament-badge .name{font-weight:800;font-size:.86rem;letter-spacing:.04em;}
+  .hero-logo{display:block;height:48px;width:auto;margin:0 auto 16px;filter:drop-shadow(0 4px 12px rgba(7,51,85,.55));}
+
+  .fude-pair{display:flex;align-items:center;justify-content:center;gap:clamp(10px,4vw,40px);margin:6px 0 4px;}
+  .fude-word{display:flex;flex-direction:column;align-items:center;}
+  .fude-word .who{font-family:"Yusei Magic",sans-serif;font-size:clamp(.8rem,2.4vw,1.1rem);letter-spacing:.08em;margin-bottom:2px;opacity:.95;}
+  .fude-word .big{font-size:clamp(3.4rem,13vw,8.5rem);line-height:.9;text-shadow:0 6px 18px rgba(7,51,85,.45);}
+  .fude-word.hot .big{color:var(--score-yellow);}
+  .fude-word.fight .big{color:#fff;}
+  .vs{font-family:"Teko",sans-serif;font-size:clamp(1.4rem,4vw,2.6rem);color:#fff;opacity:.7;align-self:center;padding-bottom:.4em;}
+
+  .hero-sub{font-family:"Yusei Magic",sans-serif;font-size:clamp(1rem,3vw,1.5rem);margin-top:14px;}
+  .hero-sub .pin{color:var(--score-yellow);}
+  .lead-tap{margin-top:18px;font-weight:800;font-size:clamp(.95rem,2.4vw,1.2rem);display:inline-block;background:var(--red);padding:9px 26px;border-radius:40px;box-shadow:0 6px 0 var(--red-deep);}
+
+  /* 回転ボール */
+  .ball-spin{width:88px;height:88px;margin:30px auto 0;animation:spin 7s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .scroll-cue{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);z-index:3;color:#fff;font-family:"Teko",sans-serif;letter-spacing:.2em;font-size:.85rem;opacity:.8;animation:bob 1.8s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
+
+  /* 紙テープ吹雪 */
+  .tape{position:absolute;top:-40px;width:10px;height:34px;border-radius:2px;z-index:2;opacity:.85;animation:fall linear infinite;}
+  @keyframes fall{0%{transform:translateY(-40px) rotate(0deg);}100%{transform:translateY(105vh) rotate(720deg);}}
+
+  /* 砂ぼこりグラウンド */
+  .ground{position:absolute;bottom:0;left:0;right:0;height:120px;z-index:2;
+    background:linear-gradient(180deg,rgba(231,180,106,0) 0%,var(--sand) 42%,var(--sand-deep) 100%);}
+  .ground::before{content:"";position:absolute;top:34px;left:0;right:0;height:5px;background:#fff;opacity:.7;}
+
+  /* ============ section base ============ */
+  section{padding:84px 0;position:relative;}
+  .sec-head{text-align:center;margin-bottom:46px;}
+  .sec-head .eyebrow{color:var(--red);justify-content:center;}
+  .sec-head h2{font-weight:900;font-size:clamp(1.7rem,4.6vw,2.7rem);margin-top:10px;line-height:1.25;}
+  .sec-head p{margin-top:14px;color:var(--ink-soft);max-width:620px;margin-inline:auto;}
+
+  /* 応援ステッカー散らし */
+  .sticker{position:absolute;font-family:"Yusei Magic",sans-serif;font-weight:400;color:#fff;background:var(--red);
+    padding:8px 16px;border-radius:8px;font-size:.9rem;box-shadow:0 6px 16px rgba(168,35,27,.3);z-index:4;white-space:nowrap;}
+  .sticker.blue{background:var(--sky);box-shadow:0 6px 16px rgba(10,90,148,.3);}
+  .sticker.yellow{background:var(--score-yellow);color:var(--ink);}
+  .sk1{top:30px;left:4%;transform:rotate(-8deg);}
+  .sk2{top:60px;right:5%;transform:rotate(7deg);}
+
+  /* ============ overview innings ============ */
+  .overview{background:linear-gradient(180deg,#fff 0%,var(--paper) 100%);}
+  .innings{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .inning{background:var(--white);border:2px solid var(--ink);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .2s ease;}
+  .inning:hover{transform:translateY(-6px) rotate(-.4deg);}
+  .inning .top{background:var(--ink);color:var(--white);padding:14px 16px;display:flex;align-items:center;gap:12px;}
+  .inning .top .ico{width:34px;height:34px;flex:none;}
+  .inning .top .ttl{font-weight:800;font-size:.95rem;}
+  .inning .top .ttl small{display:block;font-family:"Teko",sans-serif;color:var(--score-yellow);font-size:1rem;letter-spacing:.1em;line-height:1;}
+  .inning .body{padding:22px 20px;flex:1;display:flex;flex-direction:column;gap:8px;}
+  .inning .body .head{font-weight:900;font-size:1.18rem;line-height:1.4;}
+  .inning .body .desc{font-size:.9rem;color:var(--ink-soft);}
+  .inning .tag{margin-top:auto;align-self:flex-start;background:var(--red);color:#fff;font-weight:800;font-size:.82rem;padding:5px 14px;border-radius:30px;text-decoration:none;transition:background .2s;}
+  .inning .tag:hover{background:var(--red-deep);}
+
+  /* ============ uchiwa ============ */
+  .uchiwa{background:linear-gradient(180deg,#eef7fc 0%,#dceefa 100%);overflow:hidden;}
+  .uchiwa-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center;}
+  .ticket{position:relative;background:var(--red);color:#fff;border-radius:16px;padding:36px 30px;box-shadow:0 16px 40px rgba(168,35,27,.32);}
+  .ticket::before,.ticket::after{content:"";position:absolute;width:34px;height:34px;background:#dceefa;border-radius:50%;top:50%;transform:translateY(-50%);}
+  .ticket::before{left:-17px;}.ticket::after{right:-17px;}
+  .ticket .small{font-weight:700;letter-spacing:.06em;font-size:.92rem;opacity:.95;}
+  .ticket .amount{display:flex;align-items:baseline;gap:8px;margin:4px 0 2px;}
+  .ticket .amount .yen{font-family:"Teko",sans-serif;font-size:5.6rem;line-height:.78;color:var(--score-yellow);}
+  .ticket .amount .off{font-weight:900;font-size:1.7rem;align-self:flex-end;}
+  .ticket .cond{font-size:.9rem;margin-top:12px;border-top:1px dashed rgba(255,255,255,.5);padding-top:12px;}
+  .uchiwa-visual{text-align:center;}
+  .uchiwa-svg{width:200px;height:240px;margin:0 auto 18px;animation:fanwave 3.5s ease-in-out infinite;transform-origin:bottom center;}
+  @keyframes fanwave{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
+  .uchiwa-copy h3{font-weight:900;font-size:1.5rem;line-height:1.45;margin-bottom:14px;}
+  .uchiwa-copy p{color:var(--ink-soft);}
+  .uchiwa-copy .where{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;}
+  .uchiwa-copy .where span{background:var(--sky);color:#fff;font-weight:700;font-size:.82rem;padding:5px 14px;border-radius:6px;}
+
+  /* ============ SNS ============ */
+  .sns{background:var(--ink);color:var(--paper);overflow:hidden;}
+  .sns .sec-head h2{color:#fff;}
+  .sns .sec-head .eyebrow{color:var(--score-yellow);}
+  .sns .sec-head p{color:#d8cfba;}
+  .sns-lead{max-width:760px;margin:0 auto 44px;background:var(--ink-soft);border-left:5px solid var(--red);border-radius:0 10px 10px 0;padding:26px 30px;font-size:.98rem;color:#e9e1cf;}
+  .sns-lead strong{color:var(--score-yellow);}
+  .hashtag-banner{text-align:center;margin:0 auto 48px;max-width:780px;background:var(--red);border-radius:14px;padding:22px;position:relative;box-shadow:0 14px 34px rgba(168,35,27,.4);}
+  .hashtag-banner .tag{font-weight:900;font-size:clamp(1.3rem,4.4vw,2.1rem);color:#fff;}
+  .hashtag-banner .megaphone{position:absolute;left:18px;top:50%;transform:translateY(-50%) rotate(-12deg);width:54px;height:54px;opacity:.9;}
+
+  .prizes-title{text-align:center;color:#fff;font-weight:900;font-size:1.4rem;margin-bottom:30px;}
+  .prizes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:54px;}
+  .prize{background:#fff;color:var(--ink);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .2s;}
+  .prize:hover{transform:translateY(-6px);}
+  .prize .rank{padding:18px;text-align:center;color:#fff;}
+  .prize.a .rank{background:linear-gradient(135deg,#f2c14e,#c8742e);}
+  .prize.b .rank{background:linear-gradient(135deg,#7fb8d8,#0a5a94);}
+  .prize.c .rank{background:linear-gradient(135deg,#a8c98f,#3a8c4e);}
+  .prize .rank .medal{width:58px;height:58px;margin:0 auto 6px;}
+  .prize .rank .letter{font-family:"Teko",sans-serif;font-size:2rem;line-height:.8;}
+  .prize .rank .winners{font-weight:800;font-size:.84rem;letter-spacing:.04em;}
+  .prize .pic{height:140px;background:#f0ead9;display:flex;align-items:center;justify-content:center;color:#b3a988;font-size:.78rem;border-bottom:1px dashed #d8cdb0;text-align:center;padding:0;overflow:hidden;}
+  .prize .pic img{width:100%;height:100%;object-fit:cover;display:block;}
+  .prize .body{padding:18px;flex:1;}
+  .prize .body .pname{font-weight:900;font-size:1.05rem;line-height:1.4;}
+  .prize .body .pdesc{font-size:.86rem;color:var(--ink-soft);margin-top:6px;}
+
+  .steps{max-width:780px;margin:0 auto 48px;}
+  .steps h3{text-align:center;color:#fff;font-weight:900;font-size:1.4rem;margin-bottom:26px;}
+  .step{display:flex;gap:18px;align-items:flex-start;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.12);}
+  .step:last-child{border-bottom:none;}
+  .step .n{flex:none;width:48px;height:48px;border-radius:50%;background:var(--score-yellow);color:var(--ink);font-family:"Teko",sans-serif;font-size:1.9rem;display:flex;align-items:center;justify-content:center;line-height:1;}
+  .step .t{padding-top:3px;}
+  .step .t b{color:#fff;font-size:1.02rem;}
+  .step .t span{display:block;color:#cfc6b1;font-size:.88rem;margin-top:2px;}
+  .step .t a{color:var(--score-yellow);text-decoration:underline;word-break:break-all;}
+
+  .period{max-width:780px;margin:0 auto 42px;background:var(--sky-deep);border-radius:14px;padding:26px;text-align:center;}
+  .period .lbl{color:#bfe0f3;font-weight:700;letter-spacing:.1em;font-size:.85rem;}
+  .period .date{font-weight:900;font-size:clamp(1.05rem,3.2vw,1.5rem);color:#fff;margin-top:6px;}
+  .period .date .score-num{color:var(--score-yellow);font-size:1.4em;vertical-align:-.06em;}
+
+  .notes{max-width:780px;margin:0 auto;background:var(--ink-soft);border:1px solid #3a322a;border-radius:10px;padding:24px 28px;}
+  .notes h4{color:var(--score-yellow);font-weight:800;font-size:.95rem;margin-bottom:12px;}
+  .notes ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .notes li{font-size:.84rem;color:#cfc6b1;padding-left:18px;position:relative;line-height:1.7;}
+  .notes li::before{content:"・";position:absolute;left:0;color:#7a7160;}
+
+  /* ============ stores ============ */
+  .stores{background:var(--paper);overflow:hidden;}
+  .store-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .store{background:#fff;border:2px solid var(--ink);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .2s;}
+  .store:hover{transform:translateY(-5px);}
+  .store .name{background:var(--sky-deep);color:#fff;padding:13px 18px;font-weight:800;display:flex;align-items:center;gap:10px;}
+  .store .name .pennant{width:22px;height:22px;flex:none;}
+  .store .menu{padding:18px 20px;flex:1;}
+  .store .menu .mrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .store .menu .mname{font-weight:700;font-size:.98rem;}
+  .store .menu .price{display:flex;align-items:baseline;gap:8px;white-space:nowrap;}
+  .store .menu .price .was{color:#9c937f;text-decoration:line-through;font-size:.9rem;}
+  .store .menu .price .now{font-family:"Teko",sans-serif;font-size:1.95rem;color:var(--red);line-height:1;}
+  .store .menu .price .now .yensign{font-family:"Noto Sans JP";font-size:.7rem;font-weight:700;}
+  .store.placeholder{border-style:dashed;border-color:#c9bfa8;background:#faf7ef;}
+  .store.placeholder .name{background:#c9bfa8;color:#5a5343;}
+  .store.placeholder .menu{color:#9c937f;font-size:.88rem;display:flex;align-items:center;justify-content:center;min-height:78px;text-align:center;}
+
+  /* ============ CTA ============ */
+  .cta{background:radial-gradient(120% 100% at 50% 0%, var(--sky) 0%, var(--sky-deep) 60%, var(--sky-night) 100%);color:#fff;text-align:center;overflow:hidden;}
+  .cta h2{font-weight:900;font-size:clamp(1.7rem,4.8vw,2.7rem);line-height:1.3;}
+  .cta p{margin:16px auto 30px;max-width:560px;color:#d6ecf7;}
+  .ig-btn{display:inline-flex;align-items:center;gap:12px;background:#fff;color:var(--ink);font-weight:900;font-size:1.05rem;padding:16px 34px;border-radius:50px;text-decoration:none;border:2px solid #fff;box-shadow:0 13px 0 var(--sky-night),0 20px 32px rgba(7,51,85,.42);transition:transform .15s,box-shadow .15s;}
+  .ig-btn:hover,.ig-btn:focus-visible{transform:translateY(4px);box-shadow:0 8px 0 var(--sky-night),0 13px 24px rgba(7,51,85,.42);outline:none;}
+  .ig-btn .ig-mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(45deg,#f9ce34,#ee2a7b 50%,#6228d7);position:relative;}
+  .ig-btn .ig-mark::after{content:"";position:absolute;inset:7px;border:2.5px solid #fff;border-radius:5px;}
+  .ig-btn .ig-mark .dot{position:absolute;top:6px;right:6px;width:4px;height:4px;background:#fff;border-radius:50%;}
+  .ig-handle{margin-top:20px;font-family:"Teko",sans-serif;font-size:1.3rem;letter-spacing:.06em;color:#bfe0f3;}
+
+  /* 白〜ごく薄ベージュ背景。上のCTA(青)から自然につなぐため上部に区切り線＋ごく浅い影 */
+  footer{background:var(--paper);color:var(--ink-soft);padding:44px 0 40px;text-align:center;font-size:.82rem;
+    border-top:1px solid rgba(7,51,85,.14);box-shadow:inset 0 9px 20px -14px rgba(7,51,85,.45);}
+  footer .brand{color:var(--ink);font-weight:900;font-size:1.1rem;margin-bottom:6px;}
+  footer .footer-logo{height:44px;width:auto;margin:0 auto 14px;display:block;opacity:1;}
+  footer .brand span{color:var(--red);}
+
+  /* reveal は GSAP ScrollTrigger で制御。FOUC防止のため .anim 時のみ初期非表示。
+     JS未実行 / GSAP読込失敗 / reduced-motion 時は .anim が付かず常に表示される。 */
+  .anim .reveal{opacity:0;}
+
+  /* ===== Lenis 慣性スクロール用（公式推奨）=====
+     CSSの scroll-behavior:smooth と Lenis が二重に効くとスクロールがカクつくため、
+     Lenis稼働中(html.lenis-smooth)は scroll-behavior を auto に上書きして競合を解消する。 */
+  html.lenis,html.lenis body{height:auto;}
+  .lenis.lenis-smooth{scroll-behavior:auto !important;}
+  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain;}
+  .lenis.lenis-stopped{overflow:hidden;}
+
+  /* ===== リッチ演出用 追加スタイル ===== */
+  /* パララックス対象は継続的に動くので will-change を付与（reveal等の一過性要素には付けない） */
+  .hero-inner,.sun,.cloud{will-change:transform;}
+
+  /* ヒーローの淡い光がゆっくり漂う（背景の動き／写真の上の薄い光） */
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(60% 45% at 50% 18%, rgba(255,255,255,.12), transparent 70%);
+    animation:heroGlow 13s ease-in-out infinite;}
+  @keyframes heroGlow{0%,100%{opacity:.45;transform:translateY(0);}50%{opacity:.85;transform:translateY(22px);}}
+
+  /* CTA 背景グラデーションのゆっくりした動き */
+  .cta{background-size:135% 135%;background-position:50% 0%;animation:ctaGrad 16s ease-in-out infinite;}
+  @keyframes ctaGrad{0%,100%{background-position:50% 0%;}50%{background-position:50% 32%;}}
+
+  /* CTAボタン：リキッド風ホバー（中央から色が広がる／transformのみで軽量） */
+  .ig-btn{position:relative;overflow:hidden;}
+  .ig-btn::before{content:"";position:absolute;left:50%;top:50%;width:150%;aspect-ratio:1;z-index:0;
+    transform:translate(-50%,-50%) scale(0);border-radius:50%;
+    background:radial-gradient(circle,#eaf6fd 0%,#9fd0ec 45%,#4dbdee 100%);
+    transition:transform .55s cubic-bezier(.22,1,.36,1);}
+  .ig-btn:hover::before,.ig-btn:focus-visible::before{transform:translate(-50%,-50%) scale(1);}
+  .ig-btn>span{position:relative;z-index:1;}
+
+  @media (prefers-reduced-motion:reduce){
+    .anim .reveal{opacity:1!important;transform:none!important;}
+    .sun,.cloud,.ball-spin,.uchiwa-svg,.scroll-cue,.tape,.cta,.hero::after{animation:none!important;}
+    .ig-btn::before{transition:none;}
+    html{scroll-behavior:auto;}
+  }
+  @media (max-width:820px){
+    .uchiwa-grid{grid-template-columns:1fr;gap:30px;}
+    .innings,.prizes{grid-template-columns:1fr;}
+    .store-grid{grid-template-columns:1fr;}
+    .flag{height:260px;}
+    .sticker{display:none;}
+  }
+  @media (max-width:520px){
+    section{padding:60px 0;}
+    .vs{display:none;}
+    .fude-pair{flex-direction:column;gap:6px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="sun"></div>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+
+  <!-- なびく応援旗SVGは背景写真と競合するため撤去（フェーズ2） -->
+
+  <div class="wrap hero-inner">
+    <img class="hero-logo" src="images/momikaru-logo.webp" alt="手もみ屋 もみかる" width="150" height="48" fetchpriority="high" decoding="async">
+    <div class="tournament-badge">
+      <div class="yr">2026</div>
+      <div class="name">夏の高校野球 ・ 第108回 全国高校野球選手権 静岡大会</div>
+    </div>
+
+    <div class="fude-pair">
+      <div class="fude-word fight">
+        <span class="who">球児は</span>
+        <span class="big fude" style="color:var(--red);">熱戦</span>
+      </div>
+      <span class="vs">×</span>
+      <div class="fude-word hot">
+        <span class="who">もみかるは</span>
+        <span class="big fude">熱狂応援</span>
+      </div>
+    </div>
+
+    <p class="hero-sub">手もみ屋「もみかる」は、戦うすべての<span class="pin">"応援団"</span>を全力で応援！</p>
+    <div class="lead-tap">静岡県内の もみかる全店舗 でタイアップ中</div>
+
+    <!-- 回転する白球 -->
+    <div class="ball-spin">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="46" fill="#fff" stroke="#d8cdb0" stroke-width="1.5"/>
+        <path d="M20,16 C36,34 36,66 20,84" fill="none" stroke="#d8362c" stroke-width="2.4" stroke-dasharray="5 4" stroke-linecap="round"/>
+        <path d="M80,16 C64,34 64,66 80,84" fill="none" stroke="#d8362c" stroke-width="2.4" stroke-dasharray="5 4" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 砂ぼこり .ground は背景写真と競合するため撤去（フェーズ2） -->
+  <div class="scroll-cue">SCROLL ▾</div>
+</header>
+
+<!-- ===================== OVERVIEW ===================== -->
+<section class="overview">
+  <div class="sticker sk1">がんばれ！</div>
+  <div class="sticker blue sk2">ナイスプレー！</div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Campaign Lineup</span>
+      <h2>3つのキャンペーンで、夏をまるごと応援。</h2>
+      <p>選手はもちろん、吹奏楽部も、応援団も、毎日支えてきたご家族も。戦うすべての"応援団"を、もみかるが熱狂応援します。</p>
+    </div>
+    <div class="innings">
+      <div class="inning reveal">
+        <div class="top">
+          <svg class="ico" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#fff"/><path d="M9,8 C16,16 16,24 9,32 M31,8 C24,16 24,24 31,32" stroke="#d8362c" stroke-width="2" fill="none" stroke-dasharray="3 2.5"/></svg>
+          <div class="ttl">うちわ割引<small>1ST INNING</small></div>
+        </div>
+        <div class="body">
+          <div class="head">特製うちわ持参で<br>お会計300円OFF</div>
+          <div class="desc">各球場で配布される「もみかるロゴ入り特製うちわ」を持参するだけ。</div>
+          <a href="#uchiwa" class="tag">詳しく見る →</a>
+        </div>
+      </div>
+      <div class="inning reveal">
+        <div class="top">
+          <svg class="ico" viewBox="0 0 40 40"><path d="M6,18 L24,11 L24,29 L6,22 Z" fill="#f6c544"/><path d="M24,13 L34,8 L34,32 L24,27 Z" fill="#fff"/><rect x="4" y="17" width="3" height="6" fill="#fff"/></svg>
+          <div class="ttl">投稿キャンペーン<small>2ND INNING</small></div>
+        </div>
+        <div class="body">
+          <div class="head">#もみかる静岡高校野球<br>で豪華賞品が当たる</div>
+          <div class="desc">高校球児へのエールを投稿して、心と体を癒す賞品をゲット。</div>
+          <a href="#sns" class="tag">詳しく見る →</a>
+        </div>
+      </div>
+      <div class="inning reveal">
+        <div class="top">
+          <svg class="ico" viewBox="0 0 40 40"><circle cx="20" cy="20" r="15" fill="none" stroke="#fff" stroke-width="3"/><path d="M14,20 l4,4 l8,-9" stroke="#f6c544" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="ttl">店舗別メニュー<small>3RD INNING</small></div>
+        </div>
+        <div class="body">
+          <div class="head">応援疲れを癒す<br>各店の特別メニュー</div>
+          <div class="desc">県内のもみかる各店で、この夏だけのお得なメニューをご用意。</div>
+          <a href="#stores" class="tag">詳しく見る →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== UCHIWA ===================== -->
+<section class="uchiwa" id="uchiwa">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Campaign 1st</span>
+      <h2>特製うちわ持参で、300円割引。</h2>
+    </div>
+    <div class="uchiwa-grid">
+      <div class="uchiwa-visual reveal">
+        <svg class="uchiwa-svg" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="92" r="78" fill="#fff" stroke="#d8362c" stroke-width="9"/>
+          <text x="100" y="78" text-anchor="middle" font-family="'Yusei Magic',sans-serif" font-size="26" fill="#d8362c" font-weight="700">もみかる</text>
+          <text x="100" y="116" text-anchor="middle" font-family="'Yusei Magic',sans-serif" font-size="20" fill="#0a5a94">応援団</text>
+          <rect x="92" y="166" width="16" height="66" rx="6" fill="#c8742e"/>
+        </svg>
+      </div>
+      <div class="uchiwa-copy reveal">
+        <div class="ticket">
+          <div class="small">もみかるロゴ入り特製うちわ 持参で</div>
+          <div class="amount"><span class="yen score-num">300</span><span class="off">円 OFF</span></div>
+          <div class="cond">静岡県内（西部・中部・東部）の各球場で配布される特製うちわを、お会計時にご提示ください。静岡県内のもみかる全店舗で利用できます。</div>
+        </div>
+        <h3 style="margin-top:24px;">球場でうちわを受け取って、<br>そのまま、もみかるへ。</h3>
+        <p>暑い夏の球場で大活躍する「もみかる特製うちわ」。試合の熱気を仰いだそのうちわが、来店でうれしい割引チケットに早変わり。</p>
+        <div class="where"><span>西部の球場</span><span>中部の球場</span><span>東部の球場</span><span>で配布</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SNS ===================== -->
+<section class="sns" id="sns">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Campaign 2nd</span>
+      <h2>がんばれ応援団！投稿キャンペーン</h2>
+      <p>熱い夏、戦うみんなを支えるあなたへ。エールを投稿して、豪華賞品を狙おう。</p>
+    </div>
+
+    <div class="sns-lead reveal">
+      いよいよ始まる、高校野球静岡大会。日夜練習を重ねてきた選手たちはもちろん、スタンドから熱いエールを送る吹奏楽部や応援団、そして毎日お弁当を作り、泥だらけのユニフォームを洗って支えてきたご家族たち……。手もみ屋「もみかる」は、そんな<strong>すべての"応援団"を全力で熱狂応援します。</strong>本キャンペーンを記念して、静岡県内全店舗共通のビッグキャンペーンをスタート。あなたの「推し高校」「高校野球への応援メッセージ」「夏の思い出」をぜひ投稿してください。
+    </div>
+
+    <div class="hashtag-banner reveal">
+      <svg class="megaphone" viewBox="0 0 40 40"><path d="M6,17 L22,10 L22,30 L6,23 Z" fill="#fff"/><path d="M22,12 L33,7 L33,33 L22,28 Z" fill="#f6c544"/><rect x="3" y="16" width="4" height="8" fill="#fff"/></svg>
+      <div class="tag">#もみかる静岡高校野球</div>
+    </div>
+
+    <div class="prizes-title reveal">猛暑の夏、疲れた体と心を癒す豪華プレゼント</div>
+    <div class="prizes">
+      <div class="prize a reveal">
+        <div class="rank"><svg class="medal" viewBox="0 0 60 60"><circle cx="30" cy="34" r="18" fill="#fff" stroke="#fff3cf" stroke-width="3"/><text x="30" y="42" text-anchor="middle" font-family="Teko" font-size="22" fill="#c8742e" font-weight="700">A</text><path d="M22,8 l4,14 M38,8 l-4,14" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg><div class="winners">10名様</div></div>
+        <div class="pic"><img src="images/prize-a-ticket.webp" alt="全身もみほぐし 60分 無料券" loading="lazy" decoding="async" width="312" height="296"></div>
+        <div class="body"><div class="pname">全身もみほぐし 60分 無料券</div><div class="pdesc">応援で凝り固まった全身を、プロの手もみでまるごとリセット。</div></div>
+      </div>
+      <div class="prize b reveal">
+        <div class="rank"><svg class="medal" viewBox="0 0 60 60"><circle cx="30" cy="34" r="18" fill="#fff" stroke="#cfe6f4" stroke-width="3"/><text x="30" y="42" text-anchor="middle" font-family="Teko" font-size="22" fill="#0a5a94" font-weight="700">B</text><path d="M22,8 l4,14 M38,8 l-4,14" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg><div class="winners">20名様</div></div>
+        <div class="pic"><img src="images/prize-b-izm.webp" alt="腸活IZM 酵素ドリンク" loading="lazy" decoding="async" width="313" height="472"></div>
+        <div class="body"><div class="pname">腸活IZM 酵素ドリンク</div><div class="pdesc">身体の内側から整える。夏バテしやすい季節の元気をサポート。</div></div>
+      </div>
+      <div class="prize c reveal">
+        <div class="rank"><svg class="medal" viewBox="0 0 60 60"><circle cx="30" cy="34" r="18" fill="#fff" stroke="#d8ecc9" stroke-width="3"/><text x="30" y="42" text-anchor="middle" font-family="Teko" font-size="22" fill="#3a8c4e" font-weight="700">C</text><path d="M22,8 l4,14 M38,8 l-4,14" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg><div class="winners">30名様</div></div>
+        <div class="pic"><img src="images/prize-c-yuji.webp" alt="湯治びより（入浴塩）" loading="lazy" decoding="async" width="301" height="289"></div>
+        <div class="body"><div class="pname">湯治びより（入浴塩）</div><div class="pdesc">お家のお風呂が、まるで温泉に。一日の疲れをじっくり癒す。</div></div>
+      </div>
+    </div>
+
+    <div class="steps reveal">
+      <h3>応募方法（かんたん3ステップ）</h3>
+      <div class="step"><div class="n score-num">1</div><div class="t"><b>もみかる公式アカウントをフォロー</b><span><a href="https://www.instagram.com/momikaru_official/" target="_blank" rel="noopener">@momikaru_official</a> をフォローしてください。</span></div></div>
+      <div class="step"><div class="n score-num">2</div><div class="t"><b>ハッシュタグ「#もみかる静岡高校野球」をつける</b><span>指定のハッシュタグを必ず投稿につけてください。</span></div></div>
+      <div class="step"><div class="n score-num">3</div><div class="t"><b>エールを書いて投稿！</b><span>「推し高校」「高校野球への応援メッセージ」「夏の思い出」を書いて投稿。この投稿のリポストや、もみかる店舗での思い出写真付きだと当選確率アップ！？</span></div></div>
+    </div>
+
+    <div class="period reveal">
+      <div class="lbl">応募期間</div>
+      <div class="date"><span class="score-num">2026.6.28</span>（日） 〜 <span class="score-num">2026.8.31</span>（月）</div>
+    </div>
+
+    <div class="notes reveal">
+      <h4>当選発表・注意事項</h4>
+      <ul>
+        <li>当選者の方には、大会終了後に当アカウントよりDMで直接ご連絡いたします。賞品は郵送でのお届けとなります。</li>
+        <li>非公開（鍵付き）アカウントからのご投稿は対象外となります。</li>
+        <li>応募時点で @momikaru_official をフォローいただいている方が対象です。</li>
+        <li>本キャンペーンはMeta社・Instagramが主催・後援・運営するものではなく、一切関係ありません。</li>
+        <li>投稿内容は、当アカウントの広報活動（リポスト等）に使用させていただく場合があります。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STORES ===================== -->
+<section class="stores" id="stores">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Campaign 3rd</span>
+      <h2>応援疲れを癒す、店舗別の特別メニュー。</h2>
+      <p>県内のもみかる各店で、この夏だけのお得なキャンペーンメニューをご用意しました。</p>
+    </div>
+    <div class="store-grid">
+      <div class="store reveal">
+        <div class="name"><svg class="pennant" viewBox="0 0 22 22"><path d="M4,3 L4,19 M4,4 L18,8 L4,12 Z" stroke="#f6c544" stroke-width="2" fill="#f6c544"/></svg>もみかる 本店</div>
+        <div class="menu"><div class="mrow"><div class="mname">熱狂コース 30分</div><div class="price"><span class="was">5,000円</span><span class="now"><span class="yensign">¥</span>4,800</span></div></div></div>
+      </div>
+      <!-- 店舗名・メニュー・価格が確定し次第、上の「本店」と同じ形式で差し替えてください -->
+      <div class="store placeholder reveal"><div class="name">もみかる 清水店</div><div class="menu">キャンペーンメニュー 準備中</div></div>
+      <div class="store placeholder reveal"><div class="name">店舗名（入力してください）</div><div class="menu">キャンペーンメニュー 準備中</div></div>
+      <div class="store placeholder reveal"><div class="name">店舗名（入力してください）</div><div class="menu">キャンペーンメニュー 準備中</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">さあ、あなたのエールを<br>球児たちへ。</h2>
+    <p class="reveal">まずは もみかる公式Instagramをフォロー。<br>#もみかる静岡高校野球 で、この夏いちばんの応援を。</p>
+    <a class="ig-btn reveal" href="https://www.instagram.com/momikaru_official/" target="_blank" rel="noopener">
+      <span class="ig-mark"><span class="dot"></span></span><span class="ig-label">公式Instagramをフォローする</span>
+    </a>
+    <div class="ig-handle reveal">@momikaru_official</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img class="footer-logo" src="images/momikaru-logo.webp" alt="手もみ屋 もみかる" width="125" height="40" loading="lazy" decoding="async">
+    <div class="brand">手もみ屋 <span>もみかる</span></div>
+    <div>2026 夏の高校野球／第108回 全国高校野球選手権 静岡大会 タイアップキャンペーン</div>
+    <div style="margin-top:8px;">静岡県内のもみかる全店舗で実施中</div>
+  </div>
+</footer>
+
+<!-- ===================== アニメーションライブラリ（CDN・ビルド不要） ===================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  const reduce   = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 820px)').matches;
+  const isTouch  = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+  // ---- 紙テープ吹雪（既存演出・据え置き。モバイルは枚数を抑制）----
+  if(!reduce){
+    const hero=document.querySelector('.hero');
+    const colors=['#d8362c','#f6c544','#1390cf','#ffffff','#3a8c4e'];
+    const n=isMobile?10:18;
+    for(let i=0;i<n;i++){
+      const t=document.createElement('div');t.className='tape';
+      t.style.left=Math.random()*100+'%';t.style.background=colors[i%colors.length];
+      t.style.animationDuration=(5+Math.random()*5)+'s';
+      t.style.animationDelay=(-Math.random()*8)+'s';
+      t.style.opacity=(0.5+Math.random()*0.4).toFixed(2);
+      hero.appendChild(t);
+    }
+  }
+
+  // ---- CDN読込失敗時は静的表示へフォールバックして終了 ----
+  if(typeof gsap==='undefined' || typeof ScrollTrigger==='undefined'){
+    document.documentElement.classList.remove('anim');
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ---- reduced-motion：一切のJS演出なし（revealは表示済み）----
+  if(reduce){ return; }
+
+  // ========== 1. Lenis 慣性スクロール ==========
+  let lenis=null;
+  if(typeof Lenis!=='undefined'){
+    // lerpベースの補間（フレームレート非依存で滑らか）。smoothTouch既定オフ＝モバイルはネイティブスクロール
+    lenis=new Lenis({lerp:0.09, smoothWheel:true, wheelMultiplier:1, autoRaf:false});
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href'); if(!id || id.length<2) return;
+        const tgt=document.querySelector(id); if(!tgt) return;
+        e.preventDefault(); lenis.scrollTo(tgt,{offset:-10});
+      });
+    });
+  }
+
+  // ========== 5. カード浮遊＋ホバー強調 ==========
+  function startFloat(el,i){
+    const tw=gsap.to(el,{y:'-=7', duration:2.2+(i%4)*0.35, ease:'sine.inOut', yoyo:true, repeat:-1, delay:(i%5)*0.12});
+    el.addEventListener('mouseenter',()=>{ tw.pause(); gsap.to(el,{y:-12,scale:1.04,duration:.35,ease:'power3.out',overwrite:true}); });
+    el.addEventListener('mouseleave',()=>{ gsap.to(el,{scale:1,duration:.35,ease:'power3.out',overwrite:true,onComplete:()=>{ gsap.set(el,{clearProps:'scale'}); tw.resume(); }}); });
+  }
+
+  // ========== 2. reveal を GSAP に置換（Fade + Scale / Rotate / Blur）==========
+  const froms=[
+    {opacity:0,y:48},
+    {opacity:0,y:48,scale:.9},
+    {opacity:0,y:48,rotation:-3.5},
+    {opacity:0,y:34,scale:.96,rotation:2.5},
+  ];
+  gsap.utils.toArray('.reveal').forEach((el,i)=>{
+    const isCard = el.classList.contains('inning')||el.classList.contains('prize')||el.classList.contains('store');
+    const from = Object.assign({}, froms[i % froms.length]);
+    if(!isMobile && i%3===0){ from.filter='blur(10px)'; } // blurは重いのでデスクトップのみ・間引き
+    gsap.fromTo(el, from, {
+      opacity:1, y:0, scale:1, rotation:0, filter:'blur(0px)',
+      duration:.9, ease:'power3.out',
+      scrollTrigger:{trigger:el, start:'top 85%', once:true},
+      onComplete:function(){
+        const willFloat = isCard && !isMobile;
+        gsap.set(el,{clearProps: willFloat ? 'filter' : 'filter,transform'}); // floatする要素以外はtransformを解除しCSSホバーを活かす
+        if(willFloat){ startFloat(el,i); }
+      }
+    });
+  });
+
+  // ========== 4. SplitType ヒーロー見出しを一文字ずつ ==========
+  if(typeof SplitType!=='undefined'){
+    const split=new SplitType('.hero .fude-word .big', {types:'chars'});
+    gsap.from(split.chars, {opacity:0, yPercent:120, rotateX:-80, transformOrigin:'50% 100% -20px',
+      stagger:0.05, duration:.8, ease:'back.out(1.7)', delay:.25});
+  }
+
+  // ========== 3. パララックス（デスクトップのみ：背景=遅い / 前景=速い）==========
+  if(!isMobile){
+    // 背景写真の background-position パララックスは repaint が重くスクロールがカクつくため不採用。
+    // GPUで軽い transform パララックス（前景=速い / 太陽=中程度）のみ。scrubに微小な慣性を持たせて滑らかに。
+    const hp={trigger:'.hero', start:'top top', end:'bottom top', scrub:0.6};
+    gsap.to('.hero-inner', {yPercent:16, ease:'none', scrollTrigger:hp}); // 前景コピー：速め
+    gsap.to('.sun',        {y:80,        ease:'none', scrollTrigger:hp});  // 太陽：中程度
+  }
+
+  // ========== 6. 数値カウントアップ ==========
+  function counter(el, end, fmt){
+    const o={v:0}; el.textContent=fmt(0);
+    ScrollTrigger.create({trigger:el, start:'top 90%', once:true, onEnter:()=>{
+      gsap.to(o,{v:end, duration:1.4, ease:'power2.out', onUpdate:()=>{ el.textContent=fmt(o.v); }});
+    }});
+  }
+  const yen=document.querySelector('.ticket .amount .yen');
+  if(yen) counter(yen, 300, v=>Math.round(v).toString());            // 300円OFF
+  document.querySelectorAll('.prize .winners').forEach(w=>{           // 各賞の当選人数
+    const m=(w.textContent.match(/\d+/)||[])[0]; if(!m) return;
+    const suffix=w.textContent.replace(/^\s*\d+/,'');
+    counter(w, parseInt(m,10), v=>Math.round(v)+suffix);
+  });
+  const now=document.querySelector('.store .menu .price .now');       // 4,800円（¥記号は維持）
+  if(now){
+    const m=(now.textContent.match(/[\d,]+/)||[])[0];
+    if(m){
+      const target=parseInt(m.replace(/,/g,''),10), o={v:0};
+      now.innerHTML='<span class="yensign">¥</span>0';
+      ScrollTrigger.create({trigger:now, start:'top 90%', once:true, onEnter:()=>{
+        gsap.to(o,{v:target, duration:1.4, ease:'power2.out', onUpdate:()=>{
+          now.innerHTML='<span class="yensign">¥</span>'+Math.round(o.v).toLocaleString('en-US');
+        }});
+      }});
+    }
+  }
+
+  // ========== 7. SVGラインドロー（stroke を描く）==========
+  function drawIn(selector, triggerSel, opts){
+    opts=opts||{};
+    gsap.utils.toArray(selector).forEach((p,i)=>{
+      let len; try{ len=p.getTotalLength(); }catch(e){ return; }
+      if(!len) return;
+      gsap.set(p,{strokeDasharray:len, strokeDashoffset:len});
+      const cfg={strokeDashoffset:0, duration:opts.dur||1.1, ease:'power2.inOut', delay:(opts.delay||0)+i*(opts.stag||0.08)};
+      if(!opts.onLoad){ cfg.scrollTrigger={trigger:(triggerSel?p.closest(triggerSel):p)||p, start:'top 85%', once:true}; }
+      gsap.to(p, cfg);
+    });
+  }
+  drawIn('.inning .ico path[stroke]', '.inning', {stag:0.12});
+  drawIn('.prize .medal path[stroke]', '.prize', {stag:0.1});
+  drawIn('.ball-spin path', null, {onLoad:true, dur:1.2, delay:.4});  // 野球ボールの縫い目（ロード時）
+  // メガホン等は塗りなのでポップで登場
+  gsap.utils.toArray('.megaphone').forEach(m=>{
+    gsap.from(m,{scale:0, rotation:-40, transformOrigin:'30% 70%', duration:.7, ease:'back.out(2)',
+      scrollTrigger:{trigger:m.closest('section')||m, start:'top 80%', once:true}});
+  });
+
+  // ========== 10. マウス追従（ヒーローのみ・デスクトップ・控えめ）==========
+  if(!isMobile && !isTouch){
+    const hero=document.querySelector('.hero');
+    const innerX=gsap.quickTo('.hero-inner','x',{duration:.9, ease:'power3'}); // パララックスはy／追従はxで非干渉
+    const sunX  =gsap.quickTo('.sun','x',{duration:1.2, ease:'power3'});
+    hero.addEventListener('mousemove', e=>{
+      const dx=(e.clientX/window.innerWidth - .5);
+      innerX(dx*22); sunX(dx*-40);
+    });
+    hero.addEventListener('mouseleave', ()=>{ innerX(0); sunX(0); });
+  }
+
+  // レイアウト確定（画像/フォント読込後）で再計算
+  window.addEventListener('load', ()=>ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
