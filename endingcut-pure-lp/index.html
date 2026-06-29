@@ -2105,7 +2105,7 @@ body::after{
 <!-- ============== Nav ============== -->
 <nav class="nav" id="nav">
   <a href="#top" class="nav__logo">Endingcut Pure <span>®</span></a>
-  <a href="#cta" class="nav__cta">説明会に申し込む</a>
+  <a href="#fc-booking" class="nav__cta fc-booking-open" data-fc-event="briefing">説明会に申し込む</a>
 </nav>
 
 <!-- ============== Hero ============== -->
@@ -2151,7 +2151,7 @@ body::after{
       </div>
     </div>
     <div class="hero__cta-row">
-      <a href="#cta" class="btn-primary">説明会に申し込む</a>
+      <a href="#fc-booking" class="btn-primary fc-booking-open" data-fc-event="briefing">説明会に申し込む</a>
       <a href="#definition" class="btn-ghost">まずは事業を知る</a>
     </div>
   </div>
@@ -2337,7 +2337,7 @@ body::after{
   <p class="mid-cta__title serif">
     まずは、事業の全体像を<br>30分でお話しします。
   </p>
-  <a href="#cta" class="mid-cta__btn">無料説明会に申し込む</a>
+  <a href="#fc-booking" class="mid-cta__btn fc-booking-open" data-fc-event="briefing">無料説明会に申し込む</a>
   <p class="mid-cta__note">オンライン対応・所要30〜45分・しつこい営業は一切ありません</p>
 </section>
 
@@ -2577,7 +2577,7 @@ body::after{
   <p class="mid-cta__title serif">
     あなたのエリアの空き状況、<br>事業計画書のひな型を、お渡しします。
   </p>
-  <a href="#cta" class="mid-cta__btn">説明会で詳細を聞く</a>
+  <a href="#fc-booking" class="mid-cta__btn fc-booking-open" data-fc-event="briefing">説明会で詳細を聞く</a>
   <p class="mid-cta__note">説明会参加者限定の3つの特典あり</p>
 </section>
 
@@ -3217,7 +3217,7 @@ body::after{
 </footer>
 
 <!-- ============== Floating CTA ============== -->
-<a href="#cta" class="float-cta" id="floatCta">説明会に申し込む</a>
+<a href="#fc-booking" class="float-cta fc-booking-open" id="floatCta" data-fc-event="briefing">説明会に申し込む</a>
 
 <script>
 // Reveal on scroll
@@ -3434,5 +3434,8 @@ if(careerToggle){
   });
 })();
 </script>
+<link rel="stylesheet" href="https://fc-booking-api.netlify.app/widget/booking.css?v=6">
+<script src="https://fc-booking-api.netlify.app/widget/config.js?v=6"></script>
+<script src="https://fc-booking-api.netlify.app/widget/booking.js?v=6"></script>
 </body>
 </html>
