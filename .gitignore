@@ -1,2 +1,3 @@
-# 別 worktree として管理（サブモジュール参照は使わない）
+# 別リポジトリ／worktree としてローカル管理（サブモジュール参照は使わない）
 momikaru-recruit-ai/
+momikaru-staff-app/
