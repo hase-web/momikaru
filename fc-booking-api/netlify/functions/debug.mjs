@@ -66,10 +66,19 @@ export const handler = async () => {
       oauth2.setCredentials({ refresh_token: staff.refreshToken });
       const { credentials } = await oauth2.refreshAccessToken();
       entry.calendarTokenOk = Boolean(credentials.access_token);
+      entry.tokenScopes = credentials.scope || null;
+      entry.hasGmailSendScope = Boolean(
+        credentials.scope && credentials.scope.includes("gmail.send")
+      );
     } catch (err) {
       entry.calendarTokenError = err.message;
     }
     try {
+      if (!entry.hasGmailSendScope) {
+        throw new Error(
+          "access token に gmail.send が含まれていません。Playground で calendar と gmail.send を同時に選び直してください。"
+        );
+      }
       const gmail = google.gmail({ version: "v1", auth: getOAuthForStaff(staff) });
       const profile = await gmail.users.getProfile({ userId: "me" });
       entry.gmailSendOk = true;
