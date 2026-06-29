@@ -1584,7 +1584,7 @@ strong { font-weight: 700; }
     <a class="brand-logo" href="#top" aria-label="もみかるFRANCHISE トップへ">
       <img src="images/logo/momikaru_logo.png" alt="もみかるFRANCHISE" class="brand-logo__image">
     </a>
-    <a class="header-cta" href="https://meetings.immedio.io/date_select?uk=apJ6fP2kv2tFbckPybVi#calendar" target="_blank" rel="noopener noreferrer">
+    <a class="header-cta fc-booking-open" href="#fc-booking">
       <span class="header-cta-label"><span class="label-pc">個別相談</span>を申し込む</span>
       <span aria-hidden="true">→</span>
     </a>
@@ -1615,7 +1615,7 @@ strong { font-weight: 700; }
           <span><span class="dot" aria-hidden="true"></span> ロイヤリティ0円</span>
         </div>
         <div class="hero-cta-row fx">
-          <a class="btn btn-primary" href="https://meetings.immedio.io/date_select?uk=apJ6fP2kv2tFbckPybVi#calendar" target="_blank" rel="noopener noreferrer">
+          <a class="btn btn-primary fc-booking-open" href="#fc-booking">
             個別相談を申し込む <span class="arrow" aria-hidden="true">→</span>
             <img src="images/characters/momio_wave.png" class="momio-wave-peek" alt="" aria-hidden="true">
           </a>
@@ -2262,10 +2262,8 @@ strong { font-weight: 700; }
         南部さんのように、もみかるFCで独立を目指しませんか？<br />
         まずは個別説明会で、詳しい話をお聞きください。
       </p>
-      <a href="https://meetings.immedio.io/date_select?uk=apJ6fP2kv2tFbckPybVi#calendar"
-         class="owner-cta-box__cta"
-         target="_blank"
-         rel="noopener noreferrer">
+      <a href="#fc-booking"
+         class="owner-cta-box__cta fc-booking-open">
         個別説明会を予約する <span class="arrow" aria-hidden="true">→</span>
       </a>
       <p class="owner-cta-box__note">
@@ -2287,7 +2285,7 @@ strong { font-weight: 700; }
       もみかるFC本部が、あなたの状況に合わせて最適な進め方をご提案します。
     </p>
     <div class="cta-row fx">
-      <a class="btn btn-primary" href="https://meetings.immedio.io/date_select?uk=apJ6fP2kv2tFbckPybVi#calendar" target="_blank" rel="noopener noreferrer">
+      <a class="btn btn-primary fc-booking-open" href="#fc-booking">
         個別相談を申し込む <span class="arrow" aria-hidden="true">→</span>
       </a>
       <a class="btn btn-secondary" href="https://www.momikaru.com/fc/Download.html" target="_blank" rel="noopener noreferrer">
@@ -2470,6 +2468,12 @@ strong { font-weight: 700; }
   }
 })();
 </script>
+
+
+<!-- FC予約ウィジェット（immedio.io 代替） -->
+<link rel="stylesheet" href="https://momikaru-fc-booking.netlify.app/widget/booking.css">
+<script src="https://momikaru-fc-booking.netlify.app/widget/config.js"></script>
+<script src="https://momikaru-fc-booking.netlify.app/widget/booking.js"></script>
 
 </body>
 </html>

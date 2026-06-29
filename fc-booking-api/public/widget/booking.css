@@ -1,0 +1,280 @@
+/* もみかるFC 予約ウィジェット — immedio.io 代替 */
+.fc-booking-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(13, 17, 23, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s;
+}
+
+.fc-booking-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.fc-booking-modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+  transform: translateY(12px);
+  transition: transform 0.25s ease;
+}
+
+.fc-booking-overlay.is-open .fc-booking-modal {
+  transform: translateY(0);
+}
+
+.fc-booking-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f8f6f1;
+}
+
+.fc-booking-header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.fc-booking-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 4px 8px;
+}
+
+.fc-booking-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.fc-booking-step-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #c77800;
+  margin-bottom: 8px;
+}
+
+.fc-booking-field {
+  margin-bottom: 14px;
+}
+
+.fc-booking-field label {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.fc-booking-field input,
+.fc-booking-field select,
+.fc-booking-field textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-family: inherit;
+}
+
+.fc-booking-field textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.fc-booking-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.fc-booking-chip {
+  padding: 8px 14px;
+  border: 2px solid #e5e7eb;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.fc-booking-chip.is-selected {
+  border-color: #fda92a;
+  background: #fff8eb;
+  color: #9a5b00;
+}
+
+.fc-booking-slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+}
+
+.fc-booking-slot {
+  padding: 10px 6px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+}
+
+.fc-booking-slot:hover {
+  border-color: #fda92a;
+  background: #fff8eb;
+}
+
+.fc-booking-slot.is-selected {
+  border-color: #fda92a;
+  background: #fda92a;
+  color: #1a1714;
+}
+
+.fc-booking-slot:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.fc-booking-days {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.fc-booking-day {
+  flex: none;
+  padding: 10px 14px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+  min-width: 72px;
+}
+
+.fc-booking-day.is-selected {
+  border-color: #fda92a;
+  background: #fff8eb;
+}
+
+.fc-booking-day .dow {
+  display: block;
+  font-size: 0.72rem;
+  color: #6b7280;
+}
+
+.fc-booking-day .date {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.fc-booking-actions {
+  display: flex;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid #e5e7eb;
+  background: #fafafa;
+}
+
+.fc-booking-btn {
+  flex: 1;
+  padding: 13px 16px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.fc-booking-btn--primary {
+  background: #fda92a;
+  color: #1a1714;
+}
+
+.fc-booking-btn--primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.fc-booking-btn--ghost {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  color: #4a4540;
+}
+
+.fc-booking-msg {
+  font-size: 0.88rem;
+  color: #6b7280;
+  text-align: center;
+  padding: 24px 8px;
+}
+
+.fc-booking-msg--error {
+  color: #c41e24;
+}
+
+.fc-booking-success {
+  text-align: center;
+  padding: 12px 0;
+}
+
+.fc-booking-success h3 {
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+}
+
+.fc-booking-success a {
+  color: #0a5a94;
+  word-break: break-all;
+}
+
+.fc-booking-fallback {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed #e5e7eb;
+  font-size: 0.84rem;
+  color: #6b7280;
+}
+
+.fc-booking-fallback a {
+  color: #0a5a94;
+}
+
+@media (max-width: 480px) {
+  .fc-booking-slots {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
