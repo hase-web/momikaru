@@ -3,6 +3,10 @@
   publish = "public"
   functions = "netlify/functions"
 
+# momikaru-recruit-ai が壊れたサブモジュール参照のため、チェックアウトをスキップ
+[build.environment]
+  GIT_SUBMODULE_STRATEGY = "none"
+
 [functions]
   node_bundler = "esbuild"
 
