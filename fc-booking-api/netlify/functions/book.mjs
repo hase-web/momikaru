@@ -7,6 +7,7 @@ import {
   createBookingEvent,
   fetchBusyPeriods,
   getCalendarForStaff,
+  sendStaffBookingNotification,
 } from "../../lib/google.mjs";
 import { generateAvailableSlots } from "../../lib/slots.mjs";
 
@@ -139,6 +140,24 @@ export const handler = async (event) => {
       attendeeName: name,
     });
 
+    let staffNotified = false;
+    try {
+      const notify = await sendStaffBookingNotification(staff, {
+        eventLabel: eventConfig.label,
+        start: startDate,
+        end: endDate,
+        customerName: name,
+        customerEmail: email,
+        customerPhone: phone,
+        description,
+        meetLink: result.meetLink,
+        htmlLink: result.htmlLink,
+      });
+      staffNotified = notify.sent;
+    } catch (notifyErr) {
+      console.error("担当者への通知メール送信に失敗:", notifyErr.message);
+    }
+
     return jsonResponse(200, {
       success: true,
       staffId: staff.id,
@@ -146,6 +165,7 @@ export const handler = async (event) => {
       eventId: result.eventId,
       meetLink: result.meetLink,
       calendarLink: result.htmlLink,
+      staffNotified,
     }, origin);
   } catch (err) {
     console.error(err);

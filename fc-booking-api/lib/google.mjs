@@ -24,10 +24,14 @@ export function createOAuthClient() {
   return new google.auth.OAuth2(clientId, clientSecret);
 }
 
-export function getCalendarForStaff(staff) {
+export function getOAuthForStaff(staff) {
   const oauth2 = createOAuthClient();
   oauth2.setCredentials({ refresh_token: staff.refreshToken.trim() });
-  return google.calendar({ version: "v3", auth: oauth2 });
+  return oauth2;
+}
+
+export function getCalendarForStaff(staff) {
+  return google.calendar({ version: "v3", auth: getOAuthForStaff(staff) });
 }
 
 export async function fetchBusyPeriods(calendar, calendarId, timeMin, timeMax) {
@@ -100,4 +104,69 @@ export async function createBookingEvent(calendar, calendarId, options) {
       res.data.conferenceData?.entryPoints?.find((e) => e.entryPointType === "video")?.uri ||
       null,
   };
+}
+
+function formatJaDateTime(date) {
+  return new Intl.DateTimeFormat("ja-JP", {
+    timeZone: process.env.BOOKING_TIMEZONE || "Asia/Tokyo",
+    month: "long",
+    day: "numeric",
+    weekday: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
+}
+
+/** 担当者へ予約通知メール（Gmail API） */
+export async function sendStaffBookingNotification(staff, details) {
+  const to = (details.to || staff.notifyEmail || staff.calendarId || "").trim();
+  if (!to || !to.includes("@")) {
+    return { sent: false, reason: "notify_email_missing" };
+  }
+
+  const auth = getOAuthForStaff(staff);
+  const gmail = google.gmail({ version: "v1", auth });
+  const subject = `【もみかるFC】新規予約: ${details.eventLabel} — ${details.customerName} 様`;
+  const body = [
+    `${staff.name || "担当"} さん`,
+    "",
+    "FCサイトから新しい予約が入りました。",
+    "",
+    `■ 種別: ${details.eventLabel}`,
+    `■ 日時: ${formatJaDateTime(details.start)} 〜 ${formatJaDateTime(details.end)}`,
+    `■ お名前: ${details.customerName}`,
+    `■ メール: ${details.customerEmail}`,
+    details.customerPhone ? `■ 電話: ${details.customerPhone}` : null,
+    "",
+    details.meetLink ? `■ Google Meet:\n${details.meetLink}` : null,
+    details.htmlLink ? `■ カレンダー:\n${details.htmlLink}` : null,
+    "",
+    "── 詳細 ──",
+    details.description || "",
+  ]
+    .filter((line) => line !== null)
+    .join("\n");
+
+  const encodedSubject = `=?UTF-8?B?${Buffer.from(subject).toString("base64")}?=`;
+  const rawMessage = [
+    `To: ${to}`,
+    `Subject: ${encodedSubject}`,
+    "MIME-Version: 1.0",
+    'Content-Type: text/plain; charset="UTF-8"',
+    "",
+    body,
+  ].join("\r\n");
+
+  await gmail.users.messages.send({
+    userId: "me",
+    requestBody: {
+      raw: Buffer.from(rawMessage, "utf8")
+        .toString("base64")
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=+$/, ""),
+    },
+  });
+
+  return { sent: true, to };
 }

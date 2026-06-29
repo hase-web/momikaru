@@ -29,6 +29,7 @@ export function getStaffList() {
       name: env("STAFF_A_NAME") || "担当A",
       calendarId: staffACalendar,
       refreshToken: staffARefresh,
+      notifyEmail: env("STAFF_A_NOTIFY_EMAIL") || staffACalendar,
     });
   }
   const staffBRefresh = env("STAFF_B_REFRESH_TOKEN");
@@ -39,6 +40,7 @@ export function getStaffList() {
       name: env("STAFF_B_NAME") || "担当B",
       calendarId: staffBCalendar,
       refreshToken: staffBRefresh,
+      notifyEmail: env("STAFF_B_NOTIFY_EMAIL") || staffBCalendar,
     });
   }
   return staff;
