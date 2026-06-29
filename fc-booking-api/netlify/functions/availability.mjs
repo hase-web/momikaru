@@ -111,7 +111,9 @@ export const handler = async (event) => {
     console.error(err);
     return jsonResponse(500, {
       error: "空き時間の取得に失敗しました",
-      detail: process.env.NODE_ENV === "development" ? err.message : undefined,
+      detail: err.message,
+      hint:
+        "Netlify の GOOGLE_CLIENT_ID/SECRET と Playground で取得した Refresh token が同じ OAuth クライアントか確認してください。/.netlify/functions/debug も参照。",
     }, origin);
   }
 };
