@@ -91,32 +91,42 @@
     } else {
       actions.innerHTML = "";
     }
-    actions.querySelectorAll("[data-action]").forEach(function (btn) {
+    bindActionButtons(actions);
+  }
+
+  function bindActionButtons(root) {
+    var scope = root || document;
+    scope.querySelectorAll("[data-action]").forEach(function (btn) {
+      if (btn.dataset.fcActionBound) return;
+      btn.dataset.fcActionBound = "1";
       btn.addEventListener("click", function () {
-        var action = btn.getAttribute("data-action");
-        if (action === "back") {
-          if (state.step === 4) {
-            state.step = 1;
-            render();
-            if (state.slots.length) renderCalendar();
-          } else {
-            state.step = Math.max(1, state.step - 1);
-            render();
-          }
-        } else if (action === "clear-slot") {
-          state.selectedSlot = null;
-          renderCalendar();
-          renderActions();
-        } else if (action === "next") {
-          state.step = 4;
-          render();
-        } else if (action === "submit") {
-          submitBooking();
-        } else if (action === "close") {
-          close();
-        }
+        handleAction(btn.getAttribute("data-action"));
       });
     });
+  }
+
+  function handleAction(action) {
+    if (action === "back") {
+      if (state.step === 4) {
+        state.step = 1;
+        render();
+        if (state.slots.length) renderCalendar();
+      } else {
+        state.step = Math.max(1, state.step - 1);
+        render();
+      }
+    } else if (action === "clear-slot") {
+      state.selectedSlot = null;
+      renderCalendar();
+      renderActions();
+    } else if (action === "next") {
+      state.step = 4;
+      render();
+    } else if (action === "submit") {
+      submitBooking();
+    } else if (action === "close") {
+      close();
+    }
   }
 
   function fallbackHtml() {
@@ -213,6 +223,7 @@
           })
         : "";
       body.innerHTML =
+        '<button type="button" class="fc-booking-back-link" data-action="back">← 日時選択に戻る</button>' +
         '<div class="fc-booking-step-label">予約内容の確認</div>' +
         "<p style=\"margin-bottom:16px;font-size:0.9rem;\"><strong>" +
         when +
@@ -230,6 +241,7 @@
     }
 
     renderActions();
+    if (state.step === 4) bindActionButtons(body);
   }
 
   function bindStaffChips() {

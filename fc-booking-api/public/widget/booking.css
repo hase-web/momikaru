@@ -147,7 +147,7 @@
   text-align: center;
 }
 
-.fc-booking-slot:hover {
+.fc-booking-slot:hover:not(.is-selected) {
   border-color: #fda92a;
   background: #fff8eb;
 }
@@ -167,9 +167,14 @@
 }
 
 .fc-booking-slot.is-selected {
-  border-color: #fda92a;
-  background: #fda92a;
-  color: #1a1714;
+  border-color: #e8940f !important;
+  background: #fda92a !important;
+  color: #1a1714 !important;
+  box-shadow: 0 0 0 2px rgba(253, 169, 42, 0.35);
+}
+
+.fc-booking-slot.is-selected:hover {
+  background: #f59b1a !important;
 }
 
 .fc-booking-slot:disabled {
@@ -220,6 +225,26 @@
   padding: 16px 20px;
   border-top: 1px solid #e5e7eb;
   background: #fafafa;
+  flex-shrink: 0;
+}
+
+.fc-booking-back-link {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #6b7280;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.fc-booking-back-link:hover {
+  color: #c77800;
+  text-decoration: underline;
 }
 
 .fc-booking-btn {
