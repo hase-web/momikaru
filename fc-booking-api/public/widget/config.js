@@ -3,8 +3,7 @@
  * デプロイ後: apiBase を fc-booking-api の Netlify URL に変更
  */
 window.FC_BOOKING_CONFIG = {
-  /** 例: https://momikaru-fc-booking.netlify.app */
-  apiBase: "https://momikaru-fc-booking.netlify.app",
+  apiBase: "https://fc-booking-api.netlify.app",
 
   brand: {
     phone: "0120-000-000",

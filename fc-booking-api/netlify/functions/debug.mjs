@@ -1,15 +1,44 @@
 import { getStaffList } from "../../lib/config.mjs";
 import { createOAuthClient } from "../../lib/google.mjs";
 
-/** 設定確認用（秘密情報は返さない）。本番安定後は削除可。 */
+function mask(value, head = 6, tail = 4) {
+  if (!value) return null;
+  if (value.length <= head + tail) return "***";
+  return `${value.slice(0, head)}...${value.slice(-tail)}`;
+}
+
+function env(name) {
+  const v = process.env[name];
+  return typeof v === "string" ? v.trim() : v;
+}
+
+/** 設定確認用（秘密情報はマスクして返す） */
 export const handler = async () => {
+  const clientId = env("GOOGLE_CLIENT_ID");
+  const clientSecret = env("GOOGLE_CLIENT_SECRET");
+
   const checks = {
-    GOOGLE_CLIENT_ID: Boolean(process.env.GOOGLE_CLIENT_ID),
-    GOOGLE_CLIENT_SECRET: Boolean(process.env.GOOGLE_CLIENT_SECRET),
-    STAFF_A_CALENDAR_ID: Boolean(process.env.STAFF_A_CALENDAR_ID),
-    STAFF_A_REFRESH_TOKEN: Boolean(process.env.STAFF_A_REFRESH_TOKEN),
-    STAFF_B_CALENDAR_ID: Boolean(process.env.STAFF_B_CALENDAR_ID),
-    STAFF_B_REFRESH_TOKEN: Boolean(process.env.STAFF_B_REFRESH_TOKEN),
+    GOOGLE_CLIENT_ID: {
+      set: Boolean(clientId),
+      length: clientId?.length || 0,
+      looksValid: Boolean(clientId?.includes(".apps.googleusercontent.com")),
+      preview: mask(clientId),
+    },
+    GOOGLE_CLIENT_SECRET: {
+      set: Boolean(clientSecret),
+      length: clientSecret?.length || 0,
+      looksValid: Boolean(clientSecret?.startsWith("GOCSPX-")),
+      preview: mask(clientSecret),
+    },
+    STAFF_A_CALENDAR_ID: {
+      set: Boolean(env("STAFF_A_CALENDAR_ID")),
+      value: env("STAFF_A_CALENDAR_ID") || null,
+    },
+    STAFF_A_REFRESH_TOKEN: {
+      set: Boolean(env("STAFF_A_REFRESH_TOKEN")),
+      length: env("STAFF_A_REFRESH_TOKEN")?.length || 0,
+      preview: mask(env("STAFF_A_REFRESH_TOKEN")),
+    },
     staffCount: getStaffList().length,
     tokenTests: [],
   };

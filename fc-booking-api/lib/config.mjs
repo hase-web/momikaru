@@ -14,22 +14,31 @@ export const EVENT_TYPES = {
   },
 };
 
+function env(name) {
+  const v = process.env[name];
+  return typeof v === "string" ? v.trim() : v;
+}
+
 export function getStaffList() {
   const staff = [];
-  if (process.env.STAFF_A_REFRESH_TOKEN && process.env.STAFF_A_CALENDAR_ID) {
+  const staffARefresh = env("STAFF_A_REFRESH_TOKEN");
+  const staffACalendar = env("STAFF_A_CALENDAR_ID");
+  if (staffARefresh && staffACalendar) {
     staff.push({
       id: "a",
-      name: process.env.STAFF_A_NAME || "担当A",
-      calendarId: process.env.STAFF_A_CALENDAR_ID,
-      refreshToken: process.env.STAFF_A_REFRESH_TOKEN,
+      name: env("STAFF_A_NAME") || "担当A",
+      calendarId: staffACalendar,
+      refreshToken: staffARefresh,
     });
   }
-  if (process.env.STAFF_B_REFRESH_TOKEN && process.env.STAFF_B_CALENDAR_ID) {
+  const staffBRefresh = env("STAFF_B_REFRESH_TOKEN");
+  const staffBCalendar = env("STAFF_B_CALENDAR_ID");
+  if (staffBRefresh && staffBCalendar) {
     staff.push({
       id: "b",
-      name: process.env.STAFF_B_NAME || "担当B",
-      calendarId: process.env.STAFF_B_CALENDAR_ID,
-      refreshToken: process.env.STAFF_B_REFRESH_TOKEN,
+      name: env("STAFF_B_NAME") || "担当B",
+      calendarId: staffBCalendar,
+      refreshToken: staffBRefresh,
     });
   }
   return staff;
