@@ -223,23 +223,39 @@
   .notes li{font-size:.84rem;color:#cfc6b1;padding-left:18px;position:relative;line-height:1.7;}
   .notes li::before{content:"・";position:absolute;left:0;color:#7a7160;}
 
-  /* ============ stores ============ */
+  /* ============ stores（グループ別メニュー：スコアボード風カード）============ */
   .stores{background:var(--paper);overflow:hidden;}
-  .store-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
-  .store{background:#fff;border:2px solid var(--ink);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .2s;}
-  .store:hover{transform:translateY(-5px);}
-  .store .name{background:var(--sky-deep);color:#fff;padding:13px 18px;font-weight:800;display:flex;align-items:center;gap:10px;}
-  .store .name .pennant{width:22px;height:22px;flex:none;}
-  .store .menu{padding:18px 20px;flex:1;}
-  .store .menu .mrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
-  .store .menu .mname{font-weight:700;font-size:.98rem;}
-  .store .menu .price{display:flex;align-items:baseline;gap:8px;white-space:nowrap;}
-  .store .menu .price .was{color:#9c937f;text-decoration:line-through;font-size:.9rem;}
-  .store .menu .price .now{font-family:"Teko",sans-serif;font-size:1.95rem;color:var(--red);line-height:1;}
-  .store .menu .price .now .yensign{font-family:"Noto Sans JP";font-size:.7rem;font-weight:700;}
-  .store.placeholder{border-style:dashed;border-color:#c9bfa8;background:#faf7ef;}
-  .store.placeholder .name{background:#c9bfa8;color:#5a5343;}
-  .store.placeholder .menu{color:#9c937f;font-size:.88rem;display:flex;align-items:center;justify-content:center;min-height:78px;text-align:center;}
+  .menu-groups{display:flex;flex-direction:column;gap:26px;max-width:900px;margin:0 auto;}
+  .mgroup{background:#fff;border:2px solid var(--ink);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s;}
+
+  /* スコアボード風ヘッダー：紺地に砂色の縦ライン＋番号プレート */
+  .mgroup .ghead{background:var(--sky-deep);color:#fff;padding:16px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background-image:linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:9px 100%;}
+  .mgroup .ghead .no{flex:none;font-family:"Teko",sans-serif;font-weight:600;font-size:1.5rem;line-height:1;color:var(--score-yellow);
+    letter-spacing:.05em;border:2px solid var(--score-yellow);border-radius:8px;padding:3px 11px;}
+  .mgroup .ghead h3{flex:1;min-width:150px;font-weight:900;font-size:clamp(1.02rem,3.4vw,1.32rem);line-height:1.35;}
+  .mgroup .ghead .cnt{flex:none;font-family:"Teko",sans-serif;font-size:1.1rem;letter-spacing:.04em;background:var(--red);color:#fff;
+    padding:4px 13px;border-radius:30px;white-space:nowrap;}
+  .mgroup .ghead .cnt b{font-size:1.45em;vertical-align:-.05em;padding:0 1px;}
+
+  /* コース群：施術内容＋Teko価格 */
+  .mgroup .courses{padding:6px 22px;}
+  .course{display:flex;align-items:center;gap:16px;padding:16px 2px;border-bottom:1px dashed #d8cfb8;flex-wrap:wrap;}
+  .course:last-child{border-bottom:none;}
+  .course .c-body{flex:1;min-width:210px;}
+  .course .c-name{font-weight:800;font-size:1rem;color:var(--ink);line-height:1.45;}
+  .course .c-detail{font-size:.85rem;color:var(--ink-soft);margin-top:4px;line-height:1.6;}
+  .course .c-price{display:flex;align-items:baseline;gap:3px;white-space:nowrap;color:var(--red);margin-left:auto;}
+  .course .c-price .yensign{font-family:"Noto Sans JP";font-size:.85rem;font-weight:800;line-height:1;}
+  .course .c-price .now{font-family:"Teko",sans-serif;font-size:2.6rem;line-height:.85;font-weight:500;letter-spacing:.01em;}
+  .course .c-price .unit{font-family:"Noto Sans JP";font-size:.78rem;font-weight:700;line-height:1;}
+
+  /* 対象店舗：タグ／チップ状に並べる */
+  .mgroup .shops{background:#faf7ef;border-top:2px solid var(--ink);padding:15px 22px;display:flex;flex-wrap:wrap;gap:9px;align-items:center;}
+  .mgroup .shops .lbl{font-weight:800;font-size:.8rem;color:var(--sky-deep);letter-spacing:.04em;margin-right:2px;}
+  .shop-chip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--sky-deep);color:var(--sky-deep);
+    font-weight:700;font-size:.82rem;padding:6px 13px;border-radius:30px;line-height:1.2;}
+  .shop-chip::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--red);}
 
   /* ============ CTA ============ */
   .cta{background:radial-gradient(120% 100% at 50% 0%, var(--sky) 0%, var(--sky-deep) 60%, var(--sky-night) 100%);color:#fff;text-align:center;overflow:hidden;}
@@ -303,7 +319,6 @@
   @media (max-width:820px){
     .uchiwa-grid{grid-template-columns:1fr;gap:30px;}
     .innings,.prizes{grid-template-columns:1fr;}
-    .store-grid{grid-template-columns:1fr;}
     .flag{height:260px;}
     .sticker{display:none;}
   }
@@ -311,6 +326,13 @@
     section{padding:60px 0;}
     .vs{display:none;}
     .fude-pair{flex-direction:column;gap:6px;}
+    /* 縦積み時：施術内容と価格を上下に。価格は左寄せで大きく見せる */
+    .course{gap:8px;}
+    .course .c-body{min-width:100%;}
+    .course .c-price{margin-left:0;}
+    .course .c-price .now{font-size:2.3rem;}
+    .mgroup .ghead{padding:14px 16px;gap:10px;}
+    .mgroup .courses,.mgroup .shops{padding-left:16px;padding-right:16px;}
   }
 </style>
 </head>
@@ -509,15 +531,134 @@
       <h2>応援疲れを癒す、店舗別の特別メニュー。</h2>
       <p>県内のもみかる各店で、この夏だけのお得なキャンペーンメニューをご用意しました。</p>
     </div>
-    <div class="store-grid">
-      <div class="store reveal">
-        <div class="name"><svg class="pennant" viewBox="0 0 22 22"><path d="M4,3 L4,19 M4,4 L18,8 L4,12 Z" stroke="#f6c544" stroke-width="2" fill="#f6c544"/></svg>もみかる 本店</div>
-        <div class="menu"><div class="mrow"><div class="mname">熱狂コース 30分</div><div class="price"><span class="was">5,000円</span><span class="now"><span class="yensign">¥</span>4,800</span></div></div></div>
-      </div>
-      <!-- 店舗名・メニュー・価格が確定し次第、上の「本店」と同じ形式で差し替えてください -->
-      <div class="store placeholder reveal"><div class="name">もみかる 清水店</div><div class="menu">キャンペーンメニュー 準備中</div></div>
-      <div class="store placeholder reveal"><div class="name">店舗名（入力してください）</div><div class="menu">キャンペーンメニュー 準備中</div></div>
-      <div class="store placeholder reveal"><div class="name">店舗名（入力してください）</div><div class="menu">キャンペーンメニュー 準備中</div></div>
+    <div class="menu-groups">
+
+      <!-- グループ1：直営キャンペーンメニュー（対象8店舗）-->
+      <article class="mgroup reveal">
+        <div class="ghead">
+          <span class="no">01</span>
+          <h3>直営キャンペーンメニュー</h3>
+          <span class="cnt">対象 <b>8</b> 店舗</span>
+        </div>
+        <div class="courses">
+          <div class="course">
+            <div class="c-body">
+              <div class="c-name">応援コース</div>
+              <div class="c-detail">全身もみほぐし45分 ＋ 足つぼ30分（計75分）</div>
+            </div>
+            <div class="c-price"><span class="yensign">¥</span><span class="now">5,200</span><span class="unit">円</span></div>
+          </div>
+          <div class="course">
+            <div class="c-body">
+              <div class="c-name">回復コース</div>
+              <div class="c-detail">全身もみほぐし60分 ＋ ヘッド15分（計75分）</div>
+            </div>
+            <div class="c-price"><span class="yensign">¥</span><span class="now">5,000</span><span class="unit">円</span></div>
+          </div>
+        </div>
+        <div class="shops">
+          <span class="lbl">対象店舗</span>
+          <span class="shop-chip">もみかる総本店</span>
+          <span class="shop-chip">もみかる静岡本店</span>
+          <span class="shop-chip">もみかる小黒店</span>
+          <span class="shop-chip">もみかる150号下川原店</span>
+          <span class="shop-chip">もみかる流通通り店</span>
+          <span class="shop-chip">もみかる藤枝駅南店</span>
+          <span class="shop-chip">もみかる島田花みずき通り店</span>
+          <span class="shop-chip">もみかる清水店</span>
+        </div>
+      </article>
+
+      <!-- グループ2：焼津三ケ名店 限定メニュー（対象1店舗）-->
+      <article class="mgroup reveal">
+        <div class="ghead">
+          <span class="no">02</span>
+          <h3>焼津三ケ名店 限定メニュー</h3>
+          <span class="cnt">対象 <b>1</b> 店舗</span>
+        </div>
+        <div class="courses">
+          <div class="course">
+            <div class="c-body">
+              <div class="c-name">全力で応援したアナタに拍手を！</div>
+              <div class="c-detail">全身もみほぐし60分 ＋ ハンド15分</div>
+            </div>
+            <div class="c-price"><span class="yensign">¥</span><span class="now">4,900</span><span class="unit">円</span></div>
+          </div>
+          <div class="course">
+            <div class="c-body">
+              <div class="c-name">応援で疲れた身体をリフレッシュ！</div>
+              <div class="c-detail">全身もみほぐし60分 ＋ 足つぼ30分</div>
+            </div>
+            <div class="c-price"><span class="yensign">¥</span><span class="now">5,800</span><span class="unit">円</span></div>
+          </div>
+        </div>
+        <div class="shops">
+          <span class="lbl">対象店舗</span>
+          <span class="shop-chip">もみかる焼津三ケ名店</span>
+        </div>
+      </article>
+
+      <!-- グループ3：藤枝東・水上・金谷 キャンペーンメニュー（対象3店舗）-->
+      <article class="mgroup reveal">
+        <div class="ghead">
+          <span class="no">03</span>
+          <h3>藤枝東・水上・金谷 キャンペーンメニュー</h3>
+          <span class="cnt">対象 <b>3</b> 店舗</span>
+        </div>
+        <div class="courses">
+          <div class="course">
+            <div class="c-body">
+              <div class="c-name">全力応援を支える土台を、今すぐ作る！</div>
+              <div class="c-detail">もみほぐし45分 ＋ 足つぼ30分</div>
+            </div>
+            <div class="c-price"><span class="yensign">¥</span><span class="now">5,400</span><span class="unit">円</span></div>
+          </div>
+          <div class="course">
+            <div class="c-body">
+              <div class="c-name">心も頭も、クールダウン！</div>
+              <div class="c-detail">もみほぐし60分 ＋ ヘッド15分</div>
+            </div>
+            <div class="c-price"><span class="yensign">¥</span><span class="now">5,000</span><span class="unit">円</span></div>
+          </div>
+        </div>
+        <div class="shops">
+          <span class="lbl">対象店舗</span>
+          <span class="shop-chip">もみかる藤枝東店</span>
+          <span class="shop-chip">もみかる藤枝水上店</span>
+          <span class="shop-chip">もみかる島田金谷店</span>
+        </div>
+      </article>
+
+      <!-- グループ4：中根・小石川 キャンペーンメニュー（対象2店舗）-->
+      <article class="mgroup reveal">
+        <div class="ghead">
+          <span class="no">04</span>
+          <h3>中根・小石川 キャンペーンメニュー</h3>
+          <span class="cnt">対象 <b>2</b> 店舗</span>
+        </div>
+        <div class="courses">
+          <div class="course">
+            <div class="c-body">
+              <div class="c-name">全力応援リセットコース</div>
+              <div class="c-detail">もみほぐし45分 ＋ ヘッド15分</div>
+            </div>
+            <div class="c-price"><span class="yensign">¥</span><span class="now">4,100</span><span class="unit">円</span></div>
+          </div>
+          <div class="course">
+            <div class="c-body">
+              <div class="c-name">応援疲れ解消コース</div>
+              <div class="c-detail">もみほぐし45分 ＋ 足つぼ30分</div>
+            </div>
+            <div class="c-price"><span class="yensign">¥</span><span class="now">5,300</span><span class="unit">円</span></div>
+          </div>
+        </div>
+        <div class="shops">
+          <span class="lbl">対象店舗</span>
+          <span class="shop-chip">もみかる焼津中根店</span>
+          <span class="shop-chip">もみかる藤枝小石川店</span>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -612,7 +753,7 @@
     {opacity:0,y:34,scale:.96,rotation:2.5},
   ];
   gsap.utils.toArray('.reveal').forEach((el,i)=>{
-    const isCard = el.classList.contains('inning')||el.classList.contains('prize')||el.classList.contains('store');
+    const isCard = el.classList.contains('inning')||el.classList.contains('prize')||el.classList.contains('mgroup');
     const from = Object.assign({}, froms[i % froms.length]);
     if(!isMobile && i%3===0){ from.filter='blur(10px)'; } // blurは重いのでデスクトップのみ・間引き
     gsap.fromTo(el, from, {
@@ -657,19 +798,16 @@
     const suffix=w.textContent.replace(/^\s*\d+/,'');
     counter(w, parseInt(m,10), v=>Math.round(v)+suffix);
   });
-  const now=document.querySelector('.store .menu .price .now');       // 4,800円（¥記号は維持）
-  if(now){
-    const m=(now.textContent.match(/[\d,]+/)||[])[0];
-    if(m){
-      const target=parseInt(m.replace(/,/g,''),10), o={v:0};
-      now.innerHTML='<span class="yensign">¥</span>0';
-      ScrollTrigger.create({trigger:now, start:'top 90%', once:true, onEnter:()=>{
-        gsap.to(o,{v:target, duration:1.4, ease:'power2.out', onUpdate:()=>{
-          now.innerHTML='<span class="yensign">¥</span>'+Math.round(o.v).toLocaleString('en-US');
-        }});
+  document.querySelectorAll('.course .c-price .now').forEach(now=>{     // 各コースの料金（¥・円は隣接spanで維持）
+    const m=(now.textContent.match(/[\d,]+/)||[])[0]; if(!m) return;
+    const target=parseInt(m.replace(/,/g,''),10), o={v:0};
+    now.textContent='0';
+    ScrollTrigger.create({trigger:now, start:'top 90%', once:true, onEnter:()=>{
+      gsap.to(o,{v:target, duration:1.4, ease:'power2.out', onUpdate:()=>{
+        now.textContent=Math.round(o.v).toLocaleString('en-US');
       }});
-    }
-  }
+    }});
+  });
 
   // ========== 7. SVGラインドロー（stroke を描く）==========
   function drawIn(selector, triggerSel, opts){
