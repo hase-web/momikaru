@@ -1,0 +1,611 @@
+{
+  "kintoneShopName": "浜松三方原店",
+  "shop_code": "momi36151",
+  "beds": 7,
+  "store_type": "FC",
+  "months": {
+    "202601": {
+      "new_visitors": 113,
+      "new_repeat_ratio": 16.6,
+      "unit_price": 4855.69,
+      "bed_utilization": 25.1,
+      "bed_util_units": 1.76,
+      "missed_appointments": 25,
+      "staff_count": 25,
+      "sales": 3297020,
+      "visitors": 679,
+      "customer": {
+        "visitors_by_age": {
+          "不明": {
+            "male": 32,
+            "female": 24,
+            "total": 74
+          },
+          "～20": {
+            "male": 1,
+            "female": 0,
+            "total": 1
+          },
+          "20～": {
+            "male": 25,
+            "female": 26,
+            "total": 51
+          },
+          "30～": {
+            "male": 48,
+            "female": 22,
+            "total": 72
+          },
+          "40～": {
+            "male": 72,
+            "female": 46,
+            "total": 124
+          },
+          "50～": {
+            "male": 81,
+            "female": 42,
+            "total": 125
+          },
+          "60～": {
+            "male": 39,
+            "female": 30,
+            "total": 69
+          },
+          "70～": {
+            "male": 20,
+            "female": 10,
+            "total": 31
+          },
+          "計": {
+            "male": 318,
+            "female": 200,
+            "total": 547
+          }
+        },
+        "age_pct": {
+          "不明": 13.5,
+          "～20": 0.2,
+          "20～": 9.3,
+          "30～": 13.2,
+          "40～": 22.7,
+          "50～": 22.9,
+          "60～": 12.6,
+          "70～": 5.7
+        },
+        "gender_visitors": {
+          "male": 318,
+          "female": 200
+        },
+        "total_visit_count": 679,
+        "unique_customers": 136,
+        "visit_frequency_1x_pct": 66.1,
+        "visit_frequency": {
+          "1回": {
+            "people": 449,
+            "pct": 66.1
+          },
+          "2回": {
+            "people": 69,
+            "pct": 20.3
+          },
+          "3回": {
+            "people": 15,
+            "pct": 6.6
+          },
+          "4回": {
+            "people": 6,
+            "pct": 3.5
+          },
+          "5回～": {
+            "people": 4,
+            "pct": 3.4
+          }
+        }
+      }
+    },
+    "202602": {
+      "new_visitors": 95,
+      "new_repeat_ratio": 16.1,
+      "unit_price": 4841.79,
+      "bed_utilization": 24.2,
+      "bed_util_units": 1.69,
+      "missed_appointments": 34,
+      "staff_count": 210,
+      "sales": 2856660,
+      "visitors": 590,
+      "customer": {
+        "visitors_by_age": {
+          "不明": {
+            "male": 29,
+            "female": 18,
+            "total": 61
+          },
+          "～20": {
+            "male": 0,
+            "female": 3,
+            "total": 3
+          },
+          "20～": {
+            "male": 22,
+            "female": 28,
+            "total": 51
+          },
+          "30～": {
+            "male": 49,
+            "female": 20,
+            "total": 70
+          },
+          "40～": {
+            "male": 72,
+            "female": 38,
+            "total": 112
+          },
+          "50～": {
+            "male": 71,
+            "female": 37,
+            "total": 112
+          },
+          "60～": {
+            "male": 34,
+            "female": 23,
+            "total": 57
+          },
+          "70～": {
+            "male": 15,
+            "female": 9,
+            "total": 24
+          },
+          "計": {
+            "male": 292,
+            "female": 176,
+            "total": 490
+          }
+        },
+        "age_pct": {
+          "不明": 12.4,
+          "～20": 0.6,
+          "20～": 10.4,
+          "30～": 14.3,
+          "40～": 22.9,
+          "50～": 22.9,
+          "60～": 11.6,
+          "70～": 4.9
+        },
+        "gender_visitors": {
+          "male": 292,
+          "female": 176
+        },
+        "total_visit_count": 590,
+        "unique_customers": 104,
+        "visit_frequency_1x_pct": 69.2,
+        "visit_frequency": {
+          "1回": {
+            "people": 408,
+            "pct": 69.2
+          },
+          "2回": {
+            "people": 62,
+            "pct": 21.0
+          },
+          "3回": {
+            "people": 10,
+            "pct": 5.1
+          },
+          "4回": {
+            "people": 5,
+            "pct": 3.4
+          },
+          "5回～": {
+            "people": 1,
+            "pct": 1.4
+          }
+        }
+      }
+    },
+    "202603": {
+      "new_visitors": 93,
+      "new_repeat_ratio": 13.1,
+      "unit_price": 4864.56,
+      "bed_utilization": 26.4,
+      "bed_util_units": 1.85,
+      "missed_appointments": 28,
+      "staff_count": 21,
+      "sales": 3444110,
+      "visitors": 708,
+      "customer": {
+        "visitors_by_age": {
+          "不明": {
+            "male": 29,
+            "female": 29,
+            "total": 68
+          },
+          "～20": {
+            "male": 4,
+            "female": 0,
+            "total": 4
+          },
+          "20～": {
+            "male": 25,
+            "female": 27,
+            "total": 52
+          },
+          "30～": {
+            "male": 54,
+            "female": 25,
+            "total": 81
+          },
+          "40～": {
+            "male": 82,
+            "female": 40,
+            "total": 124
+          },
+          "50～": {
+            "male": 88,
+            "female": 44,
+            "total": 134
+          },
+          "60～": {
+            "male": 37,
+            "female": 27,
+            "total": 64
+          },
+          "70～": {
+            "male": 19,
+            "female": 15,
+            "total": 34
+          },
+          "計": {
+            "male": 338,
+            "female": 207,
+            "total": 561
+          }
+        },
+        "age_pct": {
+          "不明": 12.1,
+          "～20": 0.7,
+          "20～": 9.3,
+          "30～": 14.4,
+          "40～": 22.1,
+          "50～": 23.9,
+          "60～": 11.4,
+          "70～": 6.1
+        },
+        "gender_visitors": {
+          "male": 338,
+          "female": 207
+        },
+        "total_visit_count": 708,
+        "unique_customers": 151,
+        "visit_frequency_1x_pct": 64.3,
+        "visit_frequency": {
+          "1回": {
+            "people": 455,
+            "pct": 64.3
+          },
+          "2回": {
+            "people": 77,
+            "pct": 21.8
+          },
+          "3回": {
+            "people": 12,
+            "pct": 5.1
+          },
+          "4回": {
+            "people": 9,
+            "pct": 5.1
+          },
+          "5回～": {
+            "people": 4,
+            "pct": 3.8
+          }
+        }
+      }
+    },
+    "202604": {
+      "new_visitors": 119,
+      "new_repeat_ratio": 16.7,
+      "unit_price": 4876.1,
+      "bed_utilization": 27.2,
+      "bed_util_units": 1.91,
+      "missed_appointments": 21,
+      "staff_count": 22,
+      "sales": 3457160,
+      "visitors": 709,
+      "customer": {
+        "visitors_by_age": {
+          "不明": {
+            "male": 25,
+            "female": 18,
+            "total": 57
+          },
+          "～20": {
+            "male": 2,
+            "female": 0,
+            "total": 2
+          },
+          "20～": {
+            "male": 27,
+            "female": 35,
+            "total": 62
+          },
+          "30～": {
+            "male": 47,
+            "female": 22,
+            "total": 71
+          },
+          "40～": {
+            "male": 80,
+            "female": 50,
+            "total": 131
+          },
+          "50～": {
+            "male": 80,
+            "female": 44,
+            "total": 128
+          },
+          "60～": {
+            "male": 36,
+            "female": 23,
+            "total": 59
+          },
+          "70～": {
+            "male": 26,
+            "female": 10,
+            "total": 36
+          },
+          "計": {
+            "male": 323,
+            "female": 202,
+            "total": 546
+          }
+        },
+        "age_pct": {
+          "不明": 10.4,
+          "～20": 0.4,
+          "20～": 11.4,
+          "30～": 13.0,
+          "40～": 24.0,
+          "50～": 23.4,
+          "60～": 10.8,
+          "70～": 6.6
+        },
+        "gender_visitors": {
+          "male": 323,
+          "female": 202
+        },
+        "total_visit_count": 709,
+        "unique_customers": 166,
+        "visit_frequency_1x_pct": 61.6,
+        "visit_frequency": {
+          "1回": {
+            "people": 437,
+            "pct": 61.6
+          },
+          "2回": {
+            "people": 72,
+            "pct": 20.3
+          },
+          "3回": {
+            "people": 18,
+            "pct": 7.6
+          },
+          "4回": {
+            "people": 12,
+            "pct": 6.8
+          },
+          "5回～": {
+            "people": 4,
+            "pct": 3.7
+          }
+        }
+      }
+    },
+    "202605": {
+      "new_visitors": 98,
+      "new_repeat_ratio": 13.9,
+      "unit_price": 4901.42,
+      "bed_utilization": 26.3,
+      "bed_util_units": 1.84,
+      "missed_appointments": 35,
+      "staff_count": 21,
+      "sales": 3440800,
+      "visitors": 702,
+      "customer": {
+        "visitors_by_age": {
+          "不明": {
+            "male": 23,
+            "female": 20,
+            "total": 54
+          },
+          "～20": {
+            "male": 1,
+            "female": 2,
+            "total": 3
+          },
+          "20～": {
+            "male": 22,
+            "female": 25,
+            "total": 47
+          },
+          "30～": {
+            "male": 54,
+            "female": 25,
+            "total": 84
+          },
+          "40～": {
+            "male": 91,
+            "female": 42,
+            "total": 135
+          },
+          "50～": {
+            "male": 68,
+            "female": 47,
+            "total": 116
+          },
+          "60～": {
+            "male": 34,
+            "female": 24,
+            "total": 58
+          },
+          "70～": {
+            "male": 24,
+            "female": 11,
+            "total": 36
+          },
+          "計": {
+            "male": 317,
+            "female": 196,
+            "total": 533
+          }
+        },
+        "age_pct": {
+          "不明": 10.1,
+          "～20": 0.6,
+          "20～": 8.8,
+          "30～": 15.8,
+          "40～": 25.3,
+          "50～": 21.8,
+          "60～": 10.9,
+          "70～": 6.8
+        },
+        "gender_visitors": {
+          "male": 317,
+          "female": 196
+        },
+        "total_visit_count": 702,
+        "unique_customers": 172,
+        "visit_frequency_1x_pct": 59.3,
+        "visit_frequency": {
+          "1回": {
+            "people": 416,
+            "pct": 59.3
+          },
+          "2回": {
+            "people": 80,
+            "pct": 22.8
+          },
+          "3回": {
+            "people": 23,
+            "pct": 9.8
+          },
+          "4回": {
+            "people": 6,
+            "pct": 3.4
+          },
+          "5回～": {
+            "people": 5,
+            "pct": 4.7
+          }
+        }
+      }
+    },
+    "202606": {
+      "new_visitors": 91,
+      "new_repeat_ratio": 12.7,
+      "unit_price": 4759.45,
+      "bed_utilization": 26.6,
+      "bed_util_units": 1.86,
+      "missed_appointments": 32,
+      "staff_count": 24,
+      "sales": 3383970,
+      "visitors": 711,
+      "customer": {
+        "visitors_by_age": {
+          "不明": {
+            "male": 37,
+            "female": 27,
+            "total": 75
+          },
+          "～20": {
+            "male": 3,
+            "female": 1,
+            "total": 4
+          },
+          "20～": {
+            "male": 22,
+            "female": 27,
+            "total": 51
+          },
+          "30～": {
+            "male": 57,
+            "female": 29,
+            "total": 87
+          },
+          "40～": {
+            "male": 82,
+            "female": 40,
+            "total": 123
+          },
+          "50～": {
+            "male": 71,
+            "female": 37,
+            "total": 111
+          },
+          "60～": {
+            "male": 29,
+            "female": 24,
+            "total": 53
+          },
+          "70～": {
+            "male": 26,
+            "female": 12,
+            "total": 39
+          },
+          "計": {
+            "male": 327,
+            "female": 197,
+            "total": 543
+          }
+        },
+        "age_pct": {
+          "不明": 13.8,
+          "～20": 0.7,
+          "20～": 9.4,
+          "30～": 16.0,
+          "40～": 22.7,
+          "50～": 20.4,
+          "60～": 9.8,
+          "70～": 7.2
+        },
+        "gender_visitors": {
+          "male": 327,
+          "female": 197
+        },
+        "total_visit_count": 711,
+        "unique_customers": 170,
+        "visit_frequency_1x_pct": 61.3,
+        "visit_frequency": {
+          "1回": {
+            "people": 436,
+            "pct": 61.3
+          },
+          "2回": {
+            "people": 69,
+            "pct": 19.4
+          },
+          "3回": {
+            "people": 21,
+            "pct": 8.9
+          },
+          "4回": {
+            "people": 8,
+            "pct": 4.5
+          },
+          "5回～": {
+            "people": 7,
+            "pct": 5.9
+          }
+        }
+      }
+    }
+  },
+  "insights_draft": [
+    "300万超FC — 来客711人・客単価約4,759円のバランス型",
+    "ベッド7台・稼働率26.6% — 中稼働・設備余力あり",
+    "年間を通じ300万前後を安定維持",
+    "新規比率12.7%",
+    "取りこぼし32件"
+  ],
+  "success_tier": "300万超（2026/06）",
+  "benchmark_note": "2026/06 実売上¥3,383,970 — FC300万超店舗。来客711人。"
+}

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f5f2ec;
+      --surface: #fff;
+      --ink: #1c1917;
+      --muted: #78716c;
+      --line: #e7e5e4;
+      --accent: #b45309;
+      --accent-soft: #fff7ed;
+      --ok: #15803d;
+      --warn: #b45309;
+      --err: #b91c1c;
+      --sidebar: 300px;
+      --radius: 10px;
+      --font: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font); background: var(--bg); color: var(--ink); font-size: 13px; }
+    .app { display: flex; flex-direction: column; height: 100vh; }
+    .topbar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+      padding: 14px 18px; background: var(--surface); border-bottom: 1px solid var(--line);
+    }
+    .topbar h1 { margin: 0; font-size: 18px; flex: 1; min-width: 200px; }
+    .topbar input[type="month"], .topbar input[type="search"] {
+      font: inherit; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
+    }
+    .stats { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stat {
+      font-size: 11px; padding: 4px 10px; border-radius: 999px; background: #f5f5f4;
+      border: 1px solid var(--line); cursor: pointer;
+    }
+    .stat.active { background: var(--accent-soft); border-color: #fdba74; color: var(--accent); font-weight: 700; }
+    .stat.attn { background: #fef3c7; border-color: #fcd34d; }
+    .main { display: flex; flex: 1; min-height: 0; }
+    .sidebar {
+      width: var(--sidebar); border-right: 1px solid var(--line);
+      background: var(--surface); display: flex; flex-direction: column; min-height: 0;
+    }
+    .filter-row { padding: 10px 12px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      font-size: 11px; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--line);
+      background: #fafaf9; cursor: pointer;
+    }
+    .chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .shop-list { overflow-y: auto; flex: 1; }
+    .shop-item {
+      padding: 10px 12px; border-bottom: 1px solid var(--line); cursor: pointer;
+    }
+    .shop-item:hover { background: #fafaf9; }
+    .shop-item.active { background: var(--accent-soft); border-left: 3px solid var(--accent); }
+    .shop-item .name { font-weight: 700; font-size: 13px; }
+    .shop-item .sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .badges { margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px; }
+    .badge {
+      font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px;
+      background: #f5f5f4; color: var(--muted);
+    }
+    .badge.ok { background: #dcfce7; color: var(--ok); }
+    .badge.warn { background: #fef3c7; color: #92400e; }
+    .badge.err { background: #fee2e2; color: var(--err); }
+    .badge.theme { background: #e0e7ff; color: #3730a3; }
+    .detail { flex: 1; overflow-y: auto; padding: 16px 18px; min-width: 0; }
+    .empty-detail {
+      display: flex; align-items: center; justify-content: center; height: 100%;
+      color: var(--muted); font-size: 14px;
+    }
+    .panel {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 14px 16px; margin-bottom: 14px;
+    }
+    .panel h2 { margin: 0 0 12px; font-size: 15px; }
+    .panel h3 { margin: 0 0 8px; font-size: 13px; color: var(--muted); font-weight: 600; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    @media (max-width: 1100px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+    .kpi-card {
+      background: #fafaf9; border-radius: 8px; padding: 10px 12px; border: 1px solid var(--line);
+    }
+    .kpi-card .label { font-size: 11px; color: var(--muted); }
+    .kpi-card .value { font-size: 18px; font-weight: 700; margin-top: 4px; }
+    .spark { display: flex; align-items: flex-end; gap: 3px; height: 56px; margin-top: 8px; }
+    .spark .bar {
+      flex: 1; background: #fdba74; border-radius: 2px 2px 0 0; min-height: 2px;
+    }
+    .spark .bar.empty { background: #e7e5e4; }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+    .field { display: flex; flex-direction: column; gap: 4px; }
+    .field label { font-size: 11px; font-weight: 600; color: var(--muted); }
+    .field input, textarea {
+      font: inherit; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
+    }
+    textarea { width: 100%; min-height: 260px; resize: vertical; line-height: 1.65; }
+    .upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .drop {
+      border: 1.5px dashed #d6d3d1; border-radius: 8px; padding: 12px;
+      background: #fafaf9; text-align: center; font-size: 12px;
+    }
+    .drop input { width: 100%; font-size: 11px; }
+    button {
+      font: inherit; border: none; border-radius: 8px; padding: 8px 12px;
+      cursor: pointer; font-weight: 600; font-size: 12px;
+    }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-p { background: var(--accent); color: #fff; }
+    .btn-s { background: #f5f5f4; border: 1px solid var(--line); }
+    .btn-g { background: transparent; color: var(--accent); border: 1px solid #fdba74; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    #banner {
+      display: none; margin: 0 18px 10px; padding: 10px 12px; border-radius: 8px; font-size: 12px;
+    }
+    #banner.error { display: block; background: #fef2f2; color: var(--err); border: 1px solid #fecaca; }
+    #banner.info { display: block; background: #eff6ff; color: #1d4ed8; }
+    #banner.success { display: block; background: #f0fdf4; color: var(--ok); }
+    /* 従来: 画面全体を操作不能にしていたが、重いAPIで「固まった」ように見えるため右ペインだけに限定 */
+    .detail.loading { opacity: 0.55; pointer-events: none; }
+    .kpi-form { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    @media (max-width: 900px) { .kpi-form { grid-template-columns: 1fr 1fr; } }
+    .file-links { font-size: 12px; margin-top: 8px; }
+    .file-links a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <div class="topbar">
+      <h1>月次スーパーバイジング コックピット</h1>
+      <input type="month" id="ym" title="対象月" />
+      <input type="search" id="search" placeholder="店舗名で検索…" style="width:180px" />
+      <span id="apiNote" style="font-size:11px;color:var(--muted)"></span>
+    </div>
+    <div id="banner"></div>
+    <div class="main">
+      <aside class="sidebar">
+        <div class="stats" id="statsBar" style="padding:10px 12px;border-bottom:1px solid var(--line)"></div>
+        <div class="filter-row" id="filterRow">
+          <span class="chip active" data-filter="all">すべて</span>
+          <span class="chip" data-filter="attention">要対応</span>
+          <span class="chip" data-filter="none">未着手</span>
+          <span class="chip" data-filter="draft">下書き</span>
+          <span class="chip" data-filter="approved">承認済</span>
+        </div>
+        <div class="filter-row">
+          <span class="chip" data-filter="集客">集客</span>
+          <span class="chip" data-filter="求人">求人</span>
+          <span class="chip" data-filter="両方">両方</span>
+          <span class="chip" data-filter="好調">好調</span>
+        </div>
+        <div class="shop-list" id="shopList"></div>
+      </aside>
+      <div class="detail" id="detail">
+        <div class="empty-detail">左の一覧から店舗を選択してください</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var state = {
+      targetYm: '',
+      filter: 'all',
+      search: '',
+      shops: [],
+      selectedShop: '',
+      maxPdfMb: 8,
+    };
+
+    window.addEventListener('error', function (ev) {
+      try {
+        var msg = (ev && ev.message) ? ev.message : '画面の初期化でエラーが発生しました。';
+        showBanner('error', msg);
+        setLoading(false);
+      } catch (e) {
+        // noop
+      }
+    });
+
+    function ensureGasBridge_() {
+      if (!window.google || !google.script || !google.script.run) {
+        showBanner(
+          'error',
+          'GAS への接続に失敗しました（google.script.run が利用できません）。この画面はスプレッドシートのメニューから開いてください。'
+        );
+        setLoading(false);
+        return false;
+      }
+      return true;
+    }
+
+    function ymToInput(ym) {
+      if (!ym || ym.length !== 6) return '';
+      return ym.slice(0, 4) + '-' + ym.slice(4, 6);
+    }
+    function inputToYm(v) { return String(v || '').replace('-', ''); }
+
+    function showBanner(type, msg) {
+      var el = document.getElementById('banner');
+      el.className = type;
+      el.textContent = msg;
+    }
+    function clearBanner() {
+      var el = document.getElementById('banner');
+      el.className = '';
+      el.textContent = '';
+    }
+    function setLoading(on) {
+      document.getElementById('detail').classList.toggle('loading', on);
+    }
+
+    function withTimeout(ms, onTimeout) {
+      var done = false;
+      var t = setTimeout(function () {
+        if (done) return;
+        done = true;
+        try { onTimeout(); } catch (e) {}
+      }, ms);
+      return function finish() {
+        if (done) return;
+        done = true;
+        clearTimeout(t);
+      };
+    }
+
+    function statusBadge(workStatus) {
+      if (workStatus === 'approved') return '<span class="badge ok">承認済</span>';
+      if (workStatus === 'draft') return '<span class="badge warn">下書き</span>';
+      return '<span class="badge err">未着手</span>';
+    }
+
+    function renderStats(stats) {
+      var bar = document.getElementById('statsBar');
+      bar.innerHTML =
+        '<span class="stat' + (state.filter === 'all' ? ' active' : '') + '" data-filter="all">全' + stats.all + '</span>' +
+        '<span class="stat attn' + (state.filter === 'attention' ? ' active' : '') + '" data-filter="attention">要対応 ' + stats.attention + '</span>' +
+        '<span class="stat' + (state.filter === 'approved' ? ' active' : '') + '" data-filter="approved">承認 ' + stats.approved + '</span>' +
+        '<span class="stat' + (state.filter === 'draft' ? ' active' : '') + '" data-filter="draft">下書き ' + stats.draft + '</span>';
+      bar.querySelectorAll('.stat').forEach(function (el) {
+        el.onclick = function () {
+          state.filter = el.getAttribute('data-filter');
+          loadDashboard();
+        };
+      });
+    }
+
+    function renderShopList(shops) {
+      var list = document.getElementById('shopList');
+      if (!shops.length) {
+        list.innerHTML = '<div style="padding:16px;color:var(--muted)">該当店舗がありません</div>';
+        return;
+      }
+      list.innerHTML = shops.map(function (s) {
+        var theme = s.priorityTheme
+          ? '<span class="badge theme">' + s.priorityTheme + '</span>' : '';
+        var pdf = '';
+        if (!s.hasMonthlyPdf || !s.hasAnalysisPdf) {
+          pdf = '<span class="badge warn">PDF不足</span>';
+        }
+        return (
+          '<div class="shop-item' + (s.kintoneShopName === state.selectedShop ? ' active' : '') + '" data-shop="' + s.kintoneShopName + '">' +
+          '<div class="name">' + s.kintoneShopName + '</div>' +
+          '<div class="sub">' + s.name + '</div>' +
+          '<div class="badges">' + statusBadge(s.workStatus) + theme + pdf +
+          (s.attention ? '<span class="badge warn">!</span>' : '') + '</div>' +
+          '<div class="sub">売上 ' + s.salesLabel + ' / 稼働 ' + s.bedUtilizationLabel + '</div>' +
+          '</div>'
+        );
+      }).join('');
+      list.querySelectorAll('.shop-item').forEach(function (el) {
+        el.onclick = function () {
+          state.selectedShop = el.getAttribute('data-shop');
+          renderShopList(state.shops);
+          loadShopPanel();
+        };
+      });
+    }
+
+    function renderSpark(trend) {
+      if (!trend || !trend.length) {
+        return '<p style="color:var(--muted);font-size:12px;margin:0">KPI未登録のため推移なし（店舗月次KPIタブに入力すると表示）</p>';
+      }
+      var vals = trend.map(function (t) { return t.sales || 0; });
+      var max = Math.max.apply(null, vals.concat([1]));
+      return '<div class="spark">' + trend.map(function (t) {
+        var h = t.sales ? Math.max(4, Math.round((t.sales / max) * 52)) : 2;
+        return '<div class="bar' + (t.sales ? '' : ' empty') + '" style="height:' + h + 'px" title="' + t.targetYm + '"></div>';
+      }).join('') + '</div>';
+    }
+
+    function fmtNum(v) {
+      if (v == null || v === '') return '';
+      return String(v);
+    }
+
+    function renderDetail(panel) {
+      if (!panel || !panel.record) {
+        document.getElementById('detail').innerHTML =
+          '<div class="empty-detail">店舗詳細を取得できませんでした（データが空です）。</div>';
+        return;
+      }
+      var rec = panel.record;
+      var kpi = panel.kpi || {};
+      var detail = document.getElementById('detail');
+      detail.innerHTML =
+        '<div class="panel">' +
+        '<h2>' + panel.shop.kintoneShopName + '（' + panel.shop.name + '）— ' + panel.targetLabel + '</h2>' +
+        '<div class="badges" style="margin-bottom:8px">' +
+        statusBadge(panel.workStatus) +
+        (panel.priorityTheme ? '<span class="badge theme">' + panel.priorityTheme + '</span>' : '') +
+        (panel.attention ? '<span class="badge warn">要対応</span>' : '') +
+        '</div>' +
+        '<div class="kpi-grid">' +
+        '<div class="kpi-card"><div class="label">実売上</div><div class="value">' + (kpi.sales != null ? '¥' + Math.round(kpi.sales).toLocaleString() : '—') + '</div></div>' +
+        '<div class="kpi-card"><div class="label">ベッド稼働率</div><div class="value">' + (kpi.bedUtilization != null ? kpi.bedUtilization + '%' : '—') + '</div></div>' +
+        '<div class="kpi-card"><div class="label">取りこぼし</div><div class="value">' + (kpi.missedAppointments != null ? kpi.missedAppointments + '件' : '—') + '</div></div>' +
+        '<div class="kpi-card"><div class="label">来客数</div><div class="value">' + (kpi.visitors != null ? kpi.visitors + '人' : '—') + '</div></div>' +
+        '</div>' +
+        '<h3 style="margin-top:14px">実売上推移（12ヶ月）</h3>' +
+        '<div id="sparkBox"><p style="color:var(--muted);font-size:12px;margin:0">推移を読み込み中…</p></div>' +
+        '</div>' +
+
+        '<div class="panel"><h2>KPI手入力（レポート数値）</h2>' +
+        '<p style="font-size:12px;color:var(--muted);margin:0 0 10px">自動抽出前はここに入力。岩出店例: 売上2702580 / 稼働20 / 取りこぼし31</p>' +
+        '<div class="kpi-form" id="kpiForm">' +
+        '<div class="field"><label>実売上</label><input id="kpiSales" type="number" value="' + fmtNum(kpi.sales) + '" /></div>' +
+        '<div class="field"><label>来客数</label><input id="kpiVisitors" type="number" value="' + fmtNum(kpi.visitors) + '" /></div>' +
+        '<div class="field"><label>客単価</label><input id="kpiUnit" type="number" value="' + fmtNum(kpi.unitPrice) + '" /></div>' +
+        '<div class="field"><label>ベッド稼働率(%)</label><input id="kpiUtil" type="number" step="0.1" value="' + fmtNum(kpi.bedUtilization) + '" /></div>' +
+        '<div class="field"><label>取りこぼし(件)</label><input id="kpiMissed" type="number" value="' + fmtNum(kpi.missedAppointments) + '" /></div>' +
+        '<div class="field"><label>優先テーマ</label><input id="kpiTheme" placeholder="集客/求人/両方" value="' + (kpi.priorityTheme || '') + '" /></div>' +
+        '</div>' +
+        '<div class="actions"><button class="btn-s" id="btnSaveKpi">KPIを保存</button></div></div>' +
+
+        '<div class="panel"><h2>レポート PDF</h2>' +
+        '<div class="upload-grid">' +
+        '<div class="drop"><label>月次レポート</label><input type="file" id="monthlyFile" accept=".pdf" /><div class="file-links" id="monthlyLink">' +
+        (rec.monthlyPdfName ? rec.monthlyPdfName + ' <a href="' + rec.monthlyPdfUrl + '" target="_blank">Drive</a>' : '未登録') + '</div></div>' +
+        '<div class="drop"><label>顧客分析</label><input type="file" id="analysisFile" accept=".pdf" /><div class="file-links" id="analysisLink">' +
+        (rec.analysisPdfName ? rec.analysisPdfName + ' <a href="' + rec.analysisPdfUrl + '" target="_blank">Drive</a>' : '未登録') + '</div></div>' +
+        '</div>' +
+        '<div class="actions">' +
+        '<button class="btn-p" id="btnUpload">アップロード</button>' +
+        '<button class="btn-s" id="btnLoadDrive">店舗フォルダから読込</button>' +
+        '<button class="btn-g" id="btnGenerate">AI下書き生成</button>' +
+        '</div></div>' +
+
+        '<div class="panel"><h2>スーパーバイジング（編集）</h2>' +
+        '<textarea id="comment">' + (rec.editedBody || rec.aiDraft || '') + '</textarea>' +
+        '<div class="actions">' +
+        '<button class="btn-p" id="btnSave">下書き保存</button>' +
+        '<button class="btn-s" id="btnApprove">承認済みにする</button>' +
+        '</div></div>';
+
+      document.getElementById('btnSaveKpi').onclick = saveKpi;
+      document.getElementById('btnUpload').onclick = uploadFiles;
+      document.getElementById('btnLoadDrive').onclick = loadDrive;
+      document.getElementById('btnGenerate').onclick = generateDraft;
+      document.getElementById('btnSave').onclick = function () { saveComment('draft'); };
+      document.getElementById('btnApprove').onclick = function () { saveComment('approved'); };
+
+      loadTrendAsync(panel.shop.kintoneShopName, panel.targetYm);
+    }
+
+    function loadTrendAsync(kintoneShopName, endYm) {
+      var box = document.getElementById('sparkBox');
+      if (!box) return;
+      if (!ensureGasBridge_()) return;
+      google.script.run
+        .withSuccessHandler(function (trend) {
+          var box2 = document.getElementById('sparkBox');
+          if (!box2) return;
+          box2.innerHTML = renderSpark(trend);
+        })
+        .withFailureHandler(function (err) {
+          var box3 = document.getElementById('sparkBox');
+          if (!box3) return;
+          box3.innerHTML =
+            '<p style="color:var(--err);font-size:12px;margin:0">推移の読み込みに失敗しました: ' +
+            (err && err.message ? err.message : String(err)) +
+            '</p>';
+        })
+        .cockpitGetKpiTrend(kintoneShopName, endYm, 12);
+    }
+
+    function loadDashboard(keepSelection) {
+      clearBanner();
+      setLoading(true);
+      if (!ensureGasBridge_()) return;
+      var finish = withTimeout(30000, function () {
+        showBanner('error', '読み込みがタイムアウトしました。時間をおいて再試行してください。');
+        setLoading(false);
+      });
+      google.script.run
+        .withSuccessHandler(function (data) {
+          finish();
+          try {
+            state.targetYm = data.targetYm;
+            state.shops = data.shops || [];
+            document.getElementById('ym').value = ymToInput(data.targetYm);
+            document.getElementById('apiNote').textContent = data.hasApiKey ? 'Claude API: OK' : 'Claude API: 未設定';
+            state.maxPdfMb = data.maxPdfMb || 8;
+            renderStats(data.stats);
+            if (!keepSelection || !state.selectedShop) {
+              state.selectedShop = state.shops.length ? state.shops[0].kintoneShopName : '';
+            }
+            renderShopList(state.shops);
+            updateFilterChips();
+            if (state.selectedShop) loadShopPanel();
+            else document.getElementById('detail').innerHTML = '<div class="empty-detail">店舗がありません</div>';
+          } catch (e) {
+            showBanner('error', e && e.message ? e.message : String(e));
+          } finally {
+            setLoading(false);
+          }
+        })
+        .withFailureHandler(function (err) {
+          finish();
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        })
+        .cockpitGetDashboard(state.targetYm, state.filter, state.search);
+    }
+
+    function updateFilterChips() {
+      document.querySelectorAll('.chip').forEach(function (el) {
+        el.classList.toggle('active', el.getAttribute('data-filter') === state.filter);
+        el.onclick = function () {
+          state.filter = el.getAttribute('data-filter');
+          loadDashboard(true);
+        };
+      });
+    }
+
+    function loadShopPanel() {
+      if (!state.selectedShop) return;
+      setLoading(true);
+      if (!ensureGasBridge_()) return;
+      var finish = withTimeout(45000, function () {
+        showBanner('error', '店舗詳細の読み込みがタイムアウトしました（店舗フォルダ探索が重い可能性）。別店舗を選ぶか、時間をおいて再試行してください。');
+        setLoading(false);
+      });
+      google.script.run
+        .withSuccessHandler(function (panel) {
+          finish();
+          try {
+            if (!panel || !panel.record) {
+              // フォールバック（JSON文字列で再取得）
+              google.script.run
+                .withSuccessHandler(function (json) {
+                  try {
+                    var obj = json ? JSON.parse(json) : null;
+                    renderDetail(obj);
+                  } catch (e2) {
+                    showBanner('error', '詳細の再取得に失敗しました: ' + (e2 && e2.message ? e2.message : String(e2)));
+                  } finally {
+                    setLoading(false);
+                  }
+                })
+                .withFailureHandler(function (err2) {
+                  showBanner('error', err2 && err2.message ? err2.message : String(err2));
+                  setLoading(false);
+                })
+                .cockpitGetShopPanelJson(state.targetYm, state.selectedShop);
+              return;
+            }
+            renderDetail(panel);
+          } catch (e) {
+            showBanner('error', '描画エラー: ' + (e && e.message ? e.message : String(e)));
+          } finally {
+            setLoading(false);
+          }
+        })
+        .withFailureHandler(function (err) {
+          finish();
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        })
+        .cockpitGetShopPanel(state.targetYm, state.selectedShop);
+    }
+
+    function readFileAsBase64(file) {
+      return new Promise(function (resolve, reject) {
+        if (!file) return resolve(null);
+        if (file.size > state.maxPdfMb * 1024 * 1024) {
+          reject(new Error('ファイルが大きすぎます'));
+          return;
+        }
+        var reader = new FileReader();
+        reader.onload = function () {
+          var r = reader.result || '';
+          var i = String(r).indexOf(',');
+          resolve(i >= 0 ? r.slice(i + 1) : r);
+        };
+        reader.onerror = function () { reject(reader.error); };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function saveKpi() {
+      var payload = {
+        targetYm: state.targetYm,
+        kintoneShopName: state.selectedShop,
+        sales: document.getElementById('kpiSales').value,
+        visitors: document.getElementById('kpiVisitors').value,
+        unitPrice: document.getElementById('kpiUnit').value,
+        bedUtilization: document.getElementById('kpiUtil').value,
+        missedAppointments: document.getElementById('kpiMissed').value,
+        priorityTheme: document.getElementById('kpiTheme').value,
+      };
+      setLoading(true);
+      if (!ensureGasBridge_()) return;
+      google.script.run
+        .withSuccessHandler(function () {
+          showBanner('success', 'KPIを保存しました。');
+          loadDashboard(true);
+        })
+        .withFailureHandler(function (err) {
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        })
+        .cockpitSaveKpi(payload);
+    }
+
+    function uploadFiles() {
+      var mf = document.getElementById('monthlyFile').files[0];
+      var af = document.getElementById('analysisFile').files[0];
+      if (!mf && !af) { showBanner('error', 'PDFを選択してください'); return; }
+      setLoading(true);
+      if (!ensureGasBridge_()) return;
+      Promise.all([readFileAsBase64(mf), readFileAsBase64(af)]).then(function (parts) {
+        var payload = { targetYm: state.targetYm, kintoneShopName: state.selectedShop };
+        if (parts[0]) payload.monthly = { name: mf.name, data: parts[0] };
+        if (parts[1]) payload.analysis = { name: af.name, data: parts[1] };
+        google.script.run
+          .withSuccessHandler(function () {
+            showBanner('success', 'PDFを保存しました');
+            loadDashboard(true);
+          })
+          .withFailureHandler(function (err) {
+            showBanner('error', err.message || String(err));
+            setLoading(false);
+          })
+          .cockpitUploadFiles(payload);
+      });
+    }
+
+    function loadDrive() {
+      setLoading(true);
+      if (!ensureGasBridge_()) return;
+      google.script.run
+        .withSuccessHandler(function () {
+          showBanner('success', 'Driveから読み込みました');
+          loadDashboard(true);
+        })
+        .withFailureHandler(function (err) {
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        })
+        .cockpitLoadFromStoreFolder(state.targetYm, state.selectedShop);
+    }
+
+    function generateDraft() {
+      showBanner('info', 'AI下書きを生成中…');
+      setLoading(true);
+      if (!ensureGasBridge_()) return;
+      google.script.run
+        .withSuccessHandler(function () {
+          showBanner('success', 'AI下書きを生成しました');
+          loadDashboard(true);
+        })
+        .withFailureHandler(function (err) {
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        })
+        .cockpitGenerateDraft(state.targetYm, state.selectedShop);
+    }
+
+    function saveComment(status) {
+      var body = document.getElementById('comment').value;
+      if (status === 'approved' && !body.trim()) {
+        showBanner('error', '本文が空です');
+        return;
+      }
+      setLoading(true);
+      if (!ensureGasBridge_()) return;
+      google.script.run
+        .withSuccessHandler(function () {
+          showBanner('success', status === 'approved' ? '承認済みにしました' : '保存しました');
+          loadDashboard(true);
+        })
+        .withFailureHandler(function (err) {
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        })
+        .cockpitSaveComment(state.targetYm, state.selectedShop, body, status);
+    }
+
+    document.getElementById('ym').addEventListener('change', function () {
+      state.targetYm = inputToYm(document.getElementById('ym').value);
+      state.selectedShop = '';
+      loadDashboard();
+    });
+    document.getElementById('search').addEventListener('input', function () {
+      state.search = document.getElementById('search').value;
+      clearTimeout(window._searchTimer);
+      window._searchTimer = setTimeout(function () { loadDashboard(true); }, 300);
+    });
+
+    // IME入力（日本語）で input が確定前に走って取りこぼすことがあるため、確定タイミングでも再検索
+    document.getElementById('search').addEventListener('compositionend', function () {
+      state.search = document.getElementById('search').value;
+      loadDashboard(true);
+    });
+
+    loadDashboard();
+  </script>
+</body>
+</html>

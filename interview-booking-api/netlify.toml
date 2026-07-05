@@ -1,0 +1,24 @@
+[build]
+  command = "npm install"
+  publish = "public"
+  functions = "netlify/functions"
+
+# momikaru-recruit-ai が壊れたサブモジュール参照のため、チェックアウトをスキップ
+[build.environment]
+  GIT_SUBMODULE_STRATEGY = "none"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[headers]]
+  for = "/widget/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Headers = "Content-Type"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"

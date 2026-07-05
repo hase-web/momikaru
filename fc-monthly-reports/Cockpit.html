@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f6f4f0;
+      --surface: #ffffff;
+      --ink: #1c1917;
+      --muted: #57534e;
+      --line: #e7e5e4;
+      --accent: #b45309;
+      --accent-soft: #fff7ed;
+      --ok: #15803d;
+      --err: #b91c1c;
+      --radius: 10px;
+      --font: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .wrap { padding: 20px 24px 28px; max-width: 1200px; margin: 0 auto; }
+    h1 {
+      margin: 0 0 4px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .sub { color: var(--muted); margin: 0 0 20px; font-size: 13px; }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+    .field { display: flex; flex-direction: column; gap: 6px; min-width: 180px; }
+    .field.grow { flex: 1; min-width: 220px; }
+    label { font-size: 12px; font-weight: 600; color: var(--muted); }
+    select, input[type="month"], textarea {
+      font: inherit;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 11px;
+      background: #fff;
+      color: var(--ink);
+    }
+    select:focus, input:focus, textarea:focus {
+      outline: 2px solid #fed7aa;
+      border-color: var(--accent);
+    }
+    textarea {
+      width: 100%;
+      min-height: 320px;
+      resize: vertical;
+      line-height: 1.65;
+    }
+    .upload-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 720px) {
+      .upload-grid { grid-template-columns: 1fr; }
+    }
+    .drop {
+      border: 1.5px dashed #d6d3d1;
+      border-radius: 8px;
+      padding: 14px;
+      background: #fafaf9;
+      text-align: center;
+    }
+    .drop input[type="file"] { width: 100%; font-size: 12px; }
+    .drop .hint { font-size: 11px; color: var(--muted); margin-top: 6px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    button {
+      font: inherit;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary { background: #f5f5f4; color: var(--ink); border: 1px solid var(--line); }
+    .btn-ghost { background: transparent; color: var(--accent); border: 1px solid #fdba74; }
+    .layout { display: grid; grid-template-columns: 300px 1fr; gap: 16px; }
+    @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+    .status-list { list-style: none; margin: 0; padding: 0; }
+    .status-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+    .status-list li:last-child { border-bottom: none; }
+    .status-list .k { color: var(--muted); font-size: 11px; display: block; margin-bottom: 2px; }
+    .status-list a { color: var(--accent); word-break: break-all; }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .badge.ok { background: #dcfce7; color: var(--ok); }
+    .badge.warn { background: #fef3c7; color: #92400e; }
+    #banner {
+      display: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      font-size: 13px;
+    }
+    #banner.error { display: block; background: #fef2f2; color: var(--err); border: 1px solid #fecaca; }
+    #banner.info { display: block; background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    #banner.success { display: block; background: #f0fdf4; color: var(--ok); border: 1px solid #bbf7d0; }
+    .loading { opacity: 0.6; pointer-events: none; }
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin: 0 0 10px;
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="app">
+    <h1>月次レポート コックピット</h1>
+    <p class="sub">PDFをアップロードしてスーパーバイジング下書きを生成・編集します（テスト・本番前確認用）</p>
+    <div id="banner"></div>
+
+    <div class="panel">
+      <div class="row">
+        <div class="field grow">
+          <label for="shop">店舗</label>
+          <select id="shop"></select>
+        </div>
+        <div class="field">
+          <label for="ym">対象月</label>
+          <input type="month" id="ym" />
+        </div>
+        <div class="field">
+          <label>状態</label>
+          <div><span class="badge" id="statusBadge">draft</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="section-title">レポート PDF（2ファイル）</p>
+      <div class="upload-grid">
+        <div class="drop">
+          <label>月次レポート PDF</label>
+          <input type="file" id="monthlyFile" accept=".pdf,application/pdf" />
+          <div class="hint" id="monthlyHint">未選択</div>
+        </div>
+        <div class="drop">
+          <label>顧客分析 PDF</label>
+          <input type="file" id="analysisFile" accept=".pdf,application/pdf" />
+          <div class="hint" id="analysisHint">未選択</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn-primary" id="btnUpload">アップロードして保存</button>
+        <button class="btn-secondary" id="btnLoadDrive">店舗フォルダから読み込み</button>
+        <button class="btn-ghost" id="btnGenerate">AI下書きを生成</button>
+      </div>
+      <p class="sub" style="margin:10px 0 0" id="apiNote"></p>
+    </div>
+
+    <div class="layout">
+      <div class="panel">
+        <p class="section-title">登録ファイル</p>
+        <ul class="status-list">
+          <li>
+            <span class="k">月次レポート</span>
+            <span id="monthlyStatus">—</span>
+          </li>
+          <li>
+            <span class="k">顧客分析</span>
+            <span id="analysisStatus">—</span>
+          </li>
+        </ul>
+      </div>
+      <div class="panel">
+        <p class="section-title">スーパーバイジングコメント（編集可）</p>
+        <textarea id="comment" placeholder="「AI下書きを生成」を押すと、ここに下書きが入ります。追記・修正してから保存してください。"></textarea>
+        <div class="actions">
+          <button class="btn-primary" id="btnSave">下書きを保存</button>
+          <button class="btn-secondary" id="btnApprove">承認済みにする</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var maxPdfMb = 8;
+
+    function ymToInput(yyyyMM) {
+      if (!yyyyMM || yyyyMM.length !== 6) return '';
+      return yyyyMM.slice(0, 4) + '-' + yyyyMM.slice(4, 6);
+    }
+
+    function inputToYm(val) {
+      return String(val || '').replace('-', '');
+    }
+
+    function showBanner(type, msg) {
+      var el = document.getElementById('banner');
+      el.className = type;
+      el.textContent = msg;
+    }
+
+    function clearBanner() {
+      var el = document.getElementById('banner');
+      el.className = '';
+      el.textContent = '';
+    }
+
+    function setLoading(on) {
+      document.getElementById('app').classList.toggle('loading', on);
+    }
+
+    function readFileAsBase64(file) {
+      return new Promise(function (resolve, reject) {
+        if (!file) return resolve(null);
+        if (file.size > maxPdfMb * 1024 * 1024) {
+          reject(new Error('ファイルが大きすぎます（上限 ' + maxPdfMb + 'MB）'));
+          return;
+        }
+        var reader = new FileReader();
+        reader.onload = function () {
+          var result = reader.result || '';
+          var idx = String(result).indexOf(',');
+          resolve(idx >= 0 ? result.slice(idx + 1) : result);
+        };
+        reader.onerror = function () { reject(reader.error || new Error('ファイル読込失敗')); };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function renderRecord(rec) {
+      document.getElementById('statusBadge').textContent = rec.status || 'draft';
+      document.getElementById('statusBadge').className = 'badge' + (rec.status === 'approved' ? ' ok' : '');
+
+      var monthlyHtml = rec.monthlyPdfName
+        ? rec.monthlyPdfName + (rec.monthlyPdfUrl ? ' <a href="' + rec.monthlyPdfUrl + '" target="_blank">Drive</a>' : '')
+        : '—';
+      var analysisHtml = rec.analysisPdfName
+        ? rec.analysisPdfName + (rec.analysisPdfUrl ? ' <a href="' + rec.analysisPdfUrl + '" target="_blank">Drive</a>' : '')
+        : '—';
+
+      document.getElementById('monthlyStatus').innerHTML = monthlyHtml;
+      document.getElementById('analysisStatus').innerHTML = analysisHtml;
+      document.getElementById('comment').value = rec.editedBody || rec.aiDraft || '';
+    }
+
+    function getSelection() {
+      return {
+        kintoneShopName: document.getElementById('shop').value,
+        targetYm: inputToYm(document.getElementById('ym').value),
+      };
+    }
+
+    function loadRecord() {
+      var sel = getSelection();
+      if (!sel.kintoneShopName || !sel.targetYm) return;
+      clearBanner();
+      setLoading(true);
+      google.script.run
+        .withSuccessHandler(function (rec) {
+          renderRecord(rec);
+          setLoading(false);
+        })
+        .withFailureHandler(function (err) {
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        })
+        .cockpitLoadRecord(sel.targetYm, sel.kintoneShopName);
+    }
+
+    function init() {
+      setLoading(true);
+      google.script.run
+        .withSuccessHandler(function (data) {
+          maxPdfMb = data.maxPdfMb || 8;
+          var shopSel = document.getElementById('shop');
+          shopSel.innerHTML = '';
+          (data.shops || []).forEach(function (s) {
+            var opt = document.createElement('option');
+            opt.value = s.kintoneShopName;
+            opt.textContent = s.kintoneShopName + '（' + s.name + '）';
+            shopSel.appendChild(opt);
+          });
+          document.getElementById('ym').value = ymToInput(data.defaultYm);
+          document.getElementById('apiNote').textContent = data.hasApiKey
+            ? 'Claude API: 設定済み'
+            : 'Claude API: 未設定（プロジェクトのスクリプト プロパティに ANTHROPIC_API_KEY を追加）';
+          loadRecord();
+        })
+        .withFailureHandler(function (err) {
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        })
+        .cockpitGetBootstrap();
+    }
+
+    document.getElementById('shop').addEventListener('change', loadRecord);
+    document.getElementById('ym').addEventListener('change', loadRecord);
+
+    document.getElementById('monthlyFile').addEventListener('change', function (e) {
+      var f = e.target.files[0];
+      document.getElementById('monthlyHint').textContent = f ? f.name + ' (' + Math.round(f.size / 1024) + ' KB)' : '未選択';
+    });
+    document.getElementById('analysisFile').addEventListener('change', function (e) {
+      var f = e.target.files[0];
+      document.getElementById('analysisHint').textContent = f ? f.name + ' (' + Math.round(f.size / 1024) + ' KB)' : '未選択';
+    });
+
+    document.getElementById('btnUpload').addEventListener('click', function () {
+      var sel = getSelection();
+      var monthlyFile = document.getElementById('monthlyFile').files[0];
+      var analysisFile = document.getElementById('analysisFile').files[0];
+      if (!monthlyFile && !analysisFile) {
+        showBanner('error', 'PDFを1つ以上選択してください。');
+        return;
+      }
+      clearBanner();
+      setLoading(true);
+      Promise.all([
+        readFileAsBase64(monthlyFile),
+        readFileAsBase64(analysisFile),
+      ])
+        .then(function (parts) {
+          var payload = {
+            targetYm: sel.targetYm,
+            kintoneShopName: sel.kintoneShopName,
+          };
+          if (parts[0]) payload.monthly = { name: monthlyFile.name, data: parts[0] };
+          if (parts[1]) payload.analysis = { name: analysisFile.name, data: parts[1] };
+          google.script.run
+            .withSuccessHandler(function (rec) {
+              renderRecord(rec);
+              showBanner('success', 'アップロードを保存しました。');
+              setLoading(false);
+            })
+            .withFailureHandler(function (err) {
+              showBanner('error', err.message || String(err));
+              setLoading(false);
+            })
+            .cockpitUploadFiles(payload);
+        })
+        .catch(function (err) {
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        });
+    });
+
+    document.getElementById('btnLoadDrive').addEventListener('click', function () {
+      var sel = getSelection();
+      clearBanner();
+      setLoading(true);
+      google.script.run
+        .withSuccessHandler(function (rec) {
+          renderRecord(rec);
+          showBanner('success', '店舗フォルダから PDF を読み込みました。');
+          setLoading(false);
+        })
+        .withFailureHandler(function (err) {
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        })
+        .cockpitLoadFromStoreFolder(sel.targetYm, sel.kintoneShopName);
+    });
+
+    document.getElementById('btnGenerate').addEventListener('click', function () {
+      var sel = getSelection();
+      clearBanner();
+      showBanner('info', 'AI下書きを生成中です。1〜2分かかることがあります。');
+      setLoading(true);
+      google.script.run
+        .withSuccessHandler(function (rec) {
+          renderRecord(rec);
+          showBanner('success', 'AI下書きを生成しました。内容を確認・編集してください。');
+          setLoading(false);
+        })
+        .withFailureHandler(function (err) {
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        })
+        .cockpitGenerateDraft(sel.targetYm, sel.kintoneShopName);
+    });
+
+    document.getElementById('btnSave').addEventListener('click', function () {
+      var sel = getSelection();
+      var body = document.getElementById('comment').value;
+      setLoading(true);
+      google.script.run
+        .withSuccessHandler(function (rec) {
+          renderRecord(rec);
+          showBanner('success', '下書きを保存しました。');
+          setLoading(false);
+        })
+        .withFailureHandler(function (err) {
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        })
+        .cockpitSaveComment(sel.targetYm, sel.kintoneShopName, body, 'draft');
+    });
+
+    document.getElementById('btnApprove').addEventListener('click', function () {
+      var sel = getSelection();
+      var body = document.getElementById('comment').value;
+      if (!body.trim()) {
+        showBanner('error', '本文が空です。生成または入力してから承認してください。');
+        return;
+      }
+      setLoading(true);
+      google.script.run
+        .withSuccessHandler(function (rec) {
+          renderRecord(rec);
+          showBanner('success', '承認済みにしました。5日の配信時にこの本文を使えます（配信連携は今後接続）。');
+          setLoading(false);
+        })
+        .withFailureHandler(function (err) {
+          showBanner('error', err.message || String(err));
+          setLoading(false);
+        })
+        .cockpitSaveComment(sel.targetYm, sel.kintoneShopName, body, 'approved');
+    });
+
+    init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,793 @@
+{
+  "meta": {
+    "title": "Layer 2 FC成功ベンチマーク v1",
+    "period": "2026-01〜2026-06",
+    "success_fc_stores": 5,
+    "comparison_stores": 6,
+    "total_research_stores": 14,
+    "generated_note": "FC300万超5店は全件。比較6店は型サンプル。"
+  },
+  "benchmark_june_2026": {
+    "sales": {
+      "success_fc_june": {
+        "n": 5,
+        "min": 3109000,
+        "max": 3698620,
+        "median": 3383970,
+        "mean": 3413844,
+        "p25": 3237740,
+        "p75": 3639890
+      },
+      "comparison_june": {
+        "n": 6,
+        "min": 2786900,
+        "max": 2942860,
+        "median": 2874430.0,
+        "mean": 2868050,
+        "p25": 2787830,
+        "p75": 2916900
+      }
+    },
+    "visitors": {
+      "success_fc_june": {
+        "n": 5,
+        "min": 691,
+        "max": 784,
+        "median": 726,
+        "mean": 728,
+        "p25": 711,
+        "p75": 728
+      },
+      "comparison_june": {
+        "n": 6,
+        "min": 506,
+        "max": 643,
+        "median": 588.0,
+        "mean": 583.8,
+        "p25": 562,
+        "p75": 589
+      }
+    },
+    "unit_price": {
+      "success_fc_june": {
+        "n": 5,
+        "min": 4282.36,
+        "max": 4999.84,
+        "median": 4717.62,
+        "mean": 4689.0,
+        "p25": 4685.58,
+        "p75": 4759.45
+      },
+      "comparison_june": {
+        "n": 6,
+        "min": 4525.69,
+        "max": 5507.7,
+        "median": 4888.62,
+        "mean": 4937.0,
+        "p25": 4575.19,
+        "p75": 4969.16
+      }
+    },
+    "bed_utilization": {
+      "success_fc_june": {
+        "n": 5,
+        "min": 22.4,
+        "max": 36.1,
+        "median": 26.6,
+        "mean": 28.3,
+        "p25": 25.4,
+        "p75": 31.1
+      },
+      "comparison_june": {
+        "n": 6,
+        "min": 10.2,
+        "max": 36.9,
+        "median": 22.75,
+        "mean": 22.7,
+        "p25": 13.6,
+        "p75": 28.4
+      }
+    },
+    "new_repeat_ratio": {
+      "success_fc_june": {
+        "n": 5,
+        "min": 9.3,
+        "max": 14.0,
+        "median": 12.7,
+        "mean": 11.8,
+        "p25": 10.0,
+        "p75": 13.0
+      },
+      "comparison_june": {
+        "n": 6,
+        "min": 5.8,
+        "max": 18.8,
+        "median": 14.649999999999999,
+        "mean": 13.0,
+        "p25": 8.8,
+        "p75": 14.7
+      }
+    },
+    "beds": {
+      "success_fc_june": {
+        "n": 5,
+        "min": 5,
+        "max": 9,
+        "median": 7,
+        "mean": 7,
+        "p25": 6,
+        "p75": 8
+      },
+      "comparison_june": {
+        "n": 6,
+        "min": 5,
+        "max": 13,
+        "median": 7.5,
+        "mean": 8.3,
+        "p25": 5,
+        "p75": 10
+      }
+    }
+  },
+  "success_stores_june": [
+    {
+      "shop": "浜北小松本店",
+      "slug": "hamakita-komatsu-2026",
+      "group": "success_fc",
+      "beds": 9,
+      "sales": 3698620,
+      "visitors": 784,
+      "unit_price": 4717.62,
+      "bed_utilization": 22.4,
+      "new_repeat_ratio": 13.0,
+      "missed_appointments": 27,
+      "age_pct": {
+        "不明": 13.4,
+        "～20": 0.0,
+        "20～": 7.5,
+        "30～": 17.5,
+        "40～": 25.5,
+        "50～": 20.4,
+        "60～": 8.9,
+        "70～": 6.8
+      },
+      "visit_1x_pct": 56.8
+    },
+    {
+      "shop": "焼津三ヶ名店",
+      "slug": "yaizu-mikana-2026",
+      "group": "success_fc",
+      "beds": 8,
+      "sales": 3639890,
+      "visitors": 728,
+      "unit_price": 4999.84,
+      "bed_utilization": 25.4,
+      "new_repeat_ratio": 10.0,
+      "missed_appointments": 0,
+      "age_pct": {
+        "不明": 13.7,
+        "～20": 0.8,
+        "20～": 5.3,
+        "30～": 11.3,
+        "40～": 22.5,
+        "50～": 27.1,
+        "60～": 13.1,
+        "70～": 6.2
+      },
+      "visit_1x_pct": 50.0
+    },
+    {
+      "shop": "浜松三方原店",
+      "slug": "hamamatsu-mihohara-2026",
+      "group": "success_fc",
+      "beds": 7,
+      "sales": 3383970,
+      "visitors": 711,
+      "unit_price": 4759.45,
+      "bed_utilization": 26.6,
+      "new_repeat_ratio": 12.7,
+      "missed_appointments": 32,
+      "age_pct": {
+        "不明": 13.8,
+        "～20": 0.7,
+        "20～": 9.4,
+        "30～": 16.0,
+        "40～": 22.7,
+        "50～": 20.4,
+        "60～": 9.8,
+        "70～": 7.2
+      },
+      "visit_1x_pct": 61.3
+    },
+    {
+      "shop": "浜松市野店",
+      "slug": "hamamatsu-ichino-2026",
+      "group": "success_fc",
+      "beds": 5,
+      "sales": 3237740,
+      "visitors": 691,
+      "unit_price": 4685.58,
+      "bed_utilization": 36.1,
+      "new_repeat_ratio": 14.0,
+      "missed_appointments": 13,
+      "age_pct": {
+        "不明": 13.1,
+        "～20": 0.6,
+        "20～": 10.8,
+        "30～": 19.4,
+        "40～": 22.1,
+        "50～": 21.7,
+        "60～": 9.0,
+        "70～": 3.4
+      },
+      "visit_1x_pct": 61.2
+    },
+    {
+      "shop": "広島矢野駅前店",
+      "slug": "hiroshima-yano-2026",
+      "group": "success_fc",
+      "beds": 6,
+      "sales": 3109000,
+      "visitors": 726,
+      "unit_price": 4282.36,
+      "bed_utilization": 31.1,
+      "new_repeat_ratio": 9.3,
+      "missed_appointments": 18,
+      "age_pct": {
+        "不明": 2.5,
+        "～20": 0.6,
+        "20～": 12.1,
+        "30～": 16.0,
+        "40～": 22.3,
+        "50～": 28.5,
+        "60～": 10.7,
+        "70～": 7.2
+      },
+      "visit_1x_pct": 51.2
+    }
+  ],
+  "success_archetypes": [
+    {
+      "shop": "浜北小松本店",
+      "slug": "hamakita-komatsu-2026",
+      "group": "success_fc",
+      "beds": 9,
+      "sales": 3698620,
+      "visitors": 784,
+      "unit_price": 4717.62,
+      "bed_utilization": 22.4,
+      "new_repeat_ratio": 13.0,
+      "missed_appointments": 27,
+      "age_pct": {
+        "不明": 13.4,
+        "～20": 0.0,
+        "20～": 7.5,
+        "30～": 17.5,
+        "40～": 25.5,
+        "50～": 20.4,
+        "60～": 8.9,
+        "70～": 6.8
+      },
+      "visit_1x_pct": 56.8,
+      "archetype": "A1_大規模低稼働型"
+    },
+    {
+      "shop": "浜松市野店",
+      "slug": "hamamatsu-ichino-2026",
+      "group": "success_fc",
+      "beds": 5,
+      "sales": 3237740,
+      "visitors": 691,
+      "unit_price": 4685.58,
+      "bed_utilization": 36.1,
+      "new_repeat_ratio": 14.0,
+      "missed_appointments": 13,
+      "age_pct": {
+        "不明": 13.1,
+        "～20": 0.6,
+        "20～": 10.8,
+        "30～": 19.4,
+        "40～": 22.1,
+        "50～": 21.7,
+        "60～": 9.0,
+        "70～": 3.4
+      },
+      "visit_1x_pct": 61.2,
+      "archetype": "A2_中規模高稼働型"
+    },
+    {
+      "shop": "浜松三方原店",
+      "slug": "hamamatsu-mihohara-2026",
+      "group": "success_fc",
+      "beds": 7,
+      "sales": 3383970,
+      "visitors": 711,
+      "unit_price": 4759.45,
+      "bed_utilization": 26.6,
+      "new_repeat_ratio": 12.7,
+      "missed_appointments": 32,
+      "age_pct": {
+        "不明": 13.8,
+        "～20": 0.7,
+        "20～": 9.4,
+        "30～": 16.0,
+        "40～": 22.7,
+        "50～": 20.4,
+        "60～": 9.8,
+        "70～": 7.2
+      },
+      "visit_1x_pct": 61.3,
+      "archetype": "A1_大規模低稼働型"
+    },
+    {
+      "shop": "広島矢野駅前店",
+      "slug": "hiroshima-yano-2026",
+      "group": "success_fc",
+      "beds": 6,
+      "sales": 3109000,
+      "visitors": 726,
+      "unit_price": 4282.36,
+      "bed_utilization": 31.1,
+      "new_repeat_ratio": 9.3,
+      "missed_appointments": 18,
+      "age_pct": {
+        "不明": 2.5,
+        "～20": 0.6,
+        "20～": 12.1,
+        "30～": 16.0,
+        "40～": 22.3,
+        "50～": 28.5,
+        "60～": 10.7,
+        "70～": 7.2
+      },
+      "visit_1x_pct": 51.2,
+      "archetype": "A2_中規模高稼働型"
+    },
+    {
+      "shop": "焼津三ヶ名店",
+      "slug": "yaizu-mikana-2026",
+      "group": "success_fc",
+      "beds": 8,
+      "sales": 3639890,
+      "visitors": 728,
+      "unit_price": 4999.84,
+      "bed_utilization": 25.4,
+      "new_repeat_ratio": 10.0,
+      "missed_appointments": 0,
+      "age_pct": {
+        "不明": 13.7,
+        "～20": 0.8,
+        "20～": 5.3,
+        "30～": 11.3,
+        "40～": 22.5,
+        "50～": 27.1,
+        "60～": 13.1,
+        "70～": 6.2
+      },
+      "visit_1x_pct": 50.0,
+      "archetype": "A1_大規模低稼働型"
+    }
+  ],
+  "success_half_year_trends": [
+    {
+      "shop": "浜北小松本店",
+      "sales_range": [
+        3176270,
+        3915520
+      ],
+      "sales_median": 3536435.0,
+      "visitors_range": [
+        668,
+        845
+      ],
+      "visitors_median": 755.0,
+      "months_above_300m": 6
+    },
+    {
+      "shop": "浜松市野店",
+      "sales_range": [
+        2965090,
+        3554530
+      ],
+      "sales_median": 3193780.0,
+      "visitors_range": [
+        608,
+        763
+      ],
+      "visitors_median": 676.5,
+      "months_above_300m": 5
+    },
+    {
+      "shop": "浜松三方原店",
+      "sales_range": [
+        2856660,
+        3457160
+      ],
+      "sales_median": 3412385.0,
+      "visitors_range": [
+        590,
+        711
+      ],
+      "visitors_median": 705.0,
+      "months_above_300m": 5
+    },
+    {
+      "shop": "広島矢野駅前店",
+      "sales_range": [
+        2501450,
+        3418300
+      ],
+      "sales_median": 2925585.0,
+      "visitors_range": [
+        590,
+        809
+      ],
+      "visitors_median": 685.0,
+      "months_above_300m": 3
+    },
+    {
+      "shop": "焼津三ヶ名店",
+      "sales_range": [
+        3309050,
+        3993790
+      ],
+      "sales_median": 3647240.0,
+      "visitors_range": [
+        636,
+        788
+      ],
+      "visitors_median": 707.5,
+      "months_above_300m": 6
+    }
+  ],
+  "success_vs_comparison": {
+    "sales": {
+      "success_median": 3383970,
+      "comparison_median": 2874430.0,
+      "ratio": 1.18
+    },
+    "visitors": {
+      "success_median": 726,
+      "comparison_median": 588.0,
+      "ratio": 1.23
+    },
+    "unit_price": {
+      "success_median": 4717.62,
+      "comparison_median": 4888.62,
+      "ratio": 0.97
+    },
+    "bed_utilization": {
+      "success_median": 26.6,
+      "comparison_median": 22.75,
+      "ratio": 1.17
+    },
+    "new_repeat_ratio": {
+      "success_median": 12.7,
+      "comparison_median": 14.649999999999999,
+      "ratio": 0.87
+    }
+  },
+  "age_profile_success": [
+    {
+      "shop": "浜北小松本店",
+      "40s_50s_pct": 45.9
+    },
+    {
+      "shop": "浜松市野店",
+      "40s_50s_pct": 43.8
+    },
+    {
+      "shop": "浜松三方原店",
+      "40s_50s_pct": 43.1
+    },
+    {
+      "shop": "広島矢野駅前店",
+      "40s_50s_pct": 50.8
+    },
+    {
+      "shop": "焼津三ヶ名店",
+      "40s_50s_pct": 49.6
+    }
+  ],
+  "gap_analysis_v1": {
+    "success_gate": {
+      "sales_monthly_yen": 3000000,
+      "visitors_monthly": 690,
+      "description": "2026/06時点のFC300万超5店の下限に基づく"
+    },
+    "benchmark_target": {
+      "sales": {
+        "median": 3383970,
+        "range": [
+          3109000,
+          3698620
+        ]
+      },
+      "visitors": {
+        "median": 726,
+        "range": [
+          691,
+          784
+        ]
+      },
+      "unit_price": {
+        "median": 4717.62,
+        "range": [
+          4282.36,
+          4999.84
+        ]
+      },
+      "bed_utilization": {
+        "median": 26.6,
+        "range": [
+          22.4,
+          36.1
+        ]
+      },
+      "new_repeat_ratio": {
+        "median": 12.7,
+        "range": [
+          9.3,
+          14.0
+        ]
+      }
+    },
+    "gap_zones": [
+      {
+        "zone": "成功圏",
+        "condition": "売上≥300万 かつ 来客≥690"
+      },
+      {
+        "zone": "境界",
+        "condition": "売上270〜300万 または 来客600〜690"
+      },
+      {
+        "zone": "改善余地大",
+        "condition": "売上<270万 または 来客<600"
+      }
+    ]
+  },
+  "priority_theme_matrix": [
+    {
+      "signal": "稼働率低 + 取りこぼし少",
+      "theme": "集客",
+      "example_shops": [
+        "八戸下長",
+        "福島イオン",
+        "浜松半田山"
+      ]
+    },
+    {
+      "signal": "稼働率低 + 取りこぼし多",
+      "theme": "集客と受け入れ",
+      "example_shops": []
+    },
+    {
+      "signal": "稼働率高 + 取りこぼし多",
+      "theme": "求人・シフト",
+      "example_shops": [
+        "新潟女池",
+        "両替町"
+      ]
+    },
+    {
+      "signal": "来客700前後 + 稼働25%前後",
+      "theme": "維持・新規強化",
+      "example_shops": [
+        "浜松三方原",
+        "焼津三ヶ名",
+        "浜北小松"
+      ]
+    },
+    {
+      "signal": "来客700前後 + 稼働30%超",
+      "theme": "維持（高効率）",
+      "example_shops": [
+        "浜松市野",
+        "広島矢野"
+      ]
+    }
+  ],
+  "findings": [
+    "FC300万超の主因は来客数。成功群中央値726人 vs 比較群588人（約1.23倍）。",
+    "客単価差は小さい（成功¥4718 vs 比較¥4889）。高単価（草薙）でも300万未満になりうる。",
+    "稼働率は成功群でも22.4%〜36.1%と幅があり、高稼働は必須条件ではない。",
+    "成功群は2型: A1大規模低稼働（ベッド7〜9・稼働22〜27%）とA2中規模高稼働（ベッド5〜6・稼働31〜36%）。",
+    "新規比率は成功群9.3%〜14.0%。極端なリピート依存（福島5.8%）は成功群にいない。",
+    "年代は40〜50代合計が各店45〜55%前後で、成功・比較とも類似。年代より来客絶対数が差を生む。"
+  ],
+  "fc_population_june_2026": {
+    "source": "売上報告シート 2026/06 速報",
+    "fc_count": 80,
+    "sales_median": 1673560,
+    "visitors_median": 377,
+    "over_300m_count": 5,
+    "over_300m_pct": 6.2,
+    "success_gate_visitors_min": 691,
+    "boundary_270_300m": [
+      {
+        "name": "八戸下長店",
+        "sales": 2942860,
+        "visitors": 562
+      },
+      {
+        "name": "新潟女池店",
+        "sales": 2941850,
+        "visitors": 643
+      },
+      {
+        "name": "両替町店",
+        "sales": 2831960,
+        "visitors": 589
+      },
+      {
+        "name": "福島イオン通り店",
+        "sales": 2787830,
+        "visitors": 616
+      },
+      {
+        "name": "草薙店",
+        "sales": 2786900,
+        "visitors": 506
+      },
+      {
+        "name": "岩出店",
+        "sales": 2709870,
+        "visitors": 636
+      }
+    ]
+  },
+  "gap_diagnosis": [
+    {
+      "shop": "八戸下長店",
+      "june_sales": 2942860,
+      "june_visitors": 562,
+      "visitors_gap_to_success_median": -164,
+      "sales_gap_to_success_median": -441110,
+      "distance_to_300m_yen": 57140,
+      "priority_theme": "集客",
+      "nearest_archetype": "A1"
+    },
+    {
+      "shop": "新潟女池店",
+      "june_sales": 2941850,
+      "june_visitors": 643,
+      "visitors_gap_to_success_median": -83,
+      "sales_gap_to_success_median": -442120,
+      "distance_to_300m_yen": 58150,
+      "priority_theme": "求人・シフト",
+      "nearest_archetype": "A2"
+    },
+    {
+      "shop": "両替町店",
+      "june_sales": 2831960,
+      "june_visitors": 589,
+      "visitors_gap_to_success_median": -137,
+      "sales_gap_to_success_median": -552010,
+      "distance_to_300m_yen": 168040,
+      "priority_theme": "集客",
+      "nearest_archetype": "A2"
+    },
+    {
+      "shop": "福島イオン通り店",
+      "june_sales": 2787830,
+      "june_visitors": 616,
+      "visitors_gap_to_success_median": -110,
+      "sales_gap_to_success_median": -596140,
+      "distance_to_300m_yen": 212170,
+      "priority_theme": "集客",
+      "nearest_archetype": "A1"
+    },
+    {
+      "shop": "草薙店",
+      "june_sales": 2786900,
+      "june_visitors": 506,
+      "visitors_gap_to_success_median": -220,
+      "sales_gap_to_success_median": -597070,
+      "distance_to_300m_yen": 213100,
+      "priority_theme": "集客",
+      "nearest_archetype": "A2"
+    },
+    {
+      "shop": "浜松根洗店",
+      "june_sales": 2556200,
+      "june_visitors": 542,
+      "visitors_gap_to_success_median": -184,
+      "sales_gap_to_success_median": -827770,
+      "distance_to_300m_yen": 443800,
+      "priority_theme": "集客と受け入れ",
+      "nearest_archetype": "A1"
+    },
+    {
+      "shop": "浜松半田山店",
+      "june_sales": 1753820,
+      "june_visitors": 385,
+      "visitors_gap_to_success_median": -341,
+      "sales_gap_to_success_median": -1630150,
+      "distance_to_300m_yen": 1246180,
+      "priority_theme": "集客",
+      "nearest_archetype": "A1"
+    },
+    {
+      "shop": "浜北本沢合店",
+      "june_sales": 2281310,
+      "june_visitors": 493,
+      "visitors_gap_to_success_median": -233,
+      "sales_gap_to_success_median": -1102660,
+      "distance_to_300m_yen": 718690,
+      "priority_theme": "集客",
+      "nearest_archetype": "A1"
+    }
+  ],
+  "layer2_definition": {
+    "version": "v1",
+    "success_criteria": {
+      "sales_monthly_yen": 3000000
+    },
+    "benchmark_targets": {
+      "sales": {
+        "median_yen": 3383970,
+        "range_yen": [
+          3109000,
+          3698620
+        ]
+      },
+      "visitors": {
+        "median": 726,
+        "range": [
+          691,
+          784
+        ],
+        "gate_min": 690
+      },
+      "unit_price": {
+        "median": 4718,
+        "range": [
+          4282,
+          5000
+        ]
+      },
+      "bed_utilization": {
+        "median": 26.6,
+        "range": [
+          22.4,
+          36.1
+        ]
+      },
+      "new_repeat_ratio": {
+        "median": 12.7,
+        "range": [
+          9.3,
+          14.0
+        ]
+      }
+    },
+    "archetypes": [
+      {
+        "id": "A1",
+        "name": "大規模・低稼働型",
+        "shops": [
+          "浜北小松本店",
+          "焼津三ヶ名店",
+          "浜松三方原店"
+        ],
+        "beds": "7-9",
+        "util": "22-27%",
+        "focus": "来客700人超の維持・新規安定"
+      },
+      {
+        "id": "A2",
+        "name": "中規模・高稼働型",
+        "shops": [
+          "浜松市野店",
+          "広島矢野駅前店"
+        ],
+        "beds": "5-6",
+        "util": "31-36%",
+        "focus": "稼働維持・取りこぼし抑制・求人"
+      }
+    ],
+    "primary_driver": "来客数（成功群726人 vs 全FC中央値約337人 vs 比較群588人）",
+    "rule_of_thumb": "客単価¥4,700前後なら、300万到達にはおおむね来客690人以上が必要"
+  }
+}

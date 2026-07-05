@@ -1,0 +1,64 @@
+{
+  "kintoneShopName": "浜北本沢合店",
+  "shop_code": "momi85665",
+  "beds": 5,
+  "store_type": "FC",
+  "months": {
+    "202601": {
+      "new_visitors": 57,
+      "new_repeat_ratio": 13.2,
+      "unit_price": 4504.9,
+      "bed_utilization": 20.9,
+      "bed_util_units": 1.04,
+      "missed_appointments": 11,
+      "staff_count": 130,
+      "sales": 1937110,
+      "visitors": 430
+    },
+    "202603": {
+      "new_visitors": 52,
+      "new_repeat_ratio": 11.6,
+      "unit_price": 4559.77,
+      "bed_utilization": 21.7,
+      "bed_util_units": 1.08,
+      "missed_appointments": 1,
+      "staff_count": 14,
+      "sales": 2033660,
+      "visitors": 446
+    },
+    "202604": {
+      "new_visitors": 63,
+      "new_repeat_ratio": 13.1,
+      "unit_price": 4581.43,
+      "bed_utilization": 24.4,
+      "bed_util_units": 1.22,
+      "missed_appointments": 1,
+      "staff_count": 13,
+      "sales": 2199090,
+      "visitors": 480
+    },
+    "202605": {
+      "new_visitors": 74,
+      "new_repeat_ratio": 13.1,
+      "unit_price": 4553.1,
+      "bed_utilization": 27.6,
+      "bed_util_units": 1.38,
+      "missed_appointments": 0,
+      "staff_count": 15,
+      "sales": 2554290,
+      "visitors": 561
+    },
+    "202606": {
+      "new_visitors": 70,
+      "new_repeat_ratio": 14.1,
+      "unit_price": 4627.4,
+      "bed_utilization": 25.2,
+      "bed_util_units": 1.26,
+      "missed_appointments": 1,
+      "staff_count": 16,
+      "sales": 2281310,
+      "visitors": 493
+    }
+  },
+  "insights_draft": []
+}

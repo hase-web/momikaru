@@ -1,0 +1,587 @@
+{
+  "title": "Layer 2 — 現状ベース・二軸+5%分析（来客 vs 稼働）",
+  "rationale": "絶対ベンチマークではなく、自店現状から『来客+5%』と『稼働率+5pt』の両方を並べ、設備ポテンシャル（MAX）も示す。",
+  "utilization_formula": {
+    "definition": "ベッド稼働率 ＝ 全施術者の月間施術時間合計 ÷（ベッド数 × 営業時間（分）× 当月日数）× 100",
+    "max_potential_sales": "実売上 ÷（稼働率÷100）＝ ベッド・営業時間をフルに使った場合の理論売上（比例試算）",
+    "plus_5pt_sales": "実売上 ×（5 ÷ 現在稼働率）※ SETUP.md 準拠・試算と明記",
+    "default_hours": "10:00-24:00（14h）※店舗JSONにhoursがあればそちらを使用"
+  },
+  "dual_axis_concept": {
+    "visitor_plus_5pct": "需要側の一歩。集客・リピート・キャンペーン向け",
+    "util_plus_5pt": "設備活用の一歩。シフト・予約枠・受け入れ時間向け",
+    "max_potential": "天井感の可視化。『まだ○%しか使えていない』を数値で",
+    "start_with": "まず稼働率+5ptを目標に掲げつつ、低稼働店は来客施策で席を埋める"
+  },
+  "median_fc_example_june_2026": {
+    "sales": 1673560,
+    "visitors": 378,
+    "util_pct": 22,
+    "beds": 6,
+    "max_potential_sales": 7607091,
+    "plus_5pt_util_delta_man": 38,
+    "plus_5pct_visitors_delta_man": 17
+  },
+  "stores_june_2026": [
+    {
+      "shop": "福島イオン通り店",
+      "beds": 12,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 2787830,
+        "visitors": 616,
+        "unit_price": 4526,
+        "bed_util_pct": 13.6,
+        "bed_util_units": 1.64,
+        "missed": 12
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 302400,
+        "actual_treatment_minutes": 41126,
+        "max_potential_sales": 20498750,
+        "headroom_pct": 86.4,
+        "current_vs_max_pct": 13.6
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 18.6,
+        "new_sales": 3812768,
+        "delta_yen": 1024938,
+        "delta_man": 102,
+        "added_treatment_hours": 252.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 647,
+        "new_sales": 2927216,
+        "delta_yen": 139386,
+        "delta_man": 14
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 7.4,
+        "message": "稼働+5ptは来客+5%の約7倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "八戸下長店",
+      "beds": 10,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 2942860,
+        "visitors": 562,
+        "unit_price": 5236,
+        "bed_util_pct": 17.1,
+        "bed_util_units": 1.71,
+        "missed": 8
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 252000,
+        "actual_treatment_minutes": 43092,
+        "max_potential_sales": 17209708,
+        "headroom_pct": 82.9,
+        "current_vs_max_pct": 17.1
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 22.1,
+        "new_sales": 3803345,
+        "delta_yen": 860485,
+        "delta_man": 86,
+        "added_treatment_hours": 210.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 590,
+        "new_sales": 3090000,
+        "delta_yen": 147140,
+        "delta_man": 15
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 5.8,
+        "message": "稼働+5ptは来客+5%の約6倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "浜北本沢合店",
+      "beds": 5,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 2281310,
+        "visitors": 493,
+        "unit_price": 4627,
+        "bed_util_pct": 25.2,
+        "bed_util_units": 1.26,
+        "missed": 1
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 126000,
+        "actual_treatment_minutes": 31752,
+        "max_potential_sales": 9052817,
+        "headroom_pct": 74.8,
+        "current_vs_max_pct": 25.2
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 30.2,
+        "new_sales": 2733951,
+        "delta_yen": 452641,
+        "delta_man": 45,
+        "added_treatment_hours": 105.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 518,
+        "new_sales": 2395374,
+        "delta_yen": 114064,
+        "delta_man": 11
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 4.0,
+        "message": "稼働+5ptは来客+5%の約4倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "浜北小松本店",
+      "beds": 9,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 3698620,
+        "visitors": 784,
+        "unit_price": 4718,
+        "bed_util_pct": 22.4,
+        "bed_util_units": 2.02,
+        "missed": 27
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 226800,
+        "actual_treatment_minutes": 50803,
+        "max_potential_sales": 16511696,
+        "headroom_pct": 77.6,
+        "current_vs_max_pct": 22.4
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 27.4,
+        "new_sales": 4524205,
+        "delta_yen": 825585,
+        "delta_man": 83,
+        "added_treatment_hours": 189.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 823,
+        "new_sales": 3883545,
+        "delta_yen": 184925,
+        "delta_man": 18
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 4.5,
+        "message": "稼働+5ptは来客+5%の約4倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "浜松半田山店",
+      "beds": 6,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 1753820,
+        "visitors": 385,
+        "unit_price": 4555,
+        "bed_util_pct": 16.2,
+        "bed_util_units": 0.97,
+        "missed": 5
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 151200,
+        "actual_treatment_minutes": 24494,
+        "max_potential_sales": 10826049,
+        "headroom_pct": 83.8,
+        "current_vs_max_pct": 16.2
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 21.2,
+        "new_sales": 2295122,
+        "delta_yen": 541302,
+        "delta_man": 54,
+        "added_treatment_hours": 126.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 404,
+        "new_sales": 1841508,
+        "delta_yen": 87688,
+        "delta_man": 9
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 6.2,
+        "message": "稼働+5ptは来客+5%の約6倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "浜松市野店",
+      "beds": 5,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 3237740,
+        "visitors": 691,
+        "unit_price": 4686,
+        "bed_util_pct": 36.1,
+        "bed_util_units": 1.8,
+        "missed": 13
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 126000,
+        "actual_treatment_minutes": 45486,
+        "max_potential_sales": 8968809,
+        "headroom_pct": 63.9,
+        "current_vs_max_pct": 36.1
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 41.1,
+        "new_sales": 3686180,
+        "delta_yen": 448440,
+        "delta_man": 45,
+        "added_treatment_hours": 105.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 726,
+        "new_sales": 3399623,
+        "delta_yen": 161883,
+        "delta_man": 16
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 2.8,
+        "message": "稼働+5ptは来客+5%の約3倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "浜松三方原店",
+      "beds": 7,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 3383970,
+        "visitors": 711,
+        "unit_price": 4759,
+        "bed_util_pct": 26.6,
+        "bed_util_units": 1.86,
+        "missed": 32
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 176400,
+        "actual_treatment_minutes": 46922,
+        "max_potential_sales": 12721692,
+        "headroom_pct": 73.4,
+        "current_vs_max_pct": 26.6
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 31.6,
+        "new_sales": 4020055,
+        "delta_yen": 636085,
+        "delta_man": 64,
+        "added_treatment_hours": 147.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 747,
+        "new_sales": 3553167,
+        "delta_yen": 169197,
+        "delta_man": 17
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 3.8,
+        "message": "稼働+5ptは来客+5%の約4倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "浜松根洗店",
+      "beds": 7,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 2556200,
+        "visitors": 542,
+        "unit_price": 4716,
+        "bed_util_pct": 20.0,
+        "bed_util_units": 1.4,
+        "missed": 33
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 176400,
+        "actual_treatment_minutes": 35280,
+        "max_potential_sales": 12781000,
+        "headroom_pct": 80.0,
+        "current_vs_max_pct": 20.0
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 25.0,
+        "new_sales": 3195250,
+        "delta_yen": 639050,
+        "delta_man": 64,
+        "added_treatment_hours": 147.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 569,
+        "new_sales": 2684006,
+        "delta_yen": 127806,
+        "delta_man": 13
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 5.0,
+        "message": "稼働+5ptは来客+5%の約5倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "広島矢野駅前店",
+      "beds": 6,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 3109000,
+        "visitors": 726,
+        "unit_price": 4282,
+        "bed_util_pct": 31.1,
+        "bed_util_units": 1.86,
+        "missed": 18
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 151200,
+        "actual_treatment_minutes": 47023,
+        "max_potential_sales": 9996785,
+        "headroom_pct": 68.9,
+        "current_vs_max_pct": 31.1
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 36.1,
+        "new_sales": 3608839,
+        "delta_yen": 499839,
+        "delta_man": 50,
+        "added_treatment_hours": 126.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 762,
+        "new_sales": 3264443,
+        "delta_yen": 155443,
+        "delta_man": 16
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 3.2,
+        "message": "稼働+5ptは来客+5%の約3倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "草薙店",
+      "beds": 5,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 2786900,
+        "visitors": 506,
+        "unit_price": 5508,
+        "bed_util_pct": 30.1,
+        "bed_util_units": 1.8,
+        "missed": 3
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 126000,
+        "actual_treatment_minutes": 37926,
+        "max_potential_sales": 9258804,
+        "headroom_pct": 69.9,
+        "current_vs_max_pct": 30.1
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 35.1,
+        "new_sales": 3249840,
+        "delta_yen": 462940,
+        "delta_man": 46,
+        "added_treatment_hours": 105.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 531,
+        "new_sales": 2926241,
+        "delta_yen": 139341,
+        "delta_man": 14
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 3.3,
+        "message": "稼働+5ptは来客+5%の約3倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "新潟女池店",
+      "beds": 5,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 2941850,
+        "visitors": 643,
+        "unit_price": 4575,
+        "bed_util_pct": 36.9,
+        "bed_util_units": 1.84,
+        "missed": 86
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 126000,
+        "actual_treatment_minutes": 46494,
+        "max_potential_sales": 7972493,
+        "headroom_pct": 63.1,
+        "current_vs_max_pct": 36.9
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 41.9,
+        "new_sales": 3340475,
+        "delta_yen": 398625,
+        "delta_man": 40,
+        "added_treatment_hours": 105.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 675,
+        "new_sales": 3088940,
+        "delta_yen": 147090,
+        "delta_man": 15
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 2.7,
+        "message": "稼働+5ptは来客+5%の約3倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "両替町店",
+      "beds": 5,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 2831960,
+        "visitors": 589,
+        "unit_price": 4808,
+        "bed_util_pct": 28.4,
+        "bed_util_units": 1.42,
+        "missed": 89
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 126000,
+        "actual_treatment_minutes": 35784,
+        "max_potential_sales": 9971690,
+        "headroom_pct": 71.6,
+        "current_vs_max_pct": 28.4
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 33.4,
+        "new_sales": 3330545,
+        "delta_yen": 498585,
+        "delta_man": 50,
+        "added_treatment_hours": 105.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 618,
+        "new_sales": 2973557,
+        "delta_yen": 141597,
+        "delta_man": 14
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 3.5,
+        "message": "稼働+5ptは来客+5%の約4倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "静岡本店",
+      "beds": 13,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 2916900,
+        "visitors": 587,
+        "unit_price": 4969,
+        "bed_util_pct": 10.2,
+        "bed_util_units": 1.33,
+        "missed": 35
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 327600,
+        "actual_treatment_minutes": 33415,
+        "max_potential_sales": 28597059,
+        "headroom_pct": 89.8,
+        "current_vs_max_pct": 10.2
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 15.2,
+        "new_sales": 4346753,
+        "delta_yen": 1429853,
+        "delta_man": 143,
+        "added_treatment_hours": 273.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 616,
+        "new_sales": 3062742,
+        "delta_yen": 145842,
+        "delta_man": 15
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 9.8,
+        "message": "稼働+5ptは来客+5%の約10倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    },
+    {
+      "shop": "焼津三ヶ名店",
+      "beds": 8,
+      "hours": "10:00-24:00",
+      "days": 30,
+      "current": {
+        "sales": 3639890,
+        "visitors": 728,
+        "unit_price": 5000,
+        "bed_util_pct": 25.4,
+        "bed_util_units": 2.03,
+        "missed": 0
+      },
+      "capacity": {
+        "op_minutes_per_day": 840,
+        "max_bed_minutes_month": 201600,
+        "actual_treatment_minutes": 51206,
+        "max_potential_sales": 14330276,
+        "headroom_pct": 74.6,
+        "current_vs_max_pct": 25.4
+      },
+      "plus_5pt_util": {
+        "new_util_pct": 30.4,
+        "new_sales": 4356404,
+        "delta_yen": 716514,
+        "delta_man": 72,
+        "added_treatment_hours": 168.0,
+        "formula_note": "実売上 × (5 ÷ 現在稼働率) ※比例試算"
+      },
+      "plus_5pct_visitors": {
+        "new_visitors": 764,
+        "new_sales": 3821878,
+        "delta_yen": 181988,
+        "delta_man": 18
+      },
+      "comparison": {
+        "util5_vs_vis5_ratio": 3.9,
+        "message": "稼働+5ptは来客+5%の約4倍の売上インパクト（席を埋める vs 客を増やす）"
+      }
+    }
+  ]
+}

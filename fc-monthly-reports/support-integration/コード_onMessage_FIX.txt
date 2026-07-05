@@ -1,0 +1,60 @@
+================================================================================
+本部サポート連携 GAS — コード.gs の onMessage 修正（5行）
+================================================================================
+適用先: SV_BOT プロジェクト → コード.gs → onMessage 関数内
+スペース返信 → LINE Push のブロック（pushToLine_ の直後）
+
+【修正前】bot_appendLog_ が try/catch の外・return の後にあり実行されない
+--------------------------------------------------------------------------------
+
+    pushToLine_(userId, replyText);
+    return { text: '✅ LINEへ送信しました（宛先：' + getLabel_(userId) + '）' };
+  } catch (err) {
+    console.error('onMessage error: ' + err);
+    return { text: '送信中にエラーが発生しました：' + err };
+  }
+  // 過去ログ保存（本部→スタッフ）。失敗しても本体は継続
+    try {
+      bot_appendLog_(userId, getLabel_(userId), '本部→スタッフ', replyText);
+    } catch (logErr) {
+      console.error('bot_appendLog (onMessage) error: ' + logErr);
+    }
+}
+
+【修正後】return の直前に移動
+--------------------------------------------------------------------------------
+
+    pushToLine_(userId, replyText);
+    try {
+      bot_appendLog_(userId, getLabel_(userId), '本部→スタッフ', replyText);
+    } catch (logErr) {
+      console.error('bot_appendLog (onMessage) error: ' + logErr);
+    }
+    return { text: '✅ LINEへ送信しました（宛先：' + getLabel_(userId) + '）' };
+  } catch (err) {
+    console.error('onMessage error: ' + err);
+    return { text: '送信中にエラーが発生しました：' + err };
+  }
+}
+
+================================================================================
+適用手順
+================================================================================
+1. Apps Script エディタで コード.gs を開く
+2. 上記「修正前」を検索（pushToLine_ の直後）
+3. 「修正後」に置き換え
+4. 保存 → デプロイは不要（トリガー型のまま即反映）
+
+================================================================================
+確認手順（ステップ2・3）
+================================================================================
+【Bot_Log】
+- スクリプトプロパティ BOT_LOG_SHEET_ID のスプレッドシートを開く
+- シート「Bot_Log」列: 日時 | lineUserId | 表示名 | 方向 | 本文
+- LINE から本部へ送ると「スタッフ→本部」行が増える
+- 修正後: スペースで返信 → LINE 送信後「本部→スタッフ」行も増える
+
+【本部 Chat DM テスト】
+- Bot との DM で例: 「◯◯さんとのやり取りを教えて」
+- 修正前: スタッフ→本部 のみ検索される傾向
+- 修正後: 本部→スタッフ の返信も含めて要約される

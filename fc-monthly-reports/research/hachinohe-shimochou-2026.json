@@ -1,0 +1,185 @@
+{
+  "kintoneShopName": "八戸下長店",
+  "shop_code": "momi112",
+  "store_type": "FC",
+  "opened": "2022/4/1",
+  "beds": 10,
+  "hours": "10:00-24:00",
+  "break_even_reported": 0,
+  "benchmark_note": "2026/06速報¥2,942,860。300万未満だが270-300万境界ゾーン。5月は355万で300万超。",
+  "source_files": {
+    "202601": ["月次レポート2026年01月.pdf", "顧客分析2026年01月分.pdf"],
+    "202602": ["月次レポート2026年02月.pdf", "顧客分析2026年02月分.pdf"],
+    "202603": ["月次レポート2026年03月.pdf", "顧客分析2026年03月分.pdf"],
+    "202604": ["月次レポート2026年04月.pdf", "顧客分析2026年04月分.pdf"],
+    "202605": ["月次レポート2026年05月.pdf"],
+    "202606": ["月次レポート2026年06月.pdf", "顧客分析2026年06月分.pdf"]
+  },
+  "months": {
+    "202601": {
+      "sales": 2858990,
+      "visitors": 519,
+      "unit_price": 5508.65,
+      "new_visitors": 47,
+      "new_repeat_ratio": 9.0,
+      "bed_utilization": 15.8,
+      "bed_util_units": 1.58,
+      "missed_appointments": 10,
+      "staff_count": 11,
+      "customer": {
+        "unique_customers": 143,
+        "total_visit_count": 519,
+        "repeat_visit_ratio": 44.1,
+        "visit_frequency_1x_pct": 55.9,
+        "age_visitors": {
+          "20s": 41,
+          "30s": 85,
+          "40s": 125,
+          "50s": 84,
+          "60s": 24,
+          "70s": 9
+        },
+        "age_pct": {
+          "40s": 33.6,
+          "30s": 22.8,
+          "50s": 22.6,
+          "20s": 11.0
+        }
+      }
+    },
+    "202602": {
+      "sales": 2723080,
+      "visitors": 516,
+      "unit_price": 5277.28,
+      "new_visitors": 60,
+      "new_repeat_ratio": 11.6,
+      "bed_utilization": 17.1,
+      "bed_util_units": 1.71,
+      "missed_appointments": 7,
+      "staff_count": 11,
+      "customer": {
+        "unique_customers": 117,
+        "total_visit_count": 516,
+        "repeat_visit_ratio": 36.4,
+        "visit_frequency_1x_pct": 63.6,
+        "age_visitors": {
+          "20s": 50,
+          "30s": 86,
+          "40s": 119,
+          "50s": 100,
+          "60s": 29,
+          "70s": 6
+        }
+      }
+    },
+    "202603": {
+      "sales": 3173580,
+      "visitors": 586,
+      "unit_price": 5415.66,
+      "new_visitors": 66,
+      "new_repeat_ratio": 11.2,
+      "bed_utilization": 17.8,
+      "bed_util_units": 1.78,
+      "missed_appointments": 3,
+      "staff_count": 10,
+      "customer": {
+        "unique_customers": 161,
+        "total_visit_count": 586,
+        "repeat_visit_ratio": 44.4,
+        "visit_frequency_1x_pct": 55.6,
+        "age_visitors": {
+          "20s": 63,
+          "30s": 90,
+          "40s": 118,
+          "50s": 110,
+          "60s": 27,
+          "70s": 6
+        }
+      }
+    },
+    "202604": {
+      "sales": 3028750,
+      "visitors": 566,
+      "unit_price": 5351.14,
+      "new_visitors": 65,
+      "new_repeat_ratio": 11.4,
+      "bed_utilization": 17.6,
+      "bed_util_units": 1.76,
+      "missed_appointments": 7,
+      "staff_count": 13,
+      "customer": {
+        "unique_customers": 170,
+        "total_visit_count": 566,
+        "repeat_visit_ratio": 47.5,
+        "visit_frequency_1x_pct": 52.5,
+        "age_visitors": {
+          "20s": 45,
+          "30s": 88,
+          "40s": 116,
+          "50s": 99,
+          "60s": 23,
+          "70s": 11
+        }
+      }
+    },
+    "202605": {
+      "sales": 3558310,
+      "visitors": 641,
+      "unit_price": 5551.18,
+      "new_visitors": 86,
+      "new_repeat_ratio": 13.4,
+      "bed_utilization": 19.7,
+      "bed_util_units": 1.97,
+      "missed_appointments": 8,
+      "staff_count": 13,
+      "customer": null
+    },
+    "202606": {
+      "sales": 2942860,
+      "visitors": 562,
+      "unit_price": 5236.4,
+      "new_visitors": 83,
+      "new_repeat_ratio": 14.7,
+      "bed_utilization": 17.1,
+      "bed_util_units": 1.71,
+      "missed_appointments": 8,
+      "staff_count": 13,
+      "sales_report_speed": 2942860,
+      "customer": {
+        "unique_customers": 135,
+        "total_visit_count": 562,
+        "repeat_visit_ratio": 31.5,
+        "visit_frequency_1x_pct": 62.5,
+        "age_visitors": {
+          "under20": 4,
+          "20s": 50,
+          "30s": 101,
+          "40s": 133,
+          "50s": 96,
+          "60s": 28,
+          "70s": 7
+        },
+        "age_pct": {
+          "40s": 31.0,
+          "30s": 23.5,
+          "50s": 22.4,
+          "20s": 11.7,
+          "60s": 6.5
+        },
+        "gender_visitors": {
+          "male": 226,
+          "female": 202,
+          "unknown": 1
+        }
+      }
+    }
+  },
+  "insights_draft": [
+    "5月は355万・641人で300万超。6月は294万に落ち着くが来客562人は依然高水準。",
+    "ベッド10台に対し稼働台数1.7〜2.0台（稼働率17〜20%）で、300万超FC店（浜松系）より稼働は低め。",
+    "取りこぼしは月3〜10件と少なく、集客型の成功パターン。",
+    "年代構成は40代中心（約30%）、30-50代で約77%。",
+    "新規リピート比率は9%→14.7%へ改善傾向。新規来客は月47→83人。",
+    "1回来店客比率は52〜64%と高め。リピート深化が次の伸びしろ。"
+  ]
+}
