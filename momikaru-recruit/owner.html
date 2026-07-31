@@ -434,11 +434,9 @@ section{position:relative;}
   transition:transform .3s ease,box-shadow .3s ease,background .3s ease,color .3s ease,border-color .3s ease;
   white-space:nowrap;
 }
-.btn--primary{
-  background:var(--ink);color:#FFFEFB;
-  box-shadow:0 18px 32px -16px rgba(139,42,30,.65),0 4px 10px -4px rgba(26,22,20,.4);
-}
-.btn--primary:hover{transform:translateY(-2px);box-shadow:0 24px 40px -16px rgba(139,42,30,.75);}
+/* btn--primary overridden below */
+.btn--primary{background:var(--accent);color:#FFFEFB;}
+.btn--primary:hover{transform:translateY(-2px);}
 .btn--ghost{
   background:transparent;color:var(--ink);
   border:1.5px solid var(--ink);
@@ -1606,6 +1604,69 @@ section{position:relative;}
   .site-header__book .label-full{display:none;}
   .site-header__book .label-short{display:inline;}
 }
+
+
+/* Primary CTA: brand accent (visible on light + dark) */
+.btn--primary{
+  background:var(--accent);color:#FFFEFB;
+  box-shadow:0 18px 32px -16px rgba(139,42,30,.7),0 4px 10px -4px rgba(26,22,20,.35);
+}
+.btn--primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 24px 40px -16px rgba(139,42,30,.8);
+  filter:brightness(1.06);
+}
+.is-dark-zone .btn--primary,
+.final .btn--primary{
+  background:var(--accent-2);color:#1A1614;
+  box-shadow:0 18px 32px -14px rgba(199,131,58,.65),0 0 0 1px rgba(255,255,255,.12);
+}
+.is-dark-zone .btn--primary:hover,
+.final .btn--primary:hover{
+  filter:brightness(1.08);
+  box-shadow:0 24px 40px -14px rgba(199,131,58,.75);
+}
+
+/* Sticky bottom interview bar */
+.float-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:95;
+  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));
+  background:rgba(26,22,20,.94);
+  backdrop-filter:saturate(1.2) blur(12px);
+  -webkit-backdrop-filter:saturate(1.2) blur(12px);
+  border-top:1px solid rgba(199,131,58,.35);
+  box-shadow:0 -12px 40px -18px rgba(0,0,0,.55);
+  transform:translateY(110%);
+  opacity:0;
+  pointer-events:none;
+  transition:transform .35s ease,opacity .35s ease;
+}
+.float-cta.is-visible{
+  transform:translateY(0);
+  opacity:1;
+  pointer-events:auto;
+}
+.float-cta__book{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;padding:12px 22px;border-radius:999px;
+  background:var(--accent-2);color:#1A1614;
+  font-weight:800;font-size:13.5px;letter-spacing:.04em;
+  box-shadow:0 10px 24px -12px rgba(199,131,58,.8);
+}
+.float-cta__book:hover{filter:brightness(1.07);}
+.float-cta__line{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  min-height:44px;padding:12px 18px;border-radius:999px;
+  background:#06C755;color:#fff;
+  font-weight:700;font-size:13px;letter-spacing:.03em;
+}
+.float-cta__line svg{width:16px;height:16px;}
+@media (max-width:520px){
+  .float-cta{gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));}
+  .float-cta__book,.float-cta__line{flex:1 1 auto;min-width:0;padding:12px 14px;font-size:12.5px;}
+}
+body.has-float-cta{padding-bottom:76px;}
 
 /* ============================================================
    FOOTER
@@ -2948,8 +3009,38 @@ section{position:relative;}
   });
 })();
 </script>
-<link rel="stylesheet" href="https://interview-booking-api.netlify.app/widget/booking.css?v=4">
-<script src="https://interview-booking-api.netlify.app/widget/config.js?v=4"></script>
-<script src="https://interview-booking-api.netlify.app/widget/booking.js?v=4"></script>
+
+<div class="float-cta" id="floatCta" aria-label="追従予約バー" hidden>
+  <a class="float-cta__book iv-booking-open" href="#iv-booking" data-fc-event="interview_online" data-iv-job="独立・FC">面接を申し込む</a>
+  <a class="float-cta__line" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
+    <svg aria-hidden="true"><use href="#i-line"/></svg>
+    LINE相談
+  </a>
+</div>
+<script>
+(function(){
+  var bar = document.getElementById("floatCta");
+  if (!bar) return;
+  bar.hidden = false;
+  document.body.classList.add("has-float-cta");
+  var finalEl = document.querySelector("section.final");
+  function sync(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    var show = y > 420;
+    if (finalEl) {
+      var r = finalEl.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.72) show = false;
+    }
+    bar.classList.toggle("is-visible", show);
+  }
+  window.addEventListener("scroll", sync, {passive:true});
+  window.addEventListener("resize", sync);
+  sync();
+})();
+</script>
+
+<link rel="stylesheet" href="https://interview-booking-api.netlify.app/widget/booking.css?v=5">
+<script src="https://interview-booking-api.netlify.app/widget/config.js?v=5"></script>
+<script src="https://interview-booking-api.netlify.app/widget/booking.js?v=5"></script>
 </body>
 </html>
