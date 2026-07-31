@@ -430,7 +430,11 @@ section{position:relative;}
 }
 
 .hero__cta{
-  display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;
+  display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;margin-bottom:28px;
+}
+@media (max-width:767px){
+  .hero__cta{margin-top:28px;margin-bottom:36px;}
+  .hero__inner{gap:40px;}
 }
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
@@ -2179,6 +2183,7 @@ body.has-float-cta{padding-bottom:76px;}
             下の質問に答える ↓
           </a>
         </div>
+      </div>
 
       <aside class="hero__panel" aria-label="もみかる主要指標">
         <div class="hero__panel-head">
