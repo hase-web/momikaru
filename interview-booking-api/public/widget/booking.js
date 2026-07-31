@@ -133,20 +133,23 @@
 
   function fallbackHtml() {
     var b = cfg.brand || {};
-    return (
-      '<div class="fc-booking-fallback">' +
-      "お電話: <a href=\"tel:" +
-      (b.phone || "").replace(/-/g, "") +
-      "\">" +
-      (b.phoneDisplay || b.phone || "") +
-      "</a><br>" +
-      "メール: <a href=\"mailto:" +
-      (b.email || "") +
-      "\">" +
-      (b.email || "") +
-      "</a>" +
-      "</div>"
-    );
+    var phone = (b.phoneDisplay || b.phone || "").trim();
+    var email = (b.email || "").trim();
+    var parts = [];
+    if (phone) {
+      parts.push(
+        "お電話: <a href=\"tel:" +
+          phone.replace(/-/g, "") +
+          "\">" +
+          phone +
+          "</a>"
+      );
+    }
+    if (email) {
+      parts.push("メール: <a href=\"mailto:" + email + "\">" + email + "</a>");
+    }
+    if (!parts.length) return "";
+    return '<div class="fc-booking-fallback">' + parts.join("<br>") + "</div>";
   }
 
   function renderStaffChips() {
@@ -157,7 +160,7 @@
     }
     var staff = [{ id: "any", name: "どちらでもOK" }].concat(staffList);
     return (
-      '<div class="fc-booking-step-label">担当者</div>' +
+      '<div class="fc-booking-step-label">面接担当（わからない場合は「どちらでもOK」）</div>' +
       '<div class="fc-booking-chips" id="fc-staff-chips">' +
       staff
         .map(function (s) {

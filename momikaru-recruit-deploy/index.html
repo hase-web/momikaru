@@ -1558,6 +1558,21 @@ section{position:relative;}
 .final__alt a{color:#A89E8B;text-decoration:underline;text-underline-offset:4px;transition:color .25s;}
 .final__alt a:hover{color:var(--accent-2);}
 
+.final__conveniences{
+  margin:24px auto 0;
+  max-width:640px;
+  padding:18px 20px;
+  border:1px solid rgba(199,131,58,.35);
+  background:rgba(199,131,58,.08);
+  text-align:left;
+}
+.final__conveniences p{
+  font-size:13px;line-height:1.85;color:#D9CFBE;
+}
+.final__conveniences p+p{margin-top:8px;}
+.final__conveniences strong{color:#F4ECDF;font-weight:700;}
+
+
 /* ============================================================
    FOOTER
 ============================================================ */
@@ -2057,9 +2072,12 @@ section{position:relative;}
           <li><svg><use href="#i-check"/></svg>独立志向向け 1つの働き方</li>
         </ul>
 
-        <div class="hero__cta">
+                <div class="hero__cta">
           <a class="btn btn--ghost" href="#quiz">
             下の質問に答える ↓
+          </a>
+          <a class="btn btn--primary iv-booking-open" href="#iv-booking" data-fc-event="interview_online">
+            面接を申し込む
           </a>
         </div>
       </div>
@@ -2336,7 +2354,7 @@ section{position:relative;}
     <div class="hub-section__head reveal">
       <span class="eyebrow">For Future Owners</span>
       <h2 class="hub-section__title">FCオーナーをお考えの方へ</h2>
-      <p class="hub-section__lead">もみかる、または姉妹ブランド SALON de MOMIKARU のFCオーナーをお考えの方は、<br>「独立を目指す方へ」のページに、ベッドパートナー・スモール・コアの3つのプラン詳細を掲載しています。<br>FCに関する個別のご相談は、最終CTAのLINE・電話からお問い合わせください。</p>
+      <p class="hub-section__lead">もみかる、または姉妹ブランド SALON de MOMIKARU のFCオーナーをお考えの方は、<br>「独立を目指す方へ」のページに、ベッドパートナー・スモール・コアの3つのプラン詳細を掲載しています。<br>FCに関する個別のご相談は、WEB面接の予約・LINE・電話からお問い合わせください。</p>
       <div class="fc-link-wrap">
         <a href="./owner.html" class="fc-link-btn">独立を目指す方へ ─ FC加盟プランを見る →</a>
       </div>
@@ -2360,10 +2378,19 @@ section{position:relative;}
       6つのキャリアパスをご紹介しましたが、<br>
       あなたの状況に最適なプランは、ご相談で詳しく決めていきましょう。<br>
       <br>
-      LINEなら最短10秒、お電話でも直接ご相談いただけます。<br>
-      あなたの経験・希望条件・状況をベースに、最適な働き方を一緒に考えます。
+      WEB面接（LINE・Google Meet）なら来社不要。<br>
+      カレンダーから空いている日時を選んで、いつでも面接を申し込めます。
     </p>
-    <div class="final__cta reveal">
+    <div class="final__conveniences reveal">
+      <p><strong>WEB面接対応</strong> — LINE通話・Google Meetで実施。来社不要です。</p>
+      <p>子育て・本業・家事など、生活の都合に合わせて、カレンダーから空いている日時を直接予約できます。</p>
+      <p>未経験の方も、研修は<strong>eラーニング</strong>中心。自宅のスマホ・PCで学習を進められます。</p>
+    </div>
+
+<div class="final__cta reveal">
+      <a class="btn btn--primary iv-booking-open" href="#iv-booking" data-fc-event="interview_online">
+        面接を申し込む
+      </a>
       <a class="btn btn--line" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
         <span class="arrow"><svg><use href="#i-line"/></svg></span>
         LINEで相談する
@@ -2683,5 +2710,8 @@ section{position:relative;}
   });
 })();
 </script>
+<link rel="stylesheet" href="https://interview-booking-api.netlify.app/widget/booking.css?v=4">
+<script src="https://interview-booking-api.netlify.app/widget/config.js?v=4"></script>
+<script src="https://interview-booking-api.netlify.app/widget/booking.js?v=4"></script>
 </body>
 </html>

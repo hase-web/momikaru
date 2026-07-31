@@ -25,14 +25,11 @@ momikaru-recruit/          ← 採用 LP（ウィジェット埋め込み）
 |--------|------|-----|
 | `GOOGLE_CLIENT_ID` | OAuth クライアント ID（FC と同じ Google Cloud 可） | |
 | `GOOGLE_CLIENT_SECRET` | クライアントシークレット | |
-| `STAFF_A_NAME` | 面接官Aの表示名 | 田中 |
-| `STAFF_A_CALENDAR_ID` | 面接官Aの Gmail | |
+| `STAFF_A_NAME` | 面接官の表示名（1名運用） | 若森 |
+| `STAFF_A_CALENDAR_ID` | 面接官の Gmail | wakamori@dorami.co.jp |
 | `STAFF_A_REFRESH_TOKEN` | calendar + gmail.send 付き Token | |
-| `STAFF_A_NOTIFY_EMAIL` | 通知メール（任意） | |
-| `STAFF_B_NAME` | 面接官B | |
-| `STAFF_B_CALENDAR_ID` | 面接官Bの Gmail | |
-| `STAFF_B_REFRESH_TOKEN` | 面接官Bの Token | |
-| `STAFF_B_NOTIFY_EMAIL` | 通知メール（任意） | |
+| `STAFF_A_NOTIFY_EMAIL` | 通知メール（任意） | wakamori@dorami.co.jp |
+| `STAFF_B_*` | 2人目を追加する場合のみ | （未使用） |
 | `BRAND_LABEL` | カレンダー・メールのプレフィックス | `【もみかる採用】` |
 | `EVENT_INTERVIEW_MINUTES` | 面接時間（分） | `30` |
 | `WORK_START_HOUR` | 受付開始 | `10` |

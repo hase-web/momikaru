@@ -1398,6 +1398,21 @@ section{position:relative;}
 .final__alt a{color:#A89E8B;text-decoration:underline;text-underline-offset:4px;transition:color .25s;}
 .final__alt a:hover{color:var(--accent-2);}
 
+.final__conveniences{
+  margin:24px auto 0;
+  max-width:640px;
+  padding:18px 20px;
+  border:1px solid rgba(199,131,58,.35);
+  background:rgba(199,131,58,.08);
+  text-align:left;
+}
+.final__conveniences p{
+  font-size:13px;line-height:1.85;color:#D9CFBE;
+}
+.final__conveniences p+p{margin-top:8px;}
+.final__conveniences strong{color:#F4ECDF;font-weight:700;}
+
+
 /* ============================================================
    FOOTER
 ============================================================ */
@@ -1645,10 +1660,13 @@ section{position:relative;}
           <li><svg><use href="#i-check"/></svg>15メニューを習得可能</li>
         </ul>
 
-        <div class="hero__cta">
+                <div class="hero__cta">
           <a class="btn btn--ghost" href="#income">
             収入の目安を見る
             <span class="arrow"><svg><use href="#i-arrow"/></svg></span>
+          </a>
+          <a class="btn btn--primary iv-booking-open" href="#iv-booking" data-fc-event="interview_online" data-iv-job="ママ・主婦">
+            面接を申し込む
           </a>
         </div>
       </div>
@@ -2227,8 +2245,8 @@ section{position:relative;}
           <div class="fstep__icon"><svg><use href="#i-chat"/></svg></div>
         </div>
         <div>
-          <h3 class="fstep__title">LINEまたはフォームで問い合わせ</h3>
-          <p class="fstep__body">所要時間は60秒。「話を聞きたい」だけでも歓迎です。応募ではなく相談からスタートしてください。</p>
+          <h3 class="fstep__title">カレンダー予約またはLINEで問い合わせ</h3>
+          <p class="fstep__body">面接日時はカレンダーから直接予約できます。「話を聞きたい」だけでも歓迎。応募ではなく相談からスタートしてください。</p>
           <span class="fstep__time">所要 1分</span>
         </div>
       </article>
@@ -2239,8 +2257,8 @@ section{position:relative;}
           <div class="fstep__icon"><svg><use href="#i-hand"/></svg></div>
         </div>
         <div>
-          <h3 class="fstep__title">30分のオンラインまたは対面相談</h3>
-          <p class="fstep__body">資格・経験・希望条件を聞いた上で、もみかるが提供できる収入レンジ・働き方を具体的に提示。質問だけでも構いません。</p>
+          <h3 class="fstep__title">30分のWEB面接（LINE・Google Meet）または対面</h3>
+          <p class="fstep__body">来社不要のWEB面接（LINE通話・Google Meet）も選べます。資格・経験・希望条件を聞いた上で、もみかるが提供できる収入レンジ・働き方を具体的に提示。質問だけでも構いません。</p>
           <span class="fstep__time">所要 30分</span>
         </div>
       </article>
@@ -2301,9 +2319,17 @@ section{position:relative;}
       迷っているなら、まず話を聞いてからで構いません。<br>
       あなたの状況、お子さまの年齢、ご希望の働き方をベースに、<br>
       具体的な収入試算と無理のないスタート方法を提示します。<br>
-      <small style="display:inline-block;margin-top:10px;font-size:12.5px;color:#A89E8B;letter-spacing:.04em;">LINEなら最短10秒、お電話でも直接ご相談いただけます。</small>
     </p>
-    <div class="final__cta reveal">
+    <div class="final__conveniences reveal">
+      <p><strong>WEB面接対応</strong> — LINE通話・Google Meetで実施。来社不要です。</p>
+      <p>子育て・本業・家事など、生活の都合に合わせて、カレンダーから空いている日時を直接予約できます。</p>
+      <p>未経験の方も、研修は<strong>eラーニング</strong>中心。自宅のスマホ・PCで学習を進められます。</p>
+    </div>
+
+<div class="final__cta reveal">
+      <a class="btn btn--primary iv-booking-open" href="#iv-booking" data-fc-event="interview_online" data-iv-job="ママ・主婦">
+        面接を申し込む
+      </a>
       <a class="btn btn--line" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
         <span class="arrow"><svg><use href="#i-line"/></svg></span>
         LINEで相談する
@@ -2543,5 +2569,8 @@ section{position:relative;}
   });
 })();
 </script>
+<link rel="stylesheet" href="https://interview-booking-api.netlify.app/widget/booking.css?v=4">
+<script src="https://interview-booking-api.netlify.app/widget/config.js?v=4"></script>
+<script src="https://interview-booking-api.netlify.app/widget/booking.js?v=4"></script>
 </body>
 </html>

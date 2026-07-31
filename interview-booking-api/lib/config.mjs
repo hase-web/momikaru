@@ -26,7 +26,7 @@ export function getStaffList() {
   if (staffARefresh && staffACalendar) {
     staff.push({
       id: "a",
-      name: env("STAFF_A_NAME") || "担当A",
+      name: env("STAFF_A_NAME") || "若森",
       calendarId: staffACalendar,
       refreshToken: staffARefresh,
       notifyEmail: env("STAFF_A_NOTIFY_EMAIL") || staffACalendar,
@@ -37,7 +37,7 @@ export function getStaffList() {
   if (staffBRefresh && staffBCalendar) {
     staff.push({
       id: "b",
-      name: env("STAFF_B_NAME") || "担当B",
+      name: env("STAFF_B_NAME") || "若森",
       calendarId: staffBCalendar,
       refreshToken: staffBRefresh,
       notifyEmail: env("STAFF_B_NOTIFY_EMAIL") || staffBCalendar,
