@@ -2126,10 +2126,6 @@ body.has-float-cta{padding-bottom:76px;}
       <a class="site-header__phone" href="tel:05031721405" aria-label="電話で相談する 050-3172-1405" title="電話で相談する 050-3172-1405" data-action="phone-consult">
         <svg aria-hidden="true"><use href="#i-phone"/></svg>
       </a>
-      <a class="site-header__book iv-booking-open" href="#iv-booking" data-fc-event="interview_online">
-        <span class="label-full">面接予約</span>
-        <span class="label-short">面接</span>
-      </a>
 
       <a class="site-header__cta" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
         <span class="dot" aria-hidden="true"></span>
@@ -2181,9 +2177,6 @@ body.has-float-cta{padding-bottom:76px;}
                                 <div class="hero__cta">
           <a class="btn btn--ghost" href="#quiz">
             下の質問に答える ↓
-          </a>
-          <a class="btn btn--primary iv-booking-open" href="#iv-booking" data-fc-event="interview_online">
-            面接を申し込む
           </a>
         </div>
 
@@ -2491,13 +2484,6 @@ body.has-float-cta{padding-bottom:76px;}
     </div>
 
 <div class="final__cta reveal">
-      <a class="btn btn--primary iv-booking-open" href="#iv-booking" data-fc-event="interview_online">
-        面接を申し込む
-      </a>
-      <a class="btn btn--line" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
-        <span class="arrow"><svg><use href="#i-line"/></svg></span>
-        LINEで相談する
-      </a>
       <a class="btn btn--white" href="tel:05031721405" data-action="phone-consult">
         <span class="arrow"><svg><use href="#i-phone"/></svg></span>
         電話で相談する
@@ -2827,15 +2813,9 @@ body.has-float-cta{padding-bottom:76px;}
   if (!bar) return;
   bar.hidden = false;
   document.body.classList.add("has-float-cta");
-  var finalEl = document.querySelector("section.final");
   function sync(){
     var y = window.scrollY || document.documentElement.scrollTop;
-    var show = y > 420;
-    if (finalEl) {
-      var r = finalEl.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.72) show = false;
-    }
-    bar.classList.toggle("is-visible", show);
+    bar.classList.toggle("is-visible", y > 180);
   }
   window.addEventListener("scroll", sync, {passive:true});
   window.addEventListener("resize", sync);
@@ -2843,8 +2823,8 @@ body.has-float-cta{padding-bottom:76px;}
 })();
 </script>
 
-<link rel="stylesheet" href="https://interview-booking-api.netlify.app/widget/booking.css?v=6">
-<script src="https://interview-booking-api.netlify.app/widget/config.js?v=6"></script>
-<script src="https://interview-booking-api.netlify.app/widget/booking.js?v=6"></script>
+<link rel="stylesheet" href="https://interview-booking-api.netlify.app/widget/booking.css?v=7">
+<script src="https://interview-booking-api.netlify.app/widget/config.js?v=7"></script>
+<script src="https://interview-booking-api.netlify.app/widget/booking.js?v=7"></script>
 </body>
 </html>
