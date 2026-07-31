@@ -440,12 +440,51 @@ section{position:relative;}
 }
 
 .hero__cta{
-  display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;margin-bottom:28px;
+  display:flex;flex-wrap:wrap;gap:14px;
+  margin-top:36px;
+  margin-bottom:8px;
+}
+@media (max-width:959px){
+  .hero__inner{
+    gap:56px !important;
+    align-items:stretch;
+  }
+  .hero__cta{
+    margin-top:28px;
+    margin-bottom:0;
+  }
+  .hero__panel{
+    margin-top:8px;
+  }
 }
 @media (max-width:767px){
-  .hero__cta{margin-top:28px;margin-bottom:36px;}
-  .hero__inner{gap:40px;}
+  /* 追従フッターがあるため、スマホ先頭は案内ボタンを優先し数字カードは下に十分な間隔 */
+  .hero__inner{gap:64px !important;}
+  .hero__panel{
+    margin-top:0;
+    order:2;
+  }
+  .hero__anim{order:1;}
+  .hero__cta{
+    margin-top:32px;
+    margin-bottom:0;
+    padding-bottom:8px;
+  }
 }
+
+@media (max-width:767px){
+  .hero__inner{
+    display:flex;
+    flex-direction:column;
+  }
+}
+
+@media (max-width:767px){
+  /* スマホ先頭ビュー: 追従バーと案内ボタンを優先し、数字カードは非表示 */
+  .hero .hero__panel{display:none !important;}
+  .hero__cta{margin-top:40px;margin-bottom:24px;}
+}
+
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
   padding:18px 28px;
@@ -1890,7 +1929,7 @@ body.has-float-cta{padding-bottom:76px;}
 <!-- ============================================================
      L1 : HERO
 ============================================================ -->
-<section class="hero">
+<section class="hero" data-hero-fix="3">
   <div class="hero__circle" aria-hidden="true"></div>
   <span class="hero__decor-word" aria-hidden="true">Beauty</span>
 
