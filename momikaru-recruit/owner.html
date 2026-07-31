@@ -1567,6 +1567,46 @@ section{position:relative;}
 .final__conveniences strong{color:#F4ECDF;font-weight:700;}
 
 
+
+/* Mid-page CTA band */
+.mid-cta{
+  padding:52px 0;
+  background:linear-gradient(180deg,rgba(199,131,58,.09),rgba(244,236,223,.35));
+  border-top:1px solid rgba(199,131,58,.22);
+  border-bottom:1px solid rgba(199,131,58,.18);
+  text-align:center;
+}
+.mid-cta__lead{
+  margin:0 auto 22px;
+  max-width:560px;
+  font-size:14.5px;line-height:1.85;color:var(--ink-2);
+}
+.mid-cta__btns{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:12px;
+}
+.site-header__book{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1.5px solid rgba(139,42,30,.55);
+  background:#fff;
+  color:var(--accent);
+  font-weight:700;font-size:11.5px;letter-spacing:.04em;
+  transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
+}
+.site-header__book:hover{
+  transform:translateY(-1px);
+  background:var(--accent);
+  color:#fff;
+  box-shadow:0 12px 28px -10px rgba(139,42,30,.55);
+}
+.site-header__book .label-short{display:none;}
+@media (max-width:640px){
+  .site-header__book{padding:8px 10px;font-size:11px;}
+  .site-header__book .label-full{display:none;}
+  .site-header__book .label-short{display:inline;}
+}
+
 /* ============================================================
    FOOTER
 ============================================================ */
@@ -1778,6 +1818,11 @@ section{position:relative;}
       <a class="site-header__phone" href="tel:05031721405" aria-label="電話で相談する 050-3172-1405" title="電話で相談する 050-3172-1405" data-action="phone-consult">
         <svg aria-hidden="true"><use href="#i-phone"/></svg>
       </a>
+      <a class="site-header__book iv-booking-open" href="#iv-booking" data-fc-event="interview_online" data-iv-job="独立・FC">
+        <span class="label-full">面接予約</span>
+        <span class="label-short">面接</span>
+      </a>
+
       <a class="site-header__cta" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
         <span class="dot" aria-hidden="true"></span>
         <span class="label-full">今すぐ無料相談</span>
@@ -1825,7 +1870,7 @@ section{position:relative;}
           <li><svg><use href="#i-check"/></svg>11年実績・融資通過率90%超</li>
         </ul>
 
-                <div class="hero__cta">
+                                <div class="hero__cta">
           <a class="btn btn--ghost" href="#income">
             収入の目安を見る
             <span class="arrow"><svg><use href="#i-arrow"/></svg></span>
@@ -1833,8 +1878,11 @@ section{position:relative;}
           <a class="btn btn--primary iv-booking-open" href="#iv-booking" data-fc-event="interview_online" data-iv-job="独立・FC">
             面接を申し込む
           </a>
+          <a class="btn btn--line" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
+            <span class="arrow"><svg><use href="#i-line"/></svg></span>
+            LINEで相談する
+          </a>
         </div>
-      </div>
 
       <aside class="hero__panel" aria-label="もみかる主要指標">
         <div class="hero__panel-head">
@@ -2172,6 +2220,22 @@ section{position:relative;}
   </div>
 </section>
 
+
+<section class="mid-cta" aria-label="面接・相談のご案内">
+  <div class="container">
+    <p class="mid-cta__lead reveal">収入のイメージがついたら、まずは話を聞いてみませんか。</p>
+    <div class="mid-cta__btns reveal">
+      <a class="btn btn--primary iv-booking-open" href="#iv-booking" data-fc-event="interview_online" data-iv-job="独立・FC">
+        面接を申し込む
+      </a>
+      <a class="btn btn--line" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
+        <span class="arrow"><svg><use href="#i-line"/></svg></span>
+        LINEで相談する
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================
      L4 : WHAT WE OFFER
 ============================================================ -->
@@ -2211,6 +2275,22 @@ section{position:relative;}
         <h3 class="ocard__title">11年実績・融資通過率90%超の事業基盤。</h3>
         <p class="ocard__body">もみかるは2014年から運営を続け、現在130店舗以上を展開。<strong>独立希望者の融資通過率は90%超</strong>です。事業計画書の作成、融資相談、開業準備、すべて本部が伴走します。「失敗が怖い」という不安に、11年の実績と数字で答えます。</p>
       </article>
+    </div>
+  </div>
+</section>
+
+
+<section class="mid-cta" aria-label="面接・相談のご案内">
+  <div class="container">
+    <p class="mid-cta__lead reveal">条件や働き方が気になったら、カレンダーから面接予約ができます。</p>
+    <div class="mid-cta__btns reveal">
+      <a class="btn btn--primary iv-booking-open" href="#iv-booking" data-fc-event="interview_online" data-iv-job="独立・FC">
+        面接を申し込む
+      </a>
+      <a class="btn btn--line" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
+        <span class="arrow"><svg><use href="#i-line"/></svg></span>
+        LINEで相談する
+      </a>
     </div>
   </div>
 </section>
@@ -2283,6 +2363,22 @@ section{position:relative;}
           <strong>あなたのペースで、無理なく階段を登れる仕組みです。</strong>
         </p>
       </div>
+    
+<section class="mid-cta mid-cta--stair" aria-label="面接・相談のご案内">
+  <div class="container">
+    <p class="mid-cta__lead reveal">独立の階段が見えたら、まずは相談予約から。</p>
+    <div class="mid-cta__btns reveal">
+      <a class="btn btn--primary iv-booking-open" href="#iv-booking" data-fc-event="interview_online" data-iv-job="独立・FC">
+        面接を申し込む
+      </a>
+      <a class="btn btn--line" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
+        <span class="arrow"><svg><use href="#i-line"/></svg></span>
+        LINEで相談する
+      </a>
+    </div>
+  </div>
+</section>
+
     </div>
 
     <div class="future__head reveal" style="margin-top:0;">
@@ -2546,6 +2642,22 @@ section{position:relative;}
           <span class="fstep__time">問い合わせから 2〜4週間</span>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+
+<section class="mid-cta" aria-label="面接・相談のご案内">
+  <div class="container">
+    <p class="mid-cta__lead reveal">応募の前に、30分だけ情報交換しませんか。</p>
+    <div class="mid-cta__btns reveal">
+      <a class="btn btn--primary iv-booking-open" href="#iv-booking" data-fc-event="interview_online" data-iv-job="独立・FC">
+        面接を申し込む
+      </a>
+      <a class="btn btn--line" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
+        <span class="arrow"><svg><use href="#i-line"/></svg></span>
+        LINEで相談する
+      </a>
     </div>
   </div>
 </section>
