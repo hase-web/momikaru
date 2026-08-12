@@ -39,6 +39,7 @@
   --pink-deep: #8B2D4A;
   --pink-bg: #FBE9EF;
   --orange-bg: #FAEEDA;
+  --orange-soft: #FFF5E6;
   --ease-quint: cubic-bezier(0.22, 1, 0.36, 1);
   --color-text-primary: var(--ink-900);
   --color-text-secondary: var(--ink-600);
@@ -1372,6 +1373,109 @@ strong { font-weight: 700; }
   .step-card__actions { flex-direction: column; gap: 6px; }
   .step-card__action-link { width: 100%; }
 }
+
+/* ==========================================================
+   Contact section — FC-BASE lead intake (/api/leads)
+   個別相談・先行登録 = #fc-booking / 資料請求 = #fc-document
+========================================================== */
+.lp-contact { background: var(--offwhite); padding: 96px 0; }
+@media (max-width: 767px) { .lp-contact { padding: 64px 0; } }
+.lp-contact-head { text-align: center; margin-bottom: 40px; }
+.lp-contact-head .h-section { margin-bottom: 16px; }
+.lp-contact-head .lede { margin-left: auto; margin-right: auto; }
+.lp-contact-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: start; }
+@media (min-width: 1024px) { .lp-contact-grid { grid-template-columns: 1fr 1fr; gap: 28px; } }
+.lp-contact-card {
+  margin: 0 auto;
+  max-width: 560px;
+  width: 100%;
+  padding: 32px 28px;
+  background: var(--white);
+  border: 1px solid var(--line-200);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(13,17,23,0.06);
+  scroll-margin-top: 88px;
+}
+@media (max-width: 767px) { .lp-contact-card { padding: 24px 20px; } }
+
+.lp-form-head { margin-bottom: 24px; }
+.lp-form-title {
+  font-size: 20px; font-weight: 700; line-height: 1.45;
+  letter-spacing: -0.01em; color: var(--ink-900); margin-bottom: 8px;
+}
+.lp-form-sub { font-size: 13px; line-height: 1.8; color: var(--ink-600); }
+
+.lp-form-field { margin-bottom: 16px; }
+.lp-form-field label {
+  display: block; margin-bottom: 6px;
+  font-size: 13px; font-weight: 700; color: var(--ink-700);
+}
+.lp-form-field .req {
+  display: inline-block; margin-left: 8px; padding: 2px 7px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+  background: var(--brand-700); color: var(--ink-900); border-radius: 3px;
+  vertical-align: 1px;
+}
+.lp-form-field input,
+.lp-form-field textarea {
+  width: 100%; padding: 12px 14px;
+  font-size: 15px; font-family: inherit; line-height: 1.7;
+  border: 1.5px solid var(--line-200); border-radius: 6px;
+  background: var(--white); color: var(--ink-900);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.lp-form-field textarea { min-height: 96px; resize: vertical; }
+.lp-form-field input:focus,
+.lp-form-field textarea:focus {
+  outline: none; border-color: var(--ink-900);
+  box-shadow: 0 0 0 4px rgba(253,169,42,0.24);
+}
+.lp-form-note { font-size: 12px; line-height: 1.7; color: var(--ink-600); margin: 0 0 16px; }
+.lp-form-note a { color: var(--ink-900); }
+.lp-form-submit {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; min-height: 56px; padding: 0 24px;
+  background: var(--ink-900); color: var(--brand-700);
+  font-size: 15px; font-weight: 700; letter-spacing: 0.04em; font-family: inherit;
+  border: none; border-radius: 6px; cursor: pointer;
+  transition: background 0.2s var(--ease-quint), color 0.2s var(--ease-quint),
+              transform 0.2s var(--ease-quint), box-shadow 0.2s var(--ease-quint);
+}
+.lp-form-submit:hover:not([disabled]) {
+  background: var(--brand-700); color: var(--ink-900);
+  transform: translateY(-1px); box-shadow: 0 8px 20px rgba(253,169,42,0.32);
+}
+.lp-form-submit[disabled] { opacity: 0.55; cursor: not-allowed; }
+.lp-form-status {
+  font-size: 14px; line-height: 1.7; font-weight: 700;
+  color: var(--pink-deep); margin: 12px 0 0;
+}
+.lp-form-status:empty { display: none; }
+.lp-form-status[data-state="pending"] { color: var(--ink-600); font-weight: 500; }
+/* 送信完了パネル */
+.lp-form-done { display: none; text-align: left; }
+.lp-form-done.is-visible { display: block; }
+.lp-form-done__title {
+  font-size: 20px; font-weight: 700; line-height: 1.4;
+  color: #047857; margin: 0 0 12px;
+}
+.lp-form-done__text { font-size: 15px; line-height: 1.8; color: var(--ink-900); margin: 0 0 20px; }
+.lp-form-done__btn {
+  display: none;
+  align-items: center; justify-content: center; gap: 10px;
+  width: 100%; min-height: 56px; padding: 16px 24px;
+  background: var(--ink-900); color: var(--brand-700);
+  font-size: 15px; font-weight: 700; line-height: 1.4; letter-spacing: 0.04em;
+  text-decoration: none; border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.lp-form-done__btn.is-visible { display: flex; }
+.lp-form-done__btn:hover, .lp-form-done__btn:focus-visible {
+  background: var(--brand-700); color: var(--ink-900);
+}
+.lp-form-done__btn:focus-visible { outline: 3px solid var(--brand-700); outline-offset: 2px; }
+/* 罠フィールド（自動投稿対策）。人には見せない */
+.lp-form-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 </style>
 </head>
 <body>
@@ -1744,10 +1848,9 @@ strong { font-weight: 700; }
       <p class="resource-cta-mid__lead">
         まずは詳しい資料で、もみかるFC・ベッドパートナー制度の全体像を確認できます。
       </p>
-      <a href="https://www.momikaru.com/fc/Download.html"
-         class="resource-cta-mid__btn"
-         target="_blank"
-         rel="noopener noreferrer">
+      <!-- 差し替え前の遷移先: https://www.momikaru.com/fc/Download.html （target="_blank" rel="noopener noreferrer"）。FC-BASE への差し替え確認が済むまで記録として残す -->
+      <a href="#fc-document"
+         class="resource-cta-mid__btn">
         資料を請求する <span class="arrow" aria-hidden="true">→</span>
       </a>
     </aside>
@@ -2066,14 +2169,143 @@ strong { font-weight: 700; }
     <p class="resource-cta-footer__text">
       もみかるFC・ベッドパートナー制度の詳細資料はこちらからダウンロードいただけます。
     </p>
-    <a href="https://www.momikaru.com/fc/Download.html"
-       class="resource-cta-footer__btn"
-       target="_blank"
-       rel="noopener noreferrer">
+    <!-- 差し替え前の遷移先: https://www.momikaru.com/fc/Download.html （target="_blank" rel="noopener noreferrer"）。FC-BASE への差し替え確認が済むまで記録として残す -->
+    <a href="#fc-document"
+       class="resource-cta-footer__btn">
       資料を請求する <span class="arrow" aria-hidden="true">→</span>
     </a>
   </div>
 </aside>
+
+<!-- ============= CONTACT / FC-BASE LEAD FORMS ============= -->
+<section class="lp-contact" id="fc-contact" aria-label="先行登録・個別相談・資料請求フォーム">
+  <div class="container">
+    <div class="lp-contact-head fx">
+      <h2 class="h-section">先行登録・個別相談 / <span class="accent">資料請求</span></h2>
+      <p class="lede">
+        ご希望の窓口からお問い合わせください。本部担当が内容を確認のうえご連絡いたします。
+      </p>
+    </div>
+
+    <div class="lp-contact-grid">
+
+      <!-- ---------- 先行登録・個別相談（inquiry_type = consultation） ---------- -->
+      <div class="lp-contact-card fx" id="fc-booking">
+        <div class="lp-form-head">
+          <h3 class="lp-form-title">先行登録・個別相談を申し込む</h3>
+          <p class="lp-form-sub">オンライン可・所要30分。ベッドパートナー制度や独立計画のご相談を承ります。</p>
+        </div>
+
+        <form class="fc-lead-form" data-inquiry-type="consultation" novalidate>
+          <input type="hidden" name="inquiry_type" value="consultation" />
+          <input type="hidden" name="channel" value="自社LP" />
+          <input type="hidden" name="lp_source" value="professional" />
+
+          <div class="lp-form-field">
+            <label for="cs-name">お名前<span class="req">必須</span></label>
+            <input type="text" id="cs-name" name="name" required autocomplete="name" />
+          </div>
+          <div class="lp-form-field">
+            <label for="cs-email">メールアドレス<span class="req">必須</span></label>
+            <input type="email" id="cs-email" name="email" required autocomplete="email" />
+          </div>
+          <div class="lp-form-field">
+            <label for="cs-phone">電話番号<span class="req">必須</span></label>
+            <input type="tel" id="cs-phone" name="phone" required autocomplete="tel" />
+          </div>
+          <div class="lp-form-field">
+            <label for="cs-message">ご相談内容</label>
+            <textarea id="cs-message" name="message" rows="4" placeholder="現在のご職業・業界経験年数・独立希望時期・ご希望エリアなどをご記入ください"></textarea>
+          </div>
+
+          <div class="lp-form-trap" aria-hidden="true">
+            <label for="cs-website">Website</label>
+            <input type="text" id="cs-website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <p class="lp-form-note">
+            送信をもって、個人情報の取扱いおよびご案内メールの受信に同意いただいたものといたします。
+          </p>
+
+          <button type="submit" class="lp-form-submit">先行登録を申し込む</button>
+          <p class="lp-form-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="lp-form-done" hidden>
+          <p class="lp-form-done__title">お申し込みを受け付けました</p>
+          <p class="lp-form-done__text"></p>
+          <a class="lp-form-done__btn" href="#" rel="noopener">
+            このまま個別相談を予約する <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ---------- 資料請求（inquiry_type = document） ---------- -->
+      <div class="lp-contact-card fx" id="fc-document">
+        <div class="lp-form-head">
+          <h3 class="lp-form-title">加盟案内資料を請求する</h3>
+          <p class="lp-form-sub">ベッドパートナー制度・独立ステップ・費用モデルをまとめた資料をメールでお送りします。</p>
+        </div>
+
+        <form class="fc-lead-form" data-inquiry-type="document" novalidate>
+          <input type="hidden" name="inquiry_type" value="document" />
+          <input type="hidden" name="channel" value="自社LP" />
+          <input type="hidden" name="lp_source" value="professional" />
+
+          <div class="lp-form-field">
+            <label for="dc-name">お名前<span class="req">必須</span></label>
+            <input type="text" id="dc-name" name="name" required autocomplete="name" />
+          </div>
+          <div class="lp-form-field">
+            <label for="dc-kana">ふりがな<span class="req">必須</span></label>
+            <input type="text" id="dc-kana" name="name_kana" required />
+          </div>
+          <div class="lp-form-field">
+            <label for="dc-zip">郵便番号</label>
+            <input type="text" id="dc-zip" name="postal_code" autocomplete="postal-code" inputmode="numeric" />
+          </div>
+          <div class="lp-form-field">
+            <label for="dc-address">住所<span class="req">必須</span></label>
+            <input type="text" id="dc-address" name="address" required autocomplete="street-address" />
+          </div>
+          <div class="lp-form-field">
+            <label for="dc-phone">電話番号<span class="req">必須</span></label>
+            <input type="tel" id="dc-phone" name="phone" required autocomplete="tel" />
+          </div>
+          <div class="lp-form-field">
+            <label for="dc-email">メールアドレス<span class="req">必須</span></label>
+            <input type="email" id="dc-email" name="email" required autocomplete="email" />
+          </div>
+          <div class="lp-form-field">
+            <label for="dc-message">ご質問</label>
+            <textarea id="dc-message" name="message" rows="4"></textarea>
+          </div>
+
+          <div class="lp-form-trap" aria-hidden="true">
+            <label for="dc-website">Website</label>
+            <input type="text" id="dc-website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <p class="lp-form-note">
+            送信をもって、個人情報の取扱いおよびご案内メールの受信に同意いただいたものといたします。
+          </p>
+
+          <button type="submit" class="lp-form-submit">資料を請求する</button>
+          <p class="lp-form-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="lp-form-done" hidden>
+          <p class="lp-form-done__title">資料請求を受け付けました</p>
+          <p class="lp-form-done__text"></p>
+          <a class="lp-form-done__btn" href="#" rel="noopener">
+            このまま個別相談を予約する <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <footer class="site-footer">
   © 2026 株式会社ドラミカンパニー｜もみかるFC本部 ／ <a href="https://jrc.coop/" target="_blank" rel="noopener noreferrer">リラクゼーション事業協同組合</a>
@@ -2159,10 +2391,162 @@ strong { font-weight: 700; }
 </script>
 
 
-<!-- FC予約ウィジェット（immedio.io 代替） -->
+<!-- ============= FC-BASE リード送信（/api/leads） =============
+     設置手順: fc-base/docs/LP-フォーム設置手順.md
+     既定は B案（Netlify Functions 経由）。APIキーはブラウザに出さない。
+     A案（ブラウザから直接POST）に切り替える場合は、下の 2 定数を
+       ENDPOINT = 'https://fc-base.vercel.app/api/leads'
+       API_KEY  = '<LEADS_API_KEY>'
+     に変更するだけでよい（API_KEY が空文字なら x-api-key を送らない）。
+-------------------------------------------------------------- -->
+<script>
+(function () {
+  'use strict';
+
+  var ENDPOINT = '/.netlify/functions/lead';
+  var API_KEY  = '';
+
+  var forms = document.querySelectorAll('.fc-lead-form');
+  if (!forms.length) return;
+
+  var HEADER_OFFSET = 88; // 固定ヘッダー（64px）＋余白
+
+  /**
+   * フォームへのページ内リンク。
+   * ブラウザ既定のフラグメント移動では、ビューポートより高いカードで
+   * 着地位置が下にずれる（フォーム上部が画面外に出る）ため自前で送る。
+   */
+  function scrollToCard(card) {
+    var top = card.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: top, behavior: reduced ? 'auto' : 'smooth' });
+  }
+
+  var anchors = document.querySelectorAll('a[href="#fc-booking"], a[href="#fc-document"]');
+  Array.prototype.forEach.call(anchors, function (anchor) {
+    anchor.addEventListener('click', function (event) {
+      var card = document.querySelector(anchor.getAttribute('href'));
+      if (!card) return;
+      event.preventDefault();
+      scrollToCard(card);
+      if (history.replaceState) history.replaceState(null, '', anchor.getAttribute('href'));
+    });
+  });
+
+  // 読み込み時のハッシュ指定にも同じ着地位置を使う
+  if (location.hash === '#fc-booking' || location.hash === '#fc-document') {
+    var target = document.querySelector(location.hash);
+    if (target) window.addEventListener('load', function () { scrollToCard(target); });
+  }
+
+  /** URLのUTMパラメータを payload に写す */
+  function addUtm(payload) {
+    var params = new URLSearchParams(location.search);
+    params.forEach(function (value, key) {
+      if (key.indexOf('utm_') === 0) payload[key] = value;
+    });
+  }
+
+  /**
+   * 送信完了の表示。
+   * FC-BASE が booking_url を返したときは、そのまま予約へ進めるボタンを出す。
+   * 返さないとき（未対応・未発行）は「担当者よりご連絡」にフォールバックする。
+   */
+  function showDone(card, form, body) {
+    var done = card.querySelector('.lp-form-done');
+    var text = done.querySelector('.lp-form-done__text');
+    var btn  = done.querySelector('.lp-form-done__btn');
+    var isDocument = form.getAttribute('data-inquiry-type') === 'document';
+    var bookingUrl = body && typeof body.booking_url === 'string' ? body.booking_url : '';
+
+    if (bookingUrl) {
+      text.textContent = isDocument
+        ? 'ご入力のメールアドレス宛に、加盟案内資料と個別相談のご予約URLをお送りしました。下のボタンからそのままご予約いただけます。'
+        : 'ご入力のメールアドレス宛に、ご予約URLをお送りしました。下のボタンからそのままご希望の日時をお選びいただけます。';
+      btn.setAttribute('href', bookingUrl);
+      btn.classList.add('is-visible');
+    } else {
+      text.textContent = isDocument
+        ? 'ご入力のメールアドレス宛に、加盟案内資料をお送りしました。ご不明な点がございましたら、本部担当よりあらためてご連絡いたします。'
+        : 'お申し込みありがとうございます。本部担当より、日程のご案内をあらためてご連絡いたします。';
+      btn.classList.remove('is-visible');
+      btn.removeAttribute('href');
+    }
+
+    form.hidden = true;
+    form.style.display = 'none';
+    done.hidden = false;
+    done.classList.add('is-visible');
+    done.setAttribute('tabindex', '-1');
+    done.focus();
+  }
+
+  Array.prototype.forEach.call(forms, function (form) {
+    var card   = form.closest('.lp-contact-card');
+    var status = form.querySelector('.lp-form-status');
+    var button = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      button.disabled = true;
+      status.setAttribute('data-state', 'pending');
+      status.textContent = '送信しています…';
+
+      var payload = {};
+      new FormData(form).forEach(function (value, key) { payload[key] = value; });
+      payload.source_url = location.href;
+      addUtm(payload);
+
+      var headers = { 'Content-Type': 'application/json' };
+      if (API_KEY) headers['x-api-key'] = API_KEY;
+
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res.text().then(function (raw) {
+            var body = null;
+            try { body = raw ? JSON.parse(raw) : null; } catch (e) { body = null; }
+            return { ok: res.ok, body: body };
+          });
+        })
+        .then(function (result) {
+          if (!result.ok) {
+            // 400 のときだけ details をそのまま出す。それ以外は汎用エラー
+            var details = (result.body && result.body.details) || [];
+            status.removeAttribute('data-state');
+            status.textContent = details.length
+              ? details.join(' ')
+              : '送信できませんでした。お手数ですが、お電話にてお問い合わせください。';
+            button.disabled = false;
+            return;
+          }
+          // 重複（duplicate: true）でも表示は成功時と同じにする
+          status.removeAttribute('data-state');
+          status.textContent = '';
+          showDone(card, form, result.body);
+        })
+        .catch(function () {
+          status.removeAttribute('data-state');
+          status.textContent = '通信に失敗しました。時間をおいて再度お試しください。';
+          button.disabled = false;
+        });
+    });
+  });
+})();
+</script>
+
+<!-- FC予約ウィジェット（immedio.io 代替）
+     FC-BASE の /api/leads へ差し替えたため停止。
+     差し替えの確認が済むまで、復旧できるようコメントアウトで残す。
 <link rel="stylesheet" href="https://fc-booking-api.netlify.app/widget/booking.css?v=6">
 <script src="https://fc-booking-api.netlify.app/widget/config.js?v=6"></script>
 <script src="https://fc-booking-api.netlify.app/widget/booking.js?v=6"></script>
+-->
 
 </body>
 </html>
