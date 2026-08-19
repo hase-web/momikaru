@@ -1,0 +1,9 @@
+# momikaru-fc-personal-redesign（未経験者向けFC募集LP・リデザイン）
+# 静的公開 + リード中継用の Netlify Function 1本。
+# Netlify 側で「Base directory = momikaru-fc-personal-redesign」になっている前提。
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"

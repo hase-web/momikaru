@@ -140,7 +140,13 @@ strong { font-weight: 700; }
   transition: transform 0.2s var(--ease-quint), background 0.2s var(--ease-quint);
 }
 .header-cta:hover { transform: translateY(-1px); background: var(--brand-700); color: var(--ink-900); }
-@media (max-width: 540px) { .header-cta .label-pc { display: none; } }
+.header-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.header-cta--ghost {
+  background: transparent; color: var(--ink-900);
+  border: 1.5px solid var(--ink-900);
+}
+.header-cta--ghost:hover { background: var(--ink-900); color: var(--brand-700); }
+@media (max-width: 540px) { .header-cta { font-size: 11px; padding: 8px 10px; } }
 
 /* ============== HERO ============== */
 .hero { padding: 88px 0 96px; background: linear-gradient(180deg, #FFFDF7 0%, #FFFFFF 65%); }
@@ -1437,7 +1443,7 @@ strong { font-weight: 700; }
   width: 100%; min-height: 56px; padding: 0 24px;
   background: var(--ink-900); color: var(--brand-700);
   font-size: 15px; font-weight: 700; letter-spacing: 0.04em; font-family: inherit;
-  border: none; border-radius: 6px; cursor: pointer;
+  border: none; border-radius: 6px; cursor: pointer; text-decoration: none;
   transition: background 0.2s var(--ease-quint), color 0.2s var(--ease-quint),
               transform 0.2s var(--ease-quint), box-shadow 0.2s var(--ease-quint);
 }
@@ -1486,10 +1492,10 @@ strong { font-weight: 700; }
     <a class="brand-logo" href="#top" aria-label="もみかるFRANCHISE トップへ">
       <img src="images/logo/momikaru_logo.png" alt="もみかるFRANCHISE" class="brand-logo__image">
     </a>
-    <a class="header-cta fc-booking-open" href="#fc-booking">
-      <span class="header-cta-label"><span class="label-pc">先行登録</span>を申し込む</span>
-      <span aria-hidden="true">→</span>
-    </a>
+    <div class="header-actions">
+      <a class="header-cta fc-booking-open" href="#fc-booking" data-fc-event="briefing">説明会予約</a>
+      <a class="header-cta header-cta--ghost" href="#fc-document">資料請求</a>
+    </div>
   </div>
 </header>
 
@@ -1509,8 +1515,8 @@ strong { font-weight: 700; }
       <span><span class="dot" aria-hidden="true"></span> ロイヤリティ0円</span>
     </div>
     <div class="hero-cta-row fx">
-      <a class="btn btn-primary fc-booking-open" href="#fc-booking">
-        先行登録を申し込む <span class="arrow" aria-hidden="true">→</span>
+      <a class="btn btn-primary fc-booking-open" href="#fc-booking" data-fc-event="briefing">
+        説明会予約 <span class="arrow" aria-hidden="true">→</span>
         <img src="images/characters/momio_guts.png" class="momio-peek" alt="" aria-hidden="true">
       </a>
       <a class="btn btn-secondary" href="#bedpartner">ベッドパートナー制度を見る</a>
@@ -2138,22 +2144,22 @@ strong { font-weight: 700; }
   <div class="container">
     <p class="eyebrow fx">09 / 09 &nbsp;·&nbsp; APPLY NOW</p>
     <span class="cta-perks-tag fx" aria-label="先行10社限定特典あり">先行10社限定特典あり</span>
-    <h2 class="h-section fx" id="ctaH">先行登録 / 個別相談を、<br /><span class="accent">いますぐ申し込む</span>。</h2>
+    <h2 class="h-section fx" id="ctaH">説明会予約 / 資料請求を、<br /><span class="accent">いますぐ</span>。</h2>
     <p class="lede fx">
       加盟金0円・システム利用料半額の先行特典は、10社が埋まり次第終了します。<br />
-      まずは個別相談で、あなたの独立計画をご相談ください。
+      まずは説明会で、あなたの独立計画をご相談ください。
     </p>
     <div class="cta-row fx">
-      <a class="btn btn-primary fc-booking-open" href="#fc-booking">
-        先行登録を申し込む <span class="arrow" aria-hidden="true">→</span>
+      <a class="btn btn-primary fc-booking-open" href="#fc-booking" data-fc-event="briefing">
+        説明会予約 <span class="arrow" aria-hidden="true">→</span>
       </a>
-      <a class="btn btn-secondary fc-booking-open" href="#fc-booking">
-        個別相談を予約する
+      <a class="btn btn-secondary" href="#fc-document">
+        資料請求
       </a>
     </div>
     <p class="cta-foot">
       お問い合わせ：株式会社ドラミカンパニー（もみかるFC本部）<br />
-      ※ 先行登録のお申し込み内容を確認後、本部担当よりご連絡いたします。<br />
+      ※ 説明会のご予約は、カレンダーから空き時間をお選びください。資料請求は下部フォームからお申し込みいただけます。<br />
       ※ 業界経験・現職・独立希望時期などをお聞かせいただくと、ご相談がスムーズです。
     </p>
     <div class="cta-momio" aria-hidden="true">
@@ -2178,66 +2184,25 @@ strong { font-weight: 700; }
 </aside>
 
 <!-- ============= CONTACT / FC-BASE LEAD FORMS ============= -->
-<section class="lp-contact" id="fc-contact" aria-label="先行登録・個別相談・資料請求フォーム">
+<section class="lp-contact" id="fc-contact" aria-label="説明会予約・資料請求">
   <div class="container">
     <div class="lp-contact-head fx">
-      <h2 class="h-section">先行登録・個別相談 / <span class="accent">資料請求</span></h2>
+      <h2 class="h-section">説明会予約 / <span class="accent">資料請求</span></h2>
       <p class="lede">
-        ご希望の窓口からお問い合わせください。本部担当が内容を確認のうえご連絡いたします。
+        説明会はカレンダーから空き時間を選んで予約できます。資料請求はフォームからお申し込みください。
       </p>
     </div>
 
     <div class="lp-contact-grid">
 
-      <!-- ---------- 先行登録・個別相談（inquiry_type = consultation） ---------- -->
+      <!-- ---------- 説明会予約（松村カレンダー） ---------- -->
       <div class="lp-contact-card fx" id="fc-booking">
         <div class="lp-form-head">
-          <h3 class="lp-form-title">先行登録・個別相談を申し込む</h3>
-          <p class="lp-form-sub">オンライン可・所要30分。ベッドパートナー制度や独立計画のご相談を承ります。</p>
+          <h3 class="lp-form-title">説明会を予約する</h3>
+          <p class="lp-form-sub">オンライン説明会。松村のカレンダーから空き時間を選んで、その場で確定できます。</p>
         </div>
-
-        <form class="fc-lead-form" data-inquiry-type="consultation" novalidate>
-          <input type="hidden" name="inquiry_type" value="consultation" />
-          <input type="hidden" name="channel" value="自社LP" />
-          <input type="hidden" name="lp_source" value="professional" />
-
-          <div class="lp-form-field">
-            <label for="cs-name">お名前<span class="req">必須</span></label>
-            <input type="text" id="cs-name" name="name" required autocomplete="name" />
-          </div>
-          <div class="lp-form-field">
-            <label for="cs-email">メールアドレス<span class="req">必須</span></label>
-            <input type="email" id="cs-email" name="email" required autocomplete="email" />
-          </div>
-          <div class="lp-form-field">
-            <label for="cs-phone">電話番号<span class="req">必須</span></label>
-            <input type="tel" id="cs-phone" name="phone" required autocomplete="tel" />
-          </div>
-          <div class="lp-form-field">
-            <label for="cs-message">ご相談内容</label>
-            <textarea id="cs-message" name="message" rows="4" placeholder="現在のご職業・業界経験年数・独立希望時期・ご希望エリアなどをご記入ください"></textarea>
-          </div>
-
-          <div class="lp-form-trap" aria-hidden="true">
-            <label for="cs-website">Website</label>
-            <input type="text" id="cs-website" name="website" tabindex="-1" autocomplete="off" />
-          </div>
-
-          <p class="lp-form-note">
-            送信をもって、個人情報の取扱いおよびご案内メールの受信に同意いただいたものといたします。
-          </p>
-
-          <button type="submit" class="lp-form-submit">先行登録を申し込む</button>
-          <p class="lp-form-status" role="status" aria-live="polite"></p>
-        </form>
-
-        <div class="lp-form-done" hidden>
-          <p class="lp-form-done__title">お申し込みを受け付けました</p>
-          <p class="lp-form-done__text"></p>
-          <a class="lp-form-done__btn" href="#" rel="noopener">
-            このまま個別相談を予約する <span aria-hidden="true">→</span>
-          </a>
-        </div>
+        <a href="#fc-booking" class="lp-form-submit fc-booking-open" data-fc-event="briefing">日時を選んで予約する</a>
+        <p class="lp-form-note" style="margin-top:16px;margin-bottom:0;">予約確定後、担当（松村）のカレンダーに登録され、Google Meetの案内をお送りします。</p>
       </div>
 
       <!-- ---------- 資料請求（inquiry_type = document） ---------- -->
@@ -2297,8 +2262,8 @@ strong { font-weight: 700; }
         <div class="lp-form-done" hidden>
           <p class="lp-form-done__title">資料請求を受け付けました</p>
           <p class="lp-form-done__text"></p>
-          <a class="lp-form-done__btn" href="#" rel="noopener">
-            このまま個別相談を予約する <span aria-hidden="true">→</span>
+          <a class="lp-form-done__btn fc-booking-open is-visible" href="#fc-booking" data-fc-event="briefing">
+            このまま説明会を予約する <span aria-hidden="true">→</span>
           </a>
         </div>
       </div>
@@ -2422,21 +2387,25 @@ strong { font-weight: 700; }
     window.scrollTo({ top: top, behavior: reduced ? 'auto' : 'smooth' });
   }
 
-  var anchors = document.querySelectorAll('a[href="#fc-booking"], a[href="#fc-document"]');
+  var anchors = document.querySelectorAll('a[href="#fc-document"]');
   Array.prototype.forEach.call(anchors, function (anchor) {
     anchor.addEventListener('click', function (event) {
       var card = document.querySelector(anchor.getAttribute('href'));
       if (!card) return;
       event.preventDefault();
       scrollToCard(card);
-      if (history.replaceState) history.replaceState(null, '', anchor.getAttribute('href'));
+      if (history.replaceState) history.replaceState(null, '', '#fc-document');
     });
   });
 
-  // 読み込み時のハッシュ指定にも同じ着地位置を使う
-  if (location.hash === '#fc-booking' || location.hash === '#fc-document') {
-    var target = document.querySelector(location.hash);
+  if (location.hash === '#fc-document') {
+    var target = document.querySelector('#fc-document');
     if (target) window.addEventListener('load', function () { scrollToCard(target); });
+  }
+  if (location.hash === '#fc-booking') {
+    window.addEventListener('load', function () {
+      if (window.FCBooking) window.FCBooking.open({ eventType: 'briefing' });
+    });
   }
 
   /** URLのUTMパラメータを payload に写す */
@@ -2457,21 +2426,10 @@ strong { font-weight: 700; }
     var text = done.querySelector('.lp-form-done__text');
     var btn  = done.querySelector('.lp-form-done__btn');
     var isDocument = form.getAttribute('data-inquiry-type') === 'document';
-    var bookingUrl = body && typeof body.booking_url === 'string' ? body.booking_url : '';
-
-    if (bookingUrl) {
-      text.textContent = isDocument
-        ? 'ご入力のメールアドレス宛に、加盟案内資料と個別相談のご予約URLをお送りしました。下のボタンからそのままご予約いただけます。'
-        : 'ご入力のメールアドレス宛に、ご予約URLをお送りしました。下のボタンからそのままご希望の日時をお選びいただけます。';
-      btn.setAttribute('href', bookingUrl);
-      btn.classList.add('is-visible');
-    } else {
-      text.textContent = isDocument
-        ? 'ご入力のメールアドレス宛に、加盟案内資料をお送りしました。ご不明な点がございましたら、本部担当よりあらためてご連絡いたします。'
-        : 'お申し込みありがとうございます。本部担当より、日程のご案内をあらためてご連絡いたします。';
-      btn.classList.remove('is-visible');
-      btn.removeAttribute('href');
-    }
+    text.textContent = 'ご入力のメールアドレス宛に、加盟案内資料をお送りしました。ご希望があれば、下のボタンから説明会の日時も予約できます。';
+    btn.setAttribute('href', '#fc-booking');
+    btn.setAttribute('data-fc-event', 'briefing');
+    btn.classList.add('is-visible', 'fc-booking-open');
 
     form.hidden = true;
     form.style.display = 'none';
@@ -2540,13 +2498,10 @@ strong { font-weight: 700; }
 })();
 </script>
 
-<!-- FC予約ウィジェット（immedio.io 代替）
-     FC-BASE の /api/leads へ差し替えたため停止。
-     差し替えの確認が済むまで、復旧できるようコメントアウトで残す。
-<link rel="stylesheet" href="https://fc-booking-api.netlify.app/widget/booking.css?v=6">
-<script src="https://fc-booking-api.netlify.app/widget/config.js?v=6"></script>
-<script src="https://fc-booking-api.netlify.app/widget/booking.js?v=6"></script>
--->
+<!-- FC予約ウィジェット（松村カレンダー） -->
+<link rel="stylesheet" href="https://fc-booking-api.netlify.app/widget/booking.css?v=7">
+<script src="https://fc-booking-api.netlify.app/widget/config.js?v=7"></script>
+<script src="https://fc-booking-api.netlify.app/widget/booking.js?v=7"></script>
 
 </body>
 </html>

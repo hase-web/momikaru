@@ -738,9 +738,24 @@ body::before {
 .nav-link:hover { color: var(--brand-500); }
 .nav-link:hover::after { width: 100%; }
 
-.header-cta { display: none; align-items: center; justify-content: center; height: 40px; padding: 0 16px; background-color: var(--brand-500); color: var(--ink-900); font-size: 13px; font-weight: 700; border-radius: 4px; text-decoration: none; transition: background-color 0.3s var(--ease-quint); }
+.header-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.header-cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 36px; padding: 0 12px;
+  background-color: var(--brand-500); color: var(--ink-900);
+  font-size: 12px; font-weight: 700; border-radius: 4px; text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.3s var(--ease-quint), color 0.3s var(--ease-quint);
+}
 .header-cta:hover { background-color: var(--brand-700); }
-@media (min-width: 1024px) { .header-cta { display: inline-flex; } }
+.header-cta--ghost {
+  background: transparent; color: #FFFFFF;
+  border: 1px solid rgba(255,255,255,0.45);
+}
+.header-cta--ghost:hover { background: #FFFFFF; color: var(--ink-900); }
+@media (min-width: 1024px) {
+  .header-cta { height: 40px; padding: 0 16px; font-size: 13px; }
+}
 
 .hamburger {
   display: inline-flex; align-items: center; justify-content: center;
@@ -1466,11 +1481,12 @@ textarea.input-field { min-height: 120px; padding: 16px; }
 .lp-form-check input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--brand-500); flex-shrink: 0; }
 .lp-form-check a { color: var(--ink-900); text-decoration: underline; }
 .lp-form-submit {
+  display: flex; align-items: center; justify-content: center;
   width: 100%; min-height: 56px;
   background: var(--brand-500); color: var(--ink-900);
   font-size: 17px; font-weight: 800; font-family: inherit;
   border: none; border-radius: 6px; cursor: pointer;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.02em; text-decoration: none;
   transition: background-color 0.25s;
 }
 @media (min-width: 768px) { .lp-form-submit { font-size: 18px; } }
@@ -1855,6 +1871,7 @@ textarea.input-field { min-height: 120px; padding: 16px; }
 .fixed-cta-bar.is-visible { transform: translateY(0); }
 .fixed-cta-bar a { flex: 1; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; font-size: 14px; font-weight: 700; border-radius: 4px; text-decoration: none; }
 .fixed-cta-bar .fab-primary { background: var(--brand-500); color: var(--ink-900); }
+.fixed-cta-bar .fab-secondary { background: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.55); }
 @media (min-width: 1024px) { .fixed-cta-bar { display: none; } }
 
 /* ==========================================================
@@ -2525,7 +2542,10 @@ textarea.input-field { min-height: 120px; padding: 16px; }
       <a href="#safety" class="nav-link">サポート</a>
       <a href="#cta" class="nav-link">説明会</a>
     </nav>
-    <a href="#fc-booking" class="header-cta fc-booking-open">個別相談を申し込む <svg class="icn icn-xs" aria-hidden="true"><use href="#ic-arrow-right"/></svg></a>
+    <div class="header-actions">
+      <a href="#fc-booking" class="header-cta fc-booking-open" data-fc-event="briefing">説明会予約</a>
+      <a href="#fc-document" class="header-cta header-cta--ghost">資料請求</a>
+    </div>
     <button type="button" class="hamburger" id="hamburger" aria-controls="navMobile" aria-expanded="false" aria-label="メニューを開閉">
       <svg class="hb-open icn icn-md" aria-hidden="true"><use href="#ic-hamburger"/></svg>
       <svg class="hb-close icn icn-md" aria-hidden="true"><use href="#ic-close"/></svg>
@@ -2539,7 +2559,8 @@ textarea.input-field { min-height: 120px; padding: 16px; }
     <li><a href="#numbers">実績</a></li>
     <li><a href="#plans">プラン</a></li>
     <li><a href="#safety">サポート</a></li>
-    <li><a href="#fc-booking" class="fc-booking-open">個別相談を申し込む</a></li>
+    <li><a href="#fc-booking" class="fc-booking-open" data-fc-event="briefing">説明会予約</a></li>
+    <li><a href="#fc-document">資料請求</a></li>
   </ul>
 </nav>
 
@@ -2592,8 +2613,8 @@ textarea.input-field { min-height: 120px; padding: 16px; }
 
     <div class="cta-block cta-block--primary cta-block--on-dark fade-up">
       <a href="#fc-booking"
-         class="cta-btn cta-btn--primary fc-booking-open">
-        個別相談を申し込む <span aria-hidden="true">→</span>
+         class="cta-btn cta-btn--primary fc-booking-open" data-fc-event="briefing">
+        説明会予約 <span aria-hidden="true">→</span>
       </a>
       <!-- 差し替え前の遷移先: https://www.momikaru.com/fc/Download.html （target="_blank" rel="noopener noreferrer"）。FC-BASE への差し替え確認が済むまで記録として残す -->
       <a href="#fc-document"
@@ -3012,8 +3033,8 @@ textarea.input-field { min-height: 120px; padding: 16px; }
     </div>
 
     <div class="fade-up" style="margin-top: 32px;">
-      <a href="#fc-booking" class="btn-primary fc-booking-open">
-        個別相談を申し込む
+      <a href="#fc-booking" class="btn-primary fc-booking-open" data-fc-event="briefing">
+        説明会予約
         <span class="btn-arrow" aria-hidden="true"><svg class="icn icn-sm"><use href="#ic-arrow-right"/></svg></span>
       </a>
     </div>
@@ -3027,8 +3048,8 @@ textarea.input-field { min-height: 120px; padding: 16px; }
     <p class="mini-form-sub">個別相談で、全ての仕組みを公開します。</p>
     <div class="cta-block cta-block--primary cta-block--on-dark fade-up">
       <a href="#fc-booking"
-         class="cta-btn cta-btn--primary fc-booking-open">
-        個別相談を申し込む <span aria-hidden="true">→</span>
+         class="cta-btn cta-btn--primary fc-booking-open" data-fc-event="briefing">
+        説明会予約 <span aria-hidden="true">→</span>
       </a>
       <!-- 差し替え前の遷移先: https://www.momikaru.com/fc/Download.html （target="_blank" rel="noopener noreferrer"）。FC-BASE への差し替え確認が済むまで記録として残す -->
       <a href="#fc-document"
@@ -3368,8 +3389,8 @@ textarea.input-field { min-height: 120px; padding: 16px; }
         詳細は個別の事業説明会にてご案内。
       </p>
       <div class="multi-store-badge-cta">
-        <a href="#fc-booking" class="btn-primary on-dark fc-booking-open">
-          個別相談を申し込む
+        <a href="#fc-booking" class="btn-primary on-dark fc-booking-open" data-fc-event="briefing">
+          説明会予約
           <span class="btn-arrow" aria-hidden="true"><svg class="icn icn-sm"><use href="#ic-arrow-right"/></svg></span>
         </a>
       </div>
@@ -3396,8 +3417,8 @@ textarea.input-field { min-height: 120px; padding: 16px; }
     <p class="mini-form-sub">事業規模・目標に合わせた個別相談が可能です。</p>
     <div class="cta-block cta-block--primary cta-block--on-dark fade-up">
       <a href="#fc-booking"
-         class="cta-btn cta-btn--primary fc-booking-open">
-        個別相談を申し込む <span aria-hidden="true">→</span>
+         class="cta-btn cta-btn--primary fc-booking-open" data-fc-event="briefing">
+        説明会予約 <span aria-hidden="true">→</span>
       </a>
       <!-- 差し替え前の遷移先: https://www.momikaru.com/fc/Download.html （target="_blank" rel="noopener noreferrer"）。FC-BASE への差し替え確認が済むまで記録として残す -->
       <a href="#fc-document"
@@ -3604,8 +3625,8 @@ textarea.input-field { min-height: 120px; padding: 16px; }
     <p class="mini-form-sub">オンラインでのご相談も可能です。</p>
     <div class="cta-block cta-block--primary cta-block--on-dark fade-up">
       <a href="#fc-booking"
-         class="cta-btn cta-btn--primary fc-booking-open">
-        個別相談を申し込む <span aria-hidden="true">→</span>
+         class="cta-btn cta-btn--primary fc-booking-open" data-fc-event="briefing">
+        説明会予約 <span aria-hidden="true">→</span>
       </a>
       <!-- 差し替え前の遷移先: https://www.momikaru.com/fc/Download.html （target="_blank" rel="noopener noreferrer"）。FC-BASE への差し替え確認が済むまで記録として残す -->
       <a href="#fc-document"
@@ -3892,8 +3913,8 @@ textarea.input-field { min-height: 120px; padding: 16px; }
     </div>
 
     <div class="fade-up" style="display: flex; justify-content: center;">
-      <a href="#fc-booking" class="btn-primary fc-booking-open" style="max-width: 480px;">
-        個別相談を申し込む
+      <a href="#fc-booking" class="btn-primary fc-booking-open" style="max-width: 480px;" data-fc-event="briefing">
+        説明会予約
         <span class="btn-arrow" aria-hidden="true"><svg class="icn icn-sm"><use href="#ic-arrow-right"/></svg></span>
       </a>
     </div>
@@ -3984,8 +4005,8 @@ textarea.input-field { min-height: 120px; padding: 16px; }
       </div>
 
       <div style="margin-top: 32px;">
-        <a href="#fc-booking" class="btn-primary on-dark fc-booking-open">
-          個別相談を申し込む
+        <a href="#fc-booking" class="btn-primary on-dark fc-booking-open" data-fc-event="briefing">
+          説明会予約
           <span class="btn-arrow" aria-hidden="true"><svg class="icn icn-sm"><use href="#ic-arrow-right"/></svg></span>
         </a>
       </div>
@@ -4124,7 +4145,7 @@ textarea.input-field { min-height: 120px; padding: 16px; }
         まずは個別説明会で、詳しい話をお聞きください。
       </p>
       <a href="#fc-booking"
-         class="owner-cta-box__cta fc-booking-open">
+         class="owner-cta-box__cta fc-booking-open" data-fc-event="briefing">
         個別説明会を予約する <span class="arrow" aria-hidden="true">→</span>
       </a>
       <p class="owner-cta-box__note">
@@ -4150,8 +4171,8 @@ textarea.input-field { min-height: 120px; padding: 16px; }
 
     <div class="cta-block cta-block--primary fade-up" style="margin-bottom: 16px;">
       <a href="#fc-booking"
-         class="cta-btn cta-btn--primary fc-booking-open">
-        個別相談を申し込む <span aria-hidden="true">→</span>
+         class="cta-btn cta-btn--primary fc-booking-open" data-fc-event="briefing">
+        説明会予約 <span aria-hidden="true">→</span>
       </a>
       <!-- 差し替え前の遷移先: https://www.momikaru.com/fc/Download.html （target="_blank" rel="noopener noreferrer"）。FC-BASE への差し替え確認が済むまで記録として残す -->
       <a href="#fc-document"
@@ -4180,63 +4201,26 @@ textarea.input-field { min-height: 120px; padding: 16px; }
 <section class="lp-contact" id="fc-contact" aria-label="個別相談・資料請求フォーム">
   <div class="container-lp">
     <div class="fade-up" style="text-align: center; margin-bottom: 40px;">
-      <h2 class="t-h2" style="margin-bottom: 16px;">個別相談・資料請求</h2>
+      <h2 class="t-h2" style="margin-bottom: 16px;">説明会予約・資料請求</h2>
       <p class="t-body" style="max-width: 640px; margin-left: auto; margin-right: auto;">
-        ご希望の窓口からお問い合わせください。担当者が内容を確認のうえご連絡いたします。
+        説明会はカレンダーから空き時間を選んで予約できます。資料請求はフォームからお申し込みください。
       </p>
     </div>
 
     <div class="lp-contact-grid">
 
-      <!-- ---------- 個別相談（inquiry_type = consultation） ---------- -->
+      <!-- ---------- 個別相談（松村カレンダー予約） ---------- -->
       <div class="lp-contact-card lp-form-card fade-up" id="fc-booking">
         <div class="lp-form-head">
-          <h3 class="lp-form-title">個別相談を申し込む</h3>
-          <p class="lp-form-sub">オンライン可・所要30分。事業計画や商圏のご相談を承ります。</p>
+          <h3 class="lp-form-title">説明会予約</h3>
+          <p class="lp-form-sub">オンライン説明会（約60分）。松村のカレンダーから空き時間を選んで、その場で確定できます。</p>
         </div>
-
-        <form class="fc-lead-form" data-inquiry-type="consultation" novalidate>
-          <input type="hidden" name="inquiry_type" value="consultation" />
-          <input type="hidden" name="channel" value="自社LP" />
-          <input type="hidden" name="lp_source" value="company" />
-
-          <div class="lp-form-field">
-            <label for="cs-name">お名前（貴社名）<span class="req">必須</span></label>
-            <input type="text" id="cs-name" name="name" required autocomplete="name" />
-          </div>
-          <div class="lp-form-field">
-            <label for="cs-email">メールアドレス<span class="req">必須</span></label>
-            <input type="email" id="cs-email" name="email" required autocomplete="email" />
-          </div>
-          <div class="lp-form-field">
-            <label for="cs-phone">電話番号<span class="req">必須</span></label>
-            <input type="tel" id="cs-phone" name="phone" required autocomplete="tel" />
-          </div>
-          <div class="lp-form-field">
-            <label for="cs-message">ご相談内容</label>
-            <textarea id="cs-message" name="message" rows="4" placeholder="ご希望エリア・開業希望時期・気になる点などをご記入ください"></textarea>
-          </div>
-
-          <div class="lp-form-trap" aria-hidden="true">
-            <label for="cs-website">Website</label>
-            <input type="text" id="cs-website" name="website" tabindex="-1" autocomplete="off" />
-          </div>
-
-          <p class="lp-form-note">
-            送信をもって、個人情報の取扱いおよびご案内メールの受信に同意いただいたものといたします。
-          </p>
-
-          <button type="submit" class="lp-form-submit">個別相談を申し込む</button>
-          <p class="lp-form-status" role="status" aria-live="polite"></p>
-        </form>
-
-        <div class="lp-form-done" hidden>
-          <p class="lp-form-done__title">お申し込みを受け付けました</p>
-          <p class="lp-form-done__text"></p>
-          <a class="lp-form-done__btn" href="#" rel="noopener">
-            このまま個別相談を予約する <span aria-hidden="true">→</span>
-          </a>
-        </div>
+        <a href="#fc-booking" class="lp-form-submit fc-booking-open" data-fc-event="briefing">
+          日時を選んで予約する
+        </a>
+        <p class="lp-form-note" style="margin-top: 16px; margin-bottom: 0;">
+          予約確定後、担当（松村）のカレンダーに登録され、Google Meetの案内をお送りします。
+        </p>
       </div>
 
       <!-- ---------- 資料請求（inquiry_type = document） ---------- -->
@@ -4296,8 +4280,8 @@ textarea.input-field { min-height: 120px; padding: 16px; }
         <div class="lp-form-done" hidden>
           <p class="lp-form-done__title">資料請求を受け付けました</p>
           <p class="lp-form-done__text"></p>
-          <a class="lp-form-done__btn" href="#" rel="noopener">
-            このまま個別相談を予約する <span aria-hidden="true">→</span>
+          <a class="lp-form-done__btn fc-booking-open is-visible" href="#fc-booking" data-fc-event="briefing">
+            このまま説明会を予約する <span aria-hidden="true">→</span>
           </a>
         </div>
       </div>
@@ -4351,7 +4335,8 @@ textarea.input-field { min-height: 120px; padding: 16px; }
 
 <!-- ============= MOBILE FIXED CTA BAR ============= -->
 <div class="fixed-cta-bar" id="fixedCtaBar" aria-hidden="true">
-  <a href="#fc-booking" class="fab-primary fc-booking-open">個別相談を申し込む <svg class="icn icn-xs"><use href="#ic-arrow-right"/></svg></a>
+  <a href="#fc-booking" class="fab-primary fc-booking-open" data-fc-event="briefing">説明会予約</a>
+  <a href="#fc-document" class="fab-secondary">資料請求</a>
 </div>
 
 <!-- ============= NATIVE IO-BASED JS ============= -->
@@ -5006,21 +4991,25 @@ textarea.input-field { min-height: 120px; padding: 16px; }
     window.scrollTo({ top: top, behavior: reduced ? 'auto' : 'smooth' });
   }
 
-  var anchors = document.querySelectorAll('a[href="#fc-booking"], a[href="#fc-document"]');
+  var anchors = document.querySelectorAll('a[href="#fc-document"]');
   Array.prototype.forEach.call(anchors, function (anchor) {
     anchor.addEventListener('click', function (event) {
       var card = document.querySelector(anchor.getAttribute('href'));
       if (!card) return;
       event.preventDefault();
       scrollToCard(card);
-      if (history.replaceState) history.replaceState(null, '', anchor.getAttribute('href'));
+      if (history.replaceState) history.replaceState(null, '', '#fc-document');
     });
   });
 
-  // 読み込み時のハッシュ指定にも同じ着地位置を使う
-  if (location.hash === '#fc-booking' || location.hash === '#fc-document') {
-    var target = document.querySelector(location.hash);
+  if (location.hash === '#fc-document') {
+    var target = document.querySelector('#fc-document');
     if (target) window.addEventListener('load', function () { scrollToCard(target); });
+  }
+  if (location.hash === '#fc-booking') {
+    window.addEventListener('load', function () {
+      if (window.FCBooking) window.FCBooking.open({ eventType: 'briefing' });
+    });
   }
 
   // フォームが画面内にある間は、追従CTAバーを引っ込めて送信ボタンとの重なりを避ける
@@ -5043,30 +5032,20 @@ textarea.input-field { min-height: 120px; padding: 16px; }
   }
 
   /**
-   * 送信完了の表示。
-   * FC-BASE が booking_url を返したときは、そのまま予約へ進めるボタンを出す。
-   * 返さないとき（未対応・未発行）は「担当者よりご連絡」にフォールバックする。
+   * 送信完了の表示。資料請求後はカレンダー予約へ誘導する。
    */
   function showDone(card, form, body) {
     var done = card.querySelector('.lp-form-done');
     var text = done.querySelector('.lp-form-done__text');
     var btn  = done.querySelector('.lp-form-done__btn');
     var isDocument = form.getAttribute('data-inquiry-type') === 'document';
-    var bookingUrl = body && typeof body.booking_url === 'string' ? body.booking_url : '';
 
-    if (bookingUrl) {
-      text.textContent = isDocument
-        ? 'ご入力のメールアドレス宛に、加盟案内資料と個別相談のご予約URLをお送りしました。下のボタンからそのままご予約いただけます。'
-        : 'ご入力のメールアドレス宛に、ご予約URLをお送りしました。下のボタンからそのままご希望の日時をお選びいただけます。';
-      btn.setAttribute('href', bookingUrl);
-      btn.classList.add('is-visible');
-    } else {
-      text.textContent = isDocument
-        ? 'ご入力のメールアドレス宛に、加盟案内資料をお送りしました。ご不明な点がございましたら、担当者よりあらためてご連絡いたします。'
-        : 'お申し込みありがとうございます。担当者より、日程のご案内をあらためてご連絡いたします。';
-      btn.classList.remove('is-visible');
-      btn.removeAttribute('href');
-    }
+    text.textContent = isDocument
+      ? 'ご入力のメールアドレス宛に、加盟案内資料をお送りしました。ご希望があれば、下のボタンから説明会の日時も予約できます。'
+      : 'お申し込みありがとうございます。下のボタンから説明会の日時を予約できます。';
+    btn.setAttribute('href', '#fc-booking');
+    btn.setAttribute('data-fc-event', 'consult');
+    btn.classList.add('is-visible', 'fc-booking-open');
 
     form.hidden = true;
     form.style.display = 'none';
@@ -5135,13 +5114,10 @@ textarea.input-field { min-height: 120px; padding: 16px; }
 })();
 </script>
 
-<!-- FC予約ウィジェット（immedio.io 代替）
-     FC-BASE の /api/leads へ差し替えたため停止。
-     差し替えの確認が済むまで、復旧できるようコメントアウトで残す。
-<link rel="stylesheet" href="https://fc-booking-api.netlify.app/widget/booking.css?v=6">
-<script src="https://fc-booking-api.netlify.app/widget/config.js?v=6"></script>
-<script src="https://fc-booking-api.netlify.app/widget/booking.js?v=6"></script>
--->
+<!-- FC予約ウィジェット（松村カレンダー） -->
+<link rel="stylesheet" href="https://fc-booking-api.netlify.app/widget/booking.css?v=7">
+<script src="https://fc-booking-api.netlify.app/widget/config.js?v=7"></script>
+<script src="https://fc-booking-api.netlify.app/widget/booking.js?v=7"></script>
 
 </body>
 </html>
