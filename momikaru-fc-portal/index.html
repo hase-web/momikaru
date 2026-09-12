@@ -400,7 +400,8 @@ h1, h2, h3, p { margin: 0; }
       <div class="portal-cards" role="list">
 
         <a class="portal-card portal-card--business fx fx-card-1"
-           href="https://momikaru-fc-company.netlify.app/"
+           id="portalCorpCard"
+           href="https://momikaru-fc-company.netlify.app/?ab=a"
            role="listitem"
            aria-label="法人として加盟を検討する方は、法人向けLPへ">
           <span class="pc-eyebrow">FOR BUSINESS</span>
@@ -468,19 +469,74 @@ h1, h2, h3, p { margin: 0; }
 
   if (reduced || !('IntersectionObserver' in window)) {
     targets.forEach(function (el) { el.classList.add('is-visible'); });
-    return;
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    targets.forEach(function (el) { io.observe(el); });
   }
 
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+  /**
+   * 法人LP Sticky AB（50/50）
+   * A: 既存 https://momikaru-fc-company.netlify.app/
+   * B: 新LP https://momikaru-fc.netlify.app/
+   * Cookie で同一訪問者を固定。?ab=a / ?ab=b で強制指定可。
+   */
+  (function setupCorpAb() {
+    var COOKIE = 'momikaru_fc_corp_ab';
+    var DAYS = 90;
+    var VARIANTS = {
+      a: 'https://momikaru-fc-company.netlify.app/',
+      b: 'https://momikaru-fc.netlify.app/'
+    };
+    var card = document.getElementById('portalCorpCard');
+    if (!card) return;
 
-  targets.forEach(function (el) { io.observe(el); });
+    function readCookie(name) {
+      var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return m ? decodeURIComponent(m[1]) : '';
+    }
+
+    function writeCookie(name, value, days) {
+      var maxAge = days * 24 * 60 * 60;
+      document.cookie = name + '=' + encodeURIComponent(value) +
+        '; path=/; max-age=' + maxAge + '; SameSite=Lax';
+    }
+
+    function pickVariant() {
+      var params = new URLSearchParams(location.search);
+      var forced = (params.get('ab') || '').toLowerCase();
+      if (forced === 'a' || forced === 'b') {
+        writeCookie(COOKIE, forced, DAYS);
+        return forced;
+      }
+      var saved = readCookie(COOKIE);
+      if (saved === 'a' || saved === 'b') return saved;
+      var next = Math.random() < 0.5 ? 'a' : 'b';
+      writeCookie(COOKIE, next, DAYS);
+      return next;
+    }
+
+    function buildUrl(variant) {
+      var url = new URL(VARIANTS[variant]);
+      url.searchParams.set('ab', variant);
+      // ポータルに付いていた UTM 等を法人LPへ引き継ぐ
+      new URLSearchParams(location.search).forEach(function (value, key) {
+        if (key === 'ab') return;
+        if (!url.searchParams.has(key)) url.searchParams.set(key, value);
+      });
+      return url.toString();
+    }
+
+    var variant = pickVariant();
+    card.href = buildUrl(variant);
+    card.setAttribute('data-ab', variant);
+  })();
 })();
 </script>
 
