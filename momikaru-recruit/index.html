@@ -1,2874 +1,597 @@
-<!doctype html>
-<html lang="ja">
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="format-detection" content="telephone=no">
-<title>もみかる採用｜あなたに合うキャリアパスを</title>
-<meta name="description" content="あなたに合う働き方は、2つの質問でわかります。もみかるには6つのキャリアパスがあります。業界経験者・未経験者・副業から独立まで、あなたの状況に合わせた働き方を選べます。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Serif+JP:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<style>
-/* ============================================================
-   TOKENS
-============================================================ */
-:root{
-  --bg:#FAF6EF;
-  --bg-2:#F1EBDF;
-  --bg-3:#E8DFCC;
-  --ink:#1A1614;
-  --ink-2:#3D3530;
-  --mute:#7B7166;
-  --line:#D9CFBE;
-  --accent:#8B2A1E;
-  --accent-2:#C7833A;
-  --gold:#9B7B3A;
-  --paper:#FFFEFB;
-  --danger:#A23B2A;
-  --line-jp:1.85;
-  --line-tight:1.35;
-  --serif-jp:"Noto Serif JP", serif;
-  --sans-jp:"Noto Sans JP", sans-serif;
-  --serif-en:"Cormorant Garamond", serif;
-  --shadow-soft:0 18px 48px -24px rgba(26,22,20,.32);
-  --shadow-strong:0 24px 60px -20px rgba(139,42,30,.42);
-  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-
-/* ============================================================
-   OPENING OVERLAY
-============================================================ */
-.opening{
-  position:fixed;inset:0;
-  width:100vw;height:100vh;
-  background:var(--bg);
-  display:flex;align-items:center;justify-content:center;
-  z-index:9999;
-  cursor:pointer;
-  transition:opacity .5s ease;
-}
-.opening.is-fading{opacity:0;}
-.opening.is-hidden{display:none;}
-.opening__text{
-  font-family:var(--serif-jp);
-  font-weight:900;
-  font-size:clamp(32px,7vw,88px);
-  line-height:1.4;
-  letter-spacing:.04em;
-  color:var(--ink);
-  text-align:center;
-  padding:0 24px;
-  opacity:0;
-  transform:translateY(12px) scale(1);
-  animation:openingIn .7s cubic-bezier(.2,.7,.2,1) forwards,
-            openingOut .6s cubic-bezier(.4,0,.2,1) forwards 1.6s;
-}
-.opening__text .ac{color:var(--accent);}
-@keyframes openingIn{
-  to{opacity:1;transform:translateY(0) scale(1);}
-}
-@keyframes openingOut{
-  from{opacity:1;transform:translateY(0) scale(1);}
-  to{opacity:0;transform:translateY(0) scale(1.05);}
-}
-.opening__skip{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:11px;letter-spacing:.32em;
-  color:var(--mute);text-transform:uppercase;
-  opacity:0;animation:openingHint 1s ease forwards .8s;
-  pointer-events:none;
-}
-@keyframes openingHint{to{opacity:1;}}
-
-/* Hold hero animations until overlay finishes */
-body.is-opening .hero__anim>*,
-body.is-opening .hero__panel{animation-play-state:paused;}
-
-/* ============================================================
-   BASE
-============================================================ */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-body{
-  font-family:var(--sans-jp);
-  font-weight:400;
-  color:var(--ink);
-  background:var(--bg);
-  line-height:var(--line-jp);
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-  overflow-x:hidden;
-}
-img{display:block;max-width:100%;}
-a{color:inherit;text-decoration:none;}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
-ul,ol{list-style:none;}
-
-/* レスポンシブ改行ユーティリティ */
-.br-sp{display:inline;}
-@media (min-width:768px){ .br-sp{display:none;} }
-.br-pc{display:none;}
-@media (min-width:768px){ .br-pc{display:inline;} }
-
-.container{
-  width:100%;
-  max-width:1180px;
-  margin:0 auto;
-  padding:0 24px;
-}
-@media (min-width:768px){ .container{padding:0 40px;} }
-
-/* Section structure */
-section{position:relative;}
-.section-pad{padding:96px 0;}
-@media (min-width:768px){ .section-pad{padding:140px 0;} }
-
-.eyebrow{
-  font-family:var(--serif-en);
-  font-style:italic;
-  font-weight:500;
-  font-size:14px;
-  letter-spacing:.18em;
-  color:var(--accent);
-  text-transform:uppercase;
-}
-.eyebrow.on-dark{color:var(--accent-2);}
-.lead{
-  font-family:var(--serif-jp);
-  font-weight:700;
-  letter-spacing:.02em;
-  line-height:1.45;
-  color:var(--ink);
-  font-size:clamp(26px,4.6vw,44px);
-}
-.lead.on-dark{color:#F4ECDF;}
-.body-jp{
-  font-size:15px;
-  line-height:var(--line-jp);
-  color:var(--ink-2);
-}
-.body-jp.on-dark{color:#D8CFBF;}
-
-.hr-thin{
-  width:48px;height:1px;background:var(--accent);border:0;margin:24px 0;
-}
-
-/* Reveal */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease;}
-.reveal.is-visible{opacity:1;transform:none;}
-
-/* ============================================================
-   HEADER
-============================================================ */
-.site-header{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  background:rgba(250,246,239,.84);
-  backdrop-filter:saturate(140%) blur(10px);
-  -webkit-backdrop-filter:saturate(140%) blur(10px);
-  border-bottom:1px solid transparent;
-  transition:border-color .3s ease,background .3s ease;
-}
-.site-header.scrolled{
-  border-bottom-color:var(--line);
-  background:rgba(250,246,239,.96);
-}
-.site-header__inner{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px;
-  max-width:1240px;margin:0 auto;
-}
-.site-header__brand{display:flex;align-items:center;gap:10px;}
-.site-header__logo-wrap{
-  display:inline-flex;align-items:center;justify-content:center;
-}
-.site-header__logo{height:32px;width:auto;display:block;}
-.site-header__brand-mark{
-  font-family:var(--serif-en);
-  font-style:italic;font-weight:500;
-  font-size:11px;letter-spacing:.32em;
-  color:var(--ink-2);
-  text-transform:uppercase;
-  padding-left:10px;border-left:1px solid var(--line);
-}
-.site-header__actions{display:flex;align-items:center;gap:10px;}
-.site-header__phone{
-  width:44px;height:44px;border-radius:50%;
-  background:transparent;color:var(--ink);
-  border:1px solid var(--ink);
-  display:inline-flex;align-items:center;justify-content:center;
-  transition:background-color .25s ease,color .25s ease,transform .3s ease;
-  flex:0 0 auto;
-}
-.site-header__phone svg{width:18px;height:18px;}
-.site-header__phone:hover{background:var(--ink);color:var(--paper);transform:translateY(-1px);}
-.site-header__cta{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--ink);color:#FFFEFB;
-  padding:11px 18px;
-  font-size:13px;font-weight:700;
-  border-radius:999px;
-  box-shadow:0 8px 22px -10px rgba(139,42,30,.6);
-  transition:transform .3s ease,box-shadow .3s ease;
-  white-space:nowrap;
-}
-.site-header__cta:hover{transform:translateY(-1px);box-shadow:0 12px 28px -10px rgba(139,42,30,.7);}
-.site-header__cta .dot{
-  position:relative;
-  width:8px;height:8px;border-radius:50%;
-  background:#22C55E;
-  box-shadow:0 0 6px rgba(34,197,94,.55);
-}
-.site-header__cta .dot::before{
-  content:"";position:absolute;inset:0;border-radius:50%;
-  background:rgba(34,197,94,.5);
-  animation:pulseDot 2s ease-out infinite;
-}
-@keyframes pulseDot{
-  0%{transform:scale(1);opacity:.55;}
-  70%{transform:scale(2.6);opacity:0;}
-  100%{transform:scale(2.6);opacity:0;}
-}
-@media (max-width:767px){
-  .site-header__actions{gap:8px;}
-  .site-header__phone{width:38px;height:38px;}
-  .site-header__phone svg{width:16px;height:16px;}
-}
-@media (max-width:520px){
-  .site-header__inner{padding:12px 14px;}
-  .site-header__logo{height:28px;}
-  .site-header__brand-mark{display:none;}
-  .site-header__cta{padding:8px 12px;font-size:11.5px;}
-  .site-header__cta .label-full{display:none;}
-  .site-header__cta .label-short{display:inline;}
-}
-.site-header__cta .label-short{display:none;}
-
-/* ============================================================
-   L1 HERO
-============================================================ */
-.hero{
-  position:relative;
-  min-height:100vh;
-  padding:120px 0 80px;
-  background:
-    radial-gradient(60% 40% at 100% 0%, rgba(199,131,58,.22), transparent 65%),
-    radial-gradient(50% 50% at 0% 100%, rgba(139,42,30,.18), transparent 60%),
-    var(--bg);
-  overflow:hidden;
-}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background-image:var(--grain);
-  opacity:.45;mix-blend-mode:multiply;pointer-events:none;
-}
-.hero__decor-word{
-  position:absolute;
-  top:-12px;right:-30px;
-  font-family:var(--serif-en);
-  font-style:italic;font-weight:500;
-  font-size:clamp(180px,22vw,320px);
-  color:var(--ink);
-  opacity:.04;
-  letter-spacing:-.02em;
-  pointer-events:none;
-  user-select:none;
-  line-height:1;
-  white-space:nowrap;
-}
-@media (max-width:1024px){.hero__decor-word{display:none;}}
-/* Site-wide editorial vertical label (fixed) */
-.vertical-label{
-  position:fixed;
-  top:50%;left:24px;
-  transform:translateY(-50%);
-  writing-mode:vertical-rl;
-  font-family:"Noto Serif JP",serif;
-  font-weight:500;
-  font-size:13px;letter-spacing:.4em;
-  color:var(--mute);
-  z-index:30;
-  pointer-events:none;user-select:none;
-  transition:color .3s ease;
-  display:flex;flex-direction:column;align-items:center;
-}
-.vertical-label::before{
-  content:"";display:block;
-  width:1px;height:40px;
-  background:var(--accent);
-  margin-bottom:14px;
-  transition:background-color .3s ease;
-}
-.vertical-label.on-dark{color:rgba(255,255,255,.55);}
-.vertical-label.on-dark::before{background:var(--accent-2);}
-@media (min-width:768px) and (max-width:1024px){
-  .vertical-label{
-    left:16px;
-    font-size:11px;
-    letter-spacing:.3em;
-  }
-  .vertical-label::before{height:30px;margin-bottom:10px;}
-}
-@media (max-width:767px){
-  .vertical-label{
-    left:8px;
-    font-size:9px;
-    letter-spacing:.25em;
-    color:var(--mute);
-    opacity:.6;
-  }
-  .vertical-label::before{height:24px;margin-bottom:8px;width:1px;}
-  .vertical-label.on-dark{color:rgba(255,255,255,.7);opacity:.55;}
-}
-
-/* Reserve left gutter for fixed vertical-label */
-@media (max-width:767px){
-  .container{padding-left:28px;padding-right:20px;}
-}
-@media (min-width:1025px){
-  .container{padding-left:80px;}
-  .site-header__inner{padding-left:80px;}
-}
-
-.hero__circle{
-  position:absolute;
-  right:-160px;top:-120px;
-  width:520px;height:520px;
-  border:1px dashed rgba(139,42,30,.18);
-  border-radius:50%;
-  animation:rotate 30s linear infinite;
-  pointer-events:none;
-}
-.hero__circle::after{
-  content:"";position:absolute;
-  inset:50px;border:1px dashed rgba(155,123,58,.16);border-radius:50%;
-  animation:rotate-rev 45s linear infinite;
-}
-@keyframes rotate{to{transform:rotate(360deg);}}
-@keyframes rotate-rev{to{transform:rotate(-360deg);}}
-
-.hero__inner{
-  position:relative;z-index:2;
-  display:grid;
-  grid-template-columns:1fr;
-  gap:56px;
-  align-items:center;
-}
-@media (min-width:960px){
-  .hero__inner{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:72px;}
-}
-
-.hero__tag-top{
-  font-family:var(--serif-en);
-  font-style:italic;font-weight:500;
-  font-size:13px;letter-spacing:.32em;
-  color:var(--accent);
-  text-transform:uppercase;
-}
-.hero__tag-bottom{
-  font-family:var(--serif-jp);
-  font-weight:500;font-size:14px;
-  color:var(--ink-2);
-  margin-top:6px;letter-spacing:.06em;
-}
-.hero__heading{
-  margin-top:28px;
-  font-family:var(--serif-jp);
-  font-weight:900;
-  font-size:clamp(26px,4.2vw,46px);
-  line-height:1.45;
-  letter-spacing:.02em;
-  color:var(--ink);
-  max-width:760px;
-}
-@media (max-width:768px){
-  .hero__heading{font-size:clamp(24px,6vw,32px);line-height:1.5;}
-  .hero__heading br{display:none;}
-}
-.hero__heading .ac{color:var(--accent);}
-.hero__heading .quote{
-  display:inline-block;
-  position:relative;
-  padding:0 .15em;
-}
-.hero__heading .quote::before,
-.hero__heading .quote::after{
-  font-family:var(--serif-jp);
-  color:var(--accent);
-  font-weight:700;
-}
-.hero__heading .quote::before{content:"「";}
-.hero__heading .quote::after{content:"」";}
-
-.hero__scenario{
-  margin-top:28px;
-  font-size:15px;
-  line-height:2;
-  color:var(--ink-2);
-  letter-spacing:.02em;
-  max-width:560px;
-}
-.hero__scenario p+p{margin-top:6px;}
-
-.hero__meta{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px 18px;
-  margin-top:32px;
-  padding-top:28px;
-  border-top:1px solid var(--line);
-  max-width:560px;
-}
-.hero__meta li{
-  display:flex;align-items:flex-start;gap:8px;
-  font-size:13px;color:var(--ink-2);font-weight:500;
-}
-.hero__meta li svg{
-  width:16px;height:16px;flex:0 0 auto;
-  color:var(--accent);margin-top:5px;
-}
-
-.hero__cta{
-  display:flex;flex-wrap:wrap;gap:14px;
-  margin-top:36px;
-  margin-bottom:8px;
-}
-@media (max-width:959px){
-  .hero__inner{
-    gap:56px !important;
-    align-items:stretch;
-  }
-  .hero__cta{
-    margin-top:28px;
-    margin-bottom:0;
-  }
-  .hero__panel{
-    margin-top:8px;
-  }
-}
-@media (max-width:767px){
-  /* 追従フッターがあるため、スマホ先頭は案内ボタンを優先し数字カードは下に十分な間隔 */
-  .hero__inner{gap:64px !important;}
-  .hero__panel{
-    margin-top:0;
-    order:2;
-  }
-  .hero__anim{order:1;}
-  .hero__cta{
-    margin-top:32px;
-    margin-bottom:0;
-    padding-bottom:8px;
-  }
-}
-
-@media (max-width:767px){
-  .hero__inner{
-    display:flex;
-    flex-direction:column;
-  }
-}
-
-@media (max-width:767px){
-  /* スマホ先頭ビュー: 追従バーと案内ボタンを優先し、数字カードは非表示 */
-  .hero .hero__panel{display:none !important;}
-  .hero__cta{margin-top:40px;margin-bottom:24px;}
-}
-
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:18px 28px;
-  border-radius:999px;
-  font-weight:700;font-size:14.5px;letter-spacing:.04em;
-  transition:transform .3s ease,box-shadow .3s ease,background .3s ease,color .3s ease,border-color .3s ease;
-  white-space:nowrap;
-}
-/* btn--primary overridden below */
-.btn--primary{background:var(--accent);color:#FFFEFB;}
-.btn--primary:hover{transform:translateY(-2px);}
-.btn--ghost{
-  background:transparent;color:var(--ink);
-  border:1.5px solid var(--ink);
-}
-.btn--ghost:hover{background:var(--ink);color:#FFFEFB;}
-.btn--line{background:#06C755;color:#fff;box-shadow:0 18px 32px -16px rgba(6,199,85,.55),0 4px 10px -4px rgba(6,199,85,.35);}
-.btn--line:hover{transform:translateY(-2px);box-shadow:0 24px 40px -16px rgba(6,199,85,.65);}
-.btn--phone{
-  background:transparent;color:var(--ink);
-  border:1.5px solid var(--ink);
-}
-.btn--phone:hover{background:var(--ink);color:#FFFEFB;}
-.btn--phone .num{
-  font-family:var(--serif-en);font-style:italic;font-weight:600;
-  letter-spacing:.04em;margin-left:6px;
-}
-.btn--white{
-  background:var(--paper);color:var(--ink);
-  box-shadow:0 18px 32px -16px rgba(139,42,30,.45),0 4px 10px -4px rgba(26,22,20,.18);
-}
-.btn--white:hover{transform:translateY(-2px);box-shadow:0 24px 40px -16px rgba(139,42,30,.55);}
-.btn--white .num{font-family:var(--serif-en);font-style:italic;font-weight:600;letter-spacing:.04em;margin-left:6px;}
-.btn--sm{padding:14px 20px;font-size:13.5px;}
-.btn .arrow{display:inline-flex;}
-.btn .arrow svg{width:16px;height:16px;}
-
-/* Hero right card */
-.hero__panel{
-  position:relative;
-  background:linear-gradient(180deg,var(--paper) 0%, var(--bg-2) 100%);
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:36px 28px;
-  box-shadow:var(--shadow-soft);
-}
-.hero__panel-head{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-bottom:18px;border-bottom:1px solid var(--line);
-}
-.hero__panel-head .label{
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:12px;letter-spacing:.28em;color:var(--mute);text-transform:uppercase;
-}
-.hero__panel-head .doctor-badge{
-  width:44px;height:44px;border-radius:50%;
-  background:var(--ink);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-}
-.hero__panel-head .doctor-badge svg{width:24px;height:24px;color:var(--accent-2);}
-.hero__stats{
-  margin-top:24px;
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:18px 22px;
-}
-.stat{
-  padding:18px 4px;border-bottom:1px solid var(--line);
-}
-.stat:nth-last-child(-n+2){border-bottom:0;padding-bottom:0;}
-.stat__num{
-  font-family:var(--serif-en);font-weight:600;font-style:italic;
-  font-size:clamp(36px,5.2vw,48px);
-  color:var(--ink);
-  line-height:1;
-  letter-spacing:-.01em;
-}
-.stat__num .suffix{font-size:.55em;font-style:normal;color:var(--accent);margin-left:2px;font-weight:600;}
-.stat__num .unit{font-size:.45em;font-style:normal;color:var(--ink-2);margin-left:4px;font-weight:500;font-family:var(--serif-jp);}
-.stat__caption{margin-top:6px;font-size:12px;color:var(--mute);letter-spacing:.06em;}
-
-/* hero animation */
-.hero__anim>*{opacity:0;transform:translateY(24px);animation:fadeUp .9s cubic-bezier(.2,.7,.2,1) forwards;}
-.hero__anim>*:nth-child(1){animation-delay:.10s;}
-.hero__anim>*:nth-child(2){animation-delay:.20s;}
-.hero__anim>*:nth-child(3){animation-delay:.30s;}
-.hero__anim>*:nth-child(4){animation-delay:.40s;}
-.hero__anim>*:nth-child(5){animation-delay:.50s;}
-.hero__anim>*:nth-child(6){animation-delay:.60s;}
-.hero__anim>*:nth-child(7){animation-delay:.70s;}
-.hero__panel{opacity:0;transform:translateY(24px);animation:fadeUp 1s cubic-bezier(.2,.7,.2,1) forwards .55s;}
-@keyframes fadeUp{to{opacity:1;transform:none;}}
-
-/* ============================================================
-   L2 REALITY
-============================================================ */
-.reality{
-  background:var(--ink);
-  color:#EEE5D5;
-  padding:120px 0;
-  position:relative;overflow:hidden;
-}
-.reality::before{
-  content:"";position:absolute;inset:0;
-  background:
-    radial-gradient(40% 30% at 10% 0%, rgba(199,131,58,.15), transparent 65%),
-    radial-gradient(30% 40% at 100% 100%, rgba(139,42,30,.22), transparent 60%);
-  pointer-events:none;
-}
-.reality::after{
-  content:"";position:absolute;inset:0;
-  background-image:var(--grain);opacity:.25;mix-blend-mode:overlay;pointer-events:none;
-}
-.reality__inner{position:relative;z-index:1;}
-.reality__head{max-width:780px;}
-.reality__title{
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(26px,4.4vw,44px);
-  line-height:1.45;letter-spacing:.02em;
-  color:#F4ECDF;
-  margin-top:18px;
-}
-.reality__title .ac{color:var(--accent-2);position:relative;}
-.reality__title .ac::after{
-  content:"";position:absolute;left:0;right:0;bottom:.05em;height:.18em;
-  background:rgba(199,131,58,.22);z-index:-1;
-}
-
-.fear-list{margin-top:72px;display:flex;flex-direction:column;gap:36px;}
-.fear{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:18px;
-  padding:32px 28px;
-  border:1px solid rgba(217,207,190,.16);
-  border-radius:18px;
-  background:linear-gradient(180deg,rgba(255,254,251,.02),rgba(255,254,251,.05));
-  position:relative;overflow:hidden;
-}
-@media (min-width:768px){
-  .fear{grid-template-columns:96px 1fr;gap:28px;padding:40px 36px;}
-}
-.fear__icon{
-  width:64px;height:64px;border-radius:50%;
-  background:rgba(199,131,58,.1);
-  border:1px solid rgba(199,131,58,.3);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--accent-2);
-}
-.fear__icon svg{width:28px;height:28px;}
-.fear__num{
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:14px;letter-spacing:.32em;color:var(--accent-2);
-  text-transform:uppercase;
-}
-.fear__title{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:clamp(19px,2.6vw,24px);
-  line-height:1.55;color:#F4ECDF;
-  margin-top:8px;
-}
-.fear__body{
-  margin-top:14px;
-  font-size:14.5px;line-height:1.95;color:#C7BBA6;
-}
-
-/* L2 charts */
-.reality__charts{
-  margin-top:80px;
-  display:grid;grid-template-columns:1fr;gap:32px;
-}
-@media (min-width:768px){
-  .reality__charts{grid-template-columns:repeat(2,1fr);gap:36px;}
-}
-.chart-card{
-  padding:28px 24px 24px;
-  background:rgba(255,254,251,.04);
-  border:1px solid rgba(217,207,190,.16);
-  border-radius:18px;
-}
-.chart-card__title{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:16px;color:#F4ECDF;
-  margin-bottom:18px;
-}
-.chart-card__title .badge{
-  display:inline-block;font-family:var(--serif-en);font-style:italic;
-  font-size:11px;letter-spacing:.28em;color:var(--accent-2);
-  margin-right:10px;text-transform:uppercase;
-}
-.chart-card svg{display:block;width:100%;height:auto;}
-.chart-card__caption{
-  margin-top:14px;font-size:12.5px;line-height:1.85;color:#9F9583;
-}
-
-.reality__close{
-  margin-top:80px;
-  padding:36px 28px;
-  border-left:3px solid var(--accent);
-  background:rgba(255,254,251,.04);
-  font-family:var(--serif-jp);font-weight:500;
-  font-size:clamp(16px,2.2vw,20px);
-  line-height:1.85;color:#F4ECDF;
-}
-.reality__close strong{color:var(--accent-2);font-weight:700;}
-
-/* ============================================================
-   L3 INCOME
-============================================================ */
-.income{
-  background:var(--bg);
-  padding:120px 0;
-}
-.income__head{text-align:center;max-width:760px;margin:0 auto;}
-.income__title{
-  margin-top:18px;
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(26px,4.2vw,42px);
-  line-height:1.45;color:var(--ink);
-}
-.income__title .ac{color:var(--accent);}
-.income__sub{
-  margin-top:18px;font-size:14.5px;line-height:1.95;color:var(--ink-2);
-}
-
-.income-cards{
-  margin-top:64px;
-  display:grid;grid-template-columns:1fr;gap:18px;
-  align-items:stretch;
-}
-@media (min-width:880px){
-  .income-cards{grid-template-columns:repeat(3,1fr);gap:22px;align-items:start;}
-}
-.icard{
-  position:relative;overflow:hidden;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:32px 26px 28px;
-  display:flex;flex-direction:column;
-  transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease;
-}
-.icard::before{
-  content:"";position:absolute;inset:auto 0 0 0;height:0%;
-  background:linear-gradient(180deg,rgba(139,42,30,.04),rgba(139,42,30,.08));
-  transition:height .5s ease;z-index:0;
-}
-.icard:hover::before{height:100%;}
-.icard:hover{transform:translateY(-8px);box-shadow:var(--shadow-soft);}
-.icard>*{position:relative;z-index:1;}
-.icard__tag{
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:12px;letter-spacing:.32em;color:var(--mute);
-  text-transform:uppercase;
-}
-.icard__pat{
-  margin-top:6px;font-family:var(--serif-jp);font-weight:700;font-size:13px;color:var(--ink-2);
-}
-.icard__attrs{
-  margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;
-}
-.icard__attrs span{
-  font-size:11px;color:var(--ink-2);
-  background:var(--bg-2);
-  padding:4px 10px;border-radius:99px;letter-spacing:.04em;
-}
-.icard--featured .icard__attrs span{background:rgba(255,254,251,.08);color:#C7BBA6;}
-
-.icard__money-block{margin-top:20px;}
-.icard__money-eye{
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:11px;letter-spacing:.24em;color:var(--mute);
-  text-transform:uppercase;
-}
-.icard__money-eye .jp{
-  display:inline-block;margin-left:8px;
-  font-family:var(--serif-jp);font-style:normal;
-  font-size:12px;letter-spacing:.04em;color:var(--ink-2);
-  text-transform:none;
-}
-.icard__money-val{
-  margin-top:6px;
-  font-family:var(--serif-en);font-weight:500;
-  font-size:clamp(36px,5vw,52px);
-  line-height:1;letter-spacing:-.02em;
-  display:flex;align-items:baseline;gap:6px;
-}
-.icard__money-val.gross{color:var(--ink);}
-.icard__money-val.net{color:var(--accent);}
-.icard__money-val .unit{
-  font-family:var(--serif-jp);font-weight:500;
-  font-size:16px;letter-spacing:.04em;color:var(--ink-2);
-}
-
-.icard--featured .icard__money-eye{color:rgba(255,255,255,.5);}
-.icard--featured .icard__money-eye .jp{color:rgba(255,255,255,.7);}
-.icard--featured .icard__money-val.gross{color:var(--paper);}
-.icard--featured .icard__money-val.net{color:var(--accent-2);}
-.icard--featured .icard__money-val .unit{color:rgba(255,255,255,.6);}
-
-.income-breakdown{
-  margin:14px 0 20px;
-  padding:14px 16px;
-  background:var(--bg-2);
-  border-left:2px solid var(--accent-2);
-  font-size:12px;line-height:1.7;color:var(--mute);
-  border-radius:0 6px 6px 0;
-}
-.income-breakdown .bd-eye{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:11px;letter-spacing:.18em;color:var(--accent);
-  margin-bottom:6px;text-transform:uppercase;
-}
-.income-breakdown .bd-row{
-  display:flex;justify-content:space-between;flex-wrap:wrap;
-  gap:4px 10px;padding:3px 0;
-}
-.income-breakdown .bd-label{color:var(--ink-2);font-weight:500;min-width:64px;}
-.income-breakdown .bd-formula{
-  color:var(--mute);font-family:var(--serif-en);font-style:italic;flex:1;
-}
-.income-breakdown .bd-result{color:var(--ink);font-weight:600;font-family:var(--serif-en);font-style:italic;}
-
-.icard--featured .income-breakdown{
-  background:rgba(255,255,255,.06);
-  border-left-color:var(--accent-2);
-  color:rgba(255,255,255,.7);
-}
-.icard--featured .income-breakdown .bd-eye{color:var(--accent-2);}
-.icard--featured .income-breakdown .bd-label{color:rgba(255,255,255,.85);}
-.icard--featured .income-breakdown .bd-formula{color:rgba(255,255,255,.5);}
-.icard--featured .income-breakdown .bd-result{color:var(--paper);}
-.icard__bar{
-  margin-top:22px;
-}
-.icard__bar-label{
-  display:flex;justify-content:space-between;
-  font-size:11.5px;color:var(--mute);letter-spacing:.08em;
-  margin-bottom:8px;
-}
-.icard__bar-track{
-  height:5px;background:var(--bg-2);border-radius:99px;overflow:hidden;
-}
-.icard__bar-fill{
-  height:100%;width:0%;
-  background:linear-gradient(90deg,var(--accent-2),var(--accent));
-  border-radius:99px;transition:width 1.4s cubic-bezier(.2,.7,.2,1);
-}
-.icard__detail{margin-top:22px;display:flex;flex-direction:column;gap:10px;}
-.icard__detail li{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--ink-2);}
-.icard__detail li svg{width:16px;height:16px;color:var(--accent);margin-top:5px;flex:0 0 auto;}
-.icard__detail li.is-highlight{color:var(--accent);font-weight:600;}
-.icard__detail li.is-highlight svg{color:var(--accent);}
-.icard--featured .icard__detail li.is-highlight{color:var(--accent-2);font-weight:600;}
-.icard--featured .icard__detail li.is-highlight svg{color:var(--accent-2);}
-
-.icard--featured{
-  background:var(--ink);color:#F4ECDF;
-  border-color:var(--ink);
-  transform:translateY(0);
-}
-@media (min-width:880px){
-  .icard--featured{transform:translateY(-20px);}
-  .icard--featured:hover{transform:translateY(-32px);}
-}
-.icard--featured .icard__tag{color:var(--accent-2);}
-.icard--featured .icard__pat{color:#F4ECDF;}
-.icard--featured .icard__bar-track{background:rgba(255,254,251,.08);}
-.icard--featured .icard__bar-label{color:#A89E8B;}
-.icard--featured .icard__detail li{color:#D8CFBF;}
-.icard--featured::before{display:none;}
-.icard--featured .ribbon{
-  position:absolute;top:18px;right:18px;
-  background:var(--accent);color:#fff;
-  font-size:10.5px;font-weight:700;letter-spacing:.18em;
-  padding:5px 12px;border-radius:99px;text-transform:uppercase;
-  font-family:var(--serif-en);font-style:italic;
-}
-
-.income__note{
-  margin-top:48px;
-  border-left:3px solid var(--accent);
-  background:var(--bg-2);
-  padding:24px 26px;
-  font-size:13px;line-height:1.95;color:var(--ink-2);
-  border-radius:0 12px 12px 0;
-}
-
-/* Voice */
-.voice{
-  margin-top:96px;
-  display:grid;grid-template-columns:1fr;gap:0;
-  border:1px solid var(--line);
-  border-radius:22px;overflow:hidden;
-  background:var(--paper);
-  box-shadow:var(--shadow-soft);
-}
-@media (min-width:768px){
-  .voice{grid-template-columns:280px 1fr;}
-}
-.voice__visual{
-  position:relative;min-height:240px;
-  background:linear-gradient(140deg,var(--accent) 0%,var(--accent-2) 100%);
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
-}
-.voice__visual::before{
-  content:"";position:absolute;inset:0;
-  background-image:var(--grain);opacity:.25;mix-blend-mode:overlay;
-}
-.voice__visual svg{width:200px;height:auto;color:rgba(255,254,251,.95);position:relative;z-index:1;}
-.voice__body{padding:36px 28px;}
-@media (min-width:768px){.voice__body{padding:42px 40px;}}
-.voice__tag{
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:12px;letter-spacing:.28em;color:var(--accent);
-  text-transform:uppercase;
-}
-.voice__tag .sep{color:var(--mute);margin:0 6px;}
-.voice__tag .jp{font-family:var(--serif-jp);font-style:normal;letter-spacing:.04em;color:var(--ink-2);}
-.voice__quote{
-  margin-top:18px;
-  font-family:var(--serif-jp);font-weight:500;
-  font-size:clamp(15px,2vw,17px);
-  line-height:2;color:var(--ink);
-}
-.voice__quote p + p{margin-top:.9em;}
-.voice__quote .hl{
-  background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);
-  padding:0 .04em;
-  font-weight:700;color:var(--accent);
-}
-.voice__stats{
-  margin-top:24px;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
-  padding:18px 0;
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-}
-.voice__stats .v{
-  font-family:var(--serif-en);font-style:italic;font-weight:600;font-size:22px;color:var(--ink);
-}
-.voice__stats .v.ac{color:var(--accent);}
-.voice__stats .l{font-size:11px;color:var(--mute);letter-spacing:.08em;margin-top:2px;}
-.voice__author{margin-top:18px;font-size:13px;color:var(--ink-2);letter-spacing:.04em;}
-.voice__author strong{color:var(--ink);}
-
-/* ============================================================
-   L4 OFFER
-============================================================ */
-.offer{
-  background:var(--bg-2);
-  padding:120px 0;
-}
-.offer__head{max-width:760px;}
-.offer__title{
-  margin-top:18px;
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(26px,4.2vw,42px);
-  line-height:1.45;color:var(--ink);
-}
-.offer__title .ac{color:var(--accent);}
-.offer__sub{
-  margin-top:18px;font-size:14.5px;line-height:1.95;color:var(--ink-2);max-width:620px;
-}
-
-.offer-grid{
-  margin-top:56px;
-  display:grid;grid-template-columns:1fr;gap:18px;
-}
-@media (min-width:768px){
-  .offer-grid{grid-template-columns:repeat(2,1fr);gap:24px;}
-}
-.ocard{
-  position:relative;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:36px 28px;
-  transition:transform .35s ease,box-shadow .35s ease;
-}
-.ocard:hover{transform:translateY(-4px);box-shadow:var(--shadow-soft);}
-.ocard__icon{
-  width:72px;height:72px;border-radius:50%;
-  background:var(--bg-3);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--accent);
-  transition:transform .45s cubic-bezier(.2,.7,.2,1),background .35s ease,color .35s ease;
-}
-.ocard__icon svg{width:30px;height:30px;}
-.ocard:hover .ocard__icon{
-  background:var(--accent);color:#FFFEFB;
-  transform:rotate(-8deg);
-}
-.ocard__num{
-  margin-top:24px;
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:13px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;
-}
-.ocard__title{
-  margin-top:6px;
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:clamp(18px,2.4vw,22px);
-  line-height:1.55;color:var(--ink);
-}
-.ocard__body{
-  margin-top:14px;
-  font-size:14px;line-height:1.95;color:var(--ink-2);
-}
-
-/* ============================================================
-   L5 FUTURE
-============================================================ */
-.future{
-  background:var(--bg);
-  padding:120px 0;position:relative;
-}
-.future__head{max-width:760px;}
-.future__title{
-  margin-top:18px;
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(26px,4.2vw,42px);
-  line-height:1.45;color:var(--ink);
-}
-.future__banner{
-  margin-top:32px;
-  padding:22px 24px;
-  background:var(--bg-2);
-  border:1px dashed var(--line);
-  border-radius:14px;
-  font-size:13px;line-height:1.95;color:var(--ink-2);
-  max-width:780px;
-}
-
-.bp-explain{
-  margin:0 0 50px;
-  padding:40px 36px;
-  background:var(--paper);
-  border:1px solid var(--line);
-  position:relative;
-  border-radius:4px;
-}
-.bp-explain::before{
-  content:"";position:absolute;top:0;left:0;
-  width:60px;height:3px;background:var(--accent);
-}
-.bp-eye{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:12px;letter-spacing:.25em;
-  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
-}
-.bp-title{
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(22px,3.2vw,30px);line-height:1.45;
-  color:var(--ink);margin-bottom:32px;
-}
-.bp-title em{font-style:normal;color:var(--accent);}
-.bp-compare{
-  display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:28px;
-}
-@media (min-width:768px){
-  .bp-compare{grid-template-columns:1fr 1fr;gap:24px;}
-}
-.bp-col{
-  padding:26px 24px;border:1px solid var(--line);border-radius:6px;
-}
-.bp-col-normal{background:var(--bg-2);}
-.bp-col-momikaru{background:var(--bg);border-left:3px solid var(--accent);}
-.bp-col h4{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:16px;margin-bottom:16px;padding-bottom:12px;
-  border-bottom:1px dashed var(--line);
-}
-.bp-col-normal h4{color:var(--mute);}
-.bp-col-momikaru h4{color:var(--accent);}
-.bp-col ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
-.bp-col li{
-  font-size:13.5px;line-height:1.7;padding-left:20px;
-  position:relative;color:var(--ink-2);
-}
-.bp-col li::before{position:absolute;left:0;top:0;font-weight:700;}
-.bp-col-normal li::before{content:"✕";color:var(--mute);}
-.bp-col-momikaru li::before{content:"✓";color:var(--accent);}
-.bp-conclusion{
-  padding:18px 22px;background:rgba(199,131,58,.12);
-  border-left:3px solid var(--accent-2);border-radius:0 6px 6px 0;
-  font-size:14.5px;line-height:1.85;color:var(--ink-2);
-}
-.bp-conclusion strong{color:var(--accent);font-weight:700;}
-
-/* Owner stairs */
-.owner-stairs{margin:50px 0;}
-.stair-eye{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:12px;letter-spacing:.25em;color:var(--accent);
-  margin-bottom:10px;text-transform:uppercase;
-}
-.stair-title{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:clamp(20px,2.5vw,26px);line-height:1.5;
-  color:var(--ink);margin-bottom:12px;
-}
-.stair-lede{font-size:14px;line-height:1.85;color:var(--ink-2);margin-bottom:40px;max-width:720px;}
-.stair-cards{display:grid;grid-template-columns:1fr;gap:24px;margin-bottom:40px;}
-@media (min-width:1024px){
-  .stair-cards{grid-template-columns:repeat(3,1fr);gap:28px;}
-}
-.stair-card{
-  padding:32px 28px;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-top:3px solid var(--accent-2);
-  position:relative;
-  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,border-color .35s ease;
-  border-radius:0 0 6px 6px;
-  display:flex;flex-direction:column;
-}
-.stair-card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 10px 30px -10px rgba(0,0,0,.15);
-  border-top-color:var(--accent);
-}
-.stair-step-3{border-top-color:var(--accent);}
-.stair-no{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:12px;letter-spacing:.2em;color:var(--accent-2);
-  text-transform:uppercase;margin-bottom:8px;
-}
-.stair-name{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:18px;line-height:1.4;color:var(--ink);margin-bottom:6px;
-}
-.stair-tagline{
-  font-size:13px;color:var(--accent);font-weight:500;
-  margin-bottom:20px;padding-bottom:16px;
-  border-bottom:1px dashed var(--line);
-}
-.stair-points{list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:10px;}
-.stair-points li{
-  font-size:13px;line-height:1.7;
-  padding-left:20px;position:relative;color:var(--ink-2);
-}
-.stair-points li::before{
-  content:"✓";position:absolute;left:0;top:0;
-  color:var(--accent);font-weight:700;
-}
-.stair-cta{
-  display:inline-flex;align-items:center;
-  font-size:13px;letter-spacing:.05em;
-  color:var(--accent);font-weight:600;text-decoration:none;
-  border-bottom:1px solid var(--accent);padding-bottom:2px;
-  transition:color .3s,border-color .3s,transform .3s;
-  margin-top:auto;align-self:flex-start;
-}
-.stair-cta:hover{color:var(--accent-2);border-bottom-color:var(--accent-2);transform:translateX(2px);}
-.stair-summary{
-  margin-top:24px;padding:28px 32px;
-  background:var(--bg-2);border-left:3px solid var(--accent);
-  border-radius:0 6px 6px 0;
-}
-.stair-summary p{font-size:14px;line-height:1.85;color:var(--ink-2);}
-.stair-summary strong{color:var(--accent);font-weight:700;}
-
-.future-comic,
-.story-comic{
-  margin:50px 0;
-  padding:40px 36px;
-  background:var(--paper);
-  border:1px solid var(--line);
-  position:relative;
-  border-radius:4px;
-}
-.future-comic::before,
-.story-comic::before{
-  content:"";position:absolute;top:0;left:0;
-  width:60px;height:3px;background:var(--accent);
-}
-.bridge-copy{
-  text-align:center;margin:40px 0;padding:0 20px;
-}
-.bridge-copy p{
-  font-family:"Noto Serif JP",serif;font-weight:500;
-  font-size:clamp(15px,1.8vw,18px);line-height:1.85;
-  color:var(--ink-2);font-style:italic;
-}
-.comic-eye{
-  font-family:"Cormorant Garamond",serif;
-  font-style:italic;font-size:12px;letter-spacing:.25em;
-  color:var(--accent);text-transform:uppercase;
-  margin-bottom:10px;
-}
-.comic-title{
-  font-family:"Noto Serif JP",serif;font-weight:700;
-  font-size:clamp(20px,2.5vw,26px);line-height:1.5;
-  color:var(--ink);margin-bottom:12px;
-}
-.comic-lede{
-  font-size:14px;line-height:1.85;color:var(--ink-2);
-  margin-bottom:28px;
-}
-.comic-image-wrap{
-  width:100%;overflow:hidden;border-radius:4px;
-  background:var(--bg-2);position:relative;
-}
-.comic-image-wrap img{
-  width:100%;height:auto;display:block;
-  transition:transform .6s cubic-bezier(.2,.8,.2,1);
-}
-.comic-image-wrap:hover img{transform:scale(1.02);}
-@media (max-width:640px){
-  .future-comic,.story-comic{padding:28px 22px;margin:36px 0;}
-}
-/* Dark-context overrides for L2 comic + bridge */
-.reality .story-comic{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.12);
-}
-.reality .story-comic::before{background:var(--accent-2);}
-.reality .story-comic .comic-eye{color:var(--accent-2);}
-.reality .story-comic .comic-title{color:var(--paper);}
-.reality .story-comic .comic-lede{color:rgba(255,255,255,.7);}
-.reality .bridge-copy p{color:rgba(255,255,255,.85);}
-
-.future__investment{
-  margin-top:64px;
-  background:var(--ink);color:#F4ECDF;
-  border-radius:24px;
-  padding:48px 28px;
-  position:relative;overflow:hidden;
-}
-@media (min-width:768px){
-  .future__investment{padding:64px 56px;}
-}
-.future__investment::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(40% 50% at 100% 0%, rgba(199,131,58,.18),transparent 60%);
-  pointer-events:none;
-}
-.future__investment-h{
-  position:relative;
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(22px,3.4vw,34px);
-  line-height:1.5;color:#F4ECDF;
-}
-.future__investment-h .ac{color:var(--accent-2);}
-
-.equation{
-  margin-top:36px;
-  display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;
-  font-family:var(--serif-en);font-style:italic;
-  position:relative;
-}
-.equation .term{
-  font-weight:500;font-size:clamp(15px,2vw,18px);
-  color:#D8CFBF;
-}
-.equation .op{color:var(--accent-2);font-weight:600;font-size:18px;}
-.equation .result{
-  background:rgba(199,131,58,.12);
-  border:1px solid rgba(199,131,58,.4);
-  color:#FFFEFB;font-weight:600;
-  padding:8px 16px;border-radius:99px;font-size:15px;
-}
-
-.progress{
-  position:relative;margin-top:36px;
-  background:rgba(255,254,251,.06);
-  border:1px solid rgba(217,207,190,.18);
-  border-radius:99px;
-  height:32px;overflow:hidden;
-}
-.progress__fill{
-  position:absolute;inset:0 100% 0 0;
-  background:linear-gradient(90deg,var(--accent-2),var(--accent));
-  border-radius:99px;
-  transition:right 2s cubic-bezier(.2,.7,.2,1);
-}
-.progress__fill.is-active{right:0%;}
-.progress__shimmer{
-  position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.18) 50%,transparent 100%);
-  background-size:200% 100%;
-  animation:shimmer 2.6s linear infinite;
-  border-radius:99px;
-}
-@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
-
-.progress__labels{
-  margin-top:14px;display:flex;justify-content:space-between;
-  font-size:12px;color:#A89E8B;letter-spacing:.06em;
-}
-.progress__markers{
-  margin-top:18px;display:flex;justify-content:space-between;
-  font-size:11.5px;color:#9F9583;
-  border-top:1px dashed rgba(217,207,190,.18);padding-top:14px;
-}
-.progress__markers div span{display:block;color:#F4ECDF;font-weight:700;font-family:var(--serif-en);font-style:italic;font-size:14px;}
-
-.invest-desc{
-  position:relative;margin-top:32px;
-  font-size:14px;line-height:2;color:#C7BBA6;max-width:680px;
-}
-
-/* Cost compare */
-.cost-compare{
-  margin-top:64px;
-}
-.cost-compare__h{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:clamp(18px,2.4vw,22px);color:var(--ink);
-}
-.cost-bars{margin-top:28px;display:flex;flex-direction:column;gap:18px;}
-.cost-bar__label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--ink-2);}
-.cost-bar__label strong{font-family:var(--serif-en);font-style:italic;font-weight:600;font-size:18px;color:var(--ink);margin-left:8px;}
-.cost-bar__track{
-  margin-top:8px;height:22px;background:var(--bg-2);border-radius:6px;overflow:hidden;
-}
-.cost-bar__fill{
-  height:100%;width:0%;border-radius:6px;
-  transition:width 1.8s cubic-bezier(.2,.7,.2,1);
-}
-.cost-bar__fill--bad{background:linear-gradient(90deg,#A23B2A,#8B2A1E);}
-.cost-bar__fill--good{background:linear-gradient(90deg,#D69D54,var(--accent-2));}
-.cost-callout{
-  margin-top:24px;
-  background:var(--bg-2);border-left:3px solid var(--accent-2);
-  padding:18px 22px;border-radius:0 10px 10px 0;
-  font-size:13.5px;color:var(--ink-2);line-height:1.85;
-}
-
-/* Detailed cost comparison table (dark) */
-.cost-box{
-  margin-top:48px;
-  background:var(--ink);color:#F4ECDF;
-  border-radius:24px;
-  padding:40px 28px;
-  position:relative;overflow:hidden;
-}
-@media (min-width:768px){.cost-box{padding:56px 48px;}}
-.cost-box::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(40% 50% at 0% 0%, rgba(199,131,58,.12),transparent 60%);
-  pointer-events:none;
-}
-.cost-box>*{position:relative;z-index:1;}
-.cost-box__h{
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(20px,3vw,28px);line-height:1.5;
-  color:#F4ECDF;
-}
-.cost-box__sub{
-  margin-top:10px;font-size:13.5px;line-height:1.85;color:rgba(255,255,255,.7);max-width:680px;
-}
-
-.cost-table{
-  margin-top:28px;
-  width:100%;border-collapse:collapse;
-  font-size:13.5px;
-}
-.cost-table th,.cost-table td{
-  padding:14px 14px;
-  text-align:left;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  vertical-align:top;
-}
-.cost-table th{
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.5);
-}
-.cost-table th.col-jp{
-  font-family:var(--serif-jp);font-style:normal;font-weight:700;
-  font-size:13px;letter-spacing:.04em;color:#F4ECDF;text-transform:none;
-}
-.cost-table td{color:rgba(255,255,255,.78);}
-.cost-table td small{display:inline-block;margin-left:4px;font-size:11px;color:rgba(255,255,255,.45);}
-.cost-table td.is-self{color:rgba(255,255,255,.55);}
-.cost-table td.is-mom{color:#F4ECDF;}
-.cost-table td.is-mom .ck{color:var(--accent-2);font-weight:700;margin-right:4px;}
-.cost-table tr.is-total td{
-  background:rgba(199,131,58,.08);
-  font-family:var(--serif-jp);font-weight:700;
-  color:#F4ECDF;font-size:14.5px;
-  border-top:1px solid rgba(255,255,255,.18);
-  border-bottom:1px solid rgba(255,255,255,.18);
-}
-.cost-table tr.is-total td.is-mom{color:var(--accent-2);}
-.cost-table tr.is-init td{background:rgba(255,255,255,.04);}
-@media (max-width:640px){
-  .cost-table th,.cost-table td{padding:11px 8px;font-size:12.5px;}
-  .cost-table td small{display:block;margin-left:0;margin-top:2px;}
-}
-
-.cc-note{
-  margin-top:18px;
-  font-size:12px;line-height:1.7;
-  color:rgba(255,255,255,.6);letter-spacing:.03em;
-}
-
-.fc-plans{
-  margin-top:40px;padding-top:36px;
-  border-top:1px dashed rgba(255,255,255,.15);
-}
-.fc-plans-eye{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:11px;letter-spacing:.25em;
-  color:var(--accent-2);text-transform:uppercase;
-  margin-bottom:10px;
-}
-.fc-plans-title{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:clamp(16px,2.2vw,20px);line-height:1.5;
-  color:var(--paper);margin-bottom:10px;
-}
-.fc-plans-lede{
-  font-size:13px;line-height:1.85;
-  color:rgba(255,255,255,.7);margin-bottom:24px;
-}
-.fc-plans-buttons{display:grid;grid-template-columns:1fr;gap:16px;}
-@media (min-width:768px){
-  .fc-plans-buttons{grid-template-columns:1fr 1fr;gap:18px;}
-}
-.fc-plan-btn{
-  display:flex;flex-direction:column;gap:6px;
-  padding:22px 24px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.12);
-  border-left:3px solid var(--accent-2);
-  text-decoration:none;
-  transition:all .35s cubic-bezier(.2,.8,.2,1);
-  position:relative;
-}
-.fc-plan-btn:hover{
-  background:rgba(255,255,255,.08);
-  border-left-color:var(--accent);
-  transform:translateY(-3px);
-  box-shadow:0 10px 30px -10px rgba(0,0,0,.4);
-}
-.fp-no{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:12px;letter-spacing:.15em;
-  color:var(--accent-2);text-transform:uppercase;
-}
-.fp-name{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:17px;color:var(--paper);margin-top:2px;
-}
-.fp-desc{
-  font-size:12.5px;color:rgba(255,255,255,.65);
-  line-height:1.6;margin-top:2px;
-}
-.fp-arrow{
-  margin-top:14px;font-size:12px;letter-spacing:.08em;
-  color:var(--accent-2);font-weight:600;
-  transition:transform .3s;
-}
-.fc-plan-btn:hover .fp-arrow{transform:translateX(4px);}
-
-/* Bonus cards */
-.bonus-grid{
-  margin-top:64px;
-  display:grid;grid-template-columns:1fr;gap:18px;
-}
-@media (min-width:768px){.bonus-grid{grid-template-columns:repeat(3,1fr);}}
-.bcard{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:28px 24px;
-  transition:transform .35s ease,box-shadow .35s ease;
-}
-.bcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-soft);}
-.bcard__icon{
-  width:56px;height:56px;border-radius:50%;
-  background:var(--bg-3);color:var(--accent);
-  display:flex;align-items:center;justify-content:center;
-}
-.bcard__icon svg{width:24px;height:24px;}
-.bcard__num{margin-top:18px;font-family:var(--serif-en);font-style:italic;font-size:11.5px;color:var(--accent);letter-spacing:.3em;text-transform:uppercase;}
-.bcard__title{margin-top:6px;font-family:var(--serif-jp);font-weight:700;font-size:17px;line-height:1.55;color:var(--ink);}
-.bcard__body{margin-top:12px;font-size:13.5px;line-height:1.9;color:var(--ink-2);}
-
-.future__close{
-  margin-top:64px;
-  border:1.5px dashed var(--line);
-  background:var(--bg-2);
-  border-radius:18px;padding:32px 28px;
-  font-family:var(--serif-jp);font-weight:500;
-  font-size:clamp(15px,2vw,18px);line-height:1.95;color:var(--ink);
-  text-align:center;
-}
-
-/* ============================================================
-   L6 FLOW
-============================================================ */
-.flow{background:var(--bg-2);padding:120px 0;}
-.flow__head{max-width:760px;}
-.flow__title{
-  margin-top:18px;
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(26px,4.2vw,42px);line-height:1.45;color:var(--ink);
-}
-.flow__steps{
-  margin-top:56px;position:relative;
-  display:flex;flex-direction:column;gap:16px;
-  padding-left:18px;
-}
-.flow__steps::before{
-  content:"";position:absolute;left:30px;top:18px;bottom:18px;
-  width:2px;
-  background:linear-gradient(180deg,rgba(139,42,30,.4),rgba(139,42,30,.05));
-  opacity:.5;
-}
-@media (min-width:640px){
-  .flow__steps{padding-left:0;}
-  .flow__steps::before{left:46px;}
-}
-.fstep{
-  display:grid;
-  grid-template-columns:60px 1fr;
-  gap:18px;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:24px 22px;
-  position:relative;z-index:1;
-}
-@media (min-width:640px){
-  .fstep{grid-template-columns:96px 1fr;gap:24px;padding:28px 28px;}
-}
-.fstep__left{position:relative;display:flex;flex-direction:column;align-items:center;}
-.fstep__num{
-  font-family:var(--serif-en);font-style:italic;font-weight:600;
-  font-size:38px;color:var(--accent);line-height:1;
-}
-.fstep__icon{
-  margin-top:10px;width:36px;height:36px;border-radius:50%;
-  background:var(--bg-3);color:var(--accent);
-  display:flex;align-items:center;justify-content:center;
-}
-.fstep__icon svg{width:18px;height:18px;}
-.fstep__title{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:17px;line-height:1.5;color:var(--ink);
-}
-.fstep__body{margin-top:8px;font-size:13.5px;line-height:1.9;color:var(--ink-2);}
-.fstep__time{
-  margin-top:12px;display:inline-block;
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:12px;letter-spacing:.18em;color:var(--accent);
-  background:var(--bg-2);padding:5px 12px;border-radius:99px;
-}
-
-/* ============================================================
-   L7 FINAL CTA
-============================================================ */
-.final{
-  background:var(--ink);color:#F4ECDF;
-  padding:140px 0;position:relative;overflow:hidden;
-}
-.final::before{
-  content:"";position:absolute;inset:0;
-  background:
-    radial-gradient(50% 40% at 50% 0%, rgba(199,131,58,.16),transparent 70%),
-    radial-gradient(35% 50% at 100% 100%, rgba(139,42,30,.22),transparent 70%);
-  pointer-events:none;
-}
-.final::after{
-  content:"";position:absolute;inset:0;
-  background-image:var(--grain);opacity:.25;mix-blend-mode:overlay;pointer-events:none;
-}
-.final__inner{position:relative;z-index:2;text-align:center;max-width:780px;margin:0 auto;}
-
-.ripple-stack{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:520px;height:520px;pointer-events:none;z-index:1;
-}
-.ripple{
-  position:absolute;inset:0;
-  border:1px solid rgba(199,131,58,.4);
-  border-radius:50%;
-  transform:scale(.4);opacity:0;
-  animation:ripple 6s cubic-bezier(.4,0,.2,1) infinite;
-}
-.ripple:nth-child(1){animation-delay:0s;}
-.ripple:nth-child(2){animation-delay:2s;}
-.ripple:nth-child(3){animation-delay:4s;}
-@keyframes ripple{
-  0%{transform:scale(.4);opacity:0;}
-  20%{opacity:.6;}
-  100%{transform:scale(1.6);opacity:0;}
-}
-
-.final__title{
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(26px,4.6vw,46px);
-  line-height:1.45;color:#F4ECDF;
-}
-.final__title .ac{color:var(--accent-2);}
-.final__desc{
-  margin-top:28px;
-  font-size:15px;line-height:2;color:#C7BBA6;max-width:620px;margin-left:auto;margin-right:auto;
-}
-.final__cta{
-  margin-top:44px;
-  display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
-}
-.final__phone{
-  margin-top:24px;
-  display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:8px 14px;
-}
-.final__phone-num{
-  font-family:var(--serif-en);font-style:italic;font-weight:600;
-  font-size:22px;letter-spacing:.04em;color:#F4ECDF;
-  text-decoration:none;
-}
-.final__phone-num:hover{color:var(--accent-2);}
-.final__phone-hours{
-  font-size:12px;letter-spacing:.06em;color:#8C8270;
-}
-.final__alt{
-  margin-top:36px;font-size:12.5px;color:#8C8270;letter-spacing:.04em;
-}
-.final__alt a{color:#A89E8B;text-decoration:underline;text-underline-offset:4px;transition:color .25s;}
-.final__alt a:hover{color:var(--accent-2);}
-
-.final__conveniences{
-  margin:24px auto 0;
-  max-width:640px;
-  padding:18px 20px;
-  border:1px solid rgba(199,131,58,.35);
-  background:rgba(199,131,58,.08);
-  text-align:left;
-}
-.final__conveniences p{
-  font-size:13px;line-height:1.85;color:#D9CFBE;
-}
-.final__conveniences p+p{margin-top:8px;}
-.final__conveniences strong{color:#F4ECDF;font-weight:700;}
-
-
-
-/* Mid-page CTA band */
-.mid-cta{
-  padding:52px 0;
-  background:linear-gradient(180deg,rgba(199,131,58,.09),rgba(244,236,223,.35));
-  border-top:1px solid rgba(199,131,58,.22);
-  border-bottom:1px solid rgba(199,131,58,.18);
-  text-align:center;
-}
-.mid-cta__lead{
-  margin:0 auto 22px;
-  max-width:560px;
-  font-size:14.5px;line-height:1.85;color:var(--ink-2);
-}
-.mid-cta__btns{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:12px;
-}
-.site-header__book{
-  display:inline-flex;align-items:center;justify-content:center;
-  padding:8px 14px;
-  border-radius:999px;
-  border:1.5px solid rgba(139,42,30,.55);
-  background:#fff;
-  color:var(--accent);
-  font-weight:700;font-size:11.5px;letter-spacing:.04em;
-  transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
-}
-.site-header__book:hover{
-  transform:translateY(-1px);
-  background:var(--accent);
-  color:#fff;
-  box-shadow:0 12px 28px -10px rgba(139,42,30,.55);
-}
-.site-header__book .label-short{display:none;}
-@media (max-width:640px){
-  .site-header__book{padding:8px 10px;font-size:11px;}
-  .site-header__book .label-full{display:none;}
-  .site-header__book .label-short{display:inline;}
-}
-
-
-/* Primary CTA: brand accent (visible on light + dark) */
-.btn--primary{
-  background:var(--accent);color:#FFFEFB;
-  box-shadow:0 18px 32px -16px rgba(139,42,30,.7),0 4px 10px -4px rgba(26,22,20,.35);
-}
-.btn--primary:hover{
-  transform:translateY(-2px);
-  box-shadow:0 24px 40px -16px rgba(139,42,30,.8);
-  filter:brightness(1.06);
-}
-.is-dark-zone .btn--primary,
-.final .btn--primary{
-  background:var(--accent-2);color:#1A1614;
-  box-shadow:0 18px 32px -14px rgba(199,131,58,.65),0 0 0 1px rgba(255,255,255,.12);
-}
-.is-dark-zone .btn--primary:hover,
-.final .btn--primary:hover{
-  filter:brightness(1.08);
-  box-shadow:0 24px 40px -14px rgba(199,131,58,.75);
-}
-
-/* Sticky bottom interview bar */
-.float-cta{
-  position:fixed;left:0;right:0;bottom:0;z-index:95;
-  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
-  padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));
-  background:rgba(26,22,20,.94);
-  backdrop-filter:saturate(1.2) blur(12px);
-  -webkit-backdrop-filter:saturate(1.2) blur(12px);
-  border-top:1px solid rgba(199,131,58,.35);
-  box-shadow:0 -12px 40px -18px rgba(0,0,0,.55);
-  transform:translateY(110%);
-  opacity:0;
-  pointer-events:none;
-  transition:transform .35s ease,opacity .35s ease;
-}
-.float-cta.is-visible{
-  transform:translateY(0);
-  opacity:1;
-  pointer-events:auto;
-}
-.float-cta__book{
-  display:inline-flex;align-items:center;justify-content:center;
-  min-height:44px;padding:12px 22px;border-radius:999px;
-  background:var(--accent-2);color:#1A1614;
-  font-weight:800;font-size:13.5px;letter-spacing:.04em;
-  box-shadow:0 10px 24px -12px rgba(199,131,58,.8);
-}
-.float-cta__book:hover{filter:brightness(1.07);}
-.float-cta__line{
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  min-height:44px;padding:12px 18px;border-radius:999px;
-  background:#06C755;color:#fff;
-  font-weight:700;font-size:13px;letter-spacing:.03em;
-}
-.float-cta__line svg{width:16px;height:16px;}
-@media (max-width:520px){
-  .float-cta{gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));}
-  .float-cta__book,.float-cta__line{flex:1 1 auto;min-width:0;padding:12px 14px;font-size:12.5px;}
-}
-body.has-float-cta{padding-bottom:76px;}
-
-/* ============================================================
-   FOOTER
-============================================================ */
-.site-footer{
-  background:var(--bg-2);
-  padding:48px 0 56px;
-  border-top:1px solid var(--line);
-}
-.site-footer__inner{
-  display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;
-}
-.site-footer__logo-wrap{
-  display:inline-flex;align-items:center;justify-content:center;
-}
-.site-footer__logo{height:36px;width:auto;display:block;}
-.site-footer__copy{font-size:12px;color:var(--mute);letter-spacing:.06em;line-height:1.85;}
-.site-footer__back{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:12px;letter-spacing:.18em;color:var(--ink-2);
-  text-decoration:underline;text-underline-offset:4px;
-}
-.site-footer__back:hover{color:var(--accent);}
-
-/* ============================================================
-   UTIL
-============================================================ */
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important;}
-  .reveal{opacity:1;transform:none;}
-}
-
-/* ============================================================
-   HUB-SPECIFIC SECTIONS
-============================================================ */
-.hub-section{padding:96px 0;}
-@media (min-width:768px){.hub-section{padding:120px 0;}}
-.hub-section--bg2{background:var(--bg-2);}
-.hub-section__head{max-width:780px;margin:0 auto;text-align:center;}
-.hub-section__title{
-  margin-top:18px;
-  margin-bottom:16px;
-  font-family:"Noto Serif JP", serif;
-  font-weight:700;
-  font-size:clamp(22px,3.0vw,38px);
-  line-height:1.5;
-  color:var(--ink);
-  text-align:center;
-}
-@media (max-width:768px){
-  .hub-section__title{
-    font-size:clamp(20px,5.2vw,26px);
-    line-height:1.55;
-  }
-}
-.hub-section__title .ac{color:var(--accent);}
-.hub-section__lead{
-  margin-top:18px;font-size:14.5px;line-height:1.95;color:var(--ink-2);
-}
-
-/* Quiz */
-.quiz-section{
-  max-width:800px;margin:40px auto 0;
-  padding:50px 40px;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-top:3px solid var(--accent);
-  border-radius:0 0 6px 6px;
-}
-@media (max-width:640px){
-  .quiz-section{padding:36px 24px;}
-}
-.quiz-step{display:none;}
-.quiz-step[data-active="true"]{display:block;}
-.quiz-number{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:12px;letter-spacing:.25em;color:var(--accent);
-  margin-bottom:12px;text-transform:uppercase;
-}
-.quiz-question{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:clamp(20px,2.4vw,26px);line-height:1.5;
-  color:var(--ink);margin-bottom:32px;
-}
-.quiz-options{display:flex;flex-direction:column;gap:14px;}
-.quiz-option{
-  display:flex;align-items:flex-start;gap:16px;
-  padding:22px 24px;
-  background:var(--bg);
-  border:1px solid var(--line);border-left:3px solid var(--line);
-  text-align:left;font-family:inherit;cursor:pointer;
-  transition:background .35s,border-color .35s,transform .35s cubic-bezier(.2,.8,.2,1);
-  width:100%;border-radius:0 4px 4px 0;
-}
-.quiz-option:hover{
-  background:var(--bg-2);
-  border-left-color:var(--accent);
-  transform:translateX(3px);
-}
-.quiz-opt-no{
-  flex-shrink:0;width:32px;height:32px;
-  display:flex;align-items:center;justify-content:center;
-  background:var(--accent);color:var(--paper);
-  font-family:var(--serif-en);font-style:italic;
-  font-size:16px;font-weight:600;border-radius:50%;
-}
-.quiz-opt-text{
-  display:block;font-family:var(--serif-jp);font-weight:700;
-  font-size:16px;line-height:1.5;color:var(--ink);margin-bottom:4px;
-}
-.quiz-opt-detail{display:block;font-size:12px;line-height:1.6;color:var(--mute);}
-.quiz-opt-body{flex:1;}
-
-.quiz-result{display:none;text-align:center;}
-.quiz-result[data-active="true"]{display:block;}
-.quiz-result-eye{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:12px;letter-spacing:.25em;color:var(--accent);
-  margin-bottom:12px;text-transform:uppercase;
-}
-.quiz-result-title{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:clamp(22px,2.8vw,28px);line-height:1.5;
-  color:var(--ink);margin-bottom:12px;
-}
-.quiz-result-lede{
-  font-size:14px;line-height:1.85;color:var(--ink-2);margin-bottom:32px;
-}
-.quiz-result-card{
-  margin-bottom:28px;padding:28px 24px;
-  background:var(--bg-2);border-left:3px solid var(--accent);
-  text-align:left;border-radius:0 6px 6px 0;
-}
-.quiz-result-card-title{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:18px;color:var(--ink);margin-bottom:8px;
-}
-.quiz-result-card-desc{
-  font-size:13px;line-height:1.85;color:var(--ink-2);margin-bottom:16px;
-}
-.quiz-result-card-cta{
-  display:inline-flex;align-items:center;
-  padding:12px 24px;background:var(--accent);color:var(--paper);
-  font-size:13px;font-weight:600;letter-spacing:.05em;
-  text-decoration:none;border-radius:999px;
-  transition:background .3s,transform .3s;
-}
-.quiz-result-card-cta:hover{background:var(--ink);transform:translateX(3px);}
-
-.quiz-actions{display:flex;flex-direction:column;gap:12px;align-items:center;}
-.quiz-restart{
-  background:none;border:1px solid var(--line);
-  padding:10px 20px;font-family:inherit;font-size:13px;color:var(--mute);
-  cursor:pointer;transition:border-color .3s,color .3s;border-radius:99px;
-}
-.quiz-restart:hover{border-color:var(--ink);color:var(--ink);}
-.quiz-see-all{
-  font-size:13px;letter-spacing:.05em;color:var(--accent);
-  text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;
-  transition:color .3s,border-color .3s;
-}
-.quiz-see-all:hover{color:var(--accent-2);border-bottom-color:var(--accent-2);}
-.quiz-skip{
-  margin-top:24px;text-align:center;
-  padding-top:24px;border-top:1px dashed var(--line);
-}
-.quiz-skip a{
-  font-size:13px;color:var(--mute);text-decoration:none;
-  border-bottom:1px solid transparent;transition:color .3s,border-color .3s;
-}
-.quiz-skip a:hover{color:var(--accent);border-bottom-color:var(--accent);}
-
-/* Paths grid */
-.paths-grid{
-  display:grid;grid-template-columns:1fr;gap:24px;
-  margin-top:40px;
-}
-@media (min-width:768px){.paths-grid{grid-template-columns:repeat(2,1fr);gap:28px;}}
-@media (min-width:1280px){.paths-grid{grid-template-columns:repeat(3,1fr);}}
-.path-card{
-  display:flex;flex-direction:column;
-  padding:36px 30px;
-  background:var(--paper);border:1px solid var(--line);
-  border-top:3px solid var(--accent-2);
-  text-decoration:none;
-  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,border-color .35s ease;
-  border-radius:0 0 6px 6px;
-}
-.path-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 14px 36px -12px rgba(0,0,0,.15);
-  border-top-color:var(--accent);
-}
-.path-eye{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:12px;letter-spacing:.25em;color:var(--accent);
-  text-transform:uppercase;margin-bottom:8px;
-}
-.path-title{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:20px;line-height:1.45;color:var(--ink);margin-bottom:6px;
-}
-.path-tag{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:12px;letter-spacing:.1em;color:var(--accent-2);margin-bottom:16px;
-}
-.path-desc{
-  font-size:13px;line-height:1.85;color:var(--ink-2);margin-bottom:20px;flex-grow:1;
-}
-.path-points{
-  list-style:none;padding:0;margin:0 0 24px;
-  display:flex;flex-direction:column;gap:6px;
-  padding-top:16px;border-top:1px dashed var(--line);
-}
-.path-points li{
-  font-size:12px;line-height:1.7;
-  padding-left:18px;position:relative;color:var(--ink-2);
-}
-.path-points li::before{
-  content:"✓";position:absolute;left:0;top:0;
-  color:var(--accent);font-weight:700;
-}
-.path-cta{
-  display:inline-flex;align-items:center;
-  font-size:13px;letter-spacing:.05em;
-  color:var(--accent);font-weight:600;
-  border-bottom:1px solid var(--accent);padding-bottom:2px;
-  align-self:flex-start;transition:color .3s,border-color .3s,transform .3s;
-}
-.path-card:hover .path-cta{
-  color:var(--accent-2);border-bottom-color:var(--accent-2);transform:translateX(3px);
-}
-
-/* Brand story */
-.brand-story{max-width:760px;margin:0 auto;text-align:left;}
-.brand-story p{
-  font-family:var(--serif-jp);font-weight:500;
-  font-size:clamp(15px,1.8vw,17px);
-  line-height:2;color:var(--ink-2);
-}
-.brand-story p+p{margin-top:1.4em;}
-.brand-story strong{
-  background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);
-  color:var(--accent);font-weight:700;padding:0 .04em;
-}
-
-/* FC link */
-.fc-link-wrap{margin-top:32px;text-align:center;}
-.fc-link-btn{
-  display:inline-flex;align-items:center;
-  padding:14px 28px;
-  background:var(--bg-2);border:1px solid var(--line);
-  border-left:3px solid var(--accent);
-  font-size:14px;font-weight:600;color:var(--ink);
-  text-decoration:none;
-  transition:background .3s,border-color .3s,transform .3s;
-  border-radius:0 4px 4px 0;
-}
-.fc-link-btn:hover{
-  background:var(--bg);border-left-color:var(--accent-2);transform:translateX(3px);
-}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
-<body class="is-opening">
+<body>
+<x-dc>
+<helmet>
+<title>もみかる採用｜あなたに合う働き方を</title>
+<meta name="description" content="あなたに合う働き方は、2つの質問でわかります。もみかるには6つの働き方があります。業界経験者・未経験者・副業から独立まで。">
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#F5B800"></rect><rect x="38" y="38" width="24" height="24" fill="#1A1A2E" transform="rotate(45 50 50)"></rect></svg></template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&family=Inter:wght@500;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF;color:#1A1A2E;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:"palt"}
+a{color:#1A1A2E;text-decoration:none}
+a:hover{color:#1A1A2E}
+button{font-family:inherit}
+*{box-sizing:border-box}
+:focus-visible{outline:2px solid #F5B800;outline-offset:2px}
+@keyframes mk-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@media (prefers-reduced-motion: reduce){*{transition-duration:0.01ms !important;animation:none !important}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="min-height:100%;display:flex;flex-direction:column;background:#FFFFFF;container-type:inline-size">
 
-<!-- ============================================================
-     OPENING OVERLAY
-============================================================ -->
-<div class="opening" id="openingOverlay" role="presentation">
-  <div class="opening__text">あなたに合う<span class="ac">キャリアパス</span>を</div>
-  <div class="opening__skip">tap to skip</div>
-</div>
-
-<!-- ============================================================
-     SVG SPRITE
-============================================================ -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 3 L20 6 V12 C20 16.5 16.5 20.5 12 21.5 C7.5 20.5 4 16.5 4 12 V6 Z"/>
-      <path d="M9 12 L11.2 14.2 L15.2 10.2"/>
-    </symbol>
-    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 12.5 L10 17 L19 7.5"/>
-    </symbol>
-    <symbol id="i-doctor" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="32" cy="20" r="9"/>
-      <path d="M14 54 C14 42 22 36 32 36 C42 36 50 42 50 54"/>
-      <path d="M26 36 V44 C26 46 28 47 30 47 H34 C36 47 38 46 38 44 V36"/>
-      <path d="M30 44 H34 M32 42 V46" stroke-width="1.2"/>
-      <path d="M40 40 V52" stroke-dasharray="2 2"/>
-      <circle cx="40" cy="54" r="2"/>
-    </symbol>
-    <symbol id="i-decline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 7 L9 13 L13 9 L21 17"/>
-      <path d="M21 12 V17 H16"/>
-    </symbol>
-    <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="9"/>
-      <path d="M9 8 L12 13 L15 8"/>
-      <path d="M9 13 H15"/>
-      <path d="M9 16 H15"/>
-      <path d="M12 13 V18"/>
-    </symbol>
-    <symbol id="i-alarm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="13" r="8"/>
-      <path d="M12 8 V13 L15 15"/>
-      <path d="M5 5 L7 3 M19 5 L17 3"/>
-    </symbol>
-    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="9"/>
-      <path d="M12 11 V16"/>
-      <circle cx="12" cy="8" r=".6" fill="currentColor"/>
-    </symbol>
-    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 17 L9 11 L13 15 L21 7"/>
-      <path d="M16 7 H21 V12"/>
-    </symbol>
-    <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="9" r="6"/>
-      <path d="M9 14 L7.5 21 L12 18.5 L16.5 21 L15 14"/>
-      <path d="M10.5 9 L11.5 10 L13.5 8" stroke-width="1.4"/>
-    </symbol>
-    <symbol id="i-case" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="7" width="18" height="13" rx="2"/>
-      <path d="M9 7 V5 C9 4 9.5 3.5 10.5 3.5 H13.5 C14.5 3.5 15 4 15 5 V7"/>
-      <path d="M3 13 H21"/>
-    </symbol>
-    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M4 6 H20 V16 H13 L9 19.5 V16 H4 Z"/>
-      <path d="M8 11 H16 M8 13.5 H13" stroke-width="1.4"/>
-    </symbol>
-    <symbol id="i-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 14 L7 10 L10 12 L13 9 L17 12"/>
-      <path d="M21 10 L17 14 L14 12 L11 15 L7 12"/>
-      <path d="M10 12 L13 14"/>
-    </symbol>
-    <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M2 12 C5 7 8.5 5 12 5 C15.5 5 19 7 22 12 C19 17 15.5 19 12 19 C8.5 19 5 17 2 12 Z"/>
-      <circle cx="12" cy="12" r="3"/>
-    </symbol>
-    <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M14 4 L20 10 L9 21 L3 21 L3 15 Z"/>
-      <path d="M13 5 L19 11"/>
-    </symbol>
-    <symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="9"/>
-      <path d="M10 8 L16 12 L10 16 Z" fill="currentColor"/>
-    </symbol>
-    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 12 H19"/>
-      <path d="M14 7 L19 12 L14 17"/>
-    </symbol>
-    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="9" width="18" height="11" rx="1"/>
-      <path d="M3 13 H21"/>
-      <path d="M12 9 V20"/>
-      <path d="M8 9 C6 9 5 7.5 6 6 C7 4.5 9 5 10 6 L12 9 L14 6 C15 5 17 4.5 18 6 C19 7.5 18 9 16 9"/>
-    </symbol>
-    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-    </symbol>
-    <symbol id="i-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 11.5c0 4-4 7-9 7-1 0-2-.1-3-.4l-4 1.4 1.4-3.5C5 14.5 3 13 3 11.5 3 7.5 7 4 12 4s9 3.5 9 7.5z"/>
-      <path d="M8 11h.01M12 11h.01M16 11h.01" stroke-width="2"/>
-    </symbol>
-    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="9"/>
-      <polyline points="12 7 12 12 15 14"/>
-    </symbol>
-    <symbol id="i-name" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="6" width="18" height="13" rx="2"/>
-      <line x1="3" y1="10" x2="21" y2="10"/>
-      <line x1="7" y1="14" x2="13" y2="14"/>
-      <line x1="7" y1="16" x2="11" y2="16"/>
-    </symbol>
-    <symbol id="i-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="9"/>
-      <line x1="10" y1="9" x2="10" y2="15"/>
-      <line x1="14" y1="9" x2="14" y2="15"/>
-    </symbol>
-    <symbol id="i-future" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 3 L19 3"/>
-      <path d="M5 21 L19 21"/>
-      <path d="M5 3 C5 8, 19 8, 19 3"/>
-      <path d="M5 21 C5 16, 19 16, 19 21"/>
-      <path d="M9 11 L15 11"/>
-    </symbol>
-    <symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="5" width="18" height="11" rx="1"/>
-      <line x1="2" y1="20" x2="22" y2="20"/>
-      <line x1="2" y1="20" x2="4" y2="16"/>
-      <line x1="22" y1="20" x2="20" y2="16"/>
-    </symbol>
-    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="4" width="18" height="17" rx="2"/>
-      <line x1="3" y1="9" x2="21" y2="9"/>
-      <line x1="8" y1="2" x2="8" y2="6"/>
-      <line x1="16" y1="2" x2="16" y2="6"/>
-      <circle cx="12" cy="14" r="1.5" fill="currentColor"/>
-    </symbol>
-    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-    </symbol>
-    <symbol id="i-mom" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="22" cy="20" r="6"/>
-      <circle cx="42" cy="22" r="4"/>
-      <path d="M10 56v-6a12 12 0 0 1 24 0v6"/>
-      <path d="M34 56v-4a8 8 0 0 1 16 0v4"/>
-    </symbol>
-    <symbol id="i-therapist" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="32" cy="18" r="6"/>
-      <path d="M16 56v-8a16 16 0 0 1 32 0v8"/>
-      <path d="M22 38c4 4 16 4 20 0"/>
-      <circle cx="26" cy="32" r="1.5" fill="currentColor"/>
-      <circle cx="38" cy="32" r="1.5" fill="currentColor"/>
-    </symbol>
-    <symbol id="i-owner" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M16 32 L32 16 L48 32"/>
-      <path d="M22 32 L22 50 L42 50 L42 32"/>
-      <line x1="28" y1="50" x2="28" y2="42"/>
-      <line x1="36" y1="50" x2="36" y2="42"/>
-      <rect x="28" y="42" width="8" height="8"/>
-    </symbol>
-    <symbol id="i-path" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="16" cy="16" r="3"/>
-      <circle cx="48" cy="16" r="3"/>
-      <circle cx="16" cy="48" r="3"/>
-      <circle cx="48" cy="48" r="3"/>
-      <circle cx="32" cy="32" r="5" fill="currentColor"/>
-      <line x1="19" y1="16" x2="29" y2="29"/>
-      <line x1="45" y1="16" x2="35" y2="29"/>
-      <line x1="19" y1="48" x2="29" y2="35"/>
-      <line x1="45" y1="48" x2="35" y2="35"/>
-    </symbol>
-  </defs>
-</svg>
-
-<!-- ============================================================
-     HEADER
-============================================================ -->
-<header class="site-header" id="siteHeader">
-  <div class="site-header__inner">
-    <a class="site-header__brand" href="#top" aria-label="もみかる採用 トップへ">
-      <span class="site-header__logo-wrap">
-        <img class="site-header__logo" src="./momikaru-logo.png" alt="もみかる">
+<sc-if value="{{ introOn }}" hint-placeholder-val="{{ false }}">
+  <div role="button" aria-label="タップしてスキップ" onClick="{{ skipIntro }}" style="position:fixed;inset:0;z-index:100;background-color:#F8F8F5;background-image:radial-gradient(rgba(26,26,46,0.08) 1px,transparent 1.2px);background-size:18px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:32px 24px;cursor:pointer;opacity:{{ introOpacity }};transition:opacity .6s cubic-bezier(0.22,1,0.36,1)">
+    <img src="assets/logo-momikaru.png" alt="もみかる" style="height:34px;width:auto;display:block;opacity:{{ introShow }};transition:opacity .6s cubic-bezier(0.22,1,0.36,1)">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;opacity:{{ introShow }};transform:translateY({{ introY }});transition:opacity .7s cubic-bezier(0.22,1,0.36,1) .2s,transform .7s cubic-bezier(0.22,1,0.36,1) .2s">
+      <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:11px;letter-spacing:0.24em;color:#A87A00;min-height:16px">{{ introCode }}</span>
+      <h1 style="margin:0;font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(26px,7cqi,40px);line-height:1.5">あなたなら、<br>どの働き方を選ぶ？</h1>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%;max-width:340px">
+      <sc-for list="{{ introChips }}" as="c" hint-placeholder-count="6">
+        <span style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;border-radius:8px;background:{{ c.bg }};border:1px solid {{ c.bd }};opacity:{{ c.op }};transform:translateY({{ c.y }});transition:opacity .5s cubic-bezier(0.22,1,0.36,1) {{ c.delay }},transform .5s cubic-bezier(0.22,1,0.36,1) {{ c.delay }},background .2s,border-color .2s">
+          <span style="font-family:'Roboto Mono',monospace;font-size:9px;color:#6B6B6B">{{ c.no }}</span>
+          <span style="font-size:12px;font-weight:700">{{ c.label }}</span>
+        </span>
+      </sc-for>
+    </div>
+    <p style="margin:0;font-size:14px;color:#3A3A4E;opacity:{{ introShow }};transition:opacity .6s ease 1.6s">2つの質問で、あなたの1つを。</p>
+    <div style="position:absolute;left:0;right:0;bottom:32px;display:flex;flex-direction:column;align-items:center;gap:10px">
+      <span style="width:120px;height:2px;background:rgba(26,26,46,0.1);border-radius:999px;overflow:hidden;display:block">
+        <span style="display:block;height:100%;width:{{ introBar }};background:#F5B800;transition:width 3s linear"></span>
       </span>
-      <span class="site-header__brand-mark">RECRUIT</span>
-    </a>
-    <div class="site-header__actions">
-      <a class="site-header__phone" href="tel:05031721405" aria-label="電話で相談する 050-3172-1405" title="電話で相談する 050-3172-1405" data-action="phone-consult">
-        <svg aria-hidden="true"><use href="#i-phone"/></svg>
-      </a>
-
-      <a class="site-header__cta" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="label-full">今すぐ無料相談</span>
-        <span class="label-short">LINE相談</span>
-      </a>
+      <span style="font-family:Inter,sans-serif;font-size:10px;letter-spacing:0.2em;color:#6B6B6B">TAP TO SKIP</span>
     </div>
   </div>
+</sc-if>
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(26,26,46,0.08)">
+  <div style="max-width:1160px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+    <div style="display:flex;align-items:center;gap:10px;min-width:0">
+      <img src="assets/logo-momikaru.png" alt="もみかる" style="height:28px;width:auto;display:block">
+      <span style="width:1px;height:22px;background:rgba(26,26,46,0.15)"></span>
+      <span style="display:flex;flex-direction:column;line-height:1.25">
+        <span style="font-family:Inter,sans-serif;font-weight:700;font-size:9px;letter-spacing:0.22em;color:#A87A00">RECRUIT</span>
+        <span style="font-size:10px;font-weight:700;white-space:nowrap">セラピスト募集</span>
+      </span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a href="tel:0542855665" data-ripple="rgba(26,26,46,0.12)" aria-label="電話で相談する 054-285-5665" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;height:40px;padding:0 12px;border:1px solid rgba(26,26,46,0.15);border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;flex:none;transition:border-color .2s" style-hover="border-color:#1A1A2E">電話</a>
+      <a href="https://lin.ee/PFy8myp" data-ripple="rgba(255,255,255,0.25)" style="position:relative;overflow:hidden;display:flex;align-items:center;gap:7px;height:40px;padding:0 14px;background:#1A1A2E;color:#FFFFFF;font-size:12px;font-weight:700;border-radius:999px;white-space:nowrap;flex:none;transition:background .2s" style-hover="background:#2C3E50;color:#FFFFFF"><span style="width:7px;height:7px;border-radius:50%;background:#06C755;box-shadow:0 0 0 3px rgba(6,199,85,0.2)"></span>LINE相談</a>
+    </div>
+  </div>
+  <div ref="{{ progRef }}" style="position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#F5B800;transform-origin:0 50%"></div>
 </header>
 
-<aside class="vertical-label" id="verticalLabel" aria-hidden="true">MOMIKARU RECRUIT</aside>
+<section ref="{{ heroRef }}" onPointerMove="{{ onHeroMove }}" style="position:relative;background-color:#F8F8F5;background-image:radial-gradient(420px circle at var(--mx,78%) var(--my,30%),rgba(245,184,0,0.16),transparent 70%),radial-gradient(rgba(26,26,46,0.07) 1px,transparent 1.2px);background-size:auto,18px 18px;border-bottom:1px solid rgba(26,26,46,0.08)">
+  <div style="max-width:1160px;margin:0 auto;padding:28px 16px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px 56px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="width:20px;height:2px;background:#F5B800"></span>
+        <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#6B6B6B;white-space:nowrap">FIND_YOUR_PATH<span style="color:#F5B800;animation:mk-blink 1s steps(1) infinite">_</span></span>
+      </div>
+      <h1 style="margin:0;font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(27px,7cqi,44px);line-height:1.45;letter-spacing:-0.01em">あなたに合う働き方は、<br><span style="background:linear-gradient(transparent 62%,#FFEDA2 62%)">2つの質問</span>でわかります。</h1>
+      <p style="margin:0;font-size:14px;line-height:1.85;color:#3A3A4E;text-wrap:pretty">もみかるには6つの働き方があります。経験者も未経験の方も、副業から独立まで。あなたの状況に合うページへご案内します。</p>
+      <sc-if value="{{ showSaved }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ restore }}" data-ripple="rgba(245,184,0,0.3)" style="position:relative;overflow:hidden;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;padding:12px 14px;background:#FFFFFF;border:1px dashed #F5B800;border-radius:12px;cursor:pointer;color:#1A1A2E">
+          <span style="font-family:'Roboto Mono',monospace;font-size:10px;font-weight:700;color:#A87A00">SAVED</span>
+          <span style="font-size:13px;line-height:1.5">前回の診断結果：<b>{{ saved.short }}</b></span>
+          <span style="font-size:12px;font-weight:700;white-space:nowrap">結果を見る →</span>
+        </button>
+      </sc-if>
+    </div>
 
-<main id="top">
-
-<!-- ============================================================
-     L1 : HERO
-============================================================ -->
-<section class="hero" data-hero-fix="3">
-  <div class="hero__circle" aria-hidden="true"></div>
-  <span class="hero__decor-word" aria-hidden="true">Path</span>
-
-  <div class="container">
-    <div class="hero__inner">
-      <div class="hero__anim">
-        <div class="hero__tag-top">Find Your Path</div>
-        <div class="hero__tag-bottom">— あなたに合うキャリアパスを</div>
-
-        <h1 class="hero__heading">
-          あなたに合う働き方は、<br>
-          <span class="hl" style="background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);color:var(--accent);font-weight:900;padding:0 .04em;">2つの質問</span>でわかります。
-        </h1>
-
-        <div class="hero__scenario">
-          <p>もみかるには、<span style="color:var(--accent);font-weight:700;">6つのキャリアパス</span>があります。</p>
-          <p>業界経験者の方も、未経験者の方も、副業から独立まで、</p>
-          <p>あなたの状況に合わせた働き方を選べます。</p>
-          <p>&nbsp;</p>
-          <p>まず、2つの簡単な質問にお答えください。</p>
-          <p><span style="color:var(--accent);font-weight:700;">あなたに最適な働き方</span>をご案内します。</p>
+    <div ref="{{ quizRef }}" style="position:relative;background:#FFFFFF;border:1px solid rgba(26,26,46,0.08);border-radius:16px;box-shadow:0 12px 24px rgba(26,26,46,0.10),0 1px 0 rgba(255,255,255,0.8) inset;overflow:hidden">
+      <div style="padding:14px 18px 12px;display:flex;flex-direction:column;gap:12px;border-bottom:1px solid rgba(26,26,46,0.08)">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:12px;font-weight:700;display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;background:#F5B800;transform:rotate(45deg)"></span>働き方診断　<span style="font-weight:500;color:#6B6B6B">約30秒・登録不要</span></span>
+          <span style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:700;color:#6B6B6B">{{ stepLabel }}</span>
         </div>
+        <sc-if value="{{ showViz }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;align-items:end;height:44px">
+              <sc-for list="{{ viz }}" as="v" hint-placeholder-count="6">
+                <div style="display:flex;flex-direction:column;justify-content:flex-end;height:44px;background:#F5F5F1;border-radius:4px;overflow:hidden">
+                  <span style="display:block;height:{{ v.h }};background:{{ v.c }};border-radius:4px;transition:height .7s cubic-bezier(0.22,1,0.36,1),background .4s"></span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px">
+              <sc-for list="{{ viz }}" as="v" hint-placeholder-count="6">
+                <span style="font-family:'Roboto Mono',monospace;font-size:9px;text-align:center;color:{{ v.tc }};transition:color .4s">{{ v.label }}</span>
+              </sc-for>
+            </div>
+            <span style="font-family:'Roboto Mono',monospace;font-size:10px;color:#6B6B6B;display:flex;justify-content:space-between"><span>MATCHING</span><span>{{ vizStatus }}</span></span>
+          </div>
+        </sc-if>
+      </div>
 
-        <ul class="hero__meta">
-          <li><svg><use href="#i-check"/></svg>業界経験者向け 3つの働き方</li>
-          <li><svg><use href="#i-check"/></svg>未経験者向け 1つの働き方</li>
-          <li><svg><use href="#i-check"/></svg>副業向け 1つの働き方</li>
-          <li><svg><use href="#i-check"/></svg>独立志向向け 1つの働き方</li>
-        </ul>
+      <sc-if value="{{ inQuiz }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:18px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;flex-direction:column;gap:4px;opacity:{{ qOp }};transform:translateX({{ qX }});transition:opacity {{ qDur }} cubic-bezier(0.22,1,0.36,1),transform {{ qDur }} cubic-bezier(0.22,1,0.36,1)">
+            <span style="font-family:Inter,sans-serif;font-weight:800;font-size:12px;color:#A87A00;letter-spacing:0.08em">{{ qNo }}</span>
+            <h2 style="margin:0;font-size:19px;font-weight:700;line-height:1.5;text-wrap:pretty">{{ qTitle }}</h2>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ options }}" as="opt" hint-placeholder-count="4">
+              <button type="button" onClick="{{ opt.onPick }}" data-ripple="rgba(245,184,0,0.35)" style="position:relative;overflow:hidden;display:grid;grid-template-columns:30px minmax(0,1fr) 14px;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;min-height:64px;background-color:#FFFFFF;background-image:linear-gradient(90deg,#FFF8DC,#FFF8DC);background-repeat:no-repeat;background-size:0% 100%;border:1.5px solid {{ opt.border }};border-radius:12px;cursor:pointer;color:#1A1A2E;opacity:{{ opt.op }};transform:translateY({{ opt.y }});transition:opacity {{ qDur }} cubic-bezier(0.22,1,0.36,1) {{ opt.delay }},transform {{ qDur }} cubic-bezier(0.22,1,0.36,1) {{ opt.delay }},background-size .4s cubic-bezier(0.22,1,0.36,1),border-color .2s" style-hover="background-size:100% 100%;border-color:#F5B800" style-active="transform:scale(0.98)">
+                <span style="width:30px;height:30px;border-radius:8px;background:#F2F2EE;display:flex;align-items:center;justify-content:center;font-family:Inter,sans-serif;font-weight:800;font-size:12px">{{ opt.letter }}</span>
+                <span style="display:flex;flex-direction:column;gap:2px">
+                  <sc-if value="{{ opt.recommend }}" hint-placeholder-val="{{ false }}"><span style="align-self:flex-start;font-size:10px;font-weight:700;background:#FFEDA2;padding:1px 8px;border-radius:999px;margin-bottom:2px">あなたの回答に近い</span></sc-if>
+                  <span style="font-size:14px;font-weight:700;line-height:1.5">{{ opt.label }}</span>
+                  <span style="font-size:11px;color:#6B6B6B;line-height:1.6">{{ opt.sub }}</span>
+                </span>
+                <span style="font-size:13px;color:#A8A8A0">→</span>
+              </button>
+            </sc-for>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+            <sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}">
+              <button type="button" onClick="{{ back }}" style="background:none;border:none;padding:10px 0;font-size:12px;color:#6B6B6B;cursor:pointer" style-hover="color:#1A1A2E">← 戻る</button>
+            </sc-if>
+            <button type="button" onClick="{{ goPaths }}" style="background:none;border:none;padding:10px 0;margin-left:auto;font-size:12px;color:#6B6B6B;text-decoration:underline;text-underline-offset:3px;cursor:pointer" style-hover="color:#1A1A2E">診断せずに6つの働き方を見る</button>
+          </div>
+        </div>
+      </sc-if>
 
-                                <div class="hero__cta">
-          <a class="btn btn--ghost" href="#quiz">
-            下の質問に答える ↓
+      <sc-if value="{{ analyzing }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:22px 18px 24px;display:flex;flex-direction:column;gap:16px;min-height:300px">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:700;color:#A87A00">ANALYZING<span style="animation:mk-blink 0.6s steps(1) infinite">_</span></span>
+            <h2 style="margin:0;font-size:18px;font-weight:700;line-height:1.5">あなたの回答を、6つの働き方と照合しています</h2>
+          </div>
+          <div style="height:4px;background:#F2F2EE;border-radius:999px;overflow:hidden"><span style="display:block;height:100%;width:{{ anaPct }};background:#F5B800;transition:width .35s cubic-bezier(0.2,0.7,0.3,1)"></span></div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-family:'Roboto Mono',monospace;font-size:12px">
+            <sc-for list="{{ anaSteps }}" as="s" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:10px;opacity:{{ s.op }};transition:opacity .3s">
+                <span style="width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;background:{{ s.bg }};color:#1A1A2E;transition:background .3s">{{ s.mark }}</span>
+                <span style="font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#3A3A4E">{{ s.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:20px 18px 18px;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+              <span style="font-size:12px;font-weight:700;color:#2F6E54">✓ あなたに合う働き方は</span>
+              <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.1em;color:#6B6B6B">PATH_{{ match.no }} / {{ match.en }}</span>
+              <h2 style="margin:0;font-size:23px;font-weight:900;line-height:1.4">{{ match.title }}</h2>
+            </div>
+            <div style="flex:none;width:76px;height:76px;border-radius:50%;background:conic-gradient(#F5B800 {{ ringDeg }},#F2F2EE 0);display:flex;align-items:center;justify-content:center">
+              <div style="width:62px;height:62px;border-radius:50%;background:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1">
+                <span style="font-family:Inter,sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.02em">{{ pct }}<span style="font-size:11px">%</span></span>
+                <span style="font-size:9px;color:#6B6B6B;margin-top:3px">適合度</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <sc-for list="{{ answerChips }}" as="c" hint-placeholder-count="2">
+              <span style="font-size:11px;color:#4A4A5E;background:#F2F2EE;padding:3px 9px;border-radius:999px">{{ c }}</span>
+            </sc-for>
+          </div>
+          <p style="margin:0;font-size:14px;line-height:1.85;color:#3A3A4E;text-wrap:pretty">{{ match.reason }}</p>
+          <ul style="margin:0;padding:12px 14px;list-style:none;display:flex;flex-direction:column;gap:6px;background:#FFF8DC;border-radius:8px">
+            <sc-for list="{{ resPoints }}" as="pt" hint-placeholder-count="3">
+              <li style="display:flex;gap:8px;font-size:13px;font-weight:700;line-height:1.6;opacity:{{ pt.op }};transform:translateX({{ pt.x }});transition:opacity .5s cubic-bezier(0.22,1,0.36,1) {{ pt.delay }},transform .5s cubic-bezier(0.22,1,0.36,1) {{ pt.delay }}"><span style="color:#A87A00">✓</span>{{ pt.text }}</li>
+            </sc-for>
+          </ul>
+          <a href="{{ match.href }}" data-ripple="rgba(255,255,255,0.3)" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:56px;padding:0 8px 0 22px;background-color:#F5B800;background-image:linear-gradient(#1A1A2E,#1A1A2E);background-repeat:no-repeat;background-size:0% 100%;color:#1A1A2E;border-radius:999px;font-size:15px;font-weight:700;box-shadow:0 8px 20px rgba(245,184,0,0.32);transition:background-size .45s cubic-bezier(0.22,1,0.36,1),color .3s" style-hover="background-size:100% 100%;color:#F5B800">
+            <span>{{ match.short }}の働き方を詳しく見る</span>
+            <span style="width:40px;height:40px;border-radius:50%;background:#FFFFFF;color:#1A1A2E;display:flex;align-items:center;justify-content:center;font-size:14px">→</span>
           </a>
-        </div>
-      </div>
-
-      <aside class="hero__panel" aria-label="もみかる主要指標">
-        <div class="hero__panel-head">
-          <span class="label">By the numbers</span>
-          <span class="doctor-badge" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-path"/></svg></span>
-        </div>
-        <div class="hero__stats">
-          <div class="stat">
-            <div class="stat__num"><span data-count="136">0</span><span class="suffix">+</span><span class="unit">店舗</span></div>
-            <div class="stat__caption">直営・FC合計</div>
-          </div>
-          <div class="stat">
-            <div class="stat__num"><span data-count="1000" data-format="comma">0</span><span class="unit">名</span></div>
-            <div class="stat__caption">活躍中のスタッフ</div>
-          </div>
-          <div class="stat">
-            <div class="stat__num"><span data-count="15">0</span><span class="unit">メニュー</span></div>
-            <div class="stat__caption">業界最多級の習得</div>
-          </div>
-          <div class="stat">
-            <div class="stat__num"><span data-count="13">0</span><span class="unit">年</span></div>
-            <div class="stat__caption">創業以来の運営</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+            <button type="button" onClick="{{ reset }}" style="background:none;border:none;padding:8px 0;font-size:12px;color:#6B6B6B;cursor:pointer" style-hover="color:#1A1A2E">← もう一度診断する</button>
+            <a href="{{ alt.href }}" style="font-size:12px;color:#4A4A5E;padding:8px 0;text-decoration:underline;text-underline-offset:3px">2位「{{ alt.short }}」も比べる</a>
           </div>
         </div>
-      </aside>
+      </sc-if>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     L2 : QUIZ — Path finder
-============================================================ -->
-<section class="hub-section" id="quiz">
-  <div class="container">
-    <div class="hub-section__head reveal">
-      <span class="eyebrow">Find Your Path</span>
-      <h2 class="hub-section__title">2つの質問で、<br class="br-pc"><span class="ac">あなたに合う働き方</span>をご案内します。</h2>
-      <p class="hub-section__lead">短い質問にお答えいただくだけ。あなたの状況に最適なキャリアパスへ、直接ご案内します。</p>
+<section style="background:#FFFFFF;border-bottom:1px solid rgba(26,26,46,0.08)">
+  <div data-reveal="" data-countwrap="" style="max-width:1160px;margin:0 auto;padding:28px 16px 8px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))">
+    <div style="display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center">
+      <span style="font-family:Inter,sans-serif;font-weight:800;font-size:clamp(20px,6cqi,34px);letter-spacing:-0.02em;line-height:1.1;font-variant-numeric:tabular-nums"><span data-count="136">136</span></span>
+      <span style="font-size:10px;color:#6B6B6B">店舗</span>
     </div>
+    <div style="display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center;border-left:1px solid rgba(26,26,46,0.08)">
+      <span style="font-family:Inter,sans-serif;font-weight:800;font-size:clamp(20px,6cqi,34px);letter-spacing:-0.02em;line-height:1.1;font-variant-numeric:tabular-nums"><span data-count="1000">1,000</span>+</span>
+      <span style="font-size:10px;color:#6B6B6B">活躍スタッフ</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center;border-left:1px solid rgba(26,26,46,0.08)">
+      <span style="font-family:Inter,sans-serif;font-weight:800;font-size:clamp(20px,6cqi,34px);letter-spacing:-0.02em;line-height:1.1;font-variant-numeric:tabular-nums"><span data-count="15">15</span></span>
+      <span style="font-size:10px;color:#6B6B6B">習得メニュー</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center;border-left:1px solid rgba(26,26,46,0.08)">
+      <span style="font-family:Inter,sans-serif;font-weight:800;font-size:clamp(20px,6cqi,34px);letter-spacing:-0.02em;line-height:1.1;font-variant-numeric:tabular-nums"><span data-count="2014" data-from="1990" data-plain="1">2014</span></span>
+      <span style="font-size:10px;color:#6B6B6B">年創業</span>
+    </div>
+  </div>
+  <p style="margin:0 auto;max-width:1160px;padding:8px 16px 16px;font-size:10px;color:#6B6B6B;text-align:right">※ 直営・FC合計。2026年時点・自社調べ</p>
+</section>
 
-    <div class="quiz-section reveal">
-      <div class="quiz-step" data-step="1" data-active="true">
-        <div class="quiz-number">Q1 / 2</div>
-        <h3 class="quiz-question">今のあなたの状況は、どれに最も近いですか？</h3>
-        <div class="quiz-options">
-          <button class="quiz-option" data-answer="experienced" type="button">
-            <span class="quiz-opt-no">A</span>
-            <span class="quiz-opt-body">
-              <span class="quiz-opt-text">業界で働いている／働いた経験がある</span>
-              <span class="quiz-opt-detail">リラクゼーション、エステ、接骨院・柔整・鍼灸など</span>
-            </span>
+<section style="background:#FFFFFF">
+  <div data-reveal="" style="max-width:1160px;margin:0 auto;padding:56px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:28px 56px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="width:20px;height:2px;background:#F5B800"></span>
+        <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#6B6B6B">BEFORE_YOU_APPLY</span>
+      </div>
+      <h2 style="margin:0;font-size:clamp(22px,6cqi,30px);font-weight:700;line-height:1.5">応募の前に、<br>よく聞かれる4つのこと。</h2>
+      <p style="margin:0;font-size:14px;line-height:1.85;color:#4A4A5E">どの働き方でも共通する、はじめての方が気にされるポイントです。</p>
+    </div>
+    <div style="display:flex;flex-direction:column;border-top:1px solid rgba(26,26,46,0.15)">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+        <div style="border-bottom:1px solid rgba(26,26,46,0.15)">
+          <button type="button" onClick="{{ f.toggle }}" aria-expanded="{{ f.open }}" style="width:100%;display:grid;grid-template-columns:28px minmax(0,1fr) 26px;gap:10px;align-items:center;padding:18px 0;background:none;border:none;text-align:left;cursor:pointer;color:#1A1A2E">
+            <span style="font-family:Inter,sans-serif;font-weight:800;font-size:15px;color:#A87A00">Q</span>
+            <span style="font-size:15px;font-weight:700;line-height:1.55">{{ f.q }}</span>
+            <span style="width:26px;height:26px;border-radius:50%;border:1px solid {{ f.ringBd }};background:{{ f.ringBg }};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;transform:rotate({{ f.rot }});transition:transform .35s cubic-bezier(0.22,1,0.36,1),background .25s,border-color .25s">+</span>
           </button>
-          <button class="quiz-option" data-answer="inexperienced" type="button">
-            <span class="quiz-opt-no">B</span>
-            <span class="quiz-opt-body">
-              <span class="quiz-opt-text">業界未経験で、新しい働き方を探している</span>
-              <span class="quiz-opt-detail">主婦・ママ、現在は別業種で働いている</span>
-            </span>
-          </button>
-          <button class="quiz-option" data-answer="sidejob" type="button">
-            <span class="quiz-opt-no">C</span>
-            <span class="quiz-opt-body">
-              <span class="quiz-opt-text">本業を続けながら、副業を考えている</span>
-              <span class="quiz-opt-detail">個人事業主、会社員、フリーランスなど</span>
-            </span>
-          </button>
-          <button class="quiz-option" data-answer="owner" type="button">
-            <span class="quiz-opt-no">D</span>
-            <span class="quiz-opt-body">
-              <span class="quiz-opt-text">独立を目指している</span>
-              <span class="quiz-opt-detail">自分のお店・サロンを持ちたいと考えている</span>
-            </span>
-          </button>
+          <div style="display:grid;grid-template-rows:{{ f.rows }};transition:grid-template-rows .45s cubic-bezier(0.22,1,0.36,1)">
+            <div style="overflow:hidden;min-height:0">
+              <div style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding:0 0 20px">
+                <span style="font-family:Inter,sans-serif;font-weight:800;font-size:15px;color:#6B6B6B">A</span>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <p style="margin:0;font-size:14px;line-height:1.9;color:#3A3A4E;text-wrap:pretty">{{ f.a }}</p>
+                  <sc-if value="{{ f.note }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;color:#6B6B6B">{{ f.note }}</span></sc-if>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section ref="{{ pathsRef }}" style="background-color:#F8F8F5;background-image:radial-gradient(rgba(26,26,46,0.06) 1px,transparent 1.2px);background-size:18px 18px;border-top:1px solid rgba(26,26,46,0.08)">
+  <div data-reveal="" style="max-width:1160px;margin:0 auto;padding:56px 16px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="width:20px;height:2px;background:#F5B800"></span>
+        <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#6B6B6B">ALL_CAREER_PATHS [6]</span>
+      </div>
+      <h2 style="margin:0;font-size:clamp(22px,6cqi,30px);font-weight:700;line-height:1.5">6つの働き方から、直接選ぶ。</h2>
+      <p style="margin:0;font-size:14px;line-height:1.85;color:#4A4A5E">いずれも業務委託契約。シフトも働く日数も、ご自身で決められます。</p>
+    </div>
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:12px;font-weight:700;color:#4A4A5E;display:flex;align-items:center;gap:8px">{{ g.label }}<span style="flex:1;height:1px;background:rgba(26,26,46,0.12)"></span></span>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:8px">
+          <sc-for list="{{ g.items }}" as="p" hint-placeholder-count="1">
+            <a href="{{ p.href }}" data-ripple="rgba(245,184,0,0.25)" style="position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:12px;align-items:center;padding:16px;background-color:#FFFFFF;background-image:linear-gradient(90deg,#FFF8DC,#FFF8DC);background-repeat:no-repeat;background-size:0% 100%;border:1.5px solid {{ p.border }};border-radius:12px;box-shadow:0 1px 3px rgba(26,26,46,0.06);transition:transform .25s cubic-bezier(0.2,0.7,0.3,1),box-shadow .25s,background-size .45s cubic-bezier(0.22,1,0.36,1)" style-hover="transform:translateY(-2px);box-shadow:0 4px 12px rgba(26,26,46,0.08);background-size:100% 100%">
+              <span style="display:flex;flex-direction:column;gap:4px;min-width:0">
+                <span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                  <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.08em;color:#6B6B6B">PATH_{{ p.no }}</span>
+                  <sc-if value="{{ p.isMatch }}" hint-placeholder-val="{{ false }}"><span style="font-size:10px;font-weight:700;background:#F5B800;padding:1px 8px;border-radius:999px">診断結果 {{ p.score }}%</span></sc-if>
+                </span>
+                <span style="font-size:16px;font-weight:700;line-height:1.5">{{ p.title }}</span>
+                <span style="font-size:12px;line-height:1.7;color:#4A4A5E">{{ p.tagline }}</span>
+              </span>
+              <span style="width:34px;height:34px;border-radius:50%;background:#1A1A2E;color:#F5B800;display:flex;align-items:center;justify-content:center;font-size:13px">→</span>
+            </a>
+          </sc-for>
         </div>
       </div>
-
-      <div class="quiz-step" data-step="2" data-active="false">
-        <div class="quiz-number">Q2 / 2</div>
-        <h3 class="quiz-question quiz-q2-experienced" style="display:none;">どの業界の経験がありますか？</h3>
-        <h3 class="quiz-question quiz-q2-inexperienced" style="display:none;">どんな働き方を求めていますか？</h3>
-
-        <div class="quiz-options quiz-q2-experienced" style="display:none;">
-          <button class="quiz-option" data-answer="relax" type="button">
-            <span class="quiz-opt-no">A</span>
-            <span class="quiz-opt-body">
-              <span class="quiz-opt-text">リラクゼーション業界</span>
-              <span class="quiz-opt-detail">リラクゼ、りらくる等のチェーン経験者</span>
-            </span>
-          </button>
-          <button class="quiz-option" data-answer="esthe" type="button">
-            <span class="quiz-opt-no">B</span>
-            <span class="quiz-opt-body">
-              <span class="quiz-opt-text">エステ業界</span>
-              <span class="quiz-opt-detail">フェイシャル、痩身、脱毛等の専門店経験者</span>
-            </span>
-          </button>
-          <button class="quiz-option" data-answer="osteo" type="button">
-            <span class="quiz-opt-no">C</span>
-            <span class="quiz-opt-body">
-              <span class="quiz-opt-text">接骨院・柔整・鍼灸</span>
-              <span class="quiz-opt-detail">国家資格保持者、保険診療経験者</span>
-            </span>
-          </button>
-        </div>
-
-        <div class="quiz-options quiz-q2-inexperienced" style="display:none;">
-          <button class="quiz-option" data-answer="mom" type="button">
-            <span class="quiz-opt-no">A</span>
-            <span class="quiz-opt-body">
-              <span class="quiz-opt-text">家庭と両立しながら、自分の時間を持ちたい</span>
-              <span class="quiz-opt-detail">ママ・主婦の方向け</span>
-            </span>
-          </button>
-          <button class="quiz-option" data-answer="sidejob" type="button">
-            <span class="quiz-opt-no">B</span>
-            <span class="quiz-opt-body">
-              <span class="quiz-opt-text">本業を続けながら、副業として</span>
-              <span class="quiz-opt-detail">会社員・個人事業主の方向け</span>
-            </span>
-          </button>
-          <button class="quiz-option" data-answer="owner" type="button">
-            <span class="quiz-opt-no">C</span>
-            <span class="quiz-opt-body">
-              <span class="quiz-opt-text">いずれは独立を目指して</span>
-              <span class="quiz-opt-detail">独立志向の方向け</span>
-            </span>
-          </button>
-        </div>
-      </div>
-
-      <div class="quiz-result" data-active="false">
-        <div class="quiz-result-eye">— Your Match</div>
-        <h3 class="quiz-result-title">あなたに最適な働き方はこちらです。</h3>
-        <p class="quiz-result-lede">あなたの状況に合わせて、もみかるが提供できる働き方を詳しくご紹介します。</p>
-        <div class="quiz-result-card" id="quiz-result-card"></div>
-        <div class="quiz-actions">
-          <button class="quiz-restart" type="button">もう一度質問に答える</button>
-          <a href="#all-paths" class="quiz-see-all">すべての働き方を見る →</a>
-        </div>
-      </div>
-
-      <div class="quiz-skip">
-        <a href="#all-paths">質問をスキップして、すべての働き方を見る →</a>
-      </div>
-    </div>
+    </sc-for>
   </div>
 </section>
-<!-- ============================================================
-     L3 : ALL PATHS
-============================================================ -->
-<section class="hub-section hub-section--bg2" id="all-paths">
-  <div class="container">
-    <div class="hub-section__head reveal">
-      <span class="eyebrow">All Career Paths</span>
-      <h2 class="hub-section__title">すべての<span class="ac">キャリアパス</span>を見る。</h2>
-      <p class="hub-section__lead">6つの働き方から、あなたに合うキャリアパスを直接ご覧いただけます。<br>複数の働き方を見比べて、自分のスタイルに最も合うものを選んでください。</p>
+
+<section style="background:#FFFFFF;overflow:hidden">
+  <div data-reveal="" style="max-width:1160px;margin:0 auto;padding:56px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:24px 56px;align-items:center">
+    <div style="position:relative">
+      <img src="assets/staff.jpg" alt="もみかるのスタッフ" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block">
+      <span style="position:absolute;left:12px;bottom:12px;font-family:'Roboto Mono',monospace;font-size:10px;font-weight:700;background:rgba(26,26,46,0.85);color:#FFFFFF;padding:4px 8px;border-radius:4px">SINCE 2014</span>
     </div>
-
-    <div class="paths-grid">
-      <a href="./osteo.html" class="path-card path-osteo reveal">
-        <div class="path-eye">— Path 01</div>
-        <h3 class="path-title">接骨院・柔整・鍼灸の方へ</h3>
-        <p class="path-tag">For Clinical Professionals</p>
-        <p class="path-desc">国家資格を持つ専門家向け。「修行」という言葉で安売りされてきた技術を、正当な経済価値に変える働き方。</p>
-        <ul class="path-points">
-          <li>国家資格者向け加算</li>
-          <li>自費治療への移行</li>
-          <li>医師監修プログラム</li>
-          <li>独立支援パス</li>
-        </ul>
-        <span class="path-cta">詳しく見る →</span>
-      </a>
-
-      <a href="./mom.html" class="path-card path-mom reveal">
-        <div class="path-eye">— Path 02</div>
-        <h3 class="path-title">ママ・主婦の方へ</h3>
-        <p class="path-tag">For Mothers</p>
-        <p class="path-desc">家のことに追われる毎日に "自分でいられる時間" を。eラーニングで隙間時間に学べて、子どもの予定で休める柔軟性。</p>
-        <ul class="path-points">
-          <li>eラーニングで隙間時間学習</li>
-          <li>子どもの予定で休める柔軟性</li>
-          <li>未経験から始められる</li>
-          <li>収入保障共済あり</li>
-        </ul>
-        <span class="path-cta">詳しく見る →</span>
-      </a>
-
-      <a href="./relax.html" class="path-card path-relax reveal">
-        <div class="path-eye">— Path 03</div>
-        <h3 class="path-title">リラクゼーション業界の方へ</h3>
-        <p class="path-tag">For Industry Professionals</p>
-        <p class="path-desc">業界経験者なら "絶対に" もみかるが正しい選択。15メニュー習得、指名料全額還元、業界唯一の店内独立まで。</p>
-        <ul class="path-points">
-          <li>15メニューから選んで習得</li>
-          <li>指名料500円全額還元</li>
-          <li>130店舗の集客力</li>
-          <li>業界唯一の店内独立</li>
-        </ul>
-        <span class="path-cta">詳しく見る →</span>
-      </a>
-
-      <a href="./esthe.html" class="path-card path-esthe reveal">
-        <div class="path-eye">— Path 04</div>
-        <h3 class="path-title">エステ業界の方へ</h3>
-        <p class="path-tag">For Beauty Professionals (SALON de MOMIKARU)</p>
-        <p class="path-desc">姉妹ブランド SALON de MOMIKARU で、エステ業界に "自由" を。物販ノルマなし、既存技術を独自メニュー化可能。</p>
-        <ul class="path-points">
-          <li>業務委託で自由な働き方</li>
-          <li>物販ノルマ一切なし</li>
-          <li>15の美容＆癒しメニュー</li>
-          <li>既存技術を独自メニュー化</li>
-        </ul>
-        <span class="path-cta">詳しく見る →</span>
-      </a>
-
-      <a href="./side-job.html" class="path-card path-sidejob reveal">
-        <div class="path-eye">— Path 05</div>
-        <h3 class="path-title">副業をお考えの方へ</h3>
-        <p class="path-tag">For Second Pillar</p>
-        <p class="path-desc">本業を続けながら "もう一つの収入の柱" を。個人事業主の方も、会社員の方も、空いている時間で月15〜30万円。</p>
-        <ul class="path-points">
-          <li>夜・週末だけでもOK</li>
-          <li>業務委託で完全自由シフト</li>
-          <li>月収15〜30万円が現実的</li>
-          <li>将来の独立にも対応</li>
-        </ul>
-        <span class="path-cta">詳しく見る →</span>
-      </a>
-
-      <a href="./owner.html" class="path-card path-owner reveal">
-        <div class="path-eye">— Path 06</div>
-        <h3 class="path-title">独立を目指す方へ</h3>
-        <p class="path-tag">For Future Owners</p>
-        <p class="path-desc">いきなり独立する必要はありません。もみかるには "独立支援プラン" があります。働きながら、独立への準備が自動的に進む仕組み。</p>
-        <ul class="path-points">
-          <li>加盟金は施術時間で減額</li>
-          <li>経営・運営は本部サポート</li>
-          <li>月12.5万円から始められる</li>
-          <li>11年実績・融資通過率90%超</li>
-        </ul>
-        <span class="path-cta">詳しく見る →</span>
-      </a>
-    </div>
-  </div>
-</section>
-<!-- ============================================================
-     L4 : BRAND STORY
-============================================================ -->
-<section class="hub-section">
-  <div class="container">
-    <div class="hub-section__head reveal">
-      <span class="eyebrow">Our Story</span>
-      <h2 class="hub-section__title">もみかるが目指すもの。</h2>
-    </div>
-    <div class="brand-story reveal" style="margin-top:36px;">
-      <p>気軽に立ち寄れる、手もみ屋。<br>2014年の創業以来、私たちは "本格的な施術を、もっと身近に" を目指してきました。</p>
-      <p>13年で、直営・FCを合わせて136店舗。1,000名以上のスタッフが活躍する場所に成長しました。<br>そして今、もみかるは「<strong>働く人にとっても、最高の場所</strong>であること」を目指しています。</p>
-      <p>業務委託の自由、指名料500円全額還元、店内独立できる仕組み。<br>業界の常識を、一つずつ覆してきました。</p>
-      <p>あなたの状況に合う働き方が、もみかるには必ずあります。</p>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#6B6B6B">OUR_STORY</span>
+      <h2 style="margin:0;font-family:'Noto Serif JP',serif;font-size:clamp(21px,5.6cqi,28px);font-weight:700;line-height:1.6">気軽に立ち寄れる手もみ屋を、<br>働く人にとっても、いい場所に。</h2>
+      <p style="margin:0;font-size:14px;line-height:1.9;color:#3A3A4E;text-wrap:pretty">2014年の創業から「本格的な施術を、もっと身近に」を目指してきました。業務委託の自由、指名料の全額還元、店内独立の仕組み。働き方の選択肢を、一つずつ増やしています。</p>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     L5 : FC OWNER LINK
-============================================================ -->
-<section class="hub-section hub-section--bg2">
-  <div class="container">
-    <div class="hub-section__head reveal">
-      <span class="eyebrow">For Future Owners</span>
-      <h2 class="hub-section__title">FCオーナーをお考えの方へ</h2>
-      <p class="hub-section__lead">もみかる、または姉妹ブランド SALON de MOMIKARU のFCオーナーをお考えの方は、<br>「独立を目指す方へ」のページに、ベッドパートナー・スモール・コアの3つのプラン詳細を掲載しています。<br>FCに関する個別のご相談は、WEB面接の予約・LINE・電話からお問い合わせください。</p>
-      <div class="fc-link-wrap">
-        <a href="./owner.html" class="fc-link-btn">独立を目指す方へ ─ FC加盟プランを見る →</a>
-</div>
+<section style="background-color:#1A1A2E;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1.2px);background-size:18px 18px;color:#FFFFFF">
+  <div data-reveal="" style="max-width:720px;margin:0 auto;padding:56px 16px 64px;display:flex;flex-direction:column;gap:20px;text-align:center;align-items:center">
+    <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#F5B800">CONTACT</span>
+    <h2 style="margin:0;font-size:clamp(22px,6cqi,30px);font-weight:700;line-height:1.55;color:#FFFFFF">迷ったら、話を聞くだけでも。</h2>
+    <p style="margin:0;font-size:14px;line-height:1.9;color:rgba(255,255,255,0.8);text-wrap:pretty">どの働き方が合うか決めきれない方も、LINEでご相談ください。WEB面接（LINE通話・Google Meet）なら来社不要です。</p>
+    <div style="display:flex;flex-direction:column;gap:10px;width:100%;max-width:400px">
+      <a href="https://lin.ee/PFy8myp" data-ripple="rgba(26,26,46,0.15)" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;background-color:#F5B800;background-image:linear-gradient(#FFFFFF,#FFFFFF);background-repeat:no-repeat;background-size:0% 100%;color:#1A1A2E;border-radius:999px;font-size:15px;font-weight:700;transition:background-size .45s cubic-bezier(0.22,1,0.36,1)" style-hover="background-size:100% 100%;color:#1A1A2E"><span style="width:8px;height:8px;border-radius:50%;background:#06C755"></span>{{ lineLabel }}</a>
+      <a href="tel:0542855665" data-ripple="rgba(255,255,255,0.2)" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;border:1.5px solid rgba(255,255,255,0.3);border-radius:999px;font-size:14px;font-weight:700;color:#FFFFFF;transition:border-color .2s" style-hover="border-color:#FFFFFF;color:#FFFFFF">電話 <span style="font-family:Inter,sans-serif">054-285-5665</span></a>
+      <span style="font-size:11px;color:rgba(255,255,255,0.65)">電話受付：平日 9:00〜18:00</span>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     L6 : FINAL CTA
-============================================================ -->
-<section class="final is-dark-zone">
-  <div class="ripple-stack" aria-hidden="true">
-    <span class="ripple"></span>
-    <span class="ripple"></span>
-    <span class="ripple"></span>
-  </div>
-  <div class="container final__inner">
-    <span class="eyebrow on-dark reveal">Final CTA</span>
-    <h2 class="final__title reveal">迷ったら、<span class="ac">まず話を聞いて</span>みませんか。</h2>
-    <p class="final__desc reveal">
-      6つのキャリアパスをご紹介しましたが、<br>
-      あなたの状況に最適なプランは、ご相談で詳しく決めていきましょう。<br>
-      <br>
-      WEB面接（LINE・Google Meet）なら来社不要。<br>
-      カレンダーから空いている日時を選んで、いつでも面接を申し込めます。
-    </p>
-    <div class="final__conveniences reveal">
-      <p><strong>WEB面接対応</strong> — LINE通話・Google Meetで実施。来社不要です。</p>
-      <p>子育て・本業・家事など、生活の都合に合わせて、カレンダーから空いている日時を直接予約できます。</p>
-      <p>未経験の方も、研修は<strong>eラーニング</strong>中心。自宅のスマホ・PCで学習を進められます。</p>
-    </div>
-
-<div class="final__cta reveal">
-      <a class="btn btn--white" href="tel:05031721405" data-action="phone-consult">
-        <span class="arrow"><svg><use href="#i-phone"/></svg></span>
-        電話で相談する
-      </a>
-    </div>
-    <p class="final__phone reveal">
-      <a href="tel:05031721405" class="final__phone-num" data-action="phone-consult">050-3172-1405</a>
-      <span class="final__phone-hours">受付：平日 9:00〜18:00</span>
-    </p>
-  </div>
-</section>
-
-</main>
-
-<!-- ============================================================
-     FOOTER
-============================================================ -->
-<footer class="site-footer">
-  <div class="container site-footer__inner">
-    <span class="site-footer__logo-wrap">
-      <img class="site-footer__logo" src="./momikaru-logo.png" alt="もみかる" loading="lazy">
-    </span>
-    <small class="site-footer__copy">
-      © 株式会社ドラミカンパニー<br>
-      All rights reserved.
-    </small>
+<footer style="background:#FFFFFF;border-top:1px solid rgba(26,26,46,0.08)">
+  <div style="max-width:1160px;margin:0 auto;padding:24px 16px 32px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+    <img src="assets/logo-momikaru.png" alt="もみかる" style="height:24px;width:auto;display:block">
+    <span style="font-size:11px;color:#6B6B6B">© 株式会社ドラミカンパニー</span>
   </div>
 </footer>
 
-<!-- ============================================================
-     SCRIPTS
-============================================================ -->
-<script>
-(function(){
-  'use strict';
-
-  /* Opening overlay */
-  var opening = document.getElementById('openingOverlay');
-  if (opening){
-    var dismissed = false;
-    var dismiss = function(immediate){
-      if (dismissed) return;
-      dismissed = true;
-      if (immediate){
-        opening.style.transition = 'opacity .25s ease';
-      }
-      opening.classList.add('is-fading');
-      setTimeout(function(){
-        opening.classList.add('is-hidden');
-        document.body.classList.remove('is-opening');
-      }, immediate ? 260 : 520);
-    };
-    setTimeout(function(){ dismiss(false); }, 2200);
-    opening.addEventListener('click', function(){ dismiss(true); });
-    opening.addEventListener('touchstart', function(){ dismiss(true); }, {passive:true});
-  } else {
-    document.body.classList.remove('is-opening');
-  }
-
-  /* Header scrolled state */
-  var header = document.getElementById('siteHeader');
-  var onScroll = function(){
-    if (window.scrollY > 8) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
-  };
-  onScroll();
-  window.addEventListener('scroll', onScroll, {passive:true});
-
-  /* IntersectionObserver — reveal */
-  var revealEls = document.querySelectorAll('.reveal');
-  var revealIO = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting){
-        entry.target.classList.add('is-visible');
-        revealIO.unobserve(entry.target);
-      }
-    });
-  }, {threshold:.12});
-  revealEls.forEach(function(el){ revealIO.observe(el); });
-
-  /* Count up */
-  var formatComma = function(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); };
-  var animateCount = function(el){
-    var target = parseFloat(el.getAttribute('data-count')) || 0;
-    var format = el.getAttribute('data-format');
-    var decimals = parseInt(el.getAttribute('data-decimals'),10) || 0;
-    var dur = 1600;
-    var start = performance.now();
-    var ease = function(t){ return 1 - Math.pow(1 - t, 3); };
-    var fmt = function(v){
-      var s = decimals ? v.toFixed(decimals) : String(Math.round(v));
-      return format === 'comma' ? formatComma(s) : s;
-    };
-    var step = function(now){
-      var p = Math.min(1, (now - start) / dur);
-      var v = target * ease(p);
-      el.textContent = fmt(v);
-      if (p < 1) requestAnimationFrame(step);
-      else el.textContent = fmt(target);
-    };
-    requestAnimationFrame(step);
-  };
-  var counters = document.querySelectorAll('[data-count]');
-  var countIO = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting){
-        animateCount(entry.target);
-        countIO.unobserve(entry.target);
-      }
-    });
-  }, {threshold:.4});
-  counters.forEach(function(el){ countIO.observe(el); });
-
-  /* Bar fills (income, cost) */
-  var fillBar = function(el, attr){
-    var pct = parseFloat(el.getAttribute(attr)) || 0;
-    el.style.width = pct + '%';
-  };
-  var barIO = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting){
-        var el = entry.target;
-        if (el.hasAttribute('data-bar')) fillBar(el, 'data-bar');
-        else if (el.hasAttribute('data-cost')) fillBar(el, 'data-cost');
-        barIO.unobserve(el);
-      }
-    });
-  }, {threshold:.5});
-  document.querySelectorAll('[data-bar],[data-cost]').forEach(function(el){ barIO.observe(el); });
-
-  /* Progress bar (L5) */
-  var progressFill = document.getElementById('progressFill');
-  if (progressFill){
-    var progressIO = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting){
-          progressFill.classList.add('is-active');
-          progressIO.unobserve(entry.target);
-        }
-      });
-    }, {threshold:.5});
-    progressIO.observe(progressFill);
-  }
-
-  /* L2 Fig 01 line — stroke draw */
-  var lineDecline = document.querySelector('.line-decline');
-  if (lineDecline){
-    var len = lineDecline.getTotalLength();
-    lineDecline.style.strokeDasharray = len;
-    lineDecline.style.strokeDashoffset = len;
-    lineDecline.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1)';
-    var lineIO = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting){
-          lineDecline.style.strokeDashoffset = '0';
-          lineIO.unobserve(entry.target);
-        }
-      });
-    }, {threshold:.4});
-    lineIO.observe(lineDecline);
-  }
-
-  /* L2 Fig 02 — horizontal bars (hbar) */
-  var hbars = document.querySelectorAll('.hbar');
-  var hvals = document.querySelectorAll('.hval');
-  if (hbars.length){
-    var animHbars = function(){
-      var dur = 1400;
-      var start = performance.now();
-      var ease = function(t){ return 1 - Math.pow(1-t,3); };
-      var step = function(now){
-        var p = Math.min(1, (now - start)/dur);
-        var e = ease(p);
-        hbars.forEach(function(b){
-          var w = parseFloat(b.getAttribute('data-w')) || 0;
-          b.setAttribute('width', w * e);
-        });
-        hvals.forEach(function(v){ v.setAttribute('opacity', p); });
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    };
-    var hbarIO = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting){ animHbars(); hbarIO.unobserve(entry.target); }
-      });
-    }, {threshold:.4});
-    hbarIO.observe(hbars[0]);
-  }
-
-  /* L2 Fig 02 — pre/post vertical bars (bbar) */
-  var bbars = document.querySelectorAll('.bbar');
-  if (bbars.length){
-    var animBbars = function(){
-      var dur = 1400;
-      var start = performance.now();
-      var yBase = 125;
-      var ease = function(t){ return 1 - Math.pow(1-t,3); };
-      var step = function(now){
-        var p = Math.min(1, (now - start)/dur);
-        var e = ease(p);
-        bbars.forEach(function(b){
-          var h = parseFloat(b.getAttribute('data-h')) || 0;
-          var ah = h * e;
-          b.setAttribute('y', yBase - ah);
-          b.setAttribute('height', ah);
-        });
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    };
-    var bbarIO = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting){ animBbars(); bbarIO.unobserve(entry.target); }
-      });
-    }, {threshold:.4});
-    bbarIO.observe(bbars[0]);
-  }
-
-  /* Vertical label dark/light switch — center-line crossing with scroll fallback */
-  var verticalLabel = document.getElementById('verticalLabel');
-  if (verticalLabel){
-    var darkZones = Array.prototype.slice.call(document.querySelectorAll('.is-dark-zone'));
-    var checkDark = function(){
-      var mid = window.innerHeight / 2;
-      var hit = false;
-      for (var i = 0; i < darkZones.length; i++){
-        var r = darkZones[i].getBoundingClientRect();
-        if (r.top <= mid && r.bottom >= mid){ hit = true; break; }
-      }
-      verticalLabel.classList.toggle('on-dark', hit);
-    };
-    checkDark();
-    window.addEventListener('scroll', checkDark, {passive:true});
-    window.addEventListener('resize', checkDark);
-  }
-
-  /* Smooth anchor offset for fixed header */
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click', function(e){
-      var href = a.getAttribute('href');
-      if (!href || href === '#') return;
-      var target = document.querySelector(href);
-      if (!target) return;
-      e.preventDefault();
-      var top = target.getBoundingClientRect().top + window.scrollY - 64;
-      window.scrollTo({top:top, behavior:'smooth'});
-    });
-  });
-})();
-
-/* ============================================================
-   QUIZ — Path finder
-============================================================ */
-(function(){
-  var quiz = document.querySelector('.quiz-section');
-  if (!quiz) return;
-  var step1 = quiz.querySelector('.quiz-step[data-step="1"]');
-  var step2 = quiz.querySelector('.quiz-step[data-step="2"]');
-  var result = quiz.querySelector('.quiz-result');
-  var resultCard = quiz.querySelector('#quiz-result-card');
-  var restartBtn = quiz.querySelector('.quiz-restart');
-
-  var lpData = {
-    osteo:{title:'接骨院・柔整・鍼灸の方へ',desc:'国家資格者向けの加算、自費治療への移行、医師監修プログラム、独立支援パスを用意しています。',url:'./osteo.html'},
-    mom:{title:'ママ・主婦の方へ',desc:'eラーニングで隙間時間学習、子どもの予定で休める柔軟性、未経験から始められる仕組みです。',url:'./mom.html'},
-    relax:{title:'リラクゼーション業界の方へ',desc:'15メニューから選んで習得、指名料500円全額還元、130店舗の集客力、業界唯一の店内独立。',url:'./relax.html'},
-    esthe:{title:'エステ業界の方へ（SALON de MOMIKARU）',desc:'物販ノルマなし、業務委託で完全自由シフト、既存技術を独自メニュー化、姉妹ブランドとの連携。',url:'./esthe.html'},
-    sidejob:{title:'副業をお考えの方へ',desc:'夜・週末だけでもOK、業務委託で完全自由、月収15〜30万円が現実的、本業を続けたまま。',url:'./side-job.html'},
-    owner:{title:'独立を目指す方へ',desc:'いきなり独立する必要はありません。働く時間が加盟金を削り、本部が経営・運営・集客を全てサポート。',url:'./owner.html'}
-  };
-
-  function showResult(key){
-    var lp = lpData[key];
-    if (!lp) return;
-    step1.dataset.active = 'false';
-    step2.dataset.active = 'false';
-    result.dataset.active = 'true';
-    resultCard.innerHTML =
-      '<h4 class="quiz-result-card-title">'+lp.title+'</h4>'+
-      '<p class="quiz-result-card-desc">'+lp.desc+'</p>'+
-      '<a href="'+lp.url+'" class="quiz-result-card-cta">この働き方を見る →</a>';
-    var top = result.getBoundingClientRect().top + window.scrollY - 80;
-    window.scrollTo({top:top, behavior:'smooth'});
-  }
-
-  step1.querySelectorAll('.quiz-option').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var ans = btn.dataset.answer;
-      if (ans === 'sidejob' || ans === 'owner'){ showResult(ans); return; }
-      step1.dataset.active = 'false';
-      step2.dataset.active = 'true';
-      step2.querySelectorAll('.quiz-question').forEach(function(q){q.style.display='none';});
-      step2.querySelectorAll('.quiz-options').forEach(function(o){o.style.display='none';});
-      var q = step2.querySelector('.quiz-q2-'+ans+'.quiz-question, h3.quiz-q2-'+ans);
-      if (q) q.style.display = 'block';
-      step2.querySelectorAll('.quiz-options.quiz-q2-'+ans).forEach(function(o){o.style.display='flex';});
-      var top = step2.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({top:top, behavior:'smooth'});
-    });
-  });
-
-  step2.querySelectorAll('.quiz-option').forEach(function(btn){
-    btn.addEventListener('click', function(){ showResult(btn.dataset.answer); });
-  });
-
-  restartBtn.addEventListener('click', function(){
-    step1.dataset.active = 'true';
-    step2.dataset.active = 'false';
-    result.dataset.active = 'false';
-    var top = quiz.getBoundingClientRect().top + window.scrollY - 80;
-    window.scrollTo({top:top, behavior:'smooth'});
-  });
-})();
-</script>
-
-<div class="float-cta" id="floatCta" aria-label="追従予約バー" hidden>
-  <a class="float-cta__book iv-booking-open" href="#iv-booking" data-fc-event="interview_online">面接を申し込む</a>
-  <a class="float-cta__line" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
-    <svg aria-hidden="true"><use href="#i-line"/></svg>
-    LINE相談
-  </a>
+<sc-if value="{{ showSticky }}" hint-placeholder-val="{{ true }}">
+  <div style="position:sticky;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(26,26,46,0.08)">
+    <div style="max-width:560px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px">
+      <button type="button" onClick="{{ sticky.onClick }}" data-ripple="rgba(255,255,255,0.35)" style="position:relative;overflow:hidden;min-height:48px;background:#F5B800;color:#1A1A2E;border:none;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer;padding:0 16px;display:flex;align-items:center;justify-content:center;gap:8px"><span style="font-family:'Roboto Mono',monospace;font-size:10px;background:#1A1A2E;color:#F5B800;padding:2px 6px;border-radius:4px">{{ sticky.tag }}</span>{{ sticky.label }}</button>
+      <a href="https://lin.ee/PFy8myp" data-ripple="rgba(255,255,255,0.25)" style="position:relative;overflow:hidden;display:flex;align-items:center;gap:6px;min-height:48px;padding:0 16px;background:#1A1A2E;color:#FFFFFF;border-radius:999px;font-size:13px;font-weight:700" style-hover="color:#FFFFFF"><span style="width:7px;height:7px;border-radius:50%;background:#06C755"></span>LINE</a>
+    </div>
+  </div>
+</sc-if>
 </div>
-<script>
-(function(){
-  var bar = document.getElementById("floatCta");
-  if (!bar) return;
-  bar.hidden = false;
-  document.body.classList.add("has-float-cta");
-  function sync(){
-    var y = window.scrollY || document.documentElement.scrollTop;
-    bar.classList.toggle("is-visible", y > 180);
-  }
-  window.addEventListener("scroll", sync, {passive:true});
-  window.addEventListener("resize", sync);
-  sync();
-})();
-</script>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;intro&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;演出&quot;},&quot;matchViz&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;演出&quot;},&quot;stickyBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;導線&quot;},&quot;recommendHint&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;導線&quot;}}">
+const BASE = 'https://momikaru-recruit.netlify.app';
+const KEY = 'momikaru-recruit-v2-result';
+const PATHS = {
+  osteo: { no:'01', en:'CLINICAL', title:'接骨院・柔整・鍼灸の方へ', short:'接骨院・鍼灸', tagline:'国家資格の技術を、正当に評価される働き方へ。', points:['国家資格者向けの報酬加算','自費メニューへのステップ','医師監修の研修プログラム'], reason:'国家資格と臨床経験は、もみかるでは報酬として評価されます。保険診療の枠にとらわれない働き方を選べます。', href:BASE+'/osteo' },
+  mom:   { no:'02', en:'MOTHERS', title:'ママ・主婦の方へ', short:'ママ・主婦', tagline:'家事と育児の合間に、自分でいられる時間を。', points:['eラーニングで隙間時間に学べる','子どもの予定で休める自由シフト','収入保障共済あり'], reason:'研修はスマホで自宅から進められます。お子さまの予定に合わせて、働く日をご自身で決められます。', href:BASE+'/mom' },
+  relax: { no:'03', en:'RELAXATION', title:'リラクゼーション業界の方へ', short:'リラク経験者', tagline:'これまでの経験を、そのまま収入とキャリアに。', points:['指名料500円は全額還元','15メニューから選んで習得','店内独立という選択肢'], reason:'リラクゼーションのご経験があれば、研修を短く、早い段階から指名につなげやすい働き方です。', href:BASE+'/relax' },
+  esthe: { no:'04', en:'SALON de MOMIKARU', title:'エステ業界の方へ', short:'エステ経験者', tagline:'物販ノルマのない、自由なエステの働き方。', points:['物販ノルマなし','今の技術を独自メニュー化できる','15の美容・癒しメニュー'], reason:'姉妹ブランド SALON de MOMIKARU で、今の技術を活かしたまま、販売ノルマのない働き方ができます。', href:BASE+'/esthe' },
+  side:  { no:'05', en:'SECOND PILLAR', title:'副業をお考えの方へ', short:'副業', tagline:'本業はそのままに、もう一つの収入の柱を。', points:['夜・週末だけでもOK','完全自由シフトの業務委託','将来の独立にもつながる'], reason:'本業の時間はそのままに、空いた夜や週末だけで始められます。将来の独立にもつなげられます。', href:BASE+'/side-job' },
+  owner: { no:'06', en:'FUTURE OWNERS', title:'独立を目指す方へ', short:'独立志向', tagline:'働きながら、独立の準備が進む仕組み。', points:['加盟金は施術時間で減額','経営・運営は本部がサポート','月12.5万円から始められるプラン'], reason:'いきなり独立する必要はありません。セラピストとして働きながら、加盟金の減額と経営準備を同時に進められます。', href:BASE+'/owner' },
+};
+const ORDER = ['osteo','mom','relax','esthe','side','owner'];
+const ALT = { osteo:'owner', mom:'side', relax:'owner', esthe:'relax', side:'owner', owner:'relax' };
+const Q1 = [
+  { key:'exp', label:'業界で働いている／働いた経験がある', sub:'リラクゼーション・エステ・接骨院・鍼灸など', chip:'業界経験あり' },
+  { key:'new', label:'業界は未経験。新しい働き方を探している', sub:'主婦・ママ、別の業種で働いている方', chip:'業界未経験' },
+  { key:'side', label:'本業を続けながら、副業を考えている', sub:'会社員・個人事業主・フリーランス', chip:'副業希望' },
+  { key:'own', label:'いずれは自分のお店を持ちたい', sub:'独立・開業を考えている', chip:'独立志向' },
+];
+const Q2_EXP = [
+  { key:'relax', label:'リラクゼーション', sub:'もみほぐし・ボディケア系のお店など' },
+  { key:'esthe', label:'エステ', sub:'フェイシャル・痩身・脱毛などの専門店' },
+  { key:'osteo', label:'接骨院・柔整・鍼灸', sub:'国家資格をお持ちの方' },
+];
+const Q2_STYLE = [
+  { key:'mom', label:'家庭と両立しながら、自分の時間を', sub:'ママ・主婦の方に多い選択' },
+  { key:'side', label:'本業はそのまま、収入をもう一つ', sub:'会社員・個人事業主の方に多い選択' },
+  { key:'owner', label:'いずれは独立・開業を', sub:'独立志向の方に多い選択' },
+];
+const NEAR = { new:'mom', side:'side', own:'owner' };
+const S1 = {
+  exp:  { osteo:62, mom:10, relax:68, esthe:64, side:18, owner:24 },
+  new:  { osteo:6,  mom:72, relax:14, esthe:12, side:48, owner:30 },
+  side: { osteo:8,  mom:28, relax:20, esthe:16, side:82, owner:42 },
+  own:  { osteo:14, mom:12, relax:38, esthe:22, side:34, owner:86 },
+};
+const FAQS = [
+  { q:'業務委託って、アルバイトとどう違うの？', a:'もみかると雇用契約ではなく、個人事業主として業務委託契約を結びます。働く日や時間はご自身で決められ、施術した分が報酬になります。確定申告などはじめての方にも、面接で流れをご説明します。' },
+  { q:'実際、どのくらいの収入になる？', a:'報酬は施術時間と指名数で決まります。指名料500円は全額還元。副業として夜・週末に働き、月15〜30万円の方もいます。', note:'※ 個別事例です。勤務日数・店舗・時期により異なります。' },
+  { q:'未経験でも大丈夫？', a:'研修はeラーニングが中心で、自宅のスマホ・PCから学べます。実技は店舗で段階的に身につけていくので、業界未経験から始める方も多くいます。' },
+  { q:'家庭や本業と両立できる？', a:'完全自由シフトのため、夜・週末だけ、平日の日中だけといった働き方ができます。お子さまの行事や体調に合わせたお休みも調整できます。' },
+];
+const LETTERS = ['A','B','C','D'];
+const ANA = ['回答パターンを解析','6つの働き方と条件を照合','あなた向けの結果を生成'];
+const CODE = 'MATCHING_ENGINE v2.0';
+const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_#/';
 
-<link rel="stylesheet" href="https://interview-booking-api.netlify.app/widget/booking.css?v=7">
-<script src="https://interview-booking-api.netlify.app/widget/config.js?v=7"></script>
-<script src="https://interview-booking-api.netlify.app/widget/booking.js?v=7"></script>
+function scoresFor(a1, a2) {
+  if (!a1) return null;
+  if (!a2) return S1[a1];
+  const r = {};
+  ORDER.forEach(k => r[k] = Math.round(S1[a1][k] * 0.3));
+  r[ALT[a2]] = Math.max(r[ALT[a2]], 52);
+  r[a2] = 96;
+  return r;
+}
+
+class Component extends DCLogic {
+  state = { a1:null, a2:null, faq:0, intro:0, introCode:'', scan:-1, qIn:true, analyzing:false, ana:0, pct:0, resIn:false, saved:null };
+  rootRef = React.createRef(); quizRef = React.createRef(); pathsRef = React.createRef(); heroRef = React.createRef(); progRef = React.createRef();
+  timers = [];
+  later(fn, ms) { const t = setTimeout(fn, ms); this.timers.push(t); return t; }
+  reduced() { return typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  buzz() { try { navigator.vibrate && navigator.vibrate(8); } catch (e) {} }
+
+  componentDidMount() {
+    try { const r = JSON.parse(localStorage.getItem(KEY) || 'null'); if (r && PATHS[r.a2]) this.setState({ saved:r }); } catch (e) {}
+    if (!(this.props.intro ?? true) || this.reduced()) this.setState({ intro:3 });
+    else this.runIntro();
+    const root = this.rootRef.current;
+    if (this.progRef.current) this.progRef.current.style.transform = 'scaleX(0)';
+    this.onScroll = e => {
+      const t = (e.target === document || e.target === document.documentElement) ? document.scrollingElement : e.target;
+      if (!t || !t.contains || !root || !t.contains(root)) return;
+      const p = t.scrollTop / Math.max(1, t.scrollHeight - t.clientHeight);
+      if (this.progRef.current) this.progRef.current.style.transform = `scaleX(${Math.min(1, Math.max(0, p))})`;
+    };
+    document.addEventListener('scroll', this.onScroll, true);
+    if (root && 'IntersectionObserver' in window && !this.reduced()) {
+      this.io = new IntersectionObserver(es => es.forEach(en => {
+        if (!en.isIntersecting) return;
+        const el = en.target; el.style.opacity = '1'; el.style.transform = 'none';
+        if (el.hasAttribute('data-countwrap')) this.countUp(el);
+        this.io.unobserve(el);
+      }), { threshold:0.15 });
+      root.querySelectorAll('[data-reveal]').forEach(el => {
+        el.style.opacity = '0'; el.style.transform = 'translateY(28px)';
+        el.style.transition = 'opacity .9s cubic-bezier(0.22,1,0.36,1), transform .9s cubic-bezier(0.22,1,0.36,1)';
+        this.io.observe(el);
+      });
+    }
+    this.onDown = e => {
+      const el = e.target.closest && e.target.closest('[data-ripple]');
+      if (!el || !root || !root.contains(el) || !el.animate) return;
+      const r = el.getBoundingClientRect(); const d = Math.max(r.width, r.height) * 2.2;
+      const s = document.createElement('span');
+      s.style.cssText = `position:absolute;left:${e.clientX - r.left - d/2}px;top:${e.clientY - r.top - d/2}px;width:${d}px;height:${d}px;border-radius:50%;background:${el.getAttribute('data-ripple')};pointer-events:none;`;
+      el.appendChild(s);
+      s.animate([{ transform:'scale(0)', opacity:1 }, { transform:'scale(1)', opacity:0 }], { duration:650, easing:'cubic-bezier(0.22,1,0.36,1)' }).onfinish = () => s.remove();
+    };
+    if (root) root.addEventListener('pointerdown', this.onDown);
+  }
+  componentWillUnmount() {
+    this.timers.forEach(clearTimeout); clearInterval(this.scr); clearInterval(this.scanI); cancelAnimationFrame(this.raf);
+    document.removeEventListener('scroll', this.onScroll, true);
+    if (this.io) this.io.disconnect();
+    if (this.rootRef.current) this.rootRef.current.removeEventListener('pointerdown', this.onDown);
+  }
+
+  runIntro() {
+    this.later(() => this.setState({ intro:1 }), 60);
+    let f = 0;
+    this.scr = setInterval(() => {
+      f++;
+      const n = Math.floor(f / 1.4);
+      const txt = CODE.split('').map((ch, i) => i < n || ch === ' ' ? ch : GLYPHS[Math.floor(Math.random() * GLYPHS.length)]).join('');
+      this.setState({ introCode: txt });
+      if (n >= CODE.length) clearInterval(this.scr);
+    }, 35);
+    this.later(() => { let i = 0; this.scanI = setInterval(() => { this.setState({ scan:i % 6 }); i++; if (i > 7) clearInterval(this.scanI); }, 160); }, 1500);
+    this.later(() => this.setState(s => s.intro === 1 ? { intro:2 } : null), 3300);
+    this.later(() => this.setState({ intro:3 }), 3900);
+  }
+  skipIntro = () => {
+    if (this.state.intro >= 2) return;
+    this.timers.forEach(clearTimeout); clearInterval(this.scr); clearInterval(this.scanI);
+    this.setState({ intro:2, introCode:CODE });
+    this.later(() => this.setState({ intro:3 }), 600);
+  };
+
+  countUp(wrap) {
+    wrap.querySelectorAll('[data-count]').forEach(n => {
+      const to = +n.getAttribute('data-count'); const from = +(n.getAttribute('data-from') || 0); const plain = n.hasAttribute('data-plain');
+      const fmt = v => plain ? String(Math.round(v)) : Math.round(v).toLocaleString('en-US');
+      const t0 = performance.now();
+      const step = t => { const k = Math.min(1, (t - t0) / 1600); const e = 1 - Math.pow(1 - k, 4); n.textContent = fmt(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  }
+
+  enterQ() { this.setState({ qIn:false }); this.later(() => this.setState({ qIn:true }), 40); }
+  pick1(key) { this.buzz(); this.setState({ a1:key }); this.enterQ(); }
+  pick2(key) {
+    this.buzz();
+    this.setState({ a2:key, analyzing:true, ana:0, pct:0, resIn:false });
+    const fast = this.reduced();
+    const base = fast ? 0 : 420;
+    [1,2,3].forEach(i => this.later(() => this.setState({ ana:i }), base * i));
+    this.later(() => {
+      this.setState({ analyzing:false });
+      try { localStorage.setItem(KEY, JSON.stringify({ a1:this.state.a1, a2:key })); } catch (e) {}
+      this.revealResult();
+    }, base * 3 + (fast ? 0 : 380));
+  }
+  revealResult() {
+    this.later(() => this.setState({ resIn:true }), 50);
+    const t0 = performance.now(); const to = 96;
+    const step = t => { const k = Math.min(1, (t - t0) / 1100); const e = 1 - Math.pow(1 - k, 3); this.setState({ pct: Math.round(to * e) }); if (k < 1) this.raf = requestAnimationFrame(step); };
+    this.raf = requestAnimationFrame(step);
+  }
+
+  scrollToEl(el) {
+    if (!el) return;
+    let p = el.parentElement;
+    while (p && p !== document.body) {
+      const oy = getComputedStyle(p).overflowY;
+      if ((oy === 'auto' || oy === 'scroll') && p.scrollHeight > p.clientHeight) break;
+      p = p.parentElement;
+    }
+    const t = (p && p !== document.body) ? p : null;
+    if (t) t.scrollTo({ top: t.scrollTop + el.getBoundingClientRect().top - t.getBoundingClientRect().top - 64, behavior:'smooth' });
+    else window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 64, behavior:'smooth' });
+  }
+
+  onHeroMove = e => {
+    const el = this.heroRef.current; if (!el || e.pointerType === 'touch') return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  };
+
+  renderVals() {
+    const { a1, a2, faq, intro, scan, qIn, analyzing, ana, pct, resIn, saved } = this.state;
+    const showRec = this.props.recommendHint ?? true;
+    const done = !!a2 && !analyzing;
+    const step = a1 ? 2 : 1;
+    const qDur = qIn ? '.5s' : '0s';
+    let options, qTitle;
+    const anim = (o, i) => ({ ...o, letter:LETTERS[i], op: qIn ? 1 : 0, y: qIn ? '0' : '10px', delay: qIn ? (0.06 + i * 0.06).toFixed(2) + 's' : '0s' });
+    if (step === 1) {
+      qTitle = '今のあなたに、いちばん近いのは？';
+      options = Q1.map((o, i) => ({ ...anim(o, i), recommend:false, border:'rgba(26,26,46,0.12)', onPick:() => this.pick1(o.key) }));
+    } else {
+      const exp = a1 === 'exp';
+      qTitle = exp ? 'どの業界のご経験ですか？' : 'いちばん大切にしたいのは？';
+      options = (exp ? Q2_EXP : Q2_STYLE).map((o, i) => {
+        const rec = showRec && !exp && o.key === NEAR[a1];
+        return { ...anim(o, i), recommend:rec, border: rec ? '#F5B800' : 'rgba(26,26,46,0.12)', onPick:() => this.pick2(o.key) };
+      });
+    }
+    const sc = scoresFor(a1, a2 && !analyzing ? a2 : null);
+    const viz = ORDER.map(k => {
+      const v = sc ? sc[k] : 50;
+      const hot = sc && (a2 && !analyzing ? k === a2 : v >= 40);
+      return { label:PATHS[k].no, h: v + '%', c: hot ? '#F5B800' : (sc ? 'rgba(26,26,46,0.14)' : 'rgba(26,26,46,0.2)'), tc: hot ? '#1A1A2E' : '#A8A8A0' };
+    });
+    const cands = sc ? ORDER.filter(k => sc[k] >= 40).length : 6;
+    const vizStatus = analyzing ? 'computing…' : done ? 'match found → PATH_' + PATHS[a2].no : `candidates ${cands} / 6`;
+
+    const match = PATHS[a2 || 'relax'];
+    const alt = PATHS[ALT[a2 || 'relax']];
+    const q1chip = (Q1.find(o => o.key === a1) || {}).chip;
+    const q2o = [...Q2_EXP, ...Q2_STYLE].find(o => o.key === a2);
+    const finalSc = a1 && a2 ? scoresFor(a1, a2) : {};
+
+    const mk = k => ({ ...PATHS[k], isMatch: done && k === a2, score: finalSc[k] || 0, border: done && k === a2 ? '#F5B800' : 'rgba(26,26,46,0.08)' });
+    const goQuiz = () => this.scrollToEl(this.quizRef.current);
+    const on = intro >= 1;
+
+    return {
+      rootRef:this.rootRef, quizRef:this.quizRef, pathsRef:this.pathsRef, heroRef:this.heroRef, progRef:this.progRef,
+      onHeroMove:this.onHeroMove,
+      introOn: intro < 3, skipIntro:this.skipIntro, introOpacity: intro >= 2 ? 0 : 1,
+      introShow: on ? 1 : 0, introY: on ? '0' : '12px', introBar: on ? '100%' : '0%', introCode: this.state.introCode,
+      introChips: ['業界経験者','国家資格者','エステ','ママ・主婦','副業','独立志向'].map((label, i) => ({
+        label, no:'0' + (i + 1), op: on ? 1 : 0, y: on ? '0' : '8px', delay: (0.6 + i * 0.1).toFixed(2) + 's',
+        bg: scan === i ? '#F5B800' : '#FFFFFF', bd: scan === i ? '#F5B800' : 'rgba(26,26,46,0.12)',
+      })),
+      showSaved: !!saved && !a1, saved: saved ? PATHS[saved.a2] : PATHS.relax,
+      restore: () => { if (!saved) return; this.setState({ a1:saved.a1, a2:saved.a2, analyzing:false }); this.revealResult(); goQuiz(); },
+      showViz: this.props.matchViz ?? true,
+      viz, vizStatus,
+      inQuiz: !a2, analyzing, done, canBack: step === 2 && !a2,
+      stepLabel: done ? 'RESULT' : analyzing ? 'RUNNING' : `Q${step}/2`,
+      qNo: `Q${step}`, qTitle, options, qDur, qOp: qIn ? 1 : 0, qX: qIn ? '0' : '12px',
+      anaPct: Math.round((ana / 3) * 100) + '%',
+      anaSteps: ANA.map((label, i) => ({ label, op: ana >= i ? 1 : 0.35, mark: ana > i ? '✓' : '', bg: ana > i ? '#F5B800' : '#F2F2EE' })),
+      back: () => { this.setState({ a1:null, a2:null }); this.enterQ(); },
+      reset: () => { this.setState({ a1:null, a2:null, pct:0, resIn:false }); this.enterQ(); goQuiz(); },
+      goPaths: () => this.scrollToEl(this.pathsRef.current),
+      match, alt, pct, ringDeg: (pct * 3.6) + 'deg',
+      resPoints: match.points.map((text, i) => ({ text, op: resIn ? 1 : 0, x: resIn ? '0' : '-8px', delay: (0.3 + i * 0.12).toFixed(2) + 's' })),
+      answerChips: [q1chip, q2o && q2o.label].filter(Boolean),
+      groups: [
+        { label:'業界経験がある方', items:['relax','esthe','osteo'].map(mk) },
+        { label:'未経験・副業の方', items:['mom','side'].map(mk) },
+        { label:'独立を考えている方', items:['owner'].map(mk) },
+      ],
+      faqs: FAQS.map((f, i) => {
+        const open = faq === i;
+        return { ...f, note:f.note || '', open, rows: open ? '1fr' : '0fr', rot: open ? '45deg' : '0deg', ringBg: open ? '#F5B800' : 'transparent', ringBd: open ? '#F5B800' : 'rgba(26,26,46,0.15)', toggle: () => this.setState({ faq: open ? -1 : i }) };
+      }),
+      lineLabel: done ? `「${match.short}」の結果をLINEで相談` : 'LINEで相談する（無料）',
+      showSticky: this.props.stickyBar ?? true,
+      sticky: done
+        ? { tag:'PATH_' + match.no, label: '詳細を見る →', onClick: () => { window.location.href = match.href; } }
+        : { tag: step === 1 ? '0/2' : '1/2', label: step === 1 ? '30秒で働き方を診断' : 'あと1問で診断完了', onClick: goQuiz },
+    };
+  }
+}
+</script>
 </body>
 </html>
