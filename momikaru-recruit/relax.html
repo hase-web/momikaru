@@ -1,2899 +1,780 @@
-<!doctype html>
-<html lang="ja">
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="format-detection" content="telephone=no">
-<title>もみかる採用｜リラクゼーション業界の方へ</title>
-<meta name="description" content="今の仕事が ただの作業 になっていませんか。もみかるで働く時間は、未来のための投資に変えられます。リラクゼーション業界経験者向け、もみかる業務委託採用LP。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Serif+JP:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<style>
-/* ============================================================
-   TOKENS
-============================================================ */
-:root{
-  --bg:#FAF6EF;
-  --bg-2:#F1EBDF;
-  --bg-3:#E8DFCC;
-  --ink:#1A1614;
-  --ink-2:#3D3530;
-  --mute:#7B7166;
-  --line:#D9CFBE;
-  --accent:#8B2A1E;
-  --accent-2:#C7833A;
-  --gold:#9B7B3A;
-  --paper:#FFFEFB;
-  --danger:#A23B2A;
-  --line-jp:1.85;
-  --line-tight:1.35;
-  --serif-jp:"Noto Serif JP", serif;
-  --sans-jp:"Noto Sans JP", sans-serif;
-  --serif-en:"Cormorant Garamond", serif;
-  --shadow-soft:0 18px 48px -24px rgba(26,22,20,.32);
-  --shadow-strong:0 24px 60px -20px rgba(139,42,30,.42);
-  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-
-/* ============================================================
-   OPENING OVERLAY
-============================================================ */
-.opening{
-  position:fixed;inset:0;
-  width:100vw;height:100vh;
-  background:var(--bg);
-  display:flex;align-items:center;justify-content:center;
-  z-index:9999;
-  cursor:pointer;
-  transition:opacity .5s ease;
-}
-.opening.is-fading{opacity:0;}
-.opening.is-hidden{display:none;}
-.opening__text{
-  font-family:var(--serif-jp);
-  font-weight:900;
-  font-size:clamp(32px,7vw,88px);
-  line-height:1.4;
-  letter-spacing:.04em;
-  color:var(--ink);
-  text-align:center;
-  padding:0 24px;
-  opacity:0;
-  transform:translateY(12px) scale(1);
-  animation:openingIn .7s cubic-bezier(.2,.7,.2,1) forwards,
-            openingOut .6s cubic-bezier(.4,0,.2,1) forwards 1.6s;
-}
-.opening__text .ac{color:var(--accent);}
-@keyframes openingIn{
-  to{opacity:1;transform:translateY(0) scale(1);}
-}
-@keyframes openingOut{
-  from{opacity:1;transform:translateY(0) scale(1);}
-  to{opacity:0;transform:translateY(0) scale(1.05);}
-}
-.opening__skip{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:11px;letter-spacing:.32em;
-  color:var(--mute);text-transform:uppercase;
-  opacity:0;animation:openingHint 1s ease forwards .8s;
-  pointer-events:none;
-}
-@keyframes openingHint{to{opacity:1;}}
-
-/* Hold hero animations until overlay finishes */
-body.is-opening .hero__anim>*,
-body.is-opening .hero__panel{animation-play-state:paused;}
-
-/* ============================================================
-   BASE
-============================================================ */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-body{
-  font-family:var(--sans-jp);
-  font-weight:400;
-  color:var(--ink);
-  background:var(--bg);
-  line-height:var(--line-jp);
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-  overflow-x:hidden;
-}
-img{display:block;max-width:100%;}
-a{color:inherit;text-decoration:none;}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
-ul,ol{list-style:none;}
-
-.container{
-  width:100%;
-  max-width:1180px;
-  margin:0 auto;
-  padding:0 24px;
-}
-@media (min-width:768px){ .container{padding:0 40px;} }
-
-/* Section structure */
-section{position:relative;}
-.section-pad{padding:96px 0;}
-@media (min-width:768px){ .section-pad{padding:140px 0;} }
-
-.eyebrow{
-  font-family:var(--serif-en);
-  font-style:italic;
-  font-weight:500;
-  font-size:14px;
-  letter-spacing:.18em;
-  color:var(--accent);
-  text-transform:uppercase;
-}
-.eyebrow.on-dark{color:var(--accent-2);}
-.lead{
-  font-family:var(--serif-jp);
-  font-weight:700;
-  letter-spacing:.02em;
-  line-height:1.45;
-  color:var(--ink);
-  font-size:clamp(26px,4.6vw,44px);
-}
-.lead.on-dark{color:#F4ECDF;}
-.body-jp{
-  font-size:15px;
-  line-height:var(--line-jp);
-  color:var(--ink-2);
-}
-.body-jp.on-dark{color:#D8CFBF;}
-
-.hr-thin{
-  width:48px;height:1px;background:var(--accent);border:0;margin:24px 0;
-}
-
-/* Reveal */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease;}
-.reveal.is-visible{opacity:1;transform:none;}
-
-/* ============================================================
-   HEADER
-============================================================ */
-.site-header{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  background:rgba(250,246,239,.84);
-  backdrop-filter:saturate(140%) blur(10px);
-  -webkit-backdrop-filter:saturate(140%) blur(10px);
-  border-bottom:1px solid transparent;
-  transition:border-color .3s ease,background .3s ease;
-}
-.site-header.scrolled{
-  border-bottom-color:var(--line);
-  background:rgba(250,246,239,.96);
-}
-.site-header__inner{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px;
-  max-width:1240px;margin:0 auto;
-}
-.site-header__brand{display:flex;align-items:center;gap:10px;}
-.site-header__logo-wrap{
-  display:inline-flex;align-items:center;justify-content:center;
-}
-.site-header__logo{height:32px;width:auto;display:block;}
-.site-header__brand-mark{
-  font-family:var(--serif-en);
-  font-style:italic;font-weight:500;
-  font-size:11px;letter-spacing:.32em;
-  color:var(--ink-2);
-  text-transform:uppercase;
-  padding-left:10px;border-left:1px solid var(--line);
-}
-.site-header__actions{display:flex;align-items:center;gap:10px;}
-.site-header__phone{
-  width:44px;height:44px;border-radius:50%;
-  background:transparent;color:var(--ink);
-  border:1px solid var(--ink);
-  display:inline-flex;align-items:center;justify-content:center;
-  transition:background-color .25s ease,color .25s ease,transform .3s ease;
-  flex:0 0 auto;
-}
-.site-header__phone svg{width:18px;height:18px;}
-.site-header__phone:hover{background:var(--ink);color:var(--paper);transform:translateY(-1px);}
-.site-header__cta{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--ink);color:#FFFEFB;
-  padding:11px 18px;
-  font-size:13px;font-weight:700;
-  border-radius:999px;
-  box-shadow:0 8px 22px -10px rgba(139,42,30,.6);
-  transition:transform .3s ease,box-shadow .3s ease;
-  white-space:nowrap;
-}
-.site-header__cta:hover{transform:translateY(-1px);box-shadow:0 12px 28px -10px rgba(139,42,30,.7);}
-.site-header__cta .dot{
-  position:relative;
-  width:8px;height:8px;border-radius:50%;
-  background:#22C55E;
-  box-shadow:0 0 6px rgba(34,197,94,.55);
-}
-.site-header__cta .dot::before{
-  content:"";position:absolute;inset:0;border-radius:50%;
-  background:rgba(34,197,94,.5);
-  animation:pulseDot 2s ease-out infinite;
-}
-@keyframes pulseDot{
-  0%{transform:scale(1);opacity:.55;}
-  70%{transform:scale(2.6);opacity:0;}
-  100%{transform:scale(2.6);opacity:0;}
-}
-@media (max-width:767px){
-  .site-header__actions{gap:8px;}
-  .site-header__phone{width:38px;height:38px;}
-  .site-header__phone svg{width:16px;height:16px;}
-}
-@media (max-width:520px){
-  .site-header__inner{padding:12px 14px;}
-  .site-header__logo{height:28px;}
-  .site-header__brand-mark{display:none;}
-  .site-header__cta{padding:8px 12px;font-size:11.5px;}
-  .site-header__cta .label-full{display:none;}
-  .site-header__cta .label-short{display:inline;}
-}
-.site-header__cta .label-short{display:none;}
-
-/* ============================================================
-   L1 HERO
-============================================================ */
-.hero{
-  position:relative;
-  min-height:100vh;
-  padding:120px 0 80px;
-  background:
-    radial-gradient(60% 40% at 100% 0%, rgba(199,131,58,.22), transparent 65%),
-    radial-gradient(50% 50% at 0% 100%, rgba(139,42,30,.18), transparent 60%),
-    var(--bg);
-  overflow:hidden;
-}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background-image:var(--grain);
-  opacity:.45;mix-blend-mode:multiply;pointer-events:none;
-}
-.hero__decor-word{
-  position:absolute;
-  top:-12px;right:-30px;
-  font-family:var(--serif-en);
-  font-style:italic;font-weight:500;
-  font-size:clamp(180px,22vw,320px);
-  color:var(--ink);
-  opacity:.04;
-  letter-spacing:-.02em;
-  pointer-events:none;
-  user-select:none;
-  line-height:1;
-  white-space:nowrap;
-}
-@media (max-width:1024px){.hero__decor-word{display:none;}}
-/* Site-wide editorial vertical label (fixed) */
-.vertical-label{
-  position:fixed;
-  top:50%;left:24px;
-  transform:translateY(-50%);
-  writing-mode:vertical-rl;
-  font-family:"Noto Serif JP",serif;
-  font-weight:500;
-  font-size:13px;letter-spacing:.4em;
-  color:var(--mute);
-  z-index:30;
-  pointer-events:none;user-select:none;
-  transition:color .3s ease;
-  display:flex;flex-direction:column;align-items:center;
-}
-.vertical-label::before{
-  content:"";display:block;
-  width:1px;height:40px;
-  background:var(--accent);
-  margin-bottom:14px;
-  transition:background-color .3s ease;
-}
-.vertical-label.on-dark{color:rgba(255,255,255,.55);}
-.vertical-label.on-dark::before{background:var(--accent-2);}
-@media (min-width:768px) and (max-width:1024px){
-  .vertical-label{
-    left:16px;
-    font-size:11px;
-    letter-spacing:.3em;
-  }
-  .vertical-label::before{height:30px;margin-bottom:10px;}
-}
-@media (max-width:767px){
-  .vertical-label{
-    left:8px;
-    font-size:9px;
-    letter-spacing:.25em;
-    color:var(--mute);
-    opacity:.6;
-  }
-  .vertical-label::before{height:24px;margin-bottom:8px;width:1px;}
-  .vertical-label.on-dark{color:rgba(255,255,255,.7);opacity:.55;}
-}
-
-/* Reserve left gutter for fixed vertical-label */
-@media (max-width:767px){
-  .container{padding-left:28px;padding-right:20px;}
-}
-@media (min-width:1025px){
-  .container{padding-left:80px;}
-  .site-header__inner{padding-left:80px;}
-}
-
-.hero__circle{
-  position:absolute;
-  right:-160px;top:-120px;
-  width:520px;height:520px;
-  border:1px dashed rgba(139,42,30,.18);
-  border-radius:50%;
-  animation:rotate 30s linear infinite;
-  pointer-events:none;
-}
-.hero__circle::after{
-  content:"";position:absolute;
-  inset:50px;border:1px dashed rgba(155,123,58,.16);border-radius:50%;
-  animation:rotate-rev 45s linear infinite;
-}
-@keyframes rotate{to{transform:rotate(360deg);}}
-@keyframes rotate-rev{to{transform:rotate(-360deg);}}
-
-.hero__inner{
-  position:relative;z-index:2;
-  display:grid;
-  grid-template-columns:1fr;
-  gap:56px;
-  align-items:center;
-}
-@media (min-width:960px){
-  .hero__inner{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:72px;}
-}
-
-.hero__tag-top{
-  font-family:var(--serif-en);
-  font-style:italic;font-weight:500;
-  font-size:13px;letter-spacing:.32em;
-  color:var(--accent);
-  text-transform:uppercase;
-}
-.hero__tag-bottom{
-  font-family:var(--serif-jp);
-  font-weight:500;font-size:14px;
-  color:var(--ink-2);
-  margin-top:6px;letter-spacing:.06em;
-}
-.hero__heading{
-  margin-top:28px;
-  font-family:var(--serif-jp);
-  font-weight:900;
-  font-size:clamp(26px,4.2vw,46px);
-  line-height:1.45;
-  letter-spacing:.02em;
-  color:var(--ink);
-  max-width:760px;
-}
-@media (max-width:768px){
-  .hero__heading{font-size:clamp(24px,6vw,32px);line-height:1.5;}
-  .hero__heading br{display:none;}
-}
-.hero__heading .ac{color:var(--accent);}
-.hero__heading .quote{
-  display:inline-block;
-  position:relative;
-  padding:0 .15em;
-}
-.hero__heading .quote::before,
-.hero__heading .quote::after{
-  font-family:var(--serif-jp);
-  color:var(--accent);
-  font-weight:700;
-}
-.hero__heading .quote::before{content:"「";}
-.hero__heading .quote::after{content:"」";}
-
-.hero__scenario{
-  margin-top:28px;
-  font-size:15px;
-  line-height:2;
-  color:var(--ink-2);
-  letter-spacing:.02em;
-  max-width:560px;
-}
-.hero__scenario p+p{margin-top:6px;}
-
-.hero__meta{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px 18px;
-  margin-top:32px;
-  padding-top:28px;
-  border-top:1px solid var(--line);
-  max-width:560px;
-}
-.hero__meta li{
-  display:flex;align-items:flex-start;gap:8px;
-  font-size:13px;color:var(--ink-2);font-weight:500;
-}
-.hero__meta li svg{
-  width:16px;height:16px;flex:0 0 auto;
-  color:var(--accent);margin-top:5px;
-}
-
-.hero__cta{
-  display:flex;flex-wrap:wrap;gap:14px;
-  margin-top:36px;
-  margin-bottom:8px;
-}
-@media (max-width:959px){
-  .hero__inner{
-    gap:56px !important;
-    align-items:stretch;
-  }
-  .hero__cta{
-    margin-top:28px;
-    margin-bottom:0;
-  }
-  .hero__panel{
-    margin-top:8px;
-  }
-}
-@media (max-width:767px){
-  /* 追従フッターがあるため、スマホ先頭は案内ボタンを優先し数字カードは下に十分な間隔 */
-  .hero__inner{gap:64px !important;}
-  .hero__panel{
-    margin-top:0;
-    order:2;
-  }
-  .hero__anim{order:1;}
-  .hero__cta{
-    margin-top:32px;
-    margin-bottom:0;
-    padding-bottom:8px;
-  }
-}
-
-@media (max-width:767px){
-  .hero__inner{
-    display:flex;
-    flex-direction:column;
-  }
-}
-
-@media (max-width:767px){
-  /* スマホ先頭ビュー: 追従バーと案内ボタンを優先し、数字カードは非表示 */
-  .hero .hero__panel{display:none !important;}
-  .hero__cta{margin-top:40px;margin-bottom:24px;}
-}
-
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:18px 28px;
-  border-radius:999px;
-  font-weight:700;font-size:14.5px;letter-spacing:.04em;
-  transition:transform .3s ease,box-shadow .3s ease,background .3s ease,color .3s ease,border-color .3s ease;
-  white-space:nowrap;
-}
-/* btn--primary overridden below */
-.btn--primary{background:var(--accent);color:#FFFEFB;}
-.btn--primary:hover{transform:translateY(-2px);}
-.btn--ghost{
-  background:transparent;color:var(--ink);
-  border:1.5px solid var(--ink);
-}
-.btn--ghost:hover{background:var(--ink);color:#FFFEFB;}
-.btn--line{background:#06C755;color:#fff;box-shadow:0 18px 32px -16px rgba(6,199,85,.55),0 4px 10px -4px rgba(6,199,85,.35);}
-.btn--line:hover{transform:translateY(-2px);box-shadow:0 24px 40px -16px rgba(6,199,85,.65);}
-.btn--phone{
-  background:transparent;color:var(--ink);
-  border:1.5px solid var(--ink);
-}
-.btn--phone:hover{background:var(--ink);color:#FFFEFB;}
-.btn--phone .num{
-  font-family:var(--serif-en);font-style:italic;font-weight:600;
-  letter-spacing:.04em;margin-left:6px;
-}
-.btn--white{
-  background:var(--paper);color:var(--ink);
-  box-shadow:0 18px 32px -16px rgba(139,42,30,.45),0 4px 10px -4px rgba(26,22,20,.18);
-}
-.btn--white:hover{transform:translateY(-2px);box-shadow:0 24px 40px -16px rgba(139,42,30,.55);}
-.btn--white .num{font-family:var(--serif-en);font-style:italic;font-weight:600;letter-spacing:.04em;margin-left:6px;}
-.btn--sm{padding:14px 20px;font-size:13.5px;}
-.btn .arrow{display:inline-flex;}
-.btn .arrow svg{width:16px;height:16px;}
-
-/* Hero right card */
-.hero__panel{
-  position:relative;
-  background:linear-gradient(180deg,var(--paper) 0%, var(--bg-2) 100%);
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:36px 28px;
-  box-shadow:var(--shadow-soft);
-}
-.hero__panel-head{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-bottom:18px;border-bottom:1px solid var(--line);
-}
-.hero__panel-head .label{
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:12px;letter-spacing:.28em;color:var(--mute);text-transform:uppercase;
-}
-.hero__panel-head .doctor-badge{
-  width:44px;height:44px;border-radius:50%;
-  background:var(--ink);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-}
-.hero__panel-head .doctor-badge svg{width:24px;height:24px;color:var(--accent-2);}
-.hero__stats{
-  margin-top:24px;
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:18px 22px;
-}
-.stat{
-  padding:18px 4px;border-bottom:1px solid var(--line);
-}
-.stat:nth-last-child(-n+2){border-bottom:0;padding-bottom:0;}
-.stat__num{
-  font-family:var(--serif-en);font-weight:600;font-style:italic;
-  font-size:clamp(36px,5.2vw,48px);
-  color:var(--ink);
-  line-height:1;
-  letter-spacing:-.01em;
-}
-.stat__num .suffix{font-size:.55em;font-style:normal;color:var(--accent);margin-left:2px;font-weight:600;}
-.stat__num .unit{font-size:.45em;font-style:normal;color:var(--ink-2);margin-left:4px;font-weight:500;font-family:var(--serif-jp);}
-.stat__caption{margin-top:6px;font-size:12px;color:var(--mute);letter-spacing:.06em;}
-
-/* hero animation */
-.hero__anim>*{opacity:0;transform:translateY(24px);animation:fadeUp .9s cubic-bezier(.2,.7,.2,1) forwards;}
-.hero__anim>*:nth-child(1){animation-delay:.10s;}
-.hero__anim>*:nth-child(2){animation-delay:.20s;}
-.hero__anim>*:nth-child(3){animation-delay:.30s;}
-.hero__anim>*:nth-child(4){animation-delay:.40s;}
-.hero__anim>*:nth-child(5){animation-delay:.50s;}
-.hero__anim>*:nth-child(6){animation-delay:.60s;}
-.hero__anim>*:nth-child(7){animation-delay:.70s;}
-.hero__panel{opacity:0;transform:translateY(24px);animation:fadeUp 1s cubic-bezier(.2,.7,.2,1) forwards .55s;}
-@keyframes fadeUp{to{opacity:1;transform:none;}}
-
-/* ============================================================
-   L2 REALITY
-============================================================ */
-.reality{
-  background:var(--ink);
-  color:#EEE5D5;
-  padding:120px 0;
-  position:relative;overflow:hidden;
-}
-.reality::before{
-  content:"";position:absolute;inset:0;
-  background:
-    radial-gradient(40% 30% at 10% 0%, rgba(199,131,58,.15), transparent 65%),
-    radial-gradient(30% 40% at 100% 100%, rgba(139,42,30,.22), transparent 60%);
-  pointer-events:none;
-}
-.reality::after{
-  content:"";position:absolute;inset:0;
-  background-image:var(--grain);opacity:.25;mix-blend-mode:overlay;pointer-events:none;
-}
-.reality__inner{position:relative;z-index:1;}
-.reality__head{max-width:780px;}
-.reality__title{
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(26px,4.4vw,44px);
-  line-height:1.45;letter-spacing:.02em;
-  color:#F4ECDF;
-  margin-top:18px;
-}
-.reality__title .ac{color:var(--accent-2);position:relative;}
-.reality__title .ac::after{
-  content:"";position:absolute;left:0;right:0;bottom:.05em;height:.18em;
-  background:rgba(199,131,58,.22);z-index:-1;
-}
-
-.fear-list{margin-top:72px;display:flex;flex-direction:column;gap:36px;}
-.fear{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:18px;
-  padding:32px 28px;
-  border:1px solid rgba(217,207,190,.16);
-  border-radius:18px;
-  background:linear-gradient(180deg,rgba(255,254,251,.02),rgba(255,254,251,.05));
-  position:relative;overflow:hidden;
-}
-@media (min-width:768px){
-  .fear{grid-template-columns:96px 1fr;gap:28px;padding:40px 36px;}
-}
-.fear__icon{
-  width:64px;height:64px;border-radius:50%;
-  background:rgba(199,131,58,.1);
-  border:1px solid rgba(199,131,58,.3);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--accent-2);
-}
-.fear__icon svg{width:28px;height:28px;}
-.fear__num{
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:14px;letter-spacing:.32em;color:var(--accent-2);
-  text-transform:uppercase;
-}
-.fear__title{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:clamp(19px,2.6vw,24px);
-  line-height:1.55;color:#F4ECDF;
-  margin-top:8px;
-}
-.fear__body{
-  margin-top:14px;
-  font-size:14.5px;line-height:1.95;color:#C7BBA6;
-}
-
-/* L2 charts */
-.reality__charts{
-  margin-top:80px;
-  display:grid;grid-template-columns:1fr;gap:32px;
-}
-@media (min-width:768px){
-  .reality__charts{grid-template-columns:repeat(2,1fr);gap:36px;}
-}
-.chart-card{
-  padding:28px 24px 24px;
-  background:rgba(255,254,251,.04);
-  border:1px solid rgba(217,207,190,.16);
-  border-radius:18px;
-}
-.chart-card__title{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:16px;color:#F4ECDF;
-  margin-bottom:18px;
-}
-.chart-card__title .badge{
-  display:inline-block;font-family:var(--serif-en);font-style:italic;
-  font-size:11px;letter-spacing:.28em;color:var(--accent-2);
-  margin-right:10px;text-transform:uppercase;
-}
-.chart-card svg{display:block;width:100%;height:auto;}
-.chart-card__caption{
-  margin-top:14px;font-size:12.5px;line-height:1.85;color:#9F9583;
-}
-
-.reality__close{
-  margin-top:80px;
-  padding:36px 28px;
-  border-left:3px solid var(--accent);
-  background:rgba(255,254,251,.04);
-  font-family:var(--serif-jp);font-weight:500;
-  font-size:clamp(16px,2.2vw,20px);
-  line-height:1.85;color:#F4ECDF;
-}
-.reality__close strong{color:var(--accent-2);font-weight:700;}
-
-/* ============================================================
-   L3 INCOME
-============================================================ */
-.income{
-  background:var(--bg);
-  padding:120px 0;
-}
-.income__head{text-align:center;max-width:760px;margin:0 auto;}
-.income__title{
-  margin-top:18px;
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(26px,4.2vw,42px);
-  line-height:1.45;color:var(--ink);
-}
-.income__title .ac{color:var(--accent);}
-.income__sub{
-  margin-top:18px;font-size:14.5px;line-height:1.95;color:var(--ink-2);
-}
-
-.income-cards{
-  margin-top:64px;
-  display:grid;grid-template-columns:1fr;gap:18px;
-  align-items:stretch;
-}
-@media (min-width:880px){
-  .income-cards{grid-template-columns:repeat(3,1fr);gap:22px;align-items:start;}
-}
-.icard{
-  position:relative;overflow:hidden;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:32px 26px 28px;
-  display:flex;flex-direction:column;
-  transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease;
-}
-.icard::before{
-  content:"";position:absolute;inset:auto 0 0 0;height:0%;
-  background:linear-gradient(180deg,rgba(139,42,30,.04),rgba(139,42,30,.08));
-  transition:height .5s ease;z-index:0;
-}
-.icard:hover::before{height:100%;}
-.icard:hover{transform:translateY(-8px);box-shadow:var(--shadow-soft);}
-.icard>*{position:relative;z-index:1;}
-.icard__tag{
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:12px;letter-spacing:.32em;color:var(--mute);
-  text-transform:uppercase;
-}
-.icard__pat{
-  margin-top:6px;font-family:var(--serif-jp);font-weight:700;font-size:13px;color:var(--ink-2);
-}
-.icard__attrs{
-  margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;
-}
-.icard__attrs span{
-  font-size:11px;color:var(--ink-2);
-  background:var(--bg-2);
-  padding:4px 10px;border-radius:99px;letter-spacing:.04em;
-}
-.icard--featured .icard__attrs span{background:rgba(255,254,251,.08);color:#C7BBA6;}
-
-.icard__money-block{margin-top:20px;}
-.icard__money-eye{
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:11px;letter-spacing:.24em;color:var(--mute);
-  text-transform:uppercase;
-}
-.icard__money-eye .jp{
-  display:inline-block;margin-left:8px;
-  font-family:var(--serif-jp);font-style:normal;
-  font-size:12px;letter-spacing:.04em;color:var(--ink-2);
-  text-transform:none;
-}
-.icard__money-val{
-  margin-top:6px;
-  font-family:var(--serif-en);font-weight:500;
-  font-size:clamp(36px,5vw,52px);
-  line-height:1;letter-spacing:-.02em;
-  display:flex;align-items:baseline;gap:6px;
-}
-.icard__money-val.gross{color:var(--ink);}
-.icard__money-val.net{color:var(--accent);}
-.icard__money-val .unit{
-  font-family:var(--serif-jp);font-weight:500;
-  font-size:16px;letter-spacing:.04em;color:var(--ink-2);
-}
-
-.icard--featured .icard__money-eye{color:rgba(255,255,255,.5);}
-.icard--featured .icard__money-eye .jp{color:rgba(255,255,255,.7);}
-.icard--featured .icard__money-val.gross{color:var(--paper);}
-.icard--featured .icard__money-val.net{color:var(--accent-2);}
-.icard--featured .icard__money-val .unit{color:rgba(255,255,255,.6);}
-
-.income-breakdown{
-  margin:14px 0 20px;
-  padding:14px 16px;
-  background:var(--bg-2);
-  border-left:2px solid var(--accent-2);
-  font-size:12px;line-height:1.7;color:var(--mute);
-  border-radius:0 6px 6px 0;
-}
-.income-breakdown .bd-eye{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:11px;letter-spacing:.18em;color:var(--accent);
-  margin-bottom:6px;text-transform:uppercase;
-}
-.income-breakdown .bd-row{
-  display:flex;justify-content:space-between;flex-wrap:wrap;
-  gap:4px 10px;padding:3px 0;
-}
-.income-breakdown .bd-label{color:var(--ink-2);font-weight:500;min-width:64px;}
-.income-breakdown .bd-formula{
-  color:var(--mute);font-family:var(--serif-en);font-style:italic;flex:1;
-}
-.income-breakdown .bd-result{color:var(--ink);font-weight:600;font-family:var(--serif-en);font-style:italic;}
-
-.icard--featured .income-breakdown{
-  background:rgba(255,255,255,.06);
-  border-left-color:var(--accent-2);
-  color:rgba(255,255,255,.7);
-}
-.icard--featured .income-breakdown .bd-eye{color:var(--accent-2);}
-.icard--featured .income-breakdown .bd-label{color:rgba(255,255,255,.85);}
-.icard--featured .income-breakdown .bd-formula{color:rgba(255,255,255,.5);}
-.icard--featured .income-breakdown .bd-result{color:var(--paper);}
-.icard__bar{
-  margin-top:22px;
-}
-.icard__bar-label{
-  display:flex;justify-content:space-between;
-  font-size:11.5px;color:var(--mute);letter-spacing:.08em;
-  margin-bottom:8px;
-}
-.icard__bar-track{
-  height:5px;background:var(--bg-2);border-radius:99px;overflow:hidden;
-}
-.icard__bar-fill{
-  height:100%;width:0%;
-  background:linear-gradient(90deg,var(--accent-2),var(--accent));
-  border-radius:99px;transition:width 1.4s cubic-bezier(.2,.7,.2,1);
-}
-.icard__detail{margin-top:22px;display:flex;flex-direction:column;gap:10px;}
-.icard__detail li{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--ink-2);}
-.icard__detail li svg{width:16px;height:16px;color:var(--accent);margin-top:5px;flex:0 0 auto;}
-.icard__detail li.is-highlight{color:var(--accent);font-weight:600;}
-.icard__detail li.is-highlight svg{color:var(--accent);}
-.icard--featured .icard__detail li.is-highlight{color:var(--accent-2);font-weight:600;}
-.icard--featured .icard__detail li.is-highlight svg{color:var(--accent-2);}
-
-.icard--featured{
-  background:var(--ink);color:#F4ECDF;
-  border-color:var(--ink);
-  transform:translateY(0);
-}
-@media (min-width:880px){
-  .icard--featured{transform:translateY(-20px);}
-  .icard--featured:hover{transform:translateY(-32px);}
-}
-.icard--featured .icard__tag{color:var(--accent-2);}
-.icard--featured .icard__pat{color:#F4ECDF;}
-.icard--featured .icard__bar-track{background:rgba(255,254,251,.08);}
-.icard--featured .icard__bar-label{color:#A89E8B;}
-.icard--featured .icard__detail li{color:#D8CFBF;}
-.icard--featured::before{display:none;}
-.icard--featured .ribbon{
-  position:absolute;top:18px;right:18px;
-  background:var(--accent);color:#fff;
-  font-size:10.5px;font-weight:700;letter-spacing:.18em;
-  padding:5px 12px;border-radius:99px;text-transform:uppercase;
-  font-family:var(--serif-en);font-style:italic;
-}
-
-.income__note{
-  margin-top:48px;
-  border-left:3px solid var(--accent);
-  background:var(--bg-2);
-  padding:24px 26px;
-  font-size:13px;line-height:1.95;color:var(--ink-2);
-  border-radius:0 12px 12px 0;
-}
-
-/* Voice */
-.voice{
-  margin-top:96px;
-  display:grid;grid-template-columns:1fr;gap:0;
-  border:1px solid var(--line);
-  border-radius:22px;overflow:hidden;
-  background:var(--paper);
-  box-shadow:var(--shadow-soft);
-}
-@media (min-width:768px){
-  .voice{grid-template-columns:280px 1fr;}
-}
-.voice__visual{
-  position:relative;min-height:240px;
-  background:linear-gradient(140deg,var(--accent) 0%,var(--accent-2) 100%);
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
-}
-.voice__visual::before{
-  content:"";position:absolute;inset:0;
-  background-image:var(--grain);opacity:.25;mix-blend-mode:overlay;
-}
-.voice__visual svg{width:200px;height:auto;color:rgba(255,254,251,.95);position:relative;z-index:1;}
-.voice__body{padding:36px 28px;}
-@media (min-width:768px){.voice__body{padding:42px 40px;}}
-.voice__tag{
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:12px;letter-spacing:.28em;color:var(--accent);
-  text-transform:uppercase;
-}
-.voice__tag .sep{color:var(--mute);margin:0 6px;}
-.voice__tag .jp{font-family:var(--serif-jp);font-style:normal;letter-spacing:.04em;color:var(--ink-2);}
-.voice__quote{
-  margin-top:18px;
-  font-family:var(--serif-jp);font-weight:500;
-  font-size:clamp(15px,2vw,17px);
-  line-height:2;color:var(--ink);
-}
-.voice__quote p + p{margin-top:.9em;}
-.voice__quote .hl{
-  background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);
-  padding:0 .04em;
-  font-weight:700;color:var(--accent);
-}
-.voice__stats{
-  margin-top:24px;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
-  padding:18px 0;
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-}
-.voice__stats .v{
-  font-family:var(--serif-en);font-style:italic;font-weight:600;font-size:22px;color:var(--ink);
-}
-.voice__stats .v.ac{color:var(--accent);}
-.voice__stats .l{font-size:11px;color:var(--mute);letter-spacing:.08em;margin-top:2px;}
-.voice__author{margin-top:18px;font-size:13px;color:var(--ink-2);letter-spacing:.04em;}
-.voice__author strong{color:var(--ink);}
-
-/* ============================================================
-   L4 OFFER
-============================================================ */
-.offer{
-  background:var(--bg-2);
-  padding:120px 0;
-}
-.offer__head{max-width:760px;}
-.offer__title{
-  margin-top:18px;
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(26px,4.2vw,42px);
-  line-height:1.45;color:var(--ink);
-}
-.offer__title .ac{color:var(--accent);}
-.offer__sub{
-  margin-top:18px;font-size:14.5px;line-height:1.95;color:var(--ink-2);max-width:620px;
-}
-
-.offer-grid{
-  margin-top:56px;
-  display:grid;grid-template-columns:1fr;gap:18px;
-}
-@media (min-width:768px){
-  .offer-grid{grid-template-columns:repeat(2,1fr);gap:24px;}
-}
-.ocard{
-  position:relative;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:36px 28px;
-  transition:transform .35s ease,box-shadow .35s ease;
-}
-.ocard:hover{transform:translateY(-4px);box-shadow:var(--shadow-soft);}
-.ocard__icon{
-  width:72px;height:72px;border-radius:50%;
-  background:var(--bg-3);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--accent);
-  transition:transform .45s cubic-bezier(.2,.7,.2,1),background .35s ease,color .35s ease;
-}
-.ocard__icon svg{width:30px;height:30px;}
-.ocard:hover .ocard__icon{
-  background:var(--accent);color:#FFFEFB;
-  transform:rotate(-8deg);
-}
-.ocard__num{
-  margin-top:24px;
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:13px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;
-}
-.ocard__title{
-  margin-top:6px;
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:clamp(18px,2.4vw,22px);
-  line-height:1.55;color:var(--ink);
-}
-.ocard__body{
-  margin-top:14px;
-  font-size:14px;line-height:1.95;color:var(--ink-2);
-}
-
-/* ============================================================
-   L5 FUTURE
-============================================================ */
-.future{
-  background:var(--bg);
-  padding:120px 0;position:relative;
-}
-.future__head{max-width:760px;}
-.future__title{
-  margin-top:18px;
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(26px,4.2vw,42px);
-  line-height:1.45;color:var(--ink);
-}
-.future__banner{
-  margin-top:32px;
-  padding:22px 24px;
-  background:var(--bg-2);
-  border:1px dashed var(--line);
-  border-radius:14px;
-  font-size:13px;line-height:1.95;color:var(--ink-2);
-  max-width:780px;
-}
-
-.bp-explain{
-  margin:0 0 50px;
-  padding:40px 36px;
-  background:var(--paper);
-  border:1px solid var(--line);
-  position:relative;
-  border-radius:4px;
-}
-.bp-explain::before{
-  content:"";position:absolute;top:0;left:0;
-  width:60px;height:3px;background:var(--accent);
-}
-.bp-eye{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:12px;letter-spacing:.25em;
-  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
-}
-.bp-title{
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(22px,3.2vw,30px);line-height:1.45;
-  color:var(--ink);margin-bottom:32px;
-}
-.bp-title em{font-style:normal;color:var(--accent);}
-.bp-compare{
-  display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:28px;
-}
-@media (min-width:768px){
-  .bp-compare{grid-template-columns:1fr 1fr;gap:24px;}
-}
-.bp-col{
-  padding:26px 24px;border:1px solid var(--line);border-radius:6px;
-}
-.bp-col-normal{background:var(--bg-2);}
-.bp-col-momikaru{background:var(--bg);border-left:3px solid var(--accent);}
-.bp-col h4{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:16px;margin-bottom:16px;padding-bottom:12px;
-  border-bottom:1px dashed var(--line);
-}
-.bp-col-normal h4{color:var(--mute);}
-.bp-col-momikaru h4{color:var(--accent);}
-.bp-col ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
-.bp-col li{
-  font-size:13.5px;line-height:1.7;padding-left:20px;
-  position:relative;color:var(--ink-2);
-}
-.bp-col li::before{position:absolute;left:0;top:0;font-weight:700;}
-.bp-col-normal li::before{content:"✕";color:var(--mute);}
-.bp-col-momikaru li::before{content:"✓";color:var(--accent);}
-.bp-conclusion{
-  padding:18px 22px;background:rgba(199,131,58,.12);
-  border-left:3px solid var(--accent-2);border-radius:0 6px 6px 0;
-  font-size:14.5px;line-height:1.85;color:var(--ink-2);
-}
-.bp-conclusion strong{color:var(--accent);font-weight:700;}
-
-.future-comic,
-.story-comic{
-  margin:50px 0;
-  padding:40px 36px;
-  background:var(--paper);
-  border:1px solid var(--line);
-  position:relative;
-  border-radius:4px;
-}
-.future-comic::before,
-.story-comic::before{
-  content:"";position:absolute;top:0;left:0;
-  width:60px;height:3px;background:var(--accent);
-}
-.bridge-copy{
-  text-align:center;margin:40px 0;padding:0 20px;
-}
-.bridge-copy p{
-  font-family:"Noto Serif JP",serif;font-weight:500;
-  font-size:clamp(15px,1.8vw,18px);line-height:1.85;
-  color:var(--ink-2);font-style:italic;
-}
-.comic-eye{
-  font-family:"Cormorant Garamond",serif;
-  font-style:italic;font-size:12px;letter-spacing:.25em;
-  color:var(--accent);text-transform:uppercase;
-  margin-bottom:10px;
-}
-.comic-title{
-  font-family:"Noto Serif JP",serif;font-weight:700;
-  font-size:clamp(20px,2.5vw,26px);line-height:1.5;
-  color:var(--ink);margin-bottom:12px;
-}
-.comic-lede{
-  font-size:14px;line-height:1.85;color:var(--ink-2);
-  margin-bottom:28px;
-}
-.comic-image-wrap{
-  width:100%;overflow:hidden;border-radius:4px;
-  background:var(--bg-2);position:relative;
-}
-.comic-image-wrap img{
-  width:100%;height:auto;display:block;
-  transition:transform .6s cubic-bezier(.2,.8,.2,1);
-}
-.comic-image-wrap:hover img{transform:scale(1.02);}
-@media (max-width:640px){
-  .future-comic,.story-comic{padding:28px 22px;margin:36px 0;}
-}
-/* Dark-context overrides for L2 comic + bridge */
-.reality .story-comic{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.12);
-}
-.reality .story-comic::before{background:var(--accent-2);}
-.reality .story-comic .comic-eye{color:var(--accent-2);}
-.reality .story-comic .comic-title{color:var(--paper);}
-.reality .story-comic .comic-lede{color:rgba(255,255,255,.7);}
-.reality .bridge-copy p{color:rgba(255,255,255,.85);}
-
-.future__investment{
-  margin-top:64px;
-  background:var(--ink);color:#F4ECDF;
-  border-radius:24px;
-  padding:48px 28px;
-  position:relative;overflow:hidden;
-}
-@media (min-width:768px){
-  .future__investment{padding:64px 56px;}
-}
-.future__investment::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(40% 50% at 100% 0%, rgba(199,131,58,.18),transparent 60%);
-  pointer-events:none;
-}
-.future__investment-h{
-  position:relative;
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(22px,3.4vw,34px);
-  line-height:1.5;color:#F4ECDF;
-}
-.future__investment-h .ac{color:var(--accent-2);}
-
-.equation{
-  margin-top:36px;
-  display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;
-  font-family:var(--serif-en);font-style:italic;
-  position:relative;
-}
-.equation .term{
-  font-weight:500;font-size:clamp(15px,2vw,18px);
-  color:#D8CFBF;
-}
-.equation .op{color:var(--accent-2);font-weight:600;font-size:18px;}
-.equation .result{
-  background:rgba(199,131,58,.12);
-  border:1px solid rgba(199,131,58,.4);
-  color:#FFFEFB;font-weight:600;
-  padding:8px 16px;border-radius:99px;font-size:15px;
-}
-
-.progress{
-  position:relative;margin-top:36px;
-  background:rgba(255,254,251,.06);
-  border:1px solid rgba(217,207,190,.18);
-  border-radius:99px;
-  height:32px;overflow:hidden;
-}
-.progress__fill{
-  position:absolute;inset:0 100% 0 0;
-  background:linear-gradient(90deg,var(--accent-2),var(--accent));
-  border-radius:99px;
-  transition:right 2s cubic-bezier(.2,.7,.2,1);
-}
-.progress__fill.is-active{right:0%;}
-.progress__shimmer{
-  position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.18) 50%,transparent 100%);
-  background-size:200% 100%;
-  animation:shimmer 2.6s linear infinite;
-  border-radius:99px;
-}
-@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
-
-.progress__labels{
-  margin-top:14px;display:flex;justify-content:space-between;
-  font-size:12px;color:#A89E8B;letter-spacing:.06em;
-}
-.progress__markers{
-  margin-top:18px;display:flex;justify-content:space-between;
-  font-size:11.5px;color:#9F9583;
-  border-top:1px dashed rgba(217,207,190,.18);padding-top:14px;
-}
-.progress__markers div span{display:block;color:#F4ECDF;font-weight:700;font-family:var(--serif-en);font-style:italic;font-size:14px;}
-
-.invest-desc{
-  position:relative;margin-top:32px;
-  font-size:14px;line-height:2;color:#C7BBA6;max-width:680px;
-}
-
-/* Cost compare */
-.cost-compare{
-  margin-top:64px;
-}
-.cost-compare__h{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:clamp(18px,2.4vw,22px);color:var(--ink);
-}
-.cost-bars{margin-top:28px;display:flex;flex-direction:column;gap:18px;}
-.cost-bar__label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--ink-2);}
-.cost-bar__label strong{font-family:var(--serif-en);font-style:italic;font-weight:600;font-size:18px;color:var(--ink);margin-left:8px;}
-.cost-bar__track{
-  margin-top:8px;height:22px;background:var(--bg-2);border-radius:6px;overflow:hidden;
-}
-.cost-bar__fill{
-  height:100%;width:0%;border-radius:6px;
-  transition:width 1.8s cubic-bezier(.2,.7,.2,1);
-}
-.cost-bar__fill--bad{background:linear-gradient(90deg,#A23B2A,#8B2A1E);}
-.cost-bar__fill--good{background:linear-gradient(90deg,#D69D54,var(--accent-2));}
-.cost-callout{
-  margin-top:24px;
-  background:var(--bg-2);border-left:3px solid var(--accent-2);
-  padding:18px 22px;border-radius:0 10px 10px 0;
-  font-size:13.5px;color:var(--ink-2);line-height:1.85;
-}
-
-/* Detailed cost comparison table (dark) */
-.cost-box{
-  margin-top:48px;
-  background:var(--ink);color:#F4ECDF;
-  border-radius:24px;
-  padding:40px 28px;
-  position:relative;overflow:hidden;
-}
-@media (min-width:768px){.cost-box{padding:56px 48px;}}
-.cost-box::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(40% 50% at 0% 0%, rgba(199,131,58,.12),transparent 60%);
-  pointer-events:none;
-}
-.cost-box>*{position:relative;z-index:1;}
-.cost-box__h{
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(20px,3vw,28px);line-height:1.5;
-  color:#F4ECDF;
-}
-.cost-box__sub{
-  margin-top:10px;font-size:13.5px;line-height:1.85;color:rgba(255,255,255,.7);max-width:680px;
-}
-
-.cost-table{
-  margin-top:28px;
-  width:100%;border-collapse:collapse;
-  font-size:13.5px;
-}
-.cost-table th,.cost-table td{
-  padding:14px 14px;
-  text-align:left;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  vertical-align:top;
-}
-.cost-table th{
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.5);
-}
-.cost-table th.col-jp{
-  font-family:var(--serif-jp);font-style:normal;font-weight:700;
-  font-size:13px;letter-spacing:.04em;color:#F4ECDF;text-transform:none;
-}
-.cost-table td{color:rgba(255,255,255,.78);}
-.cost-table td small{display:inline-block;margin-left:4px;font-size:11px;color:rgba(255,255,255,.45);}
-.cost-table td.is-self{color:rgba(255,255,255,.55);}
-.cost-table td.is-mom{color:#F4ECDF;}
-.cost-table td.is-mom .ck{color:var(--accent-2);font-weight:700;margin-right:4px;}
-.cost-table tr.is-total td{
-  background:rgba(199,131,58,.08);
-  font-family:var(--serif-jp);font-weight:700;
-  color:#F4ECDF;font-size:14.5px;
-  border-top:1px solid rgba(255,255,255,.18);
-  border-bottom:1px solid rgba(255,255,255,.18);
-}
-.cost-table tr.is-total td.is-mom{color:var(--accent-2);}
-.cost-table tr.is-init td{background:rgba(255,255,255,.04);}
-@media (max-width:640px){
-  .cost-table th,.cost-table td{padding:11px 8px;font-size:12.5px;}
-  .cost-table td small{display:block;margin-left:0;margin-top:2px;}
-}
-
-.cc-note{
-  margin-top:18px;
-  font-size:12px;line-height:1.7;
-  color:rgba(255,255,255,.6);letter-spacing:.03em;
-}
-
-.fc-plans{
-  margin-top:40px;padding-top:36px;
-  border-top:1px dashed rgba(255,255,255,.15);
-}
-.fc-plans-eye{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:11px;letter-spacing:.25em;
-  color:var(--accent-2);text-transform:uppercase;
-  margin-bottom:10px;
-}
-.fc-plans-title{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:clamp(16px,2.2vw,20px);line-height:1.5;
-  color:var(--paper);margin-bottom:10px;
-}
-.fc-plans-lede{
-  font-size:13px;line-height:1.85;
-  color:rgba(255,255,255,.7);margin-bottom:24px;
-}
-.fc-plans-buttons{display:grid;grid-template-columns:1fr;gap:16px;}
-@media (min-width:768px){
-  .fc-plans-buttons{grid-template-columns:1fr 1fr;gap:18px;}
-}
-.fc-plan-btn{
-  display:flex;flex-direction:column;gap:6px;
-  padding:22px 24px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.12);
-  border-left:3px solid var(--accent-2);
-  text-decoration:none;
-  transition:all .35s cubic-bezier(.2,.8,.2,1);
-  position:relative;
-}
-.fc-plan-btn:hover{
-  background:rgba(255,255,255,.08);
-  border-left-color:var(--accent);
-  transform:translateY(-3px);
-  box-shadow:0 10px 30px -10px rgba(0,0,0,.4);
-}
-.fp-no{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:12px;letter-spacing:.15em;
-  color:var(--accent-2);text-transform:uppercase;
-}
-.fp-name{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:17px;color:var(--paper);margin-top:2px;
-}
-.fp-desc{
-  font-size:12.5px;color:rgba(255,255,255,.65);
-  line-height:1.6;margin-top:2px;
-}
-.fp-arrow{
-  margin-top:14px;font-size:12px;letter-spacing:.08em;
-  color:var(--accent-2);font-weight:600;
-  transition:transform .3s;
-}
-.fc-plan-btn:hover .fp-arrow{transform:translateX(4px);}
-
-/* Bonus cards */
-.bonus-grid{
-  margin-top:64px;
-  display:grid;grid-template-columns:1fr;gap:18px;
-}
-@media (min-width:768px){.bonus-grid{grid-template-columns:repeat(3,1fr);}}
-.bcard{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:28px 24px;
-  transition:transform .35s ease,box-shadow .35s ease;
-}
-.bcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-soft);}
-.bcard__icon{
-  width:56px;height:56px;border-radius:50%;
-  background:var(--bg-3);color:var(--accent);
-  display:flex;align-items:center;justify-content:center;
-}
-.bcard__icon svg{width:24px;height:24px;}
-.bcard__num{margin-top:18px;font-family:var(--serif-en);font-style:italic;font-size:11.5px;color:var(--accent);letter-spacing:.3em;text-transform:uppercase;}
-.bcard__title{margin-top:6px;font-family:var(--serif-jp);font-weight:700;font-size:17px;line-height:1.55;color:var(--ink);}
-.bcard__body{margin-top:12px;font-size:13.5px;line-height:1.9;color:var(--ink-2);}
-
-.future__close{
-  margin-top:64px;
-  border:1.5px dashed var(--line);
-  background:var(--bg-2);
-  border-radius:18px;padding:32px 28px;
-  font-family:var(--serif-jp);font-weight:500;
-  font-size:clamp(15px,2vw,18px);line-height:1.95;color:var(--ink);
-  text-align:center;
-}
-
-/* ============================================================
-   L6 FLOW
-============================================================ */
-.flow{background:var(--bg-2);padding:120px 0;}
-.flow__head{max-width:760px;}
-.flow__title{
-  margin-top:18px;
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(26px,4.2vw,42px);line-height:1.45;color:var(--ink);
-}
-.flow__steps{
-  margin-top:56px;position:relative;
-  display:flex;flex-direction:column;gap:16px;
-  padding-left:18px;
-}
-.flow__steps::before{
-  content:"";position:absolute;left:30px;top:18px;bottom:18px;
-  width:2px;
-  background:linear-gradient(180deg,rgba(139,42,30,.4),rgba(139,42,30,.05));
-  opacity:.5;
-}
-@media (min-width:640px){
-  .flow__steps{padding-left:0;}
-  .flow__steps::before{left:46px;}
-}
-.fstep{
-  display:grid;
-  grid-template-columns:60px 1fr;
-  gap:18px;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:24px 22px;
-  position:relative;z-index:1;
-}
-@media (min-width:640px){
-  .fstep{grid-template-columns:96px 1fr;gap:24px;padding:28px 28px;}
-}
-.fstep__left{position:relative;display:flex;flex-direction:column;align-items:center;}
-.fstep__num{
-  font-family:var(--serif-en);font-style:italic;font-weight:600;
-  font-size:38px;color:var(--accent);line-height:1;
-}
-.fstep__icon{
-  margin-top:10px;width:36px;height:36px;border-radius:50%;
-  background:var(--bg-3);color:var(--accent);
-  display:flex;align-items:center;justify-content:center;
-}
-.fstep__icon svg{width:18px;height:18px;}
-.fstep__title{
-  font-family:var(--serif-jp);font-weight:700;
-  font-size:17px;line-height:1.5;color:var(--ink);
-}
-.fstep__body{margin-top:8px;font-size:13.5px;line-height:1.9;color:var(--ink-2);}
-.fstep__time{
-  margin-top:12px;display:inline-block;
-  font-family:var(--serif-en);font-style:italic;font-weight:500;
-  font-size:12px;letter-spacing:.18em;color:var(--accent);
-  background:var(--bg-2);padding:5px 12px;border-radius:99px;
-}
-
-/* ============================================================
-   L7 FINAL CTA
-============================================================ */
-.final{
-  background:var(--ink);color:#F4ECDF;
-  padding:140px 0;position:relative;overflow:hidden;
-}
-.final::before{
-  content:"";position:absolute;inset:0;
-  background:
-    radial-gradient(50% 40% at 50% 0%, rgba(199,131,58,.16),transparent 70%),
-    radial-gradient(35% 50% at 100% 100%, rgba(139,42,30,.22),transparent 70%);
-  pointer-events:none;
-}
-.final::after{
-  content:"";position:absolute;inset:0;
-  background-image:var(--grain);opacity:.25;mix-blend-mode:overlay;pointer-events:none;
-}
-.final__inner{position:relative;z-index:2;text-align:center;max-width:780px;margin:0 auto;}
-
-.ripple-stack{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:520px;height:520px;pointer-events:none;z-index:1;
-}
-.ripple{
-  position:absolute;inset:0;
-  border:1px solid rgba(199,131,58,.4);
-  border-radius:50%;
-  transform:scale(.4);opacity:0;
-  animation:ripple 6s cubic-bezier(.4,0,.2,1) infinite;
-}
-.ripple:nth-child(1){animation-delay:0s;}
-.ripple:nth-child(2){animation-delay:2s;}
-.ripple:nth-child(3){animation-delay:4s;}
-@keyframes ripple{
-  0%{transform:scale(.4);opacity:0;}
-  20%{opacity:.6;}
-  100%{transform:scale(1.6);opacity:0;}
-}
-
-.final__title{
-  font-family:var(--serif-jp);font-weight:900;
-  font-size:clamp(26px,4.6vw,46px);
-  line-height:1.45;color:#F4ECDF;
-}
-.final__title .ac{color:var(--accent-2);}
-.final__desc{
-  margin-top:28px;
-  font-size:15px;line-height:2;color:#C7BBA6;max-width:620px;margin-left:auto;margin-right:auto;
-}
-.final__cta{
-  margin-top:44px;
-  display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
-}
-.final__phone{
-  margin-top:24px;
-  display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:8px 14px;
-}
-.final__phone-num{
-  font-family:var(--serif-en);font-style:italic;font-weight:600;
-  font-size:22px;letter-spacing:.04em;color:#F4ECDF;
-  text-decoration:none;
-}
-.final__phone-num:hover{color:var(--accent-2);}
-.final__phone-hours{
-  font-size:12px;letter-spacing:.06em;color:#8C8270;
-}
-.final__alt{
-  margin-top:36px;font-size:12.5px;color:#8C8270;letter-spacing:.04em;
-}
-.final__alt a{color:#A89E8B;text-decoration:underline;text-underline-offset:4px;transition:color .25s;}
-.final__alt a:hover{color:var(--accent-2);}
-
-.final__conveniences{
-  margin:24px auto 0;
-  max-width:640px;
-  padding:18px 20px;
-  border:1px solid rgba(199,131,58,.35);
-  background:rgba(199,131,58,.08);
-  text-align:left;
-}
-.final__conveniences p{
-  font-size:13px;line-height:1.85;color:#D9CFBE;
-}
-.final__conveniences p+p{margin-top:8px;}
-.final__conveniences strong{color:#F4ECDF;font-weight:700;}
-
-
-
-/* Mid-page CTA band */
-.mid-cta{
-  padding:52px 0;
-  background:linear-gradient(180deg,rgba(199,131,58,.09),rgba(244,236,223,.35));
-  border-top:1px solid rgba(199,131,58,.22);
-  border-bottom:1px solid rgba(199,131,58,.18);
-  text-align:center;
-}
-.mid-cta__lead{
-  margin:0 auto 22px;
-  max-width:560px;
-  font-size:14.5px;line-height:1.85;color:var(--ink-2);
-}
-.mid-cta__btns{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:12px;
-}
-.site-header__book{
-  display:inline-flex;align-items:center;justify-content:center;
-  padding:8px 14px;
-  border-radius:999px;
-  border:1.5px solid rgba(139,42,30,.55);
-  background:#fff;
-  color:var(--accent);
-  font-weight:700;font-size:11.5px;letter-spacing:.04em;
-  transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
-}
-.site-header__book:hover{
-  transform:translateY(-1px);
-  background:var(--accent);
-  color:#fff;
-  box-shadow:0 12px 28px -10px rgba(139,42,30,.55);
-}
-.site-header__book .label-short{display:none;}
-@media (max-width:640px){
-  .site-header__book{padding:8px 10px;font-size:11px;}
-  .site-header__book .label-full{display:none;}
-  .site-header__book .label-short{display:inline;}
-}
-
-
-/* Primary CTA: brand accent (visible on light + dark) */
-.btn--primary{
-  background:var(--accent);color:#FFFEFB;
-  box-shadow:0 18px 32px -16px rgba(139,42,30,.7),0 4px 10px -4px rgba(26,22,20,.35);
-}
-.btn--primary:hover{
-  transform:translateY(-2px);
-  box-shadow:0 24px 40px -16px rgba(139,42,30,.8);
-  filter:brightness(1.06);
-}
-.is-dark-zone .btn--primary,
-.final .btn--primary{
-  background:var(--accent-2);color:#1A1614;
-  box-shadow:0 18px 32px -14px rgba(199,131,58,.65),0 0 0 1px rgba(255,255,255,.12);
-}
-.is-dark-zone .btn--primary:hover,
-.final .btn--primary:hover{
-  filter:brightness(1.08);
-  box-shadow:0 24px 40px -14px rgba(199,131,58,.75);
-}
-
-/* Sticky bottom interview bar */
-.float-cta{
-  position:fixed;left:0;right:0;bottom:0;z-index:95;
-  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
-  padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));
-  background:rgba(26,22,20,.94);
-  backdrop-filter:saturate(1.2) blur(12px);
-  -webkit-backdrop-filter:saturate(1.2) blur(12px);
-  border-top:1px solid rgba(199,131,58,.35);
-  box-shadow:0 -12px 40px -18px rgba(0,0,0,.55);
-  transform:translateY(110%);
-  opacity:0;
-  pointer-events:none;
-  transition:transform .35s ease,opacity .35s ease;
-}
-.float-cta.is-visible{
-  transform:translateY(0);
-  opacity:1;
-  pointer-events:auto;
-}
-.float-cta__book{
-  display:inline-flex;align-items:center;justify-content:center;
-  min-height:44px;padding:12px 22px;border-radius:999px;
-  background:var(--accent-2);color:#1A1614;
-  font-weight:800;font-size:13.5px;letter-spacing:.04em;
-  box-shadow:0 10px 24px -12px rgba(199,131,58,.8);
-}
-.float-cta__book:hover{filter:brightness(1.07);}
-.float-cta__line{
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  min-height:44px;padding:12px 18px;border-radius:999px;
-  background:#06C755;color:#fff;
-  font-weight:700;font-size:13px;letter-spacing:.03em;
-}
-.float-cta__line svg{width:16px;height:16px;}
-@media (max-width:520px){
-  .float-cta{gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));}
-  .float-cta__book,.float-cta__line{flex:1 1 auto;min-width:0;padding:12px 14px;font-size:12.5px;}
-}
-body.has-float-cta{padding-bottom:76px;}
-
-/* ============================================================
-   FOOTER
-============================================================ */
-.site-footer{
-  background:var(--bg-2);
-  padding:48px 0 56px;
-  border-top:1px solid var(--line);
-}
-.site-footer__inner{
-  display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;
-}
-.site-footer__logo-wrap{
-  display:inline-flex;align-items:center;justify-content:center;
-}
-.site-footer__logo{height:36px;width:auto;display:block;}
-.site-footer__copy{font-size:12px;color:var(--mute);letter-spacing:.06em;line-height:1.85;}
-.site-footer__back{
-  font-family:var(--serif-en);font-style:italic;
-  font-size:12px;letter-spacing:.18em;color:var(--ink-2);
-  text-decoration:underline;text-underline-offset:4px;
-}
-.site-footer__back:hover{color:var(--accent);}
-
-/* ============================================================
-   UTIL
-============================================================ */
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important;}
-  .reveal{opacity:1;transform:none;}
-}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
-<body class="is-opening">
-
-<!-- ============================================================
-     OPENING OVERLAY
-============================================================ -->
-<div class="opening" id="openingOverlay" role="presentation">
-  <div class="opening__text"><span class="ac">リラクゼーション業界</span>の方へ</div>
-  <div class="opening__skip">tap to skip</div>
-</div>
-
-<!-- ============================================================
-     SVG SPRITE
-============================================================ -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 3 L20 6 V12 C20 16.5 16.5 20.5 12 21.5 C7.5 20.5 4 16.5 4 12 V6 Z"/>
-      <path d="M9 12 L11.2 14.2 L15.2 10.2"/>
-    </symbol>
-    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 12.5 L10 17 L19 7.5"/>
-    </symbol>
-    <symbol id="i-doctor" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="32" cy="20" r="9"/>
-      <path d="M14 54 C14 42 22 36 32 36 C42 36 50 42 50 54"/>
-      <path d="M26 36 V44 C26 46 28 47 30 47 H34 C36 47 38 46 38 44 V36"/>
-      <path d="M30 44 H34 M32 42 V46" stroke-width="1.2"/>
-      <path d="M40 40 V52" stroke-dasharray="2 2"/>
-      <circle cx="40" cy="54" r="2"/>
-    </symbol>
-    <symbol id="i-decline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 7 L9 13 L13 9 L21 17"/>
-      <path d="M21 12 V17 H16"/>
-    </symbol>
-    <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="9"/>
-      <path d="M9 8 L12 13 L15 8"/>
-      <path d="M9 13 H15"/>
-      <path d="M9 16 H15"/>
-      <path d="M12 13 V18"/>
-    </symbol>
-    <symbol id="i-alarm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="13" r="8"/>
-      <path d="M12 8 V13 L15 15"/>
-      <path d="M5 5 L7 3 M19 5 L17 3"/>
-    </symbol>
-    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="9"/>
-      <path d="M12 11 V16"/>
-      <circle cx="12" cy="8" r=".6" fill="currentColor"/>
-    </symbol>
-    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 17 L9 11 L13 15 L21 7"/>
-      <path d="M16 7 H21 V12"/>
-    </symbol>
-    <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="9" r="6"/>
-      <path d="M9 14 L7.5 21 L12 18.5 L16.5 21 L15 14"/>
-      <path d="M10.5 9 L11.5 10 L13.5 8" stroke-width="1.4"/>
-    </symbol>
-    <symbol id="i-case" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="7" width="18" height="13" rx="2"/>
-      <path d="M9 7 V5 C9 4 9.5 3.5 10.5 3.5 H13.5 C14.5 3.5 15 4 15 5 V7"/>
-      <path d="M3 13 H21"/>
-    </symbol>
-    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M4 6 H20 V16 H13 L9 19.5 V16 H4 Z"/>
-      <path d="M8 11 H16 M8 13.5 H13" stroke-width="1.4"/>
-    </symbol>
-    <symbol id="i-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 14 L7 10 L10 12 L13 9 L17 12"/>
-      <path d="M21 10 L17 14 L14 12 L11 15 L7 12"/>
-      <path d="M10 12 L13 14"/>
-    </symbol>
-    <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M2 12 C5 7 8.5 5 12 5 C15.5 5 19 7 22 12 C19 17 15.5 19 12 19 C8.5 19 5 17 2 12 Z"/>
-      <circle cx="12" cy="12" r="3"/>
-    </symbol>
-    <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M14 4 L20 10 L9 21 L3 21 L3 15 Z"/>
-      <path d="M13 5 L19 11"/>
-    </symbol>
-    <symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="9"/>
-      <path d="M10 8 L16 12 L10 16 Z" fill="currentColor"/>
-    </symbol>
-    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 12 H19"/>
-      <path d="M14 7 L19 12 L14 17"/>
-    </symbol>
-    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="9" width="18" height="11" rx="1"/>
-      <path d="M3 13 H21"/>
-      <path d="M12 9 V20"/>
-      <path d="M8 9 C6 9 5 7.5 6 6 C7 4.5 9 5 10 6 L12 9 L14 6 C15 5 17 4.5 18 6 C19 7.5 18 9 16 9"/>
-    </symbol>
-    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-    </symbol>
-    <symbol id="i-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 11.5c0 4-4 7-9 7-1 0-2-.1-3-.4l-4 1.4 1.4-3.5C5 14.5 3 13 3 11.5 3 7.5 7 4 12 4s9 3.5 9 7.5z"/>
-      <path d="M8 11h.01M12 11h.01M16 11h.01" stroke-width="2"/>
-    </symbol>
-    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="9"/>
-      <polyline points="12 7 12 12 15 14"/>
-    </symbol>
-    <symbol id="i-name" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="6" width="18" height="13" rx="2"/>
-      <line x1="3" y1="10" x2="21" y2="10"/>
-      <line x1="7" y1="14" x2="13" y2="14"/>
-      <line x1="7" y1="16" x2="11" y2="16"/>
-    </symbol>
-    <symbol id="i-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="9"/>
-      <line x1="10" y1="9" x2="10" y2="15"/>
-      <line x1="14" y1="9" x2="14" y2="15"/>
-    </symbol>
-    <symbol id="i-future" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 3 L19 3"/>
-      <path d="M5 21 L19 21"/>
-      <path d="M5 3 C5 8, 19 8, 19 3"/>
-      <path d="M5 21 C5 16, 19 16, 19 21"/>
-      <path d="M9 11 L15 11"/>
-    </symbol>
-    <symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="5" width="18" height="11" rx="1"/>
-      <line x1="2" y1="20" x2="22" y2="20"/>
-      <line x1="2" y1="20" x2="4" y2="16"/>
-      <line x1="22" y1="20" x2="20" y2="16"/>
-    </symbol>
-    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="4" width="18" height="17" rx="2"/>
-      <line x1="3" y1="9" x2="21" y2="9"/>
-      <line x1="8" y1="2" x2="8" y2="6"/>
-      <line x1="16" y1="2" x2="16" y2="6"/>
-      <circle cx="12" cy="14" r="1.5" fill="currentColor"/>
-    </symbol>
-    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-    </symbol>
-    <symbol id="i-mom" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="22" cy="20" r="6"/>
-      <circle cx="42" cy="22" r="4"/>
-      <path d="M10 56v-6a12 12 0 0 1 24 0v6"/>
-      <path d="M34 56v-4a8 8 0 0 1 16 0v4"/>
-    </symbol>
-    <symbol id="i-therapist" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="32" cy="18" r="6"/>
-      <path d="M16 56v-8a16 16 0 0 1 32 0v8"/>
-      <path d="M22 38c4 4 16 4 20 0"/>
-      <circle cx="26" cy="32" r="1.5" fill="currentColor"/>
-      <circle cx="38" cy="32" r="1.5" fill="currentColor"/>
-    </symbol>
-  </defs>
-</svg>
-
-<!-- ============================================================
-     HEADER
-============================================================ -->
-<header class="site-header" id="siteHeader">
-  <div class="site-header__inner">
-    <a class="site-header__brand" href="#top" aria-label="もみかる採用 トップへ">
-      <span class="site-header__logo-wrap">
-        <img class="site-header__logo" src="./momikaru-logo.png" alt="もみかる">
-      </span>
-      <span class="site-header__brand-mark">RECRUIT</span>
-    </a>
-    <div class="site-header__actions">
-      <a class="site-header__phone" href="tel:05031721405" aria-label="電話で相談する 050-3172-1405" title="電話で相談する 050-3172-1405" data-action="phone-consult">
-        <svg aria-hidden="true"><use href="#i-phone"/></svg>
-      </a>
-
-      <a class="site-header__cta" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="label-full">今すぐ無料相談</span>
-        <span class="label-short">LINE相談</span>
-      </a>
-    </div>
-  </div>
-</header>
-
-<aside class="vertical-label" id="verticalLabel" aria-hidden="true">FOR INDUSTRY PROFESSIONALS</aside>
-
-<main id="top">
-
-<!-- ============================================================
-     L1 : HERO
-============================================================ -->
-<section class="hero" data-hero-fix="3">
-  <div class="hero__circle" aria-hidden="true"></div>
-  <span class="hero__decor-word" aria-hidden="true">Therapist</span>
-
-  <div class="container">
-    <div class="hero__inner">
-      <div class="hero__anim">
-        <div class="hero__tag-top">For Industry Professionals</div>
-        <div class="hero__tag-bottom">— リラクゼーション業界で働く方へ</div>
-
-        <h1 class="hero__heading">
-          リラクゼーション業界で働くなら <span class="hl" style="background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);color:var(--accent);font-weight:900;padding:0 .04em;">"絶対に"</span>、<br>
-          もみかるで働くことが、<strong style="background:linear-gradient(180deg,transparent 64%,rgba(155,123,58,.22) 64%);font-weight:900;padding:0 .04em;">業界人にとって正しい選択</strong>です。
-        </h1>
-
-        <div class="hero__scenario">
-          <p>今の仕事が <span style="color:var(--accent);font-weight:700;">"ただの作業"</span> になっていませんか。</p>
-          <p>「この先、意味はあるんだろうか」と感じる瞬間はありませんか。</p>
-          <p>&nbsp;</p>
-          <p>もみかるで働くと、その時間を <span style="color:var(--accent);font-weight:700;">未来のための投資</span> に変えられます。</p>
-          <p>&nbsp;</p>
-          <p>強制ではありません。</p>
-          <p>やりたくなった時に「やっててよかった」と思える、</p>
-          <p><span style="color:var(--accent);font-weight:700;">ミスのない未来への行動</span>。それがもみかるで働くことです。</p>
-        </div>
-
-        <ul class="hero__meta">
-          <li><svg><use href="#i-check"/></svg>15メニューから選んで習得</li>
-          <li><svg><use href="#i-check"/></svg>指名料500円全額還元</li>
-          <li><svg><use href="#i-check"/></svg>130店舗の集客力</li>
-          <li><svg><use href="#i-check"/></svg>独立サポートあり</li>
-        </ul>
-
-                                <div class="hero__cta">
-          <a class="btn btn--ghost" href="#income">
-            収入の目安を見る
-            <span class="arrow"><svg><use href="#i-arrow"/></svg></span>
-          </a>
-        </div>
-      </div>
-
-      <aside class="hero__panel" aria-label="もみかる主要指標">
-        <div class="hero__panel-head">
-          <span class="label">By the numbers</span>
-          <span class="doctor-badge" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#i-therapist"/></svg></span>
-        </div>
-        <div class="hero__stats">
-          <div class="stat">
-            <div class="stat__num"><span data-count="136">0</span><span class="suffix">+</span><span class="unit">店舗</span></div>
-            <div class="stat__caption">直営・FC合計</div>
-          </div>
-          <div class="stat">
-            <div class="stat__num"><span data-count="1000" data-format="comma">0</span><span class="unit">名</span></div>
-            <div class="stat__caption">活躍中のスタッフ</div>
-          </div>
-          <div class="stat">
-            <div class="stat__num"><span data-count="15">0</span><span class="unit">メニュー</span></div>
-            <div class="stat__caption">業界最多級の習得</div>
-          </div>
-          <div class="stat">
-            <div class="stat__num"><span data-count="13">0</span><span class="unit">年</span></div>
-            <div class="stat__caption">創業以来の運営</div>
-          </div>
-        </div>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     L2 : REALITY (Fear)
-============================================================ -->
-<section class="reality is-dark-zone" id="reality">
-  <div class="container reality__inner">
-    <div class="reality__head reveal">
-      <span class="eyebrow on-dark">The Reality</span>
-      <h2 class="reality__title">
-        <span class="ac">"ただの作業"</span> になっている時間は、<br>何を生み出しているのか。
-      </h2>
-      <p class="body-jp on-dark" style="margin-top:18px;max-width:720px;">
-        朝から晩まで施術しても、給料は思ったほど増えない。<br>
-        頑張れば頑張るほど、体は消耗していく。<br>
-        <br>
-        何度も「あなたを指名しました」と言われても、<br>
-        給与明細はほとんど変わらない。<br>
-        <br>
-        そして気づけば、その仕事に慣れてしまい、<br>
-        ただの作業になってしまっていることに、ふと気づく。<br>
-        <br>
-        「この先ってあるんだろうか」<br>
-        「意味があるんだろうか」<br>
-        「こんな仕事、一生続けていけるんだろうか」<br>
-        <br>
-        そう感じている方へ、業界の現実を一緒に見つめてみませんか。
-      </p>
-    </div>
-
-    <div class="story-comic comic-relax-0 reveal">
-      <div class="comic-eye">— Story 00</div>
-      <h3 class="comic-title">"ただの作業" になっている、ある業界人の一日。</h3>
-      <p class="comic-lede">朝起きてから家に帰るまで。仕事に "意味" を見いだせなくなった瞬間と、気づきまでの物語を6コマで。</p>
-      <div class="comic-image-wrap">
-        <img src="./comic_1.png" alt="リラクゼーション業界で働く経験者が、ただの作業になっている毎日に気づくまでの6コマ漫画" loading="lazy">
-      </div>
-    </div>
-
-    <div class="bridge-copy reveal" style="margin-top:36px;margin-bottom:30px;">
-      <p>これは、彼一人の話ではありません。<br>業界全体に広がる、構造的な現実です。</p>
-    </div>
-
-    <div class="fear-list">
-      <article class="fear reveal">
-        <div class="fear__icon"><svg><use href="#i-decline"/></svg></div>
-        <div>
-          <div class="fear__num">— 01</div>
-          <h3 class="fear__title">単価デフレが、10年で進行している。</h3>
-          <p class="fear__body">60分3,800円〜4,500円帯で固定された単価は、10年前と比べて実質下落しています。スーパーの値札と同じで、上がる気配がない。<strong>あなたの技術が向上しても、価格には反映されない構造</strong>になっているのが、業界の現実です。</p>
-        </div>
-      </article>
-
-      <article class="fear reveal">
-        <div class="fear__icon"><svg><use href="#i-coin"/></svg></div>
-        <div>
-          <div class="fear__num">— 02</div>
-          <h3 class="fear__title">「指名されても、給料はほぼ変わらない」という構造。</h3>
-          <p class="fear__body">何度も「あなたを指名」と言われても、指名料の還元率は店によって0〜50%。歩合計算は曖昧で、自分の月収を計算できないことすらある。<strong>指名で生まれた信頼関係が、ほとんど経済価値に変換されない</strong>業界の構造的な問題です。</p>
-        </div>
-      </article>
-
-      <article class="fear reveal">
-        <div class="fear__icon"><svg><use href="#i-pause"/></svg></div>
-        <div>
-          <div class="fear__num">— 03</div>
-          <h3 class="fear__title">あなたの「指名客」は、誰のものか。</h3>
-          <p class="fear__body">何年も通ってくれた人。あなたの技術と人柄で続いてきた関係。それなのに、辞めた瞬間に「店の資産」として置いていかなければならない。<strong>本来あなたのものであるはずの信頼関係が、業界では当然のように店の所有物</strong>とされる現実があります。</p>
-        </div>
-      </article>
-
-      <article class="fear reveal">
-        <div class="fear__icon"><svg><use href="#i-alarm"/></svg></div>
-        <div>
-          <div class="fear__num">— 04</div>
-          <h3 class="fear__title">30代、40代と続けるほど見えてくる、天井。</h3>
-          <p class="fear__body">体力の限界、キャリアパスの不在、国家資格者の業界参入。続けるほどに「この働き方の終わり」が見えてきます。<strong>"ただの作業" を10年続けた先に、何が残るのか</strong>。それは多くの業界経験者が、口に出さないだけで気づいている事実です。</p>
-        </div>
-      </article>
-    </div>
-
-    <div class="reality__charts">
-      <div class="chart-card reveal">
-        <div class="chart-card__title"><span class="badge">Fig 01</span>リラク業界 60分単価の推移（指数）</div>
-        <svg viewBox="0 0 320 140" preserveAspectRatio="none" aria-label="リラク業界 単価推移グラフ">
-          <defs>
-            <linearGradient id="declineFill2" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#C7833A" stop-opacity=".35"/>
-              <stop offset="100%" stop-color="#C7833A" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <g stroke="rgba(217,207,190,.12)" stroke-width="1">
-            <line x1="10" y1="30" x2="310" y2="30"/>
-            <line x1="10" y1="65" x2="310" y2="65"/>
-            <line x1="10" y1="100" x2="310" y2="100"/>
-          </g>
-          <text x="10" y="135" fill="#7B7166" font-size="9" font-family="Cormorant Garamond" font-style="italic">2014</text>
-          <text x="110" y="135" fill="#7B7166" font-size="9" font-family="Cormorant Garamond" font-style="italic">2018</text>
-          <text x="210" y="135" fill="#7B7166" font-size="9" font-family="Cormorant Garamond" font-style="italic">2022</text>
-          <text x="285" y="135" fill="#7B7166" font-size="9" font-family="Cormorant Garamond" font-style="italic">2026</text>
-          <path d="M10 38 L110 56 L210 68 L310 78 L310 130 L10 130 Z" fill="url(#declineFill2)"/>
-          <path class="line-decline" d="M10 38 L110 56 L210 68 L310 78" fill="none" stroke="#C7833A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <g>
-            <circle cx="10" cy="38" r="3" fill="#C7833A"/>
-            <circle cx="110" cy="56" r="2.5" fill="#C7833A"/>
-            <circle cx="210" cy="68" r="2.5" fill="#A23B2A"/>
-            <circle cx="310" cy="78" r="3" fill="#8B2A1E"/>
-          </g>
-          <g font-size="9" font-family="Cormorant Garamond" font-style="italic" fill="#F4ECDF" font-weight="600">
-            <text x="14" y="30">100</text>
-            <text x="116" y="48">95</text>
-            <text x="216" y="60">92</text>
-            <text x="290" y="70">90</text>
-          </g>
-        </svg>
-        <p class="chart-card__caption">業界全体で12年間、単価は下落基調。あなたの技術向上が経済価値に反映されない構造。</p>
-      </div>
-
-      <div class="chart-card reveal">
-        <div class="chart-card__title"><span class="badge">Fig 02</span>業界経験者の3年後の進路</div>
-        <svg viewBox="0 0 320 160" preserveAspectRatio="none" aria-label="業界経験者3年後 進路 横棒">
-          <g stroke="rgba(217,207,190,.12)" stroke-width="1">
-            <line x1="120" y1="10" x2="120" y2="150"/>
-            <line x1="190" y1="10" x2="190" y2="150"/>
-            <line x1="260" y1="10" x2="260" y2="150"/>
-          </g>
-          <g font-size="9" fill="#9F9583" font-family="Noto Sans JP">
-            <text x="112" y="22" text-anchor="end">同業転職</text>
-            <text x="112" y="48" text-anchor="end">異業種転職</text>
-            <text x="112" y="74" text-anchor="end">独立／開業</text>
-            <text x="112" y="100" text-anchor="end">業界引退</text>
-            <text x="112" y="126" text-anchor="end">同店在籍</text>
-          </g>
-          <rect class="hbar" x="120" y="13" data-w="152" width="0" height="12" fill="#A23B2A" rx="2"/>
-          <rect class="hbar" x="120" y="39" data-w="88" width="0" height="12" fill="#8B2A1E" rx="2"/>
-          <rect class="hbar" x="120" y="65" data-w="32" width="0" height="12" fill="#C7833A" rx="2"/>
-          <rect class="hbar" x="120" y="91" data-w="72" width="0" height="12" fill="#9B7B3A" rx="2"/>
-          <rect class="hbar" x="120" y="117" data-w="56" width="0" height="12" fill="#5B514A" rx="2"/>
-          <g font-size="10" font-family="Cormorant Garamond" font-style="italic" font-weight="600" fill="#F4ECDF">
-            <text class="hval" x="278" y="23" opacity="0">38%</text>
-            <text class="hval" x="214" y="49" opacity="0">22%</text>
-            <text class="hval" x="158" y="75" opacity="0">8%</text>
-            <text class="hval" x="198" y="101" opacity="0">18%</text>
-            <text class="hval" x="182" y="127" opacity="0">14%</text>
-          </g>
-        </svg>
-        <p class="chart-card__caption">業界経験者の86%が、3年以内に何らかの転換を選んでいます。"このまま" を選ぶ人は、わずか14%です。</p>
-      </div>
-    </div>
-
-    <p class="reality__close reveal">
-      "ただの作業" を続けるのか、<br>
-      それとも <strong style="background:linear-gradient(180deg,transparent 64%,rgba(199,131,58,.22) 64%);color:var(--accent-2);padding:0 .04em;">"未来への投資"</strong> に変えるのか。<br>
-      <br>
-      選ぶのは、あなた自身です。
-    </p>
-  </div>
-</section>
-
-<!-- ============================================================
-     L3 : INCOME
-============================================================ -->
-<section class="income" id="income">
-  <div class="container">
-    <div class="income__head reveal">
-      <span class="eyebrow">Your Income</span>
-      <h2 class="income__title">で、結局<span class="ac">いくら稼げる</span>のか。</h2>
-      <p class="income__sub">業界経験者なら、3,800円の単価と500円の指名料の重さを知っているはず。<br>もみかるは、その500円を全額還元する仕組みを持っています。<br>あなたの稼動ペースに合わせた、3つのパターンです。</p>
-    </div>
-
-    <div class="income-cards">
-      <article class="icard reveal" data-pattern="A" data-gross="47" data-net="28" data-sessions="91" data-nominations="27" data-nomination-rate="30">
-        <div class="icard__tag">Pattern A — Light</div>
-        <div class="icard__pat">副業・無理なくペース／週3勤務</div>
-
-        <div class="icard__money-block">
-          <div class="icard__money-eye">Gross<span class="jp">月収（売上）</span></div>
-          <div class="icard__money-val gross"><span data-count="47">0</span><span class="unit">万円</span></div>
-        </div>
-
-        <div class="income-breakdown">
-          <div class="bd-eye">— Breakdown</div>
-          <div class="bd-row">
-            <span class="bd-label">施術売上</span>
-            <span class="bd-formula">5,000円 × 91回</span>
-            <span class="bd-result">= 45.5万円</span>
-          </div>
-          <div class="bd-row">
-            <span class="bd-label">指名料</span>
-            <span class="bd-formula">500円 × 27件</span>
-            <span class="bd-result">= 1.4万円</span>
-          </div>
-        </div>
-
-        <div class="icard__money-block">
-          <div class="icard__money-eye">Net<span class="jp">手取り</span></div>
-          <div class="icard__money-val net"><span data-count="28">0</span><span class="unit">万円</span></div>
-        </div>
-
-        <div class="icard__bar">
-          <div class="icard__bar-label"><span>稼働強度</span><span>40%</span></div>
-          <div class="icard__bar-track"><div class="icard__bar-fill" data-bar="40"></div></div>
-        </div>
-        <ul class="icard__detail">
-          <li><svg><use href="#i-check"/></svg>月施術数：91回（単価5,000円）</li>
-          <li><svg><use href="#i-check"/></svg>指名件数：月27件（指名比率30%）</li>
-          <li class="is-highlight"><svg><use href="#i-check"/></svg>指名料 500円／件 → 全額スタッフ還元</li>
-          <li><svg><use href="#i-check"/></svg>週3日／前職と並行・無理のないペース</li>
-        </ul>
-      </article>
-
-      <article class="icard icard--featured reveal" data-pattern="B" data-gross="70" data-net="42" data-sessions="133" data-nominations="67" data-nomination-rate="50">
-        <span class="ribbon">Most Common</span>
-        <div class="icard__tag">Pattern B — Standard</div>
-        <div class="icard__pat">専業として安定／週5勤務</div>
-
-        <div class="icard__money-block">
-          <div class="icard__money-eye">Gross<span class="jp">月収（売上）</span></div>
-          <div class="icard__money-val gross"><span data-count="70">0</span><span class="unit">万円</span></div>
-        </div>
-
-        <div class="income-breakdown">
-          <div class="bd-eye">— Breakdown</div>
-          <div class="bd-row">
-            <span class="bd-label">施術売上</span>
-            <span class="bd-formula">5,000円 × 133回</span>
-            <span class="bd-result">= 66.5万円</span>
-          </div>
-          <div class="bd-row">
-            <span class="bd-label">指名料</span>
-            <span class="bd-formula">500円 × 67件</span>
-            <span class="bd-result">= 3.4万円</span>
-          </div>
-        </div>
-
-        <div class="icard__money-block">
-          <div class="icard__money-eye">Net<span class="jp">手取り</span></div>
-          <div class="icard__money-val net"><span data-count="42">0</span><span class="unit">万円</span></div>
-        </div>
-
-        <div class="icard__bar">
-          <div class="icard__bar-label"><span>稼働強度</span><span>70%</span></div>
-          <div class="icard__bar-track"><div class="icard__bar-fill" data-bar="70"></div></div>
-        </div>
-        <ul class="icard__detail">
-          <li><svg><use href="#i-check"/></svg>月施術数：133回（単価5,000円）</li>
-          <li><svg><use href="#i-check"/></svg>指名件数：月67件（指名比率50%）</li>
-          <li class="is-highlight"><svg><use href="#i-check"/></svg>指名料 500円／件 → 全額スタッフ還元</li>
-          <li><svg><use href="#i-check"/></svg>週5日／専業として安定収入</li>
-        </ul>
-      </article>
-
-      <article class="icard reveal" data-pattern="C" data-gross="120" data-net="72" data-sessions="224" data-nominations="157" data-nomination-rate="70">
-        <div class="icard__tag">Pattern C — TOP</div>
-        <div class="icard__pat">本気で稼ぐ／週6勤務</div>
-        <div class="icard__attrs">
-          <span>50代女性</span>
-          <span>無資格</span>
-          <span>在籍5年</span>
-        </div>
-
-        <div class="icard__money-block">
-          <div class="icard__money-eye">Gross<span class="jp">月収（売上）</span></div>
-          <div class="icard__money-val gross"><span data-count="120">0</span><span class="unit">万円</span></div>
-        </div>
-
-        <div class="income-breakdown">
-          <div class="bd-eye">— Breakdown</div>
-          <div class="bd-row">
-            <span class="bd-label">施術売上</span>
-            <span class="bd-formula">5,000円 × 224回</span>
-            <span class="bd-result">= 112.0万円</span>
-          </div>
-          <div class="bd-row">
-            <span class="bd-label">指名料</span>
-            <span class="bd-formula">500円 × 157件</span>
-            <span class="bd-result">= 7.9万円</span>
-          </div>
-        </div>
-
-        <div class="icard__money-block">
-          <div class="icard__money-eye">Net<span class="jp">手取り</span></div>
-          <div class="icard__money-val net"><span data-count="72">0</span><span class="unit">万円</span></div>
-        </div>
-
-        <div class="icard__bar">
-          <div class="icard__bar-label"><span>稼働強度</span><span>95%</span></div>
-          <div class="icard__bar-track"><div class="icard__bar-fill" data-bar="95"></div></div>
-        </div>
-        <ul class="icard__detail">
-          <li><svg><use href="#i-check"/></svg>月施術数：224回（単価5,000円）</li>
-          <li><svg><use href="#i-check"/></svg>指名件数：月157件（指名比率70%）</li>
-          <li class="is-highlight"><svg><use href="#i-check"/></svg>指名料 500円／件 → 全額スタッフ還元</li>
-          <li><svg><use href="#i-check"/></svg>週6日稼働／在籍5年で到達した実績水準</li>
-        </ul>
-      </article>
-    </div>
-
-    <p class="income__note reveal">
-      ※ 月収（売上）は施術売上＋指名料の合計です。施術単価は基本5,000円（メニュー・指名により変動）、指名料は1件500円で全額スタッフ還元となります。手取りは売上から税金・社会保険・想定経費（業務関連の交通費・備品・通信費等）を差し引いた概算値で、手取り率は約60%を想定。確定申告時の経費計上状況により変動します。Pattern Cは実在する最上位スタッフ（50代女性／無資格／在籍5年／週6日稼働）の実績例です。
-    </p>
-
-    <article class="voice reveal">
-      <div class="voice__visual" aria-hidden="true">
-        <svg viewBox="0 0 64 64"><use href="#i-therapist"/></svg>
-      </div>
-      <div class="voice__body">
-        <div class="voice__tag">Real Voice <span class="sep">／</span> <span class="jp">業界経験6年・移籍6ヶ月</span></div>
-        <blockquote class="voice__quote">
-          <p>6年勤めた大手チェーンから移って、最初に驚いたのは技術の幅の広さでした。ストレッチ、リフレ、ヘッドスパ、フェイシャルまで。<span class="hl">好きな手技を選んで、好きなだけ覚えられる</span>。施術が楽しくなったのは、業界に入って初めての感覚かもしれません。</p>
-          <p>しかも、さすがブランドだけあって集客が抜群。<span class="hl">あっという間に売上が安定して</span>、移籍3ヶ月で前職を超え、今は手取り40万を安定して稼げています。</p>
-          <p><span class="hl">「移籍してよかった」</span>と、心から思っています。</p>
-        </blockquote>
-        <div class="voice__stats">
-          <div>
-            <div class="v">27<span style="font-size:.6em;font-style:normal;font-family:var(--serif-jp);">万</span></div>
-            <div class="l">前職月収（手取り）</div>
-          </div>
-          <div>
-            <div class="v ac">40<span style="font-size:.6em;font-style:normal;font-family:var(--serif-jp);">万</span></div>
-            <div class="l">現在月収（手取り）</div>
-          </div>
-          <div>
-            <div class="v">6<span style="font-size:.6em;font-style:normal;font-family:var(--serif-jp);">ヶ月</span></div>
-            <div class="l">在籍期間</div>
-          </div>
-        </div>
-        <div class="voice__author"><strong>S.T さん</strong>（32歳・男性）／前職：大手リラクチェーン6年勤務</div>
-      </div>
-    </article>
-  </div>
-</section>
-<!-- ============================================================
-     L4 : WHAT WE OFFER
-============================================================ -->
-<section class="offer">
-  <div class="container">
-    <div class="offer__head reveal">
-      <span class="eyebrow">What We Offer</span>
-      <h2 class="offer__title">"ただの作業" を、<span class="ac">学びと挑戦</span>に変える。</h2>
-      <p class="offer__sub">業界経験者なら、4つの違いが30秒で分かるはずです。</p>
-    </div>
-
-    <div class="offer-grid">
-      <article class="ocard reveal">
-        <div class="ocard__icon"><svg><use href="#i-trend"/></svg></div>
-        <div class="ocard__num">— 01</div>
-        <h3 class="ocard__title">15のメニューを、好きなだけ選んで習得できる。</h3>
-        <p class="ocard__body">全身もみほぐし、ヘッドスパ、睡眠系ヘッド、ハンド、リフレ、足つぼ、ストレッチ、骨盤矯正、リンパ、痩身リンパ、フェイシャル、コルギ、ハーブピーリング、脱毛、ホワイトニングの<strong>15メニュー</strong>に加え、<strong>ビリーズケアシステムやドクターズメソッドといった専門プログラム</strong>まで。自分の興味と適性に合わせて、好きなだけ習得できます。「ただの作業」だった施術が、学びと挑戦のある仕事に変わる──大手チェーンには絶対にできない仕組みです。</p>
-      </article>
-
-      <article class="ocard reveal">
-        <div class="ocard__icon"><svg><use href="#i-coin"/></svg></div>
-        <div class="ocard__num">— 02</div>
-        <h3 class="ocard__title">指名料500円、全額還元。</h3>
-        <p class="ocard__body">業界では指名料の還元率が0〜50%が当たり前。もみかるは<strong>1件500円を全額スタッフへ還元</strong>します。指名されればされるほど、収入に直結する。あなたの技術と人柄が、確実に経済価値として返ってくる仕組みです。</p>
-      </article>
-
-      <article class="ocard reveal">
-        <div class="ocard__icon"><svg><use href="#i-shield"/></svg></div>
-        <div class="ocard__num">— 03</div>
-        <h3 class="ocard__title">130店舗の集客力で、待機時間を最小化。</h3>
-        <p class="ocard__body">大手チェーンと同等以上のブランド力と集客導線。<strong>あなたが集客のために何かをする必要はありません</strong>。看板・WEB・ホットペッパー・リスティング広告。本部が13年で構築してきた集客インフラの上で、あなたは施術に集中できます。</p>
-      </article>
-
-      <article class="ocard reveal">
-        <div class="ocard__icon"><svg><use href="#i-case"/></svg></div>
-        <div class="ocard__num">— 04</div>
-        <h3 class="ocard__title">いつか独立を考えるなら、業界唯一の仕組みがあります。</h3>
-        <p class="ocard__body">詳細は次のセクションでお伝えしますが、もみかるはFC独立する際に<strong>「店内で独立」できる仕組み</strong>を持っています。今のお店、今のお客様のまま、契約形態だけが変わる。業界の常識を覆す独立の形です。</p>
-      </article>
-    </div>
-  </div>
-</section>
-<!-- ============================================================
-     L5 : FOR YOUR FUTURE
-============================================================ -->
-<section class="future" id="future">
-  <div class="container">
-    <div class="future__head reveal">
-      <span class="eyebrow">For Your Future</span>
-      <h2 class="future__title">いつか<span class="ac">自分のお店</span>を、と考えている方へ。</h2>
-      <p class="body-jp" style="margin-top:18px;max-width:780px;">
-        今すぐ独立を考えていなくても、構いません。ただ、業界経験者なら一度は考える「いつか自分のお店を」。<br>
-        その日が来たとき、もみかるは<span class="hl" style="background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);color:var(--accent);font-weight:700;padding:0 .04em;">業界の常識を覆す選択肢</span>を持っています。
-      </p>
-    </div>
-
-    <div class="story-comic comic-relax-1 reveal">
-      <div class="comic-eye">— Story 01</div>
-      <h3 class="comic-title">業界経験者が、もみかるに移籍するまでの物語。</h3>
-      <p class="comic-lede">「このままでいいのかな」と感じた瞬間から、移籍してよかったと思うまで。6コマで。</p>
-      <div class="comic-image-wrap">
-        <img src="./comic_2.png" alt="リラクゼーション業界経験者がもみかるに移籍して成功するまでの6コマ漫画" loading="lazy">
-      </div>
-    </div>
-
-    <div class="future__head reveal" style="margin-top:0;">
-      <p class="future__banner">このセクションは、独立を考えていない方には飛ばしていただいて構いません。当サイトは「独立を勧める」ためのものではなく、いつか自分のお店を持ちたいと考えている方に、業界唯一の仕組みを誤解なく伝えるためのものです。</p>
-    </div>
-
-    <div class="bp-explain reveal">
-      <div class="bp-eye">— Bed Partner Independence</div>
-      <h3 class="bp-title">独立しても、<em>明日からの仕事は何も変わらない。</em></h3>
-      <div class="bp-compare">
-        <div class="bp-col bp-col-normal">
-          <h4>通常の独立</h4>
-          <ul>
-            <li>新しい場所で開業</li>
-            <li>顧客に「移転しました」と通知</li>
-            <li>集客ゼロから始める</li>
-            <li>3年以内の廃業率が高い</li>
-          </ul>
-        </div>
-        <div class="bp-col bp-col-momikaru">
-          <h4>もみかるベッドパートナー独立</h4>
-          <ul>
-            <li>同じ店内のベッドでそのまま独立</li>
-            <li>顧客は変化に気づかない</li>
-            <li>明日から売上が立つ</li>
-            <li>もみかる屋号のまま続けられる</li>
-          </ul>
-        </div>
-      </div>
-      <p class="bp-conclusion">
-        変わるのは、契約形態と収益構造だけ。<strong>あなたが築いた信頼関係は、何ひとつ失われません。</strong>
-      </p>
-    </div>
-
-    <div class="future__investment is-dark-zone reveal">
-      <h3 class="future__investment-h">
-        施術時間が、独立時の<span class="ac">加盟金</span>を<br>そのまま削っていく。
-      </h3>
-
-      <div class="equation">
-        <span class="term">1時間の施術</span>
-        <span class="op">＝</span>
-        <span class="term">¥500 の加盟金減額</span>
-        <span class="op">／</span>
-        <span class="term">1,000時間</span>
-        <span class="op">→</span>
-        <span class="result">加盟金 0円</span>
-      </div>
-
-      <div class="progress">
-        <div class="progress__fill" id="progressFill"></div>
-        <div class="progress__shimmer" aria-hidden="true"></div>
-      </div>
-      <div class="progress__labels">
-        <span>施術時間が増えるほど、加盟金は減っていく</span>
-        <span>達成率 100%</span>
-      </div>
-      <div class="progress__markers">
-        <div>施術 0時間<span>50万円</span></div>
-        <div>施術 500時間<span>25万円</span></div>
-        <div>施術 1,000時間<span>0円</span></div>
-      </div>
-
-      <p class="invest-desc">1日5施術ペース・週6日稼働なら、約7〜8ヶ月で50万円の加盟金が完全にゼロになります。他社で同じ時間施術しても、それは「収入」だけ。もみかるでの施術時間は「収入＋<strong style="color:#F4ECDF;font-weight:700;">独立資金の積立</strong>」になります。</p>
-    </div>
-
-    <div class="bridge-copy reveal">
-      <p>移籍して、技術を磨き、お客様との信頼を築き、収入も安定したその先には──</p>
-    </div>
-
-    <div class="story-comic comic-relax-2 reveal">
-      <div class="comic-eye">— Story 02</div>
-      <h3 class="comic-title">そして、自分のサロンを持つ日。</h3>
-      <p class="comic-lede">もみかるで5年経験を積んで、独立を決意してから、自分のお店をオープンするまでの物語。</p>
-      <div class="comic-image-wrap">
-        <img src="./comic_3.png" alt="もみかるで経験を積んだ後に独立して自分のサロンをオープンする6コマ漫画" loading="lazy">
-      </div>
-    </div>
-
-    <div class="cost-box reveal">
-      <h3 class="cost-box__h">お店を始めるときの月額固定費を、内訳で比較。</h3>
-      <p class="cost-box__sub">「もみかるベッドパートナー」プランは、自分のお店を持つために必要な項目のほとんどが、月額固定費の中に含まれています。</p>
-
-      <table class="cost-table">
-        <thead>
-          <tr>
-            <th>項目</th>
-            <th class="col-jp">ゼロから自分で開業</th>
-            <th class="col-jp">もみかるベッドパートナー</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>物件家賃</td>
-            <td class="is-self">8〜15万円</td>
-            <td class="is-mom"><span class="ck">✓</span>設備使用料に含む</td>
-          </tr>
-          <tr>
-            <td>設備・ベッド・備品</td>
-            <td class="is-self">月割 3〜5万円<small>（初期150〜300万円を5年償却）</small></td>
-            <td class="is-mom"><span class="ck">✓</span>設備使用料に含む</td>
-          </tr>
-          <tr>
-            <td>集客・広告費</td>
-            <td class="is-self">月3〜8万円</td>
-            <td class="is-mom"><span class="ck">✓</span>不要<small>（本部が集客）</small></td>
-          </tr>
-          <tr>
-            <td>ホームページ・予約システム</td>
-            <td class="is-self">月1〜2万円</td>
-            <td class="is-mom"><span class="ck">✓</span>システム利用料に含む</td>
-          </tr>
-          <tr>
-            <td>損害保険・賠償保険</td>
-            <td class="is-self">月5千〜1万円</td>
-            <td class="is-mom"><span class="ck">✓</span>含まれる</td>
-          </tr>
-          <tr>
-            <td>開業時の研修・ノウハウ</td>
-            <td class="is-self">自己負担<small>（独学または通学）</small></td>
-            <td class="is-mom"><span class="ck">✓</span>eラーニングで習得</td>
-          </tr>
-          <tr>
-            <td>経営相談・サポート</td>
-            <td class="is-self">個別契約で月3〜5万円</td>
-            <td class="is-mom"><span class="ck">✓</span>独立後も無料</td>
-          </tr>
-          <tr class="is-total">
-            <td>月額固定費 合計</td>
-            <td class="is-self">26〜42万円</td>
-            <td class="is-mom">12.5〜15万円<small>（3ヶ月キャンペーン中は12.5万円／通常15万円）</small></td>
-          </tr>
-          <tr class="is-init">
-            <td>初期投資</td>
-            <td class="is-self">200〜400万円</td>
-            <td class="is-mom">50万円（加盟金、施術時間で減額可）</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p class="cc-note">
-        ※ こちらはベッドパートナープランでの数値です。<br>
-        自分で物件を借りるスモールプランも別途ご用意しています。
-      </p>
-
-      <div class="fc-plans">
-        <div class="fc-plans-eye">— FC Plans</div>
-        <h4 class="fc-plans-title">FC加盟プランの詳細</h4>
-        <p class="fc-plans-lede">
-          あなたのキャリアフェーズや、目指す独立スタイルに合わせて、2つのプランから選べます。<br>
-          詳細は専用サイトでご確認ください。
-        </p>
-        <div class="fc-plans-buttons">
-          <a href="https://momikaru-staff-special.netlify.app/" target="_blank" rel="noopener noreferrer" class="fc-plan-btn">
-            <span class="fp-no">Plan 01</span>
-            <span class="fp-name">ベッドパートナープラン</span>
-            <span class="fp-desc">本部物件で、設備込みで始める</span>
-            <span class="fp-arrow">→ 詳細を見る</span>
-          </a>
-          <a href="https://momikaru-fc-professional.netlify.app/" target="_blank" rel="noopener noreferrer" class="fc-plan-btn">
-            <span class="fp-no">Plan 02</span>
-            <span class="fp-name">スモールプラン</span>
-            <span class="fp-desc">自分の物件で、自分のお店を持つ</span>
-            <span class="fp-arrow">→ 詳細を見る</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="bonus-grid">
-      <article class="bcard reveal">
-        <div class="bcard__icon"><svg><use href="#i-gift"/></svg></div>
-        <div class="bcard__num">— 01</div>
-        <h4 class="bcard__title">取りこぼし新規客が、あなたの永続指名客に。</h4>
-        <p class="bcard__body">直営店で対応しきれない新規来店者を紹介。初回は本部40％／あなた60％、指名化後は<strong>100%あなたの売上</strong>。</p>
-      </article>
-      <article class="bcard reveal">
-        <div class="bcard__icon"><svg><use href="#i-chat"/></svg></div>
-        <div class="bcard__num">— 02</div>
-        <h4 class="bcard__title">経営相談サポートが、独立後も無料で継続。</h4>
-        <p class="bcard__body">集客判断・営業電話の見極め・事業計画を、<strong>独立した瞬間からゼロで始めなくて済む</strong>のは大きな差。</p>
-      </article>
-      <article class="bcard reveal">
-        <div class="bcard__icon"><svg><use href="#i-case"/></svg></div>
-        <div class="bcard__num">— 03</div>
-        <h4 class="bcard__title">段階的に成長できる、2つのFCプラン。</h4>
-        <p class="bcard__body">ベッドパートナーで始めて、軌道に乗ったらスモールに移行。<span style="color:var(--accent);font-weight:700;">業界唯一の店内独立から自分の城へ、無理なくステップアップできる仕組み</span>です。</p>
-      </article>
-    </div>
-
-    <div class="future__close reveal">
-      独立しないなら、しなくて構いません。<br>
-      ただ、いつかその日が来たときのために、もみかるで働く時間が、<br>
-      そのまま<strong style="background:linear-gradient(180deg,transparent 64%,rgba(139,42,30,.22) 64%);color:var(--accent);padding:0 .04em;">準備と足がかり</strong>になります。
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     L6 : FLOW
-============================================================ -->
-<section class="flow">
-  <div class="container">
-    <div class="flow__head reveal">
-      <span class="eyebrow">Flow</span>
-      <h2 class="flow__title">応募ではなく、相談から始めてください。</h2>
-    </div>
-
-    <div class="flow__steps">
-      <article class="fstep reveal">
-        <div class="fstep__left">
-          <div class="fstep__num">01</div>
-          <div class="fstep__icon"><svg><use href="#i-chat"/></svg></div>
-        </div>
-        <div>
-          <h3 class="fstep__title">カレンダー予約またはLINEで問い合わせ</h3>
-          <p class="fstep__body">面接日時はカレンダーから直接予約できます。「話を聞きたい」だけでも歓迎。応募ではなく相談からスタートしてください。</p>
-          <span class="fstep__time">所要 1分</span>
-        </div>
-      </article>
-
-      <article class="fstep reveal">
-        <div class="fstep__left">
-          <div class="fstep__num">02</div>
-          <div class="fstep__icon"><svg><use href="#i-hand"/></svg></div>
-        </div>
-        <div>
-          <h3 class="fstep__title">30分のWEB面接（LINE・Google Meet）または対面</h3>
-          <p class="fstep__body">来社不要のWEB面接（LINE通話・Google Meet）も選べます。あなたの経験年数・得意な手技・希望条件を聞いた上で、もみかるが提供できる収入レンジ・働き方を具体的に提示します。業界経験者ならではの質問にもお答えします。</p>
-          <span class="fstep__time">所要 30分</span>
-        </div>
-      </article>
-
-      <article class="fstep reveal">
-        <div class="fstep__left">
-          <div class="fstep__num">03</div>
-          <div class="fstep__icon"><svg><use href="#i-eye"/></svg></div>
-        </div>
-        <div>
-          <h3 class="fstep__title">店舗見学・現場の雰囲気確認</h3>
-          <p class="fstep__body">現役スタッフと話す時間を設けます。求人情報には書かれない「リアル」を、入る前に確認してください。</p>
-          <span class="fstep__time">所要 1〜2時間</span>
-        </div>
-      </article>
-
-      <article class="fstep reveal">
-        <div class="fstep__left">
-          <div class="fstep__num">04</div>
-          <div class="fstep__icon"><svg><use href="#i-pen"/></svg></div>
-        </div>
-        <div>
-          <h3 class="fstep__title">業務委託契約の締結</h3>
-          <p class="fstep__body">条件を確認し契約締結。研修費・登録料・制服費用は無料。経験者は研修期間を短縮できる場合があります。</p>
-          <span class="fstep__time">所要 当日</span>
-        </div>
-      </article>
-
-      <article class="fstep reveal">
-        <div class="fstep__left">
-          <div class="fstep__num">05</div>
-          <div class="fstep__icon"><svg><use href="#i-play"/></svg></div>
-        </div>
-        <div>
-          <h3 class="fstep__title">稼働開始</h3>
-          <p class="fstep__body">国家資格者は基礎研修を一部免除可能。最短2週間で施術現場に立てます。</p>
-          <span class="fstep__time">問い合わせから 2〜4週間</span>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-<!-- ============================================================
-     L7 : FINAL CTA
-============================================================ -->
-<section class="final is-dark-zone">
-  <div class="ripple-stack" aria-hidden="true">
-    <span class="ripple"></span>
-    <span class="ripple"></span>
-    <span class="ripple"></span>
-  </div>
-  <div class="container final__inner">
-    <span class="eyebrow on-dark reveal">Final CTA</span>
-    <h2 class="final__title reveal">応募の前に、<span class="ac">30分だけ</span>情報交換しませんか。</h2>
-    <p class="final__desc reveal">
-      この決断は、今後のあなたのキャリアと収入を変えます。<br>
-      業界経験者なら、もみかるとの違いを30分で見抜けるはず。<br>
-      あなたの経験・得意手技・希望条件をベースに、具体的な収入試算と働き方の選択肢を提示します。<br>
-    </p>
-    <div class="final__conveniences reveal">
-      <p><strong>WEB面接対応</strong> — LINE通話・Google Meetで実施。来社不要です。</p>
-      <p>子育て・本業・家事など、生活の都合に合わせて、カレンダーから空いている日時を直接予約できます。</p>
-    </div>
-
-<div class="final__cta reveal">
-      <a class="btn btn--white" href="tel:05031721405" data-action="phone-consult">
-        <span class="arrow"><svg><use href="#i-phone"/></svg></span>
-        電話で相談する
-      </a>
-    </div>
-    <p class="final__phone reveal">
-      <a href="tel:05031721405" class="final__phone-num" data-action="phone-consult">050-3172-1405</a>
-      <span class="final__phone-hours">受付：平日 9:00〜18:00</span>
-    </p>
-    <p class="final__alt reveal">ご自身の状況に合わない場合は → <a href="index.html">他のキャリアパスを見る</a></p>
-  </div>
-</section>
-
-</main>
-
-<!-- ============================================================
-     FOOTER
-============================================================ -->
-<footer class="site-footer">
-  <div class="container site-footer__inner">
-    <span class="site-footer__logo-wrap">
-      <img class="site-footer__logo" src="./momikaru-logo.png" alt="もみかる" loading="lazy">
-    </span>
-    <small class="site-footer__copy">
-      © 株式会社ドラミカンパニー<br>
-      All rights reserved.
-    </small>
-    <a class="site-footer__back" href="index.html">← 他のキャリアパスを見る</a>
-  </div>
-</footer>
-
-<!-- ============================================================
-     SCRIPTS
-============================================================ -->
-<script>
-(function(){
-  'use strict';
-
-  /* Opening overlay */
-  var opening = document.getElementById('openingOverlay');
-  if (opening){
-    var dismissed = false;
-    var dismiss = function(immediate){
-      if (dismissed) return;
-      dismissed = true;
-      if (immediate){
-        opening.style.transition = 'opacity .25s ease';
-      }
-      opening.classList.add('is-fading');
-      setTimeout(function(){
-        opening.classList.add('is-hidden');
-        document.body.classList.remove('is-opening');
-      }, immediate ? 260 : 520);
-    };
-    setTimeout(function(){ dismiss(false); }, 2200);
-    opening.addEventListener('click', function(){ dismiss(true); });
-    opening.addEventListener('touchstart', function(){ dismiss(true); }, {passive:true});
-  } else {
-    document.body.classList.remove('is-opening');
-  }
-
-  /* Header scrolled state */
-  var header = document.getElementById('siteHeader');
-  var onScroll = function(){
-    if (window.scrollY > 8) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
-  };
-  onScroll();
-  window.addEventListener('scroll', onScroll, {passive:true});
-
-  /* IntersectionObserver — reveal */
-  var revealEls = document.querySelectorAll('.reveal');
-  var revealIO = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting){
-        entry.target.classList.add('is-visible');
-        revealIO.unobserve(entry.target);
-      }
-    });
-  }, {threshold:.12});
-  revealEls.forEach(function(el){ revealIO.observe(el); });
-
-  /* Count up */
-  var formatComma = function(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); };
-  var animateCount = function(el){
-    var target = parseFloat(el.getAttribute('data-count')) || 0;
-    var format = el.getAttribute('data-format');
-    var decimals = parseInt(el.getAttribute('data-decimals'),10) || 0;
-    var dur = 1600;
-    var start = performance.now();
-    var ease = function(t){ return 1 - Math.pow(1 - t, 3); };
-    var fmt = function(v){
-      var s = decimals ? v.toFixed(decimals) : String(Math.round(v));
-      return format === 'comma' ? formatComma(s) : s;
-    };
-    var step = function(now){
-      var p = Math.min(1, (now - start) / dur);
-      var v = target * ease(p);
-      el.textContent = fmt(v);
-      if (p < 1) requestAnimationFrame(step);
-      else el.textContent = fmt(target);
-    };
-    requestAnimationFrame(step);
-  };
-  var counters = document.querySelectorAll('[data-count]');
-  var countIO = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting){
-        animateCount(entry.target);
-        countIO.unobserve(entry.target);
-      }
-    });
-  }, {threshold:.4});
-  counters.forEach(function(el){ countIO.observe(el); });
-
-  /* Bar fills (income, cost) */
-  var fillBar = function(el, attr){
-    var pct = parseFloat(el.getAttribute(attr)) || 0;
-    el.style.width = pct + '%';
-  };
-  var barIO = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting){
-        var el = entry.target;
-        if (el.hasAttribute('data-bar')) fillBar(el, 'data-bar');
-        else if (el.hasAttribute('data-cost')) fillBar(el, 'data-cost');
-        barIO.unobserve(el);
-      }
-    });
-  }, {threshold:.5});
-  document.querySelectorAll('[data-bar],[data-cost]').forEach(function(el){ barIO.observe(el); });
-
-  /* Progress bar (L5) */
-  var progressFill = document.getElementById('progressFill');
-  if (progressFill){
-    var progressIO = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting){
-          progressFill.classList.add('is-active');
-          progressIO.unobserve(entry.target);
-        }
-      });
-    }, {threshold:.5});
-    progressIO.observe(progressFill);
-  }
-
-  /* L2 Fig 01 line — stroke draw */
-  var lineDecline = document.querySelector('.line-decline');
-  if (lineDecline){
-    var len = lineDecline.getTotalLength();
-    lineDecline.style.strokeDasharray = len;
-    lineDecline.style.strokeDashoffset = len;
-    lineDecline.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1)';
-    var lineIO = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting){
-          lineDecline.style.strokeDashoffset = '0';
-          lineIO.unobserve(entry.target);
-        }
-      });
-    }, {threshold:.4});
-    lineIO.observe(lineDecline);
-  }
-
-  /* L2 Fig 02 — horizontal bars (hbar) */
-  var hbars = document.querySelectorAll('.hbar');
-  var hvals = document.querySelectorAll('.hval');
-  if (hbars.length){
-    var animHbars = function(){
-      var dur = 1400;
-      var start = performance.now();
-      var ease = function(t){ return 1 - Math.pow(1-t,3); };
-      var step = function(now){
-        var p = Math.min(1, (now - start)/dur);
-        var e = ease(p);
-        hbars.forEach(function(b){
-          var w = parseFloat(b.getAttribute('data-w')) || 0;
-          b.setAttribute('width', w * e);
-        });
-        hvals.forEach(function(v){ v.setAttribute('opacity', p); });
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    };
-    var hbarIO = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting){ animHbars(); hbarIO.unobserve(entry.target); }
-      });
-    }, {threshold:.4});
-    hbarIO.observe(hbars[0]);
-  }
-
-  /* L2 Fig 02 — pre/post vertical bars (bbar) */
-  var bbars = document.querySelectorAll('.bbar');
-  if (bbars.length){
-    var animBbars = function(){
-      var dur = 1400;
-      var start = performance.now();
-      var yBase = 125;
-      var ease = function(t){ return 1 - Math.pow(1-t,3); };
-      var step = function(now){
-        var p = Math.min(1, (now - start)/dur);
-        var e = ease(p);
-        bbars.forEach(function(b){
-          var h = parseFloat(b.getAttribute('data-h')) || 0;
-          var ah = h * e;
-          b.setAttribute('y', yBase - ah);
-          b.setAttribute('height', ah);
-        });
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    };
-    var bbarIO = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting){ animBbars(); bbarIO.unobserve(entry.target); }
-      });
-    }, {threshold:.4});
-    bbarIO.observe(bbars[0]);
-  }
-
-  /* Vertical label dark/light switch — center-line crossing with scroll fallback */
-  var verticalLabel = document.getElementById('verticalLabel');
-  if (verticalLabel){
-    var darkZones = Array.prototype.slice.call(document.querySelectorAll('.is-dark-zone'));
-    var checkDark = function(){
-      var mid = window.innerHeight / 2;
-      var hit = false;
-      for (var i = 0; i < darkZones.length; i++){
-        var r = darkZones[i].getBoundingClientRect();
-        if (r.top <= mid && r.bottom >= mid){ hit = true; break; }
-      }
-      verticalLabel.classList.toggle('on-dark', hit);
-    };
-    checkDark();
-    window.addEventListener('scroll', checkDark, {passive:true});
-    window.addEventListener('resize', checkDark);
-  }
-
-  /* Smooth anchor offset for fixed header */
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click', function(e){
-      var href = a.getAttribute('href');
-      if (!href || href === '#') return;
-      var target = document.querySelector(href);
-      if (!target) return;
-      e.preventDefault();
-      var top = target.getBoundingClientRect().top + window.scrollY - 64;
-      window.scrollTo({top:top, behavior:'smooth'});
-    });
-  });
-})();
-</script>
-
-<div class="float-cta" id="floatCta" aria-label="追従予約バー" hidden>
-  <a class="float-cta__book iv-booking-open" href="#iv-booking" data-fc-event="interview_online" data-iv-job="リラクゼーション">面接を申し込む</a>
-  <a class="float-cta__line" href="https://lin.ee/PFy8myp" target="_blank" rel="noopener noreferrer" data-action="line-consult">
-    <svg aria-hidden="true"><use href="#i-line"/></svg>
-    LINE相談
-  </a>
-</div>
-<script>
-(function(){
-  var bar = document.getElementById("floatCta");
-  if (!bar) return;
-  bar.hidden = false;
-  document.body.classList.add("has-float-cta");
-  function sync(){
-    var y = window.scrollY || document.documentElement.scrollTop;
-    bar.classList.toggle("is-visible", y > 180);
-  }
-  window.addEventListener("scroll", sync, {passive:true});
-  window.addEventListener("resize", sync);
-  sync();
-})();
-</script>
-
+<body>
+<x-dc>
+<helmet>
+<title>もみかる採用｜リラクゼーション業界の方へ</title>
+<meta name="description" content="リラクゼーション業界経験者の方へ。高単価メニューと131店舗の集客力、業界初の収入保障共済、協同組合の認定証、独立支援制度。もみかる業務委託セラピスト募集。">
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1A1A2E"></rect><rect x="38" y="38" width="24" height="24" fill="#F5B800" transform="rotate(45 50 50)"></rect></svg></template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&family=Inter:wght@500;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://interview-booking-api.netlify.app/widget/booking.css?v=7">
 <script src="https://interview-booking-api.netlify.app/widget/config.js?v=7"></script>
 <script src="https://interview-booking-api.netlify.app/widget/booking.js?v=7"></script>
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#FFFFFF;color:#1A1A2E;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:"palt"}
+a{color:#1A1A2E;text-decoration:none}
+a:hover{color:#1A1A2E}
+button{font-family:inherit}
+*{box-sizing:border-box}
+:focus-visible{outline:2px solid #F5B800;outline-offset:2px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:999px;background:rgba(26,26,46,0.12)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-10px;border-radius:50%;background:#FFFFFF;border:3px solid #F5B800;box-shadow:0 2px 6px rgba(26,26,46,0.2)}
+input[type=range]::-moz-range-track{height:4px;border-radius:999px;background:rgba(26,26,46,0.12)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#FFFFFF;border:3px solid #F5B800}
+@keyframes mk-nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+@keyframes mk-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@media (prefers-reduced-motion: reduce){*{transition-duration:0.01ms !important;animation:none !important}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="min-height:100%;display:flex;flex-direction:column;background:#FFFFFF;container-type:inline-size">
+
+<sc-if value="{{ introOn }}" hint-placeholder-val="{{ false }}">
+  <div role="button" aria-label="タップしてスキップ" onClick="{{ skipIntro }}" style="position:fixed;inset:0;z-index:100;background-color:#1A1A2E;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1.2px);background-size:18px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px 24px;cursor:pointer;opacity:{{ introOpacity }};transition:opacity .6s cubic-bezier(0.22,1,0.36,1)">
+    <span style="display:flex;align-items:center;gap:10px;font-size:clamp(14px,3.8cqi,17px);font-weight:700;letter-spacing:0.08em;color:#F5B800;opacity:{{ introShow }};transition:opacity .5s"><span style="width:18px;height:1px;background:#F5B800"></span>リラクゼーションサロンで働くあなたへ<span style="width:18px;height:1px;background:#F5B800"></span></span>
+    <h1 style="margin:0;font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(26px,7.2cqi,44px);line-height:1.55;text-align:center;color:#FFFFFF;opacity:{{ introShow }};transform:translateY({{ introY }});transition:opacity .8s cubic-bezier(0.22,1,0.36,1) .15s,transform .8s cubic-bezier(0.22,1,0.36,1) .15s">今日の施術は、<br>昨日と<span style="color:#F5B800">何が</span>違いましたか。</h1>
+    <div style="position:absolute;left:0;right:0;bottom:32px;display:flex;flex-direction:column;align-items:center;gap:10px">
+      <span style="width:120px;height:2px;background:rgba(255,255,255,0.15);border-radius:999px;overflow:hidden;display:block"><span style="display:block;height:100%;width:{{ introBar }};background:#F5B800;transition:width 2.4s linear"></span></span>
+      <span style="font-family:Inter,sans-serif;font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.6)">TAP TO SKIP</span>
+    </div>
+  </div>
+</sc-if>
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(26,26,46,0.08)">
+  <div style="max-width:1160px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+    <a href="https://momikaru-recruit.netlify.app/" style="display:flex;align-items:center;gap:10px;min-width:0">
+      <img src="assets/logo-momikaru.png" alt="もみかる" style="height:28px;width:auto;display:block">
+      <span style="width:1px;height:22px;background:rgba(26,26,46,0.15)"></span>
+      <span style="display:flex;flex-direction:column;line-height:1.25">
+        <span style="font-family:Inter,sans-serif;font-weight:700;font-size:9px;letter-spacing:0.22em;color:#A87A00">RECRUIT</span>
+        <span style="font-size:10px;font-weight:700;white-space:nowrap">リラク経験者</span>
+      </span>
+    </a>
+    <div style="display:flex;align-items:center;gap:8px">
+      <a href="tel:0542855665" data-ripple="rgba(26,26,46,0.12)" aria-label="電話で相談する 054-285-5665" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;height:40px;padding:0 12px;border:1px solid rgba(26,26,46,0.15);border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;flex:none" style-hover="border-color:#1A1A2E">電話</a>
+      <a href="https://lin.ee/PFy8myp" data-ripple="rgba(255,255,255,0.25)" style="position:relative;overflow:hidden;display:flex;align-items:center;gap:7px;height:40px;padding:0 14px;background:#1A1A2E;color:#FFFFFF;font-size:12px;font-weight:700;border-radius:999px;white-space:nowrap;flex:none" style-hover="background:#2C3E50;color:#FFFFFF"><span style="width:7px;height:7px;border-radius:50%;background:#06C755"></span>LINE相談</a>
+    </div>
+  </div>
+  <div ref="{{ progRef }}" style="position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#F5B800;transform-origin:0 50%"></div>
+</header>
+
+<section ref="{{ heroRef }}" onPointerMove="{{ onHeroMove }}" style="position:relative;background-color:#F8F8F5;background-image:radial-gradient(420px circle at var(--mx,80%) var(--my,20%),rgba(245,184,0,0.16),transparent 70%),radial-gradient(rgba(26,26,46,0.07) 1px,transparent 1.2px);background-size:auto,18px 18px;border-bottom:1px solid rgba(26,26,46,0.08)">
+  <div style="max-width:1160px;margin:0 auto;padding:28px 16px 44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:28px 56px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <sc-if value="{{ fromQuiz }}" hint-placeholder-val="{{ false }}">
+        <span style="align-self:flex-start;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;background:#FFFFFF;border:1px solid #F5B800;padding:5px 12px;border-radius:999px"><span style="width:6px;height:6px;border-radius:50%;background:#F5B800"></span>あなたの診断結果のページです</span>
+      </sc-if>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="width:20px;height:2px;background:#F5B800"></span>
+        <span style="font-size:14px;font-weight:700;letter-spacing:0.04em;color:#1A1A2E">リラクゼーションサロンで働くあなたへ</span>
+      </div>
+      <h1 style="margin:0;font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(27px,7cqi,46px);line-height:1.5;letter-spacing:-0.01em;text-wrap:pretty">“ただの作業”を、<br><span style="background:linear-gradient(transparent 62%,#FFEDA2 62%)">未来への投資</span>に変える。</h1>
+      <p style="margin:0;font-size:15px;line-height:1.9;color:#3A3A4E;text-wrap:pretty">リラクゼーションの経験があるあなたへ。もみかるでは、高単価メニューと131店舗の集客力で1日の売上が変わり、施術を続ける時間が「安心」「技術の証明」「独立の準備」として積み上がっていきます。</p>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;background:#FFFFFF;border:1px solid rgba(26,26,46,0.1);padding:10px 12px;border-radius:8px"><span style="color:#A87A00">✓</span>業界初の収入保障共済</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;background:#FFFFFF;border:1px solid rgba(26,26,46,0.1);padding:10px 12px;border-radius:8px"><span style="color:#A87A00">✓</span>高単価メニュー×集客力</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;background:#FFFFFF;border:1px solid rgba(26,26,46,0.1);padding:10px 12px;border-radius:8px"><span style="color:#A87A00">✓</span>組合の認定証を発行</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;background:#FFFFFF;border:1px solid rgba(26,26,46,0.1);padding:10px 12px;border-radius:8px"><span style="color:#A87A00">✓</span>独立支援制度</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+        <button type="button" onClick="{{ openBooking }}" data-ripple="rgba(255,255,255,0.3)" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:58px;padding:0 8px 0 24px;border:none;cursor:pointer;background-color:#F5B800;background-image:linear-gradient(#1A1A2E,#1A1A2E);background-repeat:no-repeat;background-size:0% 100%;color:#1A1A2E;border-radius:999px;font-size:15px;font-weight:700;box-shadow:0 8px 20px rgba(245,184,0,0.32);transition:background-size .45s cubic-bezier(0.22,1,0.36,1),color .3s" style-hover="background-size:100% 100%;color:#F5B800">
+          <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.35"><span>面接を予約する</span><span style="font-size:11px;font-weight:500;opacity:0.8">スマホでWEB面接／お店で対面、どちらもOK・30分</span></span>
+          <span style="width:42px;height:42px;border-radius:50%;background:#FFFFFF;color:#1A1A2E;display:flex;align-items:center;justify-content:center">→</span>
+        </button>
+        <button type="button" onClick="{{ goSim }}" style="background:none;border:none;padding:8px 0;font-size:13px;font-weight:700;color:#1A1A2E;cursor:pointer;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#F5B800;align-self:flex-start">先に、自分の収入を試算してみる ↓</button>
+      </div>
+    </div>
+    <div style="position:relative">
+      <div style="width:100%;aspect-ratio:4/3"><image-slot id="relax-hero" src="assets/hero-relax.jpg" shape="rounded" radius="12" placeholder="施術中のスタッフ写真（4:3）"></image-slot></div>
+      <div style="position:absolute;left:12px;right:12px;bottom:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:rgba(255,255,255,0.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:8px;padding:10px 4px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:1px"><span style="font-family:Inter,sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.02em">60%</span><span style="font-size:10px;color:#6B6B6B">歩合 最大</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:1px;border-left:1px solid rgba(26,26,46,0.1)"><span style="font-family:Inter,sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.02em">15</span><span style="font-size:10px;color:#6B6B6B">習得メニュー</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:1px;border-left:1px solid rgba(26,26,46,0.1)"><span style="font-family:Inter,sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.02em">131</span><span style="font-size:10px;color:#6B6B6B">店舗</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background-color:#1A1A2E;background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1.2px);background-size:18px 18px;color:#FFFFFF">
+  <div style="max-width:1160px;margin:0 auto;padding:72px 16px;display:flex;flex-direction:column;gap:40px">
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:14px;max-width:720px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:2px;background:#F5B800"></span><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#F5B800">STORY_00 — ある業界人の一日</span></div>
+      <h2 style="margin:0;font-family:'Noto Serif JP',serif;font-size:clamp(23px,6.4cqi,36px);font-weight:700;line-height:1.55;color:#FFFFFF">“ただの作業”になっている時間は、<br>何を生み出しているのか。</h2>
+    </div>
+    <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;max-width:640px;width:100%;align-self:center">
+      <sc-for list="{{ story }}" as="d" hint-placeholder-count="6">
+        <li data-reveal="" style="display:grid;grid-template-columns:44px 12px minmax(0,1fr);gap:10px">
+          <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:13px;color:{{ d.tc }};padding-top:2px">{{ d.time }}</span>
+          <span style="display:flex;flex-direction:column;align-items:center"><span style="width:10px;height:10px;border-radius:50%;margin-top:5px;background:{{ d.dot }};box-shadow:0 0 0 4px rgba(245,184,0,0.15)"></span><span style="flex:1;width:1px;background:rgba(255,255,255,0.15);min-height:16px"></span></span>
+          <div style="display:flex;flex-direction:column;gap:10px;padding-bottom:32px">
+            <div style="position:relative;container-type:inline-size;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.15);background:#2C3E50">
+              <img src="{{ d.img }}" alt="{{ d.alt }}" loading="lazy" style="display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover">
+              <sc-if value="{{ d.bubble }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:{{ d.bubble.l }};top:{{ d.bubble.t }};width:{{ d.bubble.w }};height:{{ d.bubble.h }};display:flex;align-items:center;justify-content:center;padding:0 3.5%;text-align:center;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:3.3cqi;line-height:1.45;color:#1A1A2E;white-space:pre-line;word-break:keep-all">{{ d.bubble.text }}</span></sc-if>
+            </div>
+            <sc-if value="{{ d.q }}" hint-placeholder-val="{{ true }}"><span style="font-family:'Noto Serif JP',serif;font-weight:700;font-size:16px;line-height:1.6;color:{{ d.qc }}">{{ d.q }}</span></sc-if>
+            <span style="font-size:14px;line-height:1.85;color:rgba(255,255,255,0.8)">{{ d.b }}</span>
+          </div>
+        </li>
+      </sc-for>
+    </ol>
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:16px">
+      <p style="margin:0;font-size:14px;line-height:1.9;color:rgba(255,255,255,0.85);max-width:720px">これは、あなた一人の話ではありません。業界全体に広がる、構造の問題です。</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:1px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden">
+        <sc-for list="{{ realities }}" as="r" hint-placeholder-count="4">
+          <div style="background:#1A1A2E;padding:22px 20px;display:flex;flex-direction:column;gap:10px">
+            <span style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:700;color:#F5B800">{{ r.no }}</span>
+            <h3 style="margin:0;font-size:16px;font-weight:700;line-height:1.55;color:#FFFFFF">{{ r.t }}</h3>
+            <p style="margin:0;font-size:13px;line-height:1.85;color:rgba(255,255,255,0.75)">{{ r.b }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <p data-reveal="" style="margin:0;font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(20px,5.6cqi,30px);line-height:1.7;text-align:center;color:#FFFFFF">“ただの作業”を続けるのか。<br>それとも、<span style="color:#F5B800">未来への投資</span>に変えるのか。</p>
+  </div>
+</section>
+
+<section style="background-color:#F8F8F5;background-image:radial-gradient(rgba(26,26,46,0.06) 1px,transparent 1.2px);background-size:18px 18px">
+  <div style="max-width:1160px;margin:0 auto;padding:72px 16px;display:flex;flex-direction:column;gap:28px">
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:12px;max-width:720px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:2px;background:#F5B800"></span><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#6B6B6B">STORY_01 — もみかるに出会うまで</span></div>
+      <h2 style="margin:0;font-family:'Noto Serif JP',serif;font-size:clamp(24px,6.8cqi,38px);font-weight:700;line-height:1.5">あの夜、開いたページから。</h2>
+      <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E">Sakiさんが、もみかるで働き始めるまで。</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px">
+      <sc-for list="{{ story1 }}" as="d" hint-placeholder-count="6">
+        <div data-reveal="" style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid rgba(26,26,46,0.08);border-radius:14px;padding:10px 10px 16px">
+          <div style="position:relative;container-type:inline-size;border-radius:8px;overflow:hidden;background:#F2F2EE">
+            <img src="{{ d.img }}" alt="{{ d.alt }}" loading="lazy" style="display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover">
+            <span style="position:absolute;left:{{ d.l }};top:{{ d.t }};width:{{ d.w }};height:{{ d.h }};display:flex;align-items:center;justify-content:center;padding:0 3.5%;text-align:center;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:3.3cqi;line-height:1.45;color:#1A1A2E;white-space:pre-line;word-break:keep-all">{{ d.text }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:0 6px">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:11px;color:#A87A00">STEP {{ d.no }}</span>
+              <sc-if value="{{ d.tag }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:700;background:#FFF8DC;border:1px solid rgba(245,184,0,0.5);padding:2px 8px;border-radius:999px">{{ d.tag }}</span></sc-if>
+            </div>
+            <span style="font-size:14px;line-height:1.75;color:#1A1A2E">{{ d.cap }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="background:#FFFFFF">
+  <div style="max-width:1160px;margin:0 auto;padding:72px 16px 40px;display:flex;flex-direction:column;gap:56px">
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:12px;max-width:720px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:2px;background:#F5B800"></span><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#6B6B6B">WHY_MOMIKARU</span></div>
+      <h2 style="margin:0;font-family:'Noto Serif JP',serif;font-size:clamp(24px,6.8cqi,38px);font-weight:700;line-height:1.5">その不安に、もみかるは<br><span style="background:linear-gradient(transparent 62%,#FFEDA2 62%)">仕組み</span>で答えます。</h2>
+      <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E;text-wrap:pretty">条件の良いお店は、ほかにもあります。もみかるが違うのは、セラピストが長く続け、技術をキャリアに変えるための「仕組み」を持っていることです。</p>
+    </div>
+
+    <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:20px 40px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#A87A00">ANSWER_01</span>
+        <span style="align-self:flex-start;font-family:'Noto Serif JP',serif;font-weight:700;font-size:16px;line-height:1.6;background:#F2F2EE;padding:12px 16px;border-radius:16px 16px 16px 4px">「頑張っても、稼ぎは頭打ち……」</span>
+        <h3 style="margin:0;font-size:clamp(20px,5.6cqi,26px);font-weight:700;line-height:1.5;text-wrap:balance">単価も、客数も、働く場所で変わる。</h3>
+        <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E">もみかるでは、ほぐしに加えてエステなどの高単価メニューも担当できるため、1人あたりの単価が上がります。さらに131店舗のブランド力と本部の集客で、1日に担当できるお客様の数も変わります。</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="background:#1A1A2E;color:#FFFFFF;border-radius:16px;padding:22px 12px;display:grid;grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr) 18px minmax(0,1fr);align-items:center;gap:4px;text-align:center">
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:center"><span style="font-size:11px;color:rgba(255,255,255,0.75)">客単価</span><span style="font-family:Inter,sans-serif;font-weight:800;font-size:24px;color:#F5B800;line-height:1">UP</span><span style="font-size:10px;line-height:1.4;color:rgba(255,255,255,0.75)">高単価メニュー</span></div>
+          <span style="color:rgba(255,255,255,0.6);font-weight:700">×</span>
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:center"><span style="font-size:11px;color:rgba(255,255,255,0.75)">1日の客数</span><span style="font-family:Inter,sans-serif;font-weight:800;font-size:24px;color:#F5B800;line-height:1">UP</span><span style="font-size:10px;line-height:1.4;color:rgba(255,255,255,0.75)">131店舗の集客力</span></div>
+          <span style="color:rgba(255,255,255,0.6);font-weight:700">=</span>
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:center"><span style="font-size:11px;color:rgba(255,255,255,0.75)">1日の売上</span><span style="font-family:Inter,sans-serif;font-weight:800;font-size:24px;color:#FFFFFF;line-height:1">UP</span><span style="font-size:10px;line-height:1.4;color:rgba(255,255,255,0.75)">同じ1日でも</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:12px;font-weight:700">担当できる15メニュー <span style="font-weight:500;color:#6B6B6B">— 好きなものを選んで習得</span></span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <sc-for list="{{ menus }}" as="m" hint-placeholder-count="15">
+              <span style="font-size:12px;font-weight:500;background:#FFFFFF;border:1px solid rgba(26,26,46,0.12);padding:5px 11px;border-radius:999px;transition:background .2s,border-color .2s" style-hover="background:#FFF8DC;border-color:#F5B800">{{ m }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:20px 40px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#A87A00">ANSWER_02 — 業界初</span>
+        <span style="align-self:flex-start;font-family:'Noto Serif JP',serif;font-weight:700;font-size:16px;line-height:1.6;background:#F2F2EE;padding:12px 16px;border-radius:16px 16px 16px 4px">「もし明日、手首を痛めたら……」</span>
+        <h3 style="margin:0;font-size:clamp(20px,5.6cqi,26px);font-weight:700;line-height:1.5;text-wrap:balance">業務委託でも、休んだときの収入が保障される。</h3>
+        <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E">もみかるの「収入保障共済」は、事故・ケガ・病気で働けなくなったとき、収入が保障される業界初の制度です。体が資本の仕事だからこそ、「休めない」をなくしました。</p>
+        <span style="font-size:10px;color:#6B6B6B">※ 業界初は自社調べ。保障内容・条件は面接でご説明します。</span>
+      </div>
+      <div style="background:#1A1A2E;color:#FFFFFF;border-radius:16px;padding:24px 22px;display:flex;flex-direction:column;gap:18px">
+        <span style="font-size:14px;font-weight:700;color:#FFFFFF">ケガで2週間、休んだら</span>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.75)"><span>一般的な業務委託</span><span style="font-family:Inter,sans-serif;font-weight:700">収入 ¥0</span></span>
+          <span style="height:12px;border-radius:999px;background:rgba(255,255,255,0.1);display:block;border:1px dashed rgba(255,255,255,0.25)"></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:#FFFFFF"><span>もみかる</span><span style="color:#F5B800">収入保障共済で保障</span></span>
+          <span style="height:12px;border-radius:999px;background:rgba(255,255,255,0.1);display:block;overflow:hidden"><span data-grow="" style="display:block;height:100%;width:100%;background:#F5B800;border-radius:999px;transform-origin:0 50%"></span></span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:12px;font-weight:700;border:1px solid rgba(245,184,0,0.5);padding:4px 10px;border-radius:999px">事故</span><span style="font-size:12px;font-weight:700;border:1px solid rgba(245,184,0,0.5);padding:4px 10px;border-radius:999px">ケガ</span><span style="font-size:12px;font-weight:700;border:1px solid rgba(245,184,0,0.5);padding:4px 10px;border-radius:999px">病気</span></div>
+      </div>
+    </div>
+
+    <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:20px 40px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#A87A00">ANSWER_03</span>
+        <span style="align-self:flex-start;font-family:'Noto Serif JP',serif;font-weight:700;font-size:16px;line-height:1.6;background:#F2F2EE;padding:12px 16px;border-radius:16px 16px 16px 4px">「この技術、お店の外でも通用するのかな」</span>
+        <h3 style="margin:0;font-size:clamp(20px,5.6cqi,26px);font-weight:700;line-height:1.5;text-wrap:balance">あなたの技術を、<br><span style="white-space:nowrap">協同組合</span>が認定する。</h3>
+        <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E">静岡リラクゼーション事業協同組合の認定証を発行。お店の中だけの評価ではなく、外にも示せる「技術の証明」になります。</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="position:relative;container-type:inline-size;border-radius:6px;overflow:hidden;box-shadow:0 14px 32px rgba(26,26,46,0.12)">
+          <img src="assets/certificate.jpg" alt="静岡リラクゼーション事業協同組合 認定証" style="display:block;width:100%;height:auto">
+          <span style="position:absolute;left:35.5%;top:47%;width:35.5%;height:10.5%;background:radial-gradient(ellipse at center,#FEFEFE 62%,rgba(254,254,254,0) 100%);display:flex;align-items:center;justify-content:center"><span style="font-family:'Noto Serif JP',serif;font-weight:700;font-size:{{ certFont }};letter-spacing:{{ certLs }};color:#1A1A1A;white-space:nowrap;line-height:1">{{ certName }}</span></span>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:12px;font-weight:700">あなたの名前を入れてみる</span>
+          <input type="text" maxlength="10" placeholder="例：山田 花子" onChange="{{ onCertName }}" style="min-height:46px;padding:0 14px;border:1.5px solid rgba(26,26,46,0.15);border-radius:10px;font-size:16px;font-family:inherit;background:#FFFFFF;color:#1A1A2E" style-focus="border-color:#F5B800;outline:none">
+        </label>
+        <span style="font-size:10px;color:#6B6B6B">※ 実際の認定証です（お名前部分は入力のプレビュー）。取得条件は面接でご説明します。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section ref="{{ yrsRef }}" style="background-color:#F8F8F5;background-image:radial-gradient(rgba(26,26,46,0.06) 1px,transparent 1.2px);background-size:18px 18px;border-top:1px solid rgba(26,26,46,0.08)">
+  <div data-reveal="" style="max-width:1160px;margin:0 auto;padding:64px 16px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:720px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:2px;background:#F5B800"></span><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#A87A00">ANSWER_04 — 独立支援制度</span></div>
+      <span style="align-self:flex-start;font-family:'Noto Serif JP',serif;font-weight:700;font-size:16px;line-height:1.6;background:#F2F2EE;padding:12px 16px;border-radius:16px 16px 16px 4px">「この先も、ずっとこのままなのかな」</span>
+      <h2 style="margin:0;font-family:'Noto Serif JP',serif;font-size:clamp(24px,6.8cqi,38px);font-weight:700;line-height:1.5">同じ5年を、<br>どこで過ごすか。</h2>
+      <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E">同じように5年間施術を続けても、残るものは働く場所で変わります。下のつまみを右へ動かして、年数ごとの違いを見てください。</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid rgba(26,26,46,0.1);border-radius:16px;padding:18px 18px 12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+        <span style="font-family:Inter,sans-serif;font-weight:800;font-size:clamp(36px,10cqi,52px);letter-spacing:-0.03em;line-height:1;white-space:nowrap;flex:none">{{ yr.y }}<span style="font-family:'Noto Sans JP';font-size:16px;font-weight:700;margin-left:4px">年後</span></span>
+        <span style="font-family:'Roboto Mono',monospace;font-size:12px;font-weight:700;color:#4A4A5E">施術 {{ yr.hours }} 時間</span>
+      </div>
+      <input type="range" min="0" max="5" step="0.5" value="{{ yr.y }}" onChange="{{ onYears }}" aria-label="経過年数">
+      <span style="display:flex;justify-content:space-between;font-family:'Roboto Mono',monospace;font-size:10px;color:#A8A8A0"><span>今</span><span>1年</span><span>2年</span><span>3年</span><span>4年</span><span>5年</span></span>
+      <sc-if value="{{ yr.hint }}" hint-placeholder-val="{{ true }}"><span style="align-self:flex-start;font-size:12px;font-weight:700;color:#A87A00;display:flex;align-items:center;gap:6px">つまみを右へ動かしてみてください <span style="display:inline-block;animation:mk-nudge 1.2s ease-in-out infinite">→</span></span></sc-if>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:end;border-top:1px dashed rgba(26,26,46,0.15);padding-top:12px;margin-top:4px">
+        <span style="font-size:12px;font-weight:700">もみかるでの、独立時の加盟金</span>
+        <span style="font-family:Inter,sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.02em;color:{{ yr.feeColor }};font-variant-numeric:tabular-nums">¥{{ yr.feeYen }}</span>
+        <span style="grid-column:1 / -1;height:10px;border-radius:999px;background:#F2F2EE;overflow:hidden;display:block"><span style="display:block;height:100%;width:{{ yr.feePct }};background:#1A1A2E;border-radius:999px;transition:width .4s cubic-bezier(0.22,1,0.36,1)"></span></span>
+        <span style="grid-column:1 / -1;font-size:11px;color:#6B6B6B">施術1時間ごとに500円ずつ減り、1,000時間で0円に。もみかる側の ✓ は {{ yr.count }} / 5 項目</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+      <div style="display:flex;flex-direction:column;background:#F2F2EE;border-radius:14px;overflow:hidden">
+        <span style="padding:12px 14px;font-size:12px;font-weight:700;color:#4A4A5E;border-bottom:1px solid rgba(26,26,46,0.08)">一般的なお店で</span>
+        <sc-for list="{{ yr.gen }}" as="g" hint-placeholder-count="5">
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:3px;border-bottom:1px solid rgba(26,26,46,0.06)">
+            <span style="font-size:10px;color:#6B6B6B">{{ g.k }}</span>
+            <span style="font-size:13px;font-weight:700;line-height:1.45;color:#6B6B6B">{{ g.v }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;background:#FFFFFF;border:1.5px solid #F5B800;border-radius:14px;overflow:hidden">
+        <span style="padding:12px 14px;font-size:12px;font-weight:700;background:#FFF8DC;border-bottom:1px solid rgba(245,184,0,0.3)">もみかるで</span>
+        <sc-for list="{{ yr.mk }}" as="m" hint-placeholder-count="5">
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:3px;border-bottom:1px solid rgba(26,26,46,0.06);background:{{ m.bg }};transition:background .4s">
+            <span style="font-size:10px;color:#6B6B6B">{{ m.k }}</span>
+            <span style="font-size:13px;font-weight:700;line-height:1.45;color:#1A1A2E;display:flex;gap:6px"><span style="color:#A87A00;opacity:{{ m.on }};transition:opacity .3s">✓</span><span>{{ m.v }}</span></span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <p style="margin:0;font-size:10px;line-height:1.75;color:#6B6B6B">※ 週5日・1日5施術（1施術1時間）で計算したイメージです。メニュー習得のペース、認定証の取得条件・時期は面接でご説明します。</p>
+  </div>
+</section>
+
+<section ref="{{ simRef }}" style="background:#FFFFFF;scroll-margin-top:60px">
+  <div style="max-width:1160px;margin:0 auto;padding:64px 16px;display:flex;flex-direction:column;gap:28px">
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:12px;max-width:720px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:2px;background:#F5B800"></span><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#6B6B6B">INCOME_SIMULATOR</span></div>
+      <h2 style="margin:0;font-size:clamp(23px,6.4cqi,34px);font-weight:700;line-height:1.5">実際、いくらになるのか。<br>あなたのペースで試算する。</h2>
+      <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E">高単価メニューを担当すると、平均単価が上がります。スライダーを動かして試してください。50代女性で、手取り月70万円を稼ぐセラピストもいます（※個別事例）。</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:20px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:20px;padding:20px;background:#F8F8F5;border-radius:16px;border:1px solid rgba(26,26,46,0.08)">
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;background:#FFFFFF;padding:4px;border-radius:999px;border:1px solid rgba(26,26,46,0.1)">
+          <sc-for list="{{ presets }}" as="p" hint-placeholder-count="3">
+            <button type="button" onClick="{{ p.pick }}" style="min-height:40px;border:none;border-radius:999px;background:{{ p.bg }};color:#1A1A2E;font-size:12px;font-weight:700;cursor:pointer;transition:background .25s;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.25"><span>{{ p.name }}</span><span style="font-size:10px;font-weight:500;color:#4A4A5E">{{ p.sub }}</span></button>
+          </sc-for>
+        </div>
+        <sc-for list="{{ sliders }}" as="s" hint-placeholder-count="3">
+          <label style="display:flex;flex-direction:column;gap:6px">
+            <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><span style="font-size:13px;font-weight:700">{{ s.label }}</span><span style="font-family:Inter,sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.02em">{{ s.v }}<span style="font-family:'Noto Sans JP';font-size:12px;font-weight:700;margin-left:2px">{{ s.unit }}</span></span></span>
+            <input type="range" min="{{ s.min }}" max="{{ s.max }}" step="{{ s.step }}" value="{{ s.v }}" onChange="{{ s.onChange }}" aria-label="{{ s.label }}">
+            <span style="display:flex;justify-content:space-between;font-family:'Roboto Mono',monospace;font-size:10px;color:#A8A8A0"><span>{{ s.min }}</span><span>{{ s.max }}</span></span>
+          </label>
+        </sc-for>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:700">歩合率</span><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px"><sc-for list="{{ comms }}" as="m" hint-placeholder-count="3"><button type="button" onClick="{{ m.pick }}" style="min-height:40px;border-radius:8px;border:1.5px solid {{ m.bd }};background:{{ m.bg }};font-family:Inter,sans-serif;font-weight:800;font-size:15px;cursor:pointer;color:#1A1A2E;transition:background .2s,border-color .2s">{{ m.v }}%</button></sc-for></div></div>
+        <span style="font-family:'Roboto Mono',monospace;font-size:11px;color:#6B6B6B;border-top:1px dashed rgba(26,26,46,0.15);padding-top:12px">月の施術数 ≈ {{ calc.sessions }}回 / 指名 ≈ {{ calc.noms }}件</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:#1A1A2E;color:#FFFFFF;border-radius:16px;padding:24px 22px;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:12px;color:rgba(255,255,255,0.7)">あなたの報酬の目安（月）</span>
+              <span style="font-family:Inter,sans-serif;font-weight:800;font-size:clamp(44px,13cqi,64px);letter-spacing:-0.03em;line-height:1;color:#F5B800;font-variant-numeric:tabular-nums">{{ disp.net }}<span style="font-family:'Noto Sans JP';font-size:16px;font-weight:700;margin-left:4px;color:#FFFFFF">万円</span></span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">
+              <span style="font-size:11px;color:rgba(255,255,255,0.7)">年収換算</span>
+              <span style="font-family:Inter,sans-serif;font-weight:700;font-size:22px;font-variant-numeric:tabular-nums">{{ disp.gross }}<span style="font-family:'Noto Sans JP';font-size:11px;margin-left:2px">万円</span></span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;font-family:'Roboto Mono',monospace;font-size:11px;line-height:1.6;color:rgba(255,255,255,0.75);border-top:1px solid rgba(255,255,255,0.12);padding-top:12px">
+            <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;line-height:1.6"><span style="flex:1;min-width:0">施術 {{ calc.sessions }}回 × ¥{{ calc.priceLabel }} × 歩合{{ calc.comm }}%</span><span style="flex:none;white-space:nowrap">{{ calc.base }}万</span></span>
+            <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;line-height:1.6"><span style="flex:1;min-width:0">指名料 ¥{{ calc.feeLabel }} × {{ calc.noms }}件</span><span style="flex:none;white-space:nowrap;color:#F5B800">+{{ calc.nomMonth }}万</span></span>
+          </div>
+        </div>
+        <p style="margin:0;font-size:10px;line-height:1.75;color:#6B6B6B">※ 試算モデルです。平均単価は担当メニューにより変動（高単価メニューを担当するほど上がります）。月4.33週、1施術1時間で計算。報酬は税金・経費を差し引く前の金額です。歩合率は50〜60%（条件により決定）。実際の収入を保証するものではありません。</p>
+      </div>
+    </div>
+    <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:0;border:1px solid rgba(26,26,46,0.1);border-radius:16px;overflow:hidden;margin-top:12px">
+      <div style="padding:24px 22px;display:flex;flex-direction:column;gap:14px;background:#FFFFFF">
+        <span style="font-family:'Roboto Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.14em;color:#A87A00">REAL_VOICE</span>
+        <p style="margin:0;font-family:'Noto Serif JP',serif;font-size:16px;line-height:1.95;font-weight:600;text-wrap:pretty">「好きな手技を選んで、好きなだけ覚えられる。施術が楽しくなったのは、業界に入って初めての感覚かもしれません。移籍3ヶ月で前職を超えました。」</p>
+        <span style="display:flex;align-items:center;gap:12px"><img src="assets/voice-st.jpg" alt="S.Tさん" style="width:64px;height:64px;flex:none;border-radius:50%;object-fit:cover;display:block;border:2px solid #F5B800"><span style="font-size:12px;color:#4A4A5E">S.Tさん（32歳・女性）／前職：大手リラクチェーン6年</span></span>
+      </div>
+      <div data-countwrap="" style="padding:24px 22px;display:flex;flex-direction:column;gap:14px;justify-content:center;background:#F8F8F5">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="display:flex;justify-content:space-between;font-size:12px;color:#6B6B6B"><span>前職（手取り）</span><span style="font-family:Inter,sans-serif;font-weight:700;color:#1A1A2E"><span data-count="27">27</span>万円</span></span>
+          <span style="height:10px;background:#E5E5DF;border-radius:999px;overflow:hidden;display:block"><span style="display:block;height:100%;width:67%;background:#A8A8A0;border-radius:999px"></span></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="display:flex;justify-content:space-between;font-size:12px;color:#1A1A2E;font-weight:700"><span>移籍6ヶ月後（手取り）</span><span style="font-family:Inter,sans-serif;font-weight:800"><span data-count="40">40</span>万円</span></span>
+          <span style="height:10px;background:#E5E5DF;border-radius:999px;overflow:hidden;display:block"><span style="display:block;height:100%;width:100%;background:#F5B800;border-radius:999px"></span></span>
+        </div>
+        <span style="font-size:10px;color:#6B6B6B">※ 個別事例です。収入は勤務日数・店舗・時期により異なります。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section style="background:#FFFFFF;border-top:1px solid rgba(26,26,46,0.08)">
+  <div data-reveal="" style="max-width:1160px;margin:0 auto;padding:56px 16px 0;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:2px;background:#F5B800"></span><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#6B6B6B">INSIDE_MOMIKARU</span></div>
+    <h2 style="margin:0;font-size:clamp(22px,6cqi,30px);font-weight:700;line-height:1.5">働く場所の空気を、先に見ておく。</h2>
+    <span style="font-size:10px;color:#6B6B6B;margin-top:-8px">※ 店内・外観以外の写真はイメージです。</span>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+      <div style="grid-column:1 / -1;aspect-ratio:16/9;position:relative"><image-slot id="relax-gal-1" src="assets/gallery-1.jpg" shape="rounded" radius="12" placeholder="もみかる総本店（16:9）"></image-slot><span style="position:absolute;left:10px;bottom:10px;font-size:11px;font-weight:700;background:rgba(255,255,255,0.92);color:#1A1A2E;padding:5px 10px;border-radius:999px;pointer-events:none">もみかる総本店（実際の店内）</span></div>
+      <div style="aspect-ratio:1/1"><image-slot id="relax-gal-2" src="assets/gallery-2.jpg" shape="rounded" radius="12" placeholder="研修の様子"></image-slot></div>
+      <div style="aspect-ratio:1/1"><image-slot id="relax-gal-3" src="assets/gallery-3.jpg" shape="rounded" radius="12" placeholder="スタッフ同士の休憩・会話"></image-slot></div>
+      <div style="aspect-ratio:1/1;position:relative"><image-slot id="relax-gal-4" src="assets/shop-shizuoka.jpg" fit="cover" shape="rounded" radius="12" placeholder="店舗外観"></image-slot><span style="position:absolute;left:8px;bottom:8px;font-size:10px;font-weight:700;background:rgba(255,255,255,0.92);color:#1A1A2E;padding:4px 9px;border-radius:999px;pointer-events:none">静岡本店（実際の外観）</span></div>
+      <div style="aspect-ratio:1/1"><image-slot id="relax-gal-5" src="assets/gallery-5.jpg" shape="rounded" radius="12" placeholder="スタッフ集合"></image-slot></div>
+    </div>
+  </div>
+</section>
+
+<section style="background-color:#1A1A2E;background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1.2px);background-size:18px 18px;color:#FFFFFF">
+  <div style="max-width:1160px;margin:0 auto;padding:72px 16px;display:flex;flex-direction:column;gap:28px">
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:12px;max-width:720px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:2px;background:#F5B800"></span><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#F5B800">STORY_02 — 自分のサロンを持つ日</span></div>
+      <h2 style="margin:0;font-family:'Noto Serif JP',serif;font-size:clamp(24px,6.8cqi,38px);font-weight:700;line-height:1.5;color:#FFFFFF">そして5年後。<br>働いてきた時間が、<span style="color:#F5B800">自分の店</span>になる。</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px">
+      <sc-for list="{{ story2 }}" as="d" hint-placeholder-count="4">
+        <div data-reveal="" style="display:flex;flex-direction:column;gap:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:10px 10px 16px">
+          <div style="position:relative;container-type:inline-size;border-radius:8px;overflow:hidden;background:#2C3E50">
+            <img src="{{ d.img }}" alt="{{ d.alt }}" loading="lazy" style="display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover">
+            <span style="position:absolute;left:{{ d.l }};top:{{ d.t }};width:{{ d.w }};height:{{ d.h }};display:flex;align-items:center;justify-content:center;padding:0 3.5%;text-align:center;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:3.3cqi;line-height:1.45;color:#1A1A2E;white-space:pre-line;word-break:keep-all">{{ d.text }}</span>
+            <sc-if value="{{ d.phone }}" hint-placeholder-val="{{ false }}"><div data-countwrap="" style="position:absolute;left:68.6%;top:23.6%;width:18.1%;height:53.3%;border-radius:2.4cqi;background:#1A1A2E;color:#FFFFFF;display:flex;flex-direction:column;gap:1.2cqi;padding:3.6cqi 1.6cqi 1.8cqi;overflow:hidden;font-family:'Noto Sans JP',sans-serif">
+              <span style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:1.05cqi;letter-spacing:0.08em;color:#F5B800">MOMIKARU STAFF</span><span style="width:1.2cqi;height:1.2cqi;border-radius:50%;background:#06C755"></span></span>
+              <span style="font-size:1.3cqi;font-weight:700;color:rgba(255,255,255,0.85)">独立支援制度</span>
+              <span style="display:flex;flex-direction:column;gap:0.4cqi;background:rgba(255,255,255,0.08);border-radius:1.2cqi;padding:1.2cqi">
+                <span style="font-size:1.05cqi;color:rgba(255,255,255,0.7)">累計施術時間</span>
+                <span style="font-family:Inter,sans-serif;font-weight:800;font-size:2.6cqi;line-height:1;font-variant-numeric:tabular-nums"><span data-count="1000">1000</span><span style="font-size:1.2cqi;margin-left:0.3cqi">h</span></span>
+                <span style="height:0.9cqi;border-radius:999px;background:rgba(255,255,255,0.15);overflow:hidden;display:block;margin-top:0.4cqi"><span data-grow="" style="display:block;height:100%;width:100%;background:#F5B800;border-radius:999px;transform-origin:0 50%"></span></span>
+              </span>
+              <span style="display:flex;flex-direction:column;gap:0.3cqi;margin-top:0.4cqi">
+                <span style="font-size:1.05cqi;color:rgba(255,255,255,0.7)">独立時の加盟金</span>
+                <span style="font-size:1.1cqi;color:rgba(255,255,255,0.5);text-decoration:line-through">¥500,000</span>
+                <span style="font-family:Inter,sans-serif;font-weight:800;font-size:3.6cqi;line-height:1;color:#F5B800;font-variant-numeric:tabular-nums">¥<span data-countdown="500000">0</span></span>
+              </span>
+              <span style="margin-top:auto;align-self:center;font-size:1.3cqi;font-weight:900;background:#F5B800;color:#1A1A2E;padding:0.6cqi 1.8cqi;border-radius:999px">達成</span>
+            </div></sc-if>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:0 6px">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:11px;color:#F5B800">STEP {{ d.no }}</span>
+              <sc-if value="{{ d.tag }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:700;color:#1A1A2E;background:#F5B800;padding:2px 8px;border-radius:999px">{{ d.tag }}</span></sc-if>
+            </div>
+            <span style="font-size:14px;line-height:1.75;color:rgba(255,255,255,0.88)">{{ d.cap }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="background:#FFFFFF">
+  <div data-reveal="" style="max-width:1160px;margin:0 auto;padding:64px 16px;display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:720px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:2px;background:#F5B800"></span><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#6B6B6B">FOR_YOUR_FUTURE</span></div>
+      <h2 style="margin:0;font-family:'Noto Serif JP',serif;font-size:clamp(23px,6.4cqi,34px);font-weight:700;line-height:1.55">いつか自分のお店を、<br>と考えている方へ。</h2>
+      <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E">今すぐ独立を考えていなくても構いません。店内独立（ベッドパートナー）なら、ゼロから開業するよりも費用を大きく抑えられます。</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:rgba(26,26,46,0.1);border:1px solid rgba(26,26,46,0.1);border-radius:12px;overflow:hidden">
+      <div style="background:#FFFFFF;padding:18px 16px;display:flex;flex-direction:column;gap:6px">
+        <span style="font-size:11px;color:#6B6B6B">月の固定費</span>
+        <span style="font-size:12px;color:#6B6B6B;text-decoration:line-through">約28〜44万円</span>
+        <span style="font-family:Inter,sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.02em;line-height:1.1">10<span style="font-family:'Noto Sans JP';font-size:12px">万円＋売上の15％</span></span>
+      </div>
+      <div style="background:#FFFFFF;padding:18px 16px;display:flex;flex-direction:column;gap:6px">
+        <span style="font-size:11px;color:#6B6B6B">加盟金（初期投資）</span>
+        <span style="font-size:12px;color:#6B6B6B;text-decoration:line-through">約423〜850万円</span>
+        <span style="font-family:Inter,sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.02em;line-height:1.1">50<span style="font-family:'Noto Sans JP';font-size:12px">万円</span></span>
+        <span style="font-size:10px;color:#A87A00;font-weight:700">施術時間で0円まで減額可</span>
+      </div>
+    </div>
+    <p style="margin:-12px 0 0;font-size:10px;line-height:1.7;color:#6B6B6B">※ ベッドパートナー独立の数値（税別）。月の固定費10万円（ベッド使用料・光熱費等）＋システム手数料 売上の15％、ロイヤリティ0円。個人で独立した場合の初期費用は約423〜850万円、月の固定費は約28〜44万円が目安です。</p>
+    <a href="https://momikaru-recruit.netlify.app/owner" data-ripple="rgba(245,184,0,0.25)" style="position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:12px;align-items:center;padding:16px 18px;background-color:#FFFFFF;background-image:linear-gradient(90deg,#FFF8DC,#FFF8DC);background-repeat:no-repeat;background-size:0% 100%;border:1.5px solid rgba(26,26,46,0.12);border-radius:12px;transition:background-size .45s cubic-bezier(0.22,1,0.36,1),border-color .2s" style-hover="background-size:100% 100%;border-color:#F5B800">
+      <span style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'Roboto Mono',monospace;font-size:10px;color:#6B6B6B">PATH_06</span><span style="font-size:15px;font-weight:700">独立を目指す方のページを見る</span></span>
+      <span style="width:34px;height:34px;border-radius:50%;background:#1A1A2E;color:#F5B800;display:flex;align-items:center;justify-content:center">→</span>
+    </a>
+  </div>
+</section>
+
+<section style="background:#FFFFFF;border-top:1px solid rgba(26,26,46,0.08)">
+  <div data-reveal="" style="max-width:820px;margin:0 auto;padding:64px 16px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:2px;background:#F5B800"></span><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#6B6B6B">FAQ</span></div>
+      <h2 style="margin:0;font-size:clamp(23px,6.4cqi,34px);font-weight:700;line-height:1.5">経験者の方から、<br>よく聞かれること。</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;border-top:1px solid rgba(26,26,46,0.1)">
+      <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="8">
+        <div style="border-bottom:1px solid rgba(26,26,46,0.1)">
+          <button type="button" onClick="{{ q.toggle }}" aria-expanded="{{ q.exp }}" style="width:100%;display:grid;grid-template-columns:24px minmax(0,1fr) 28px;gap:10px;align-items:center;padding:16px 0;background:none;border:none;cursor:pointer;text-align:left;color:#1A1A2E;min-height:56px">
+            <span style="font-family:Inter,sans-serif;font-weight:800;font-size:15px;color:#A87A00">Q</span>
+            <span style="font-size:15px;font-weight:700;line-height:1.55">{{ q.q }}</span>
+            <span style="width:28px;height:28px;border-radius:50%;background:{{ q.ibg }};display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;transform:rotate({{ q.rot }});transition:transform .3s,background .3s">+</span>
+          </button>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;padding:0 38px 18px 0">
+              <span style="font-family:Inter,sans-serif;font-weight:800;font-size:15px;color:#1A1A2E">A</span>
+              <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E">{{ q.a }}</p>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <a href="https://lin.ee/PFy8myp" style="align-self:flex-start;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#F5B800"><span style="width:7px;height:7px;border-radius:50%;background:#06C755"></span>ほかの質問は、LINEで気軽にどうぞ</a>
+  </div>
+</section>
+
+<section style="background:#F8F8F5;border-top:1px solid rgba(26,26,46,0.08)">
+  <div data-reveal="" style="max-width:820px;margin:0 auto;padding:64px 16px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:2px;background:#F5B800"></span><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#6B6B6B">FLOW</span></div>
+      <h2 style="margin:0;font-size:clamp(23px,6.4cqi,34px);font-weight:700;line-height:1.5">応募ではなく、<br>相談から始めてください。</h2>
+    </div>
+    <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column">
+      <sc-for list="{{ flow }}" as="f" hint-placeholder-count="5">
+        <li style="display:grid;grid-template-columns:36px minmax(0,1fr);gap:14px">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <span style="width:36px;height:36px;flex:none;border-radius:50%;background:{{ f.bg }};border:2px solid #F5B800;display:flex;align-items:center;justify-content:center;font-family:Inter,sans-serif;font-weight:800;font-size:13px">{{ f.no }}</span>
+            <sc-if value="{{ f.line }}" hint-placeholder-val="{{ true }}"><span style="flex:1;width:2px;background:rgba(245,184,0,0.35);min-height:20px"></span></sc-if>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:6px 0 24px">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><h3 style="margin:0;font-size:16px;font-weight:700;line-height:1.5">{{ f.t }}</h3><span style="font-family:'Roboto Mono',monospace;font-size:10px;font-weight:700;background:#FFFFFF;border:1px solid rgba(26,26,46,0.12);padding:2px 8px;border-radius:999px;color:#4A4A5E">{{ f.time }}</span></div>
+            <p style="margin:0;font-size:13px;line-height:1.85;color:#4A4A5E">{{ f.b }}</p>
+          </div>
+        </li>
+      </sc-for>
+    </ol>
+  </div>
+</section>
+
+<section style="background-color:#1A1A2E;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1.2px);background-size:18px 18px;color:#FFFFFF">
+  <div data-reveal="" style="max-width:720px;margin:0 auto;padding:64px 16px 72px;display:flex;flex-direction:column;gap:20px;text-align:center;align-items:center">
+    <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#F5B800">LET'S_TALK</span>
+    <h2 style="margin:0;font-family:'Noto Serif JP',serif;font-size:clamp(23px,6.4cqi,34px);font-weight:700;line-height:1.6;color:#FFFFFF">応募の前に、<br>30分だけ情報交換しませんか。</h2>
+    <p style="margin:0;font-size:14px;line-height:1.95;color:rgba(255,255,255,0.8);text-wrap:pretty">あなたの経験・得意な手技・希望条件をもとに、具体的な収入の試算と働き方の選択肢をご提示します。業界経験者なら、30分で違いを見極められるはずです。</p>
+    <div style="display:flex;flex-direction:column;gap:10px;width:100%;max-width:420px">
+      <button type="button" onClick="{{ openBooking }}" data-ripple="rgba(26,26,46,0.15)" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;border:none;cursor:pointer;background-color:#F5B800;background-image:linear-gradient(#FFFFFF,#FFFFFF);background-repeat:no-repeat;background-size:0% 100%;color:#1A1A2E;border-radius:999px;font-size:16px;font-weight:700;transition:background-size .45s cubic-bezier(0.22,1,0.36,1)" style-hover="background-size:100% 100%">面接の日時を選ぶ（WEB・来店）→</button>
+      <a href="https://lin.ee/PFy8myp" data-ripple="rgba(255,255,255,0.2)" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;border:1.5px solid rgba(255,255,255,0.3);border-radius:999px;font-size:14px;font-weight:700;color:#FFFFFF" style-hover="border-color:#FFFFFF;color:#FFFFFF"><span style="width:8px;height:8px;border-radius:50%;background:#06C755"></span>LINEで質問だけしてみる</a>
+      <a href="tel:0542855665" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:8px;font-size:13px;color:rgba(255,255,255,0.85)" style-hover="color:#F5B800">電話 <span style="font-family:Inter,sans-serif;font-weight:700">054-285-5665</span>（平日 9:00〜18:00）</a>
+    </div>
+    <a href="https://momikaru-recruit.netlify.app/" style="font-size:12px;color:rgba(255,255,255,0.7);text-decoration:underline;text-underline-offset:3px;margin-top:8px" style-hover="color:#FFFFFF">自分の状況に合わない場合は → 他の働き方を見る</a>
+  </div>
+</section>
+
+<footer style="background:#FFFFFF;border-top:1px solid rgba(26,26,46,0.08)">
+  <div style="max-width:1160px;margin:0 auto;padding:24px 16px 32px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+    <img src="assets/logo-momikaru.png" alt="もみかる" style="height:24px;width:auto;display:block">
+    <span style="font-size:11px;color:#6B6B6B">© 株式会社ドラミカンパニー</span>
+  </div>
+</footer>
+
+<sc-if value="{{ showSticky }}" hint-placeholder-val="{{ true }}">
+  <div style="position:sticky;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(26,26,46,0.08)">
+    <div style="max-width:560px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px">
+      <button type="button" onClick="{{ openBooking }}" data-ripple="rgba(255,255,255,0.35)" style="position:relative;overflow:hidden;min-height:48px;background:#F5B800;color:#1A1A2E;border:none;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer;padding:0 16px">面接を予約（WEB・来店OK）</button>
+      <a href="https://lin.ee/PFy8myp" data-ripple="rgba(255,255,255,0.25)" style="position:relative;overflow:hidden;display:flex;align-items:center;gap:6px;min-height:48px;padding:0 16px;background:#1A1A2E;color:#FFFFFF;border-radius:999px;font-size:13px;font-weight:700" style-hover="color:#FFFFFF"><span style="width:7px;height:7px;border-radius:50%;background:#06C755"></span>LINE</a>
+    </div>
+  </div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;intro&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;演出&quot;},&quot;stickyBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;導線&quot;}}">
+const KEY = 'momikaru-recruit-v2-result';
+const PRESETS = [
+  { name:'Light', sub:'週3・副業', days:3, per:7, rate:30, fee:500, comm:50, price:4500 },
+  { name:'Standard', sub:'週5・専業', days:5, per:6, rate:50, fee:500, comm:55, price:5500 },
+  { name:'Top', sub:'週6・本気', days:6, per:9, rate:70, fee:1000, comm:60, price:7000 },
+];
+const REASONS = [
+  { k:'技術の証明', v:'認定証', u:'', d:'静岡リラクゼーション事業協同組合の認定証を発行。' },
+  { k:'独立支援制度', v:'0', u:'円まで', d:'独立時の加盟金が、施術時間に応じて減額。' },
+  { k:'習得できる技術', v:'15', u:'メニュー', d:'好きな手技を、好きなだけ。' },
+  { k:'集客', v:'131', u:'店舗', d:'本部の集客力で、施術に集中できる。' },
+];
+const STORY = [
+  { time:'07:40', img:'assets/manga/s00-1.jpg', alt:'朝、ベッドで予約表を見るセラピスト', bubble:{ l:'60%', t:'4%', w:'32%', h:'29%', text:'今日も予約、\n埋まってるな' }, q:'', b:'起きて最初に見るのは、シフトと予約表。' },
+  { time:'10:00', img:'assets/manga/s00-2.jpg', alt:'無表情で施術を続けるセラピスト', bubble:null, q:'考えなくても、手が勝手に動く。', b:'一人目。60分の全身もみほぐし。' },
+  { time:'13:30', img:'assets/manga/s00-3.jpg', alt:'指名客に感謝されるセラピストと明細', bubble:{ l:'70%', t:'4.5%', w:'27.5%', h:'26%', text:'また指名して\nくれたんですね' }, q:'', b:'嬉しい。でも、もしこのお店を辞めたら、この関係も終わってしまう。' },
+  { time:'17:00', img:'assets/manga/s00-4.jpg', alt:'手首の痛みをこらえるセラピスト', bubble:{ l:'65.5%', t:'6.6%', w:'32%', h:'26%', text:'休んだら、\n収入はゼロ…' }, q:'', b:'手首に、小さな痛み。だから言い出せない。' },
+  { time:'21:10', img:'assets/manga/s00-5.jpg', alt:'夜道をひとりで帰るセラピスト', bubble:{ l:'58.5%', t:'3.7%', w:'34%', h:'25%', text:'10年後も、\n続けられるのかな' }, q:'', b:'帰り道。ふと浮かんで、すぐに考えるのをやめる。' },
+  { time:'22:30', img:'assets/manga/s00-6.jpg', alt:'寝る前にスマホで求人を見るセラピスト', bubble:null, q:'寝る前に、そっと求人を開く。', b:'——今、このページを見ているあなたのように。', last:true },
+];
+const STORY1 = [
+  { l:'56%', t:'2.3%', w:'31%', h:'25%', text:'30分だけ、\n話を聞いてみよう', tag:'WEB面接', cap:'スマホで30分のWEB面接。来社不要、話を聞くだけでもOK。', alt:'スマホでWEB面接を受けるセラピスト' },
+  { l:'66.6%', t:'6.4%', w:'32%', h:'34%', text:'休んでも、\n収入が保障される…？', tag:'収入保障共済', cap:'業務委託でも、ケガ・病気のときの収入が保障されると知る。', alt:'収入保障の話に驚くセラピスト' },
+  { l:'70.8%', t:'3.5%', w:'28%', h:'25.5%', text:'施術が、楽しい', tag:'15メニュー研修', cap:'15のメニューから、学びたい技術を選んで習得。', alt:'研修で講師から学ぶセラピスト' },
+  { l:'69.2%', t:'3%', w:'29.4%', h:'27%', text:'私の技術が、\n認められた', tag:'認定証', cap:'静岡リラクゼーション事業協同組合の認定証を取得。', alt:'認定証を受け取るセラピスト' },
+  { l:'64.4%', t:'3.9%', w:'30%', h:'27%', text:'休めるって、\nこんなに安心なんだ', tag:'収入保障共済', cap:'手首を痛めても、収入の心配をせずに休める。', alt:'自宅で安心して休むセラピスト' },
+  { l:'54.9%', t:'3.5%', w:'26.6%', h:'22.3%', text:'移籍して、\n本当によかった', tag:'', cap:'仲間と一緒に、長く続けられる場所に。', alt:'仲間と笑い合うセラピスト' },
+].map((d, i) => ({ ...d, no: String(i + 1).padStart(2, '0'), img: 'assets/manga/s01-' + (i + 1) + '.jpg' }));
+const STORY2 = [
+  { l:'1.2%', t:'3.2%', w:'27.6%', h:'24.9%', text:'加盟金、\nゼロになった！', phone:true, tag:'独立支援制度', cap:'施術1,000時間で、独立時の加盟金が0円に。スタッフ専用アプリでいつでも確認できる。', alt:'スタッフアプリで加盟金0円達成を見て喜ぶセラピスト' },
+  { l:'29.6%', t:'3.5%', w:'24.9%', h:'20.3%', text:'同じお店で、\n独立できる！？', phone:false, tag:'店内独立', cap:'今のお店・今のベッドのまま、独立という選択肢。', alt:'マネージャーと独立の相談をするセラピスト' },
+  { l:'36.9%', t:'2%', w:'27.4%', h:'21.2%', text:'これからも、\nよろしくです', phone:false, tag:'', cap:'お客様との関係は、何ひとつ変わらない。', alt:'常連のお客様と笑顔で話すセラピスト' },
+  { l:'50.8%', t:'2.8%', w:'27.8%', h:'21.4%', text:'これが、\n私の店', phone:false, tag:'', cap:'働いてきた時間が、自分の店になる。', alt:'自分のベッドの前で誇らしげに立つセラピスト' },
+].map((d, i) => ({ ...d, no: String(i + 1).padStart(2, '0'), img: 'assets/manga/s02-' + (i + 1) + '.jpg' }));
+const REALITIES = [
+  { no:'01', t:'頑張っても、稼ぎが頭打ちになる。', b:'担当できるのはほぐし中心の低単価メニューだけ。客数もお店の集客力次第で、技術が上がっても収入に反映されにくい構造です。' },
+  { no:'02', t:'ケガや病気で休めば、収入はゼロ。', b:'業務委託は自由な反面、手や腰を痛めて休んだ瞬間に収入が止まります。体が資本の仕事なのに、守る仕組みがないのが当たり前でした。' },
+  { no:'03', t:'その技術を、証明するものがない。', b:'何年積み上げても、評価されるのはお店の中だけ。外に出れば、経験年数を口で伝えるしかありません。' },
+  { no:'04', t:'辞めたら、お客様との関係も終わる。', b:'独立するには、退職してゼロから開業するしかない。何年も通ってくれたお客様とも、そこで途切れてしまいます。' },
+];
+const COMPARE = [
+  { k:'習得できる技術', a:'1〜3メニュー程度', b:'15メニューから選んで習得' },
+  { k:'ケガ・病気で休んだとき', a:'業務委託は収入ゼロ', b:'収入保障共済で収入を保障' },
+  { k:'技術の証明', a:'お店の中だけの評価', b:'協同組合の認定証を発行' },
+  { k:'集客', a:'自分でも集客が必要なことも', b:'本部が集客。施術に集中' },
+  { k:'独立するとき', a:'退職して、ゼロから開業', b:'独立支援制度で、店内独立も' },
+];
+const MENUS = ['全身もみほぐし','ヘッドスパ','睡眠系ヘッド','ハンド','リフレ','足つぼ','ストレッチ','骨盤矯正','リンパ','痩身リンパ','フェイシャル','コルギ','ハーブピーリング','脱毛','ホワイトニング'];
+const INDEP_A = ['新しい場所で開業し、集客はゼロから','お客様に移転のお知らせが必要','物件・設備の初期投資が大きい','3年以内の廃業率が高い'];
+const INDEP_B = ['同じ店内のベッドで、そのまま独立','お客様との関係はそのまま','翌日から売上が立つ','もみかるの屋号で続けられる'];
+const FLOW = [
+  { t:'面接の予約・LINEで問い合わせ', time:'1分', b:'カレンダーから日時を選ぶだけ。「話を聞きたい」だけでも歓迎です。' },
+  { t:'30分の面接（スマホでWEB／お店で対面）', time:'30分', b:'経験年数・得意な手技・希望条件をお聞きし、収入レンジと働き方を具体的にご提示します。' },
+  { t:'店舗見学・現場の雰囲気確認', time:'1〜2時間', b:'現役スタッフと話す時間を設けます。求人情報には書かれない「リアル」を確認してください。' },
+  { t:'業務委託契約の締結', time:'当日', b:'研修費・登録料・制服費用は無料。経験者は研修期間を短縮できる場合があります。' },
+  { t:'稼働開始', time:'2〜4週間', b:'問い合わせから稼働開始まで、目安は2〜4週間です。' },
+];
+const FAQS = [
+  { q:'今のお店の常連さんに、移籍を伝えてもいいですか？', a:'今のお店との契約内容（競業に関する取り決めなど）によって異なります。トラブルにならないよう、面接で一緒に確認しましょう。' },
+  { q:'他のお店と掛け持ちはできますか？', a:'業務委託契約のため、掛け持ちも可能です。シフトの組み方は面接でご相談ください。' },
+  { q:'ノルマや罰金はありますか？', a:'売上ノルマや罰金はありません。自分のペースで働けます。' },
+  { q:'報酬はいつ支払われますか？', a:'月末締め・翌月払いです。支払日の詳細は契約時にご案内します。' },
+  { q:'何歳まで働けますか？', a:'年齢の上限はありません。50代で手取り月70万円を稼ぐセラピストもいます（※個別事例）。' },
+  { q:'経験者でも研修はありますか？', a:'経験や得意な手技に合わせて、研修期間を短縮できる場合があります。新しい技術は、15メニューから選んで習得できます。' },
+  { q:'収入保障共済の掛金や保障内容は？', a:'保障の対象・金額・期間、掛金については、面接で詳しくご説明します。' },
+  { q:'どの店舗で働けますか？', a:'131店舗の中から、通いやすい店舗をご相談いただけます。' },
+];
+const r1 = v => (Math.round(v * 10) / 10).toFixed(1);
+
+class Component extends DCLogic {
+  state = { certName:'', years:0, intro:0, days:5, per:6, rate:50, fee:500, comm:55, price:5500, preset:1, faq:0, fromQuiz:false, dNet:0, dGross:0, dYear:0 };
+  yrsRef = React.createRef(); rootRef = React.createRef(); heroRef = React.createRef(); progRef = React.createRef(); simRef = React.createRef();
+  timers = [];
+  later(fn, ms) { const t = setTimeout(fn, ms); this.timers.push(t); }
+  reduced() { return typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches; }
+
+  calc(s = this.state) {
+    const sessions = Math.round(s.days * 4.33 * s.per);
+    const noms = Math.round(sessions * s.rate / 100);
+    const base = s.price * sessions * s.comm / 100;
+    const nom = s.fee * noms;
+    const net = base + nom;
+    return { sessions, noms, comm:s.comm, priceLabel:s.price.toLocaleString('en-US'), feeLabel:s.fee.toLocaleString('en-US'), gross: net * 12, net, nomYear: nom * 12, base: r1(base / 10000), nomMonth: r1(nom / 10000), months: Math.max(1, Math.ceil(1000 / Math.max(1, sessions))) };
+  }
+  tween() {
+    const c = this.calc();
+    const from = { n:this.state.dNet, g:this.state.dGross, y:this.state.dYear };
+    const to = { n:c.net / 10000, g:c.gross / 10000, y:c.nomYear / 10000 };
+    cancelAnimationFrame(this.raf);
+    if (this.reduced()) { this.setState({ dNet:to.n, dGross:to.g, dYear:to.y }); return; }
+    const t0 = performance.now();
+    const step = t => {
+      const k = Math.min(1, (t - t0) / 450); const e = 1 - Math.pow(1 - k, 3);
+      this.setState({ dNet: from.n + (to.n - from.n) * e, dGross: from.g + (to.g - from.g) * e, dYear: from.y + (to.y - from.y) * e });
+      if (k < 1) this.raf = requestAnimationFrame(step);
+    };
+    this.raf = requestAnimationFrame(step);
+  }
+  set(patch) { this.setState(patch, () => this.tween()); }
+
+  componentDidMount() {
+    try { const r = JSON.parse(localStorage.getItem(KEY) || 'null'); if (r && r.a2 === 'relax') this.setState({ fromQuiz:true }); } catch (e) {}
+    if (!(this.props.intro ?? true) || this.reduced()) this.setState({ intro:3 });
+    else {
+      this.later(() => this.setState({ intro:1 }), 60);
+      this.later(() => this.setState(s => s.intro === 1 ? { intro:2 } : null), 2500);
+      this.later(() => this.setState({ intro:3 }), 3100);
+    }
+    this.tween();
+    const root = this.rootRef.current;
+    if (this.progRef.current) this.progRef.current.style.transform = 'scaleX(0)';
+    this.onScroll = e => {
+      const t = (e.target === document || e.target === document.documentElement) ? document.scrollingElement : e.target;
+      if (!t || !t.contains || !root || !t.contains(root)) return;
+      const p = t.scrollTop / Math.max(1, t.scrollHeight - t.clientHeight);
+      if (this.progRef.current) this.progRef.current.style.transform = `scaleX(${Math.min(1, Math.max(0, p))})`;
+    };
+    document.addEventListener('scroll', this.onScroll, true);
+    if (root && 'IntersectionObserver' in window && !this.reduced()) {
+      this.io = new IntersectionObserver(es => es.forEach(en => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        if (el.hasAttribute('data-reveal')) { el.style.opacity = '1'; el.style.transform = 'none'; }
+        if (el.hasAttribute('data-countwrap')) this.countUp(el);
+        if (el.hasAttribute('data-grow')) el.style.transform = 'scaleX(1)';
+        this.io.unobserve(el);
+      }), { threshold:0.15 });
+      root.querySelectorAll('[data-reveal]').forEach(el => {
+        el.style.opacity = '0'; el.style.transform = 'translateY(28px)';
+        el.style.transition = 'opacity .9s cubic-bezier(0.22,1,0.36,1), transform .9s cubic-bezier(0.22,1,0.36,1)';
+        this.io.observe(el);
+      });
+      root.querySelectorAll('[data-countwrap]').forEach(el => this.io.observe(el));
+      root.querySelectorAll('[data-grow]').forEach(el => { el.style.transform = 'scaleX(0)'; el.style.transition = 'transform 1.4s cubic-bezier(0.22,1,0.36,1) .3s'; this.io.observe(el); });
+    }
+    this.onDown = e => {
+      const el = e.target.closest && e.target.closest('[data-ripple]');
+      if (!el || !root || !root.contains(el) || !el.animate) return;
+      const r = el.getBoundingClientRect(); const d = Math.max(r.width, r.height) * 2.2;
+      const s = document.createElement('span');
+      s.style.cssText = `position:absolute;left:${e.clientX - r.left - d/2}px;top:${e.clientY - r.top - d/2}px;width:${d}px;height:${d}px;border-radius:50%;background:${el.getAttribute('data-ripple')};pointer-events:none;`;
+      el.appendChild(s);
+      s.animate([{ transform:'scale(0)', opacity:1 }, { transform:'scale(1)', opacity:0 }], { duration:650, easing:'cubic-bezier(0.22,1,0.36,1)' }).onfinish = () => s.remove();
+    };
+    if (root) root.addEventListener('pointerdown', this.onDown);
+  }
+  componentWillUnmount() {
+    this.timers.forEach(clearTimeout); cancelAnimationFrame(this.raf);
+    document.removeEventListener('scroll', this.onScroll, true);
+    if (this.io) this.io.disconnect();
+    if (this.rootRef.current) this.rootRef.current.removeEventListener('pointerdown', this.onDown);
+  }
+  countUp(wrap) {
+    wrap.querySelectorAll('[data-countdown]').forEach(n => {
+      const from = +n.getAttribute('data-countdown'); const t0 = performance.now() + 300;
+      const step = t => { const k = Math.min(1, Math.max(0, (t - t0) / 1800)); n.textContent = Math.round(from * (1 - (1 - Math.pow(1 - k, 3)))).toLocaleString('en-US'); if (k < 1) requestAnimationFrame(step); };
+      n.textContent = from.toLocaleString('en-US'); requestAnimationFrame(step);
+    });
+    wrap.querySelectorAll('[data-count]').forEach(n => {
+      const to = +n.getAttribute('data-count'); const t0 = performance.now();
+      const step = t => { const k = Math.min(1, (t - t0) / 1400); n.textContent = String(Math.round(to * (1 - Math.pow(1 - k, 4)))); if (k < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  }
+  scrollToEl(el) {
+    if (!el) return;
+    let p = el.parentElement;
+    while (p && p !== document.body) {
+      const oy = getComputedStyle(p).overflowY;
+      if ((oy === 'auto' || oy === 'scroll') && p.scrollHeight > p.clientHeight) break;
+      p = p.parentElement;
+    }
+    const t = (p && p !== document.body) ? p : null;
+    if (t) t.scrollTo({ top: t.scrollTop + el.getBoundingClientRect().top - t.getBoundingClientRect().top - 60, behavior:'smooth' });
+    else window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 60, behavior:'smooth' });
+  }
+  skipIntro = () => { if (this.state.intro >= 2) return; this.timers.forEach(clearTimeout); this.setState({ intro:2 }); this.later(() => this.setState({ intro:3 }), 600); };
+  onHeroMove = e => {
+    const el = this.heroRef.current; if (!el || e.pointerType === 'touch') return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', (e.clientX - r.left) + 'px'); el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  };
+  openBooking = () => {
+    if (window.IVBooking && window.IVBooking.open) window.IVBooking.open({ eventType:'interview_online', jobCategory:'リラクゼーション' });
+    else window.location.href = 'https://lin.ee/PFy8myp';
+  };
+
+  yearsVals(y) {
+    const hours = Math.round(y * 1300);
+    const fee = Math.max(0, 50 - hours * 0.05);
+    const menus = Math.min(15, 1 + Math.round(y * 3));
+    const hit = '#FFFDF0';
+    const mkOn = [y > 0, y > 0, y >= 1, true, fee === 0].filter(Boolean).length;
+    return {
+      y: String(y), hours: hours.toLocaleString('en-US'),
+      hint: y === 0, count: mkOn,
+      feeYen: Math.round(fee * 10000).toLocaleString('en-US'), feePct: (fee / 50 * 100) + '%', feeColor: fee === 0 ? '#A87A00' : '#1A1A2E',
+      gen: [
+        { k:'習得した技術', v:'お店によって限られる' },
+        { k:'施術時間が残したもの', v: y === 0 ? '—' : '収入のみ' },
+        { k:'技術の証明', v:'お店の中だけの評価' },
+        { k:'ケガ・病気で休んだら', v:'収入ゼロ' },
+        { k:'独立するなら', v:'退職して、ゼロから開業' },
+      ],
+      mk: [
+        { k:'習得した技術', v: menus + 'メニュー（15まで）', on: y > 0 ? 1 : 0, bg: y > 0 ? hit : '#FFFFFF' },
+        { k:'施術時間が残したもの', v: y === 0 ? '加盟金 50万円' : fee > 0 ? '収入＋加盟金 残り' + (Math.round(fee * 10) / 10) + '万円' : '収入＋加盟金0円＋リスクのない独立の道', on: y > 0 ? 1 : 0, bg: fee === 0 ? hit : '#FFFFFF' },
+        { k:'技術の証明', v: y >= 1 ? '協同組合の認定証' : '認定に向けて研修中', on: y >= 1 ? 1 : 0, bg: y >= 1 ? hit : '#FFFFFF' },
+        { k:'ケガ・病気で休んだら', v:'収入保障共済で保障', on:1, bg:hit },
+        { k:'独立するなら', v: fee === 0 ? '店内独立をいつでも選べる' : '店内独立に向けて準備中', on: fee === 0 ? 1 : 0, bg: fee === 0 ? hit : '#FFFFFF' },
+      ],
+    };
+  }
+  renderVals() {
+    const s = this.state; const c = this.calc(); const on = s.intro >= 1;
+    const mkSlider = (key, label, unit, min, max, step) => ({ label, unit, min, max, step, v: s[key], onChange: e => this.set({ [key]: +e.target.value, preset:-1 }) });
+    return {
+      rootRef:this.rootRef, heroRef:this.heroRef, progRef:this.progRef, simRef:this.simRef, onHeroMove:this.onHeroMove,
+      introOn: s.intro < 3, skipIntro:this.skipIntro, introOpacity: s.intro >= 2 ? 0 : 1, introShow: on ? 1 : 0, introY: on ? '0' : '12px', introBar: on ? '100%' : '0%',
+      fromQuiz: s.fromQuiz,
+      openBooking:this.openBooking,
+      goSim: () => this.scrollToEl(this.simRef.current),
+      realities: REALITIES,
+      story1: STORY1,
+      story2: STORY2,
+      story: STORY.map(d => ({ ...d, tc: d.last ? '#F5B800' : 'rgba(255,255,255,0.6)', dot: d.last ? '#F5B800' : 'rgba(255,255,255,0.35)', qc: d.last ? '#F5B800' : '#FFFFFF' })),
+      certName: (s.certName || '').trim() || 'あなたの名前',
+      certFont: (() => { const n = [...((s.certName || '').trim() || 'あなたの名前')].length; return n <= 5 ? '5.4cqi' : n <= 7 ? '4.2cqi' : '3.3cqi'; })(),
+      certLs: [...((s.certName || '').trim() || 'あなたの名前')].length <= 5 ? '0.18em' : '0.06em',
+      onCertName: e => this.setState({ certName: e.target.value }),
+      yrsRef: this.yrsRef, yr: this.yearsVals(s.years),
+      onYears: e => this.setState({ years: +e.target.value }),
+      presets: PRESETS.map((p, i) => ({ ...p, bg: s.preset === i ? '#F5B800' : 'transparent', pick: () => this.set({ days:p.days, per:p.per, rate:p.rate, fee:p.fee, comm:p.comm, price:p.price, preset:i }) })),
+      comms: [50,55,60].map(v => ({ v, bg: s.comm === v ? '#FFF8DC' : '#FFFFFF', bd: s.comm === v ? '#F5B800' : 'rgba(26,26,46,0.12)', pick: () => this.set({ comm:v, preset:-1 }) })),
+      reasons: REASONS,
+      sliders: [
+        mkSlider('price', '1施術の平均単価', '円', 4000, 9000, 500),
+        mkSlider('days', '週の稼働日数', '日', 1, 6, 1),
+        mkSlider('per', '1日の施術数', '回', 2, 10, 1),
+        mkSlider('rate', '指名の割合', '%', 0, 80, 5),
+        mkSlider('fee', '指名料（自分で設定）', '円', 300, 2000, 100),
+      ],
+      calc: c,
+      disp: { net: r1(s.dNet), gross: r1(s.dGross), nomYear: r1(s.dYear) },
+      compare: COMPARE, menus: MENUS, indepA: INDEP_A, indepB: INDEP_B,
+      faqs: FAQS.map((f, i) => { const open = s.faq === i; return { ...f, open, exp: open ? 'true' : 'false', rot: open ? '45deg' : '0deg', ibg: open ? '#F5B800' : '#F2F2EE', toggle: () => this.setState(st => ({ faq: st.faq === i ? -1 : i })) }; }),
+      flow: FLOW.map((f, i) => ({ ...f, no: i + 1, line: i < FLOW.length - 1, bg: i === 0 ? '#F5B800' : '#FFFFFF' })),
+      showSticky: this.props.stickyBar ?? true,
+    };
+  }
+}
+</script>
 </body>
 </html>
