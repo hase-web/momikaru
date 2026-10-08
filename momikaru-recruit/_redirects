@@ -1,0 +1,5 @@
+# 内部資料と開発用ツールは公開しない（SPEC.md §10）。ファイルが存在しても 404 を返すため ! で強制する
+/SPEC.md                /404.html  404!
+/CLAUDE_CODE_PROMPT.md  /404.html  404!
+/tools                  /404.html  404!
+/tools/*                /404.html  404!

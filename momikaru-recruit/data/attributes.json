@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "note": "属性LPの表示用メタ情報。title / short / tagline / points は index.html の PATHS から転記（シフト表現のみ言い換え）。jobCategory は各LPの openBooking と同じ値。店舗情報は data/stores.json を参照すること。points の要素は文字列、または { text, benefit }（benefit がある店舗でだけ表示）"
+  },
+  "order": [
+    "osteo",
+    "mom",
+    "relax",
+    "esthe",
+    "side-job"
+  ],
+  "attributes": {
+    "osteo": {
+      "page": "osteo",
+      "en": "CLINICAL",
+      "title": "接骨院・柔整・鍼灸の方へ",
+      "short": "接骨院・鍼灸",
+      "tagline": "国家資格の技術を、正当に評価される働き方へ。",
+      "points": [
+        "国家資格者向けの報酬加算",
+        "自費メニューへのステップ",
+        "医師監修の研修プログラム"
+      ],
+      "jobCategory": "接骨院・鍼灸"
+    },
+    "mom": {
+      "page": "mom",
+      "en": "MOTHERS",
+      "title": "ママ・主婦の方へ",
+      "short": "ママ・主婦",
+      "tagline": "家事と育児の合間に、自分でいられる時間を。",
+      "points": [
+        "eラーニングで隙間時間に学べる",
+        "子どもの予定に合わせて稼働日を決められる",
+        {
+          "text": "収入保障共済あり",
+          "benefit": "kyosai"
+        }
+      ],
+      "jobCategory": "未経験（ママ・主婦）"
+    },
+    "relax": {
+      "page": "relax",
+      "en": "RELAXATION",
+      "title": "リラクゼーション業界の方へ",
+      "short": "リラク経験者",
+      "tagline": "これまでの経験を、そのまま収入とキャリアに。",
+      "points": [
+        "指名料500円は全額還元",
+        "15メニューから選んで習得",
+        "店内独立という選択肢"
+      ],
+      "jobCategory": "リラクゼーション"
+    },
+    "esthe": {
+      "page": "esthe",
+      "en": "SALON de MOMIKARU",
+      "title": "エステ業界の方へ",
+      "short": "エステ経験者",
+      "tagline": "物販ノルマのない、自由なエステの働き方。",
+      "points": [
+        "物販ノルマなし",
+        "今の技術を独自メニュー化できる",
+        "15の美容・癒しメニュー"
+      ],
+      "jobCategory": "エステ"
+    },
+    "side-job": {
+      "page": "side-job",
+      "en": "SECOND PILLAR",
+      "title": "副業をお考えの方へ",
+      "short": "副業",
+      "tagline": "本業はそのままに、もう一つの収入の柱を。",
+      "points": [
+        "夜・週末だけでもOK",
+        "稼働日時を自分で決める業務委託",
+        "将来の独立にもつながる"
+      ],
+      "jobCategory": "副業（本業と両立）"
+    }
+  }
+}

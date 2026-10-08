@@ -3,13 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://momikaru-recruit.netlify.app/relax">
+<script src="./data/stores.js"></script>
+<script src="./store-context.js" data-attr="relax"></script>
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
 <title>もみかる採用｜リラクゼーション業界の方へ</title>
-<meta name="description" content="リラクゼーション業界経験者の方へ。高単価メニューと131店舗の集客力、業界初の収入保障共済、協同組合の認定証、独立支援制度。もみかる業務委託セラピスト募集。">
+<meta name="description" content="リラクゼーション業界経験者の方へ。高単価メニューと131店舗の集客力、協同組合の認定証、独立支援制度。もみかる業務委託セラピスト募集。">
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1A1A2E"></rect><rect x="38" y="38" width="24" height="24" fill="#F5B800" transform="rotate(45 50 50)"></rect></svg></template>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&family=Inter:wght@500;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -49,7 +53,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
 <header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(26,26,46,0.08)">
   <div style="max-width:1160px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px">
-    <a href="https://momikaru-recruit.netlify.app/" style="display:flex;align-items:center;gap:10px;min-width:0">
+    <a href="./" style="display:flex;align-items:center;gap:10px;min-width:0">
       <img src="assets/logo-momikaru.png" alt="もみかる" style="height:28px;width:auto;display:block">
       <span style="width:1px;height:22px;background:rgba(26,26,46,0.15)"></span>
       <span style="display:flex;flex-direction:column;line-height:1.25">
@@ -58,8 +62,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       </span>
     </a>
     <div style="display:flex;align-items:center;gap:8px">
-      <a href="tel:0542855665" data-ripple="rgba(26,26,46,0.12)" aria-label="電話で相談する 054-285-5665" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;height:40px;padding:0 12px;border:1px solid rgba(26,26,46,0.15);border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;flex:none" style-hover="border-color:#1A1A2E">電話</a>
-      <a href="https://lin.ee/PFy8myp" data-ripple="rgba(255,255,255,0.25)" style="position:relative;overflow:hidden;display:flex;align-items:center;gap:7px;height:40px;padding:0 14px;background:#1A1A2E;color:#FFFFFF;font-size:12px;font-weight:700;border-radius:999px;white-space:nowrap;flex:none" style-hover="background:#2C3E50;color:#FFFFFF"><span style="width:7px;height:7px;border-radius:50%;background:#06C755"></span>LINE相談</a>
+      <a href="tel:08041525665" data-ripple="rgba(26,26,46,0.12)" aria-label="電話で相談する 080-4152-5665" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;height:40px;padding:0 12px;border:1px solid rgba(26,26,46,0.15);border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;flex:none" style-hover="border-color:#1A1A2E">電話</a>
+      <a href="https://lin.ee/XzuQHup" data-ripple="rgba(255,255,255,0.25)" style="position:relative;overflow:hidden;display:flex;align-items:center;gap:7px;height:40px;padding:0 14px;background:#1A1A2E;color:#FFFFFF;font-size:12px;font-weight:700;border-radius:999px;white-space:nowrap;flex:none" style-hover="background:#2C3E50;color:#FFFFFF"><span style="width:7px;height:7px;border-radius:50%;background:#06C755"></span>LINE相談</a>
     </div>
   </div>
   <div ref="{{ progRef }}" style="position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#F5B800;transform-origin:0 50%"></div>
@@ -78,10 +82,10 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <h1 style="margin:0;font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(27px,7cqi,46px);line-height:1.5;letter-spacing:-0.01em;text-wrap:pretty">“ただの作業”を、<br><span style="background:linear-gradient(transparent 62%,#FFEDA2 62%)">未来への投資</span>に変える。</h1>
       <p style="margin:0;font-size:15px;line-height:1.9;color:#3A3A4E;text-wrap:pretty">リラクゼーションの経験があるあなたへ。もみかるでは、高単価メニューと131店舗の集客力で1日の売上が変わり、施術を続ける時間が「安心」「技術の証明」「独立の準備」として積み上がっていきます。</p>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
-        <span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;background:#FFFFFF;border:1px solid rgba(26,26,46,0.1);padding:10px 12px;border-radius:8px"><span style="color:#A87A00">✓</span>業界初の収入保障共済</span>
+        <sc-if value="{{ kyosai }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;background:#FFFFFF;border:1px solid rgba(26,26,46,0.1);padding:10px 12px;border-radius:8px"><span style="color:#A87A00">✓</span>業界でも珍しい収入保障共済</span></sc-if>
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;background:#FFFFFF;border:1px solid rgba(26,26,46,0.1);padding:10px 12px;border-radius:8px"><span style="color:#A87A00">✓</span>高単価メニュー×集客力</span>
         <span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;background:#FFFFFF;border:1px solid rgba(26,26,46,0.1);padding:10px 12px;border-radius:8px"><span style="color:#A87A00">✓</span>組合の認定証を発行</span>
-        <span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;background:#FFFFFF;border:1px solid rgba(26,26,46,0.1);padding:10px 12px;border-radius:8px"><span style="color:#A87A00">✓</span>独立支援制度</span>
+        <span style="grid-column:{{ heroSpan }};display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;background:#FFFFFF;border:1px solid rgba(26,26,46,0.1);padding:10px 12px;border-radius:8px"><span style="color:#A87A00">✓</span>独立支援制度</span>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
         <button type="button" onClick="{{ openBooking }}" data-ripple="rgba(255,255,255,0.3)" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:58px;padding:0 8px 0 24px;border:none;cursor:pointer;background-color:#F5B800;background-image:linear-gradient(#1A1A2E,#1A1A2E);background-repeat:no-repeat;background-size:0% 100%;color:#1A1A2E;border-radius:999px;font-size:15px;font-weight:700;box-shadow:0 8px 20px rgba(245,184,0,0.32);transition:background-size .45s cubic-bezier(0.22,1,0.36,1),color .3s" style-hover="background-size:100% 100%;color:#F5B800">
@@ -201,13 +205,14 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       </div>
     </div>
 
+    <sc-if value="{{ kyosai }}" hint-placeholder-val="{{ true }}">
     <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:20px 40px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:14px">
-        <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#A87A00">ANSWER_02 — 業界初</span>
+        <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#A87A00">ANSWER_02 — 業界でも珍しい</span>
         <span style="align-self:flex-start;font-family:'Noto Serif JP',serif;font-weight:700;font-size:16px;line-height:1.6;background:#F2F2EE;padding:12px 16px;border-radius:16px 16px 16px 4px">「もし明日、手首を痛めたら……」</span>
         <h3 style="margin:0;font-size:clamp(20px,5.6cqi,26px);font-weight:700;line-height:1.5;text-wrap:balance">業務委託でも、休んだときの収入が保障される。</h3>
-        <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E">もみかるの「収入保障共済」は、事故・ケガ・病気で働けなくなったとき、収入が保障される業界初の制度です。体が資本の仕事だからこそ、「休めない」をなくしました。</p>
-        <span style="font-size:10px;color:#6B6B6B">※ 業界初は自社調べ。保障内容・条件は面接でご説明します。</span>
+        <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E">もみかるの「収入保障共済」は、事故・ケガ・病気で働けなくなったとき、収入が保障される業界でも珍しい制度です。体が資本の仕事だからこそ、「休めない」をなくしました。</p>
+        <span style="font-size:10px;color:#6B6B6B">※「業界でも珍しい」は自社調べ。保障内容・条件は面接でご説明します。</span>
       </div>
       <div style="background:#1A1A2E;color:#FFFFFF;border-radius:16px;padding:24px 22px;display:flex;flex-direction:column;gap:18px">
         <span style="font-size:14px;font-weight:700;color:#FFFFFF">ケガで2週間、休んだら</span>
@@ -222,10 +227,11 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         <div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:12px;font-weight:700;border:1px solid rgba(245,184,0,0.5);padding:4px 10px;border-radius:999px">事故</span><span style="font-size:12px;font-weight:700;border:1px solid rgba(245,184,0,0.5);padding:4px 10px;border-radius:999px">ケガ</span><span style="font-size:12px;font-weight:700;border:1px solid rgba(245,184,0,0.5);padding:4px 10px;border-radius:999px">病気</span></div>
       </div>
     </div>
+    </sc-if>
 
     <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:20px 40px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:14px">
-        <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#A87A00">ANSWER_03</span>
+        <span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#A87A00">ANSWER_{{ a3no }}</span>
         <span style="align-self:flex-start;font-family:'Noto Serif JP',serif;font-weight:700;font-size:16px;line-height:1.6;background:#F2F2EE;padding:12px 16px;border-radius:16px 16px 16px 4px">「この技術、お店の外でも通用するのかな」</span>
         <h3 style="margin:0;font-size:clamp(20px,5.6cqi,26px);font-weight:700;line-height:1.5;text-wrap:balance">あなたの技術を、<br><span style="white-space:nowrap">協同組合</span>が認定する。</h3>
         <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E">静岡リラクゼーション事業協同組合の認定証を発行。お店の中だけの評価ではなく、外にも示せる「技術の証明」になります。</p>
@@ -248,7 +254,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <section ref="{{ yrsRef }}" style="background-color:#F8F8F5;background-image:radial-gradient(rgba(26,26,46,0.06) 1px,transparent 1.2px);background-size:18px 18px;border-top:1px solid rgba(26,26,46,0.08)">
   <div data-reveal="" style="max-width:1160px;margin:0 auto;padding:64px 16px;display:flex;flex-direction:column;gap:24px">
     <div style="display:flex;flex-direction:column;gap:12px;max-width:720px">
-      <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:2px;background:#F5B800"></span><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#A87A00">ANSWER_04 — 独立支援制度</span></div>
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:20px;height:2px;background:#F5B800"></span><span style="font-family:'Roboto Mono',monospace;font-weight:700;font-size:10px;letter-spacing:0.2em;color:#A87A00">ANSWER_{{ a4no }} — 独立支援制度</span></div>
       <span style="align-self:flex-start;font-family:'Noto Serif JP',serif;font-weight:700;font-size:16px;line-height:1.6;background:#F2F2EE;padding:12px 16px;border-radius:16px 16px 16px 4px">「この先も、ずっとこのままなのかな」</span>
       <h2 style="margin:0;font-family:'Noto Serif JP',serif;font-size:clamp(24px,6.8cqi,38px);font-weight:700;line-height:1.5">同じ5年を、<br>どこで過ごすか。</h2>
       <p style="margin:0;font-size:14px;line-height:1.9;color:#4A4A5E">同じように5年間施術を続けても、残るものは働く場所で変わります。下のつまみを右へ動かして、年数ごとの違いを見てください。</p>
@@ -435,7 +441,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       </div>
     </div>
     <p style="margin:-12px 0 0;font-size:10px;line-height:1.7;color:#6B6B6B">※ ベッドパートナー独立の数値（税別）。月の固定費10万円（ベッド使用料・光熱費等）＋システム手数料 売上の15％、ロイヤリティ0円。個人で独立した場合の初期費用は約423〜850万円、月の固定費は約28〜44万円が目安です。</p>
-    <a href="https://momikaru-recruit.netlify.app/owner" data-ripple="rgba(245,184,0,0.25)" style="position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:12px;align-items:center;padding:16px 18px;background-color:#FFFFFF;background-image:linear-gradient(90deg,#FFF8DC,#FFF8DC);background-repeat:no-repeat;background-size:0% 100%;border:1.5px solid rgba(26,26,46,0.12);border-radius:12px;transition:background-size .45s cubic-bezier(0.22,1,0.36,1),border-color .2s" style-hover="background-size:100% 100%;border-color:#F5B800">
+    <a href="./owner" data-ripple="rgba(245,184,0,0.25)" style="position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:12px;align-items:center;padding:16px 18px;background-color:#FFFFFF;background-image:linear-gradient(90deg,#FFF8DC,#FFF8DC);background-repeat:no-repeat;background-size:0% 100%;border:1.5px solid rgba(26,26,46,0.12);border-radius:12px;transition:background-size .45s cubic-bezier(0.22,1,0.36,1),border-color .2s" style-hover="background-size:100% 100%;border-color:#F5B800">
       <span style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'Roboto Mono',monospace;font-size:10px;color:#6B6B6B">PATH_06</span><span style="font-size:15px;font-weight:700">独立を目指す方のページを見る</span></span>
       <span style="width:34px;height:34px;border-radius:50%;background:#1A1A2E;color:#F5B800;display:flex;align-items:center;justify-content:center">→</span>
     </a>
@@ -465,7 +471,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         </div>
       </sc-for>
     </div>
-    <a href="https://lin.ee/PFy8myp" style="align-self:flex-start;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#F5B800"><span style="width:7px;height:7px;border-radius:50%;background:#06C755"></span>ほかの質問は、LINEで気軽にどうぞ</a>
+    <a href="https://lin.ee/XzuQHup" style="align-self:flex-start;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#F5B800"><span style="width:7px;height:7px;border-radius:50%;background:#06C755"></span>ほかの質問は、LINEで気軽にどうぞ</a>
   </div>
 </section>
 
@@ -499,10 +505,10 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
     <p style="margin:0;font-size:14px;line-height:1.95;color:rgba(255,255,255,0.8);text-wrap:pretty">あなたの経験・得意な手技・希望条件をもとに、具体的な収入の試算と働き方の選択肢をご提示します。業界経験者なら、30分で違いを見極められるはずです。</p>
     <div style="display:flex;flex-direction:column;gap:10px;width:100%;max-width:420px">
       <button type="button" onClick="{{ openBooking }}" data-ripple="rgba(26,26,46,0.15)" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;border:none;cursor:pointer;background-color:#F5B800;background-image:linear-gradient(#FFFFFF,#FFFFFF);background-repeat:no-repeat;background-size:0% 100%;color:#1A1A2E;border-radius:999px;font-size:16px;font-weight:700;transition:background-size .45s cubic-bezier(0.22,1,0.36,1)" style-hover="background-size:100% 100%">面接の日時を選ぶ（WEB・来店）→</button>
-      <a href="https://lin.ee/PFy8myp" data-ripple="rgba(255,255,255,0.2)" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;border:1.5px solid rgba(255,255,255,0.3);border-radius:999px;font-size:14px;font-weight:700;color:#FFFFFF" style-hover="border-color:#FFFFFF;color:#FFFFFF"><span style="width:8px;height:8px;border-radius:50%;background:#06C755"></span>LINEで質問だけしてみる</a>
-      <a href="tel:0542855665" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:8px;font-size:13px;color:rgba(255,255,255,0.85)" style-hover="color:#F5B800">電話 <span style="font-family:Inter,sans-serif;font-weight:700">054-285-5665</span>（平日 9:00〜18:00）</a>
+      <a href="https://lin.ee/XzuQHup" data-ripple="rgba(255,255,255,0.2)" style="position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;border:1.5px solid rgba(255,255,255,0.3);border-radius:999px;font-size:14px;font-weight:700;color:#FFFFFF" style-hover="border-color:#FFFFFF;color:#FFFFFF"><span style="width:8px;height:8px;border-radius:50%;background:#06C755"></span>LINEで質問だけしてみる</a>
+      <a href="tel:08041525665" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:8px;font-size:13px;color:rgba(255,255,255,0.85)" style-hover="color:#F5B800">電話 <span style="font-family:Inter,sans-serif;font-weight:700">080-4152-5665</span>（平日 10:00〜18:00）</a>
     </div>
-    <a href="https://momikaru-recruit.netlify.app/" style="font-size:12px;color:rgba(255,255,255,0.7);text-decoration:underline;text-underline-offset:3px;margin-top:8px" style-hover="color:#FFFFFF">自分の状況に合わない場合は → 他の働き方を見る</a>
+    <a href="./" style="font-size:12px;color:rgba(255,255,255,0.7);text-decoration:underline;text-underline-offset:3px;margin-top:8px" style-hover="color:#FFFFFF">自分の状況に合わない場合は → 他の働き方を見る</a>
   </div>
 </section>
 
@@ -517,7 +523,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <div style="position:sticky;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(26,26,46,0.08)">
     <div style="max-width:560px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px">
       <button type="button" onClick="{{ openBooking }}" data-ripple="rgba(255,255,255,0.35)" style="position:relative;overflow:hidden;min-height:48px;background:#F5B800;color:#1A1A2E;border:none;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer;padding:0 16px">面接を予約（WEB・来店OK）</button>
-      <a href="https://lin.ee/PFy8myp" data-ripple="rgba(255,255,255,0.25)" style="position:relative;overflow:hidden;display:flex;align-items:center;gap:6px;min-height:48px;padding:0 16px;background:#1A1A2E;color:#FFFFFF;border-radius:999px;font-size:13px;font-weight:700" style-hover="color:#FFFFFF"><span style="width:7px;height:7px;border-radius:50%;background:#06C755"></span>LINE</a>
+      <a href="https://lin.ee/XzuQHup" data-ripple="rgba(255,255,255,0.25)" style="position:relative;overflow:hidden;display:flex;align-items:center;gap:6px;min-height:48px;padding:0 16px;background:#1A1A2E;color:#FFFFFF;border-radius:999px;font-size:13px;font-weight:700" style-hover="color:#FFFFFF"><span style="width:7px;height:7px;border-radius:50%;background:#06C755"></span>LINE</a>
     </div>
   </div>
 </sc-if>
@@ -525,6 +531,10 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;intro&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;演出&quot;},&quot;stickyBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;導線&quot;}}">
 const KEY = 'momikaru-recruit-v2-result';
+// 店舗の制度（benefits）による出し分け。store-context.js が店舗データから window.MK_BENEFITS を設定し 'mk:benefits' を通知する（SPEC.md §12）
+// benefit を持つ項目は、その制度がある店舗の指定時だけ表示。fallback があれば非表示の代わりに差し替える
+const byBen = (list, ben) => list.filter(x => !x.benefit || ben[x.benefit] || x.fallback).map(x => (!x.benefit || ben[x.benefit]) ? x : { ...x, ...x.fallback });
+const renumber = (list, key, re) => list.map((x, i) => ({ ...x, [key]: String(x[key]).replace(re, m => m.replace(/\d+/, String(i + 1).padStart(2, '0'))) }));
 const PRESETS = [
   { name:'Light', sub:'週3・副業', days:3, per:7, rate:30, fee:500, comm:50, price:4500 },
   { name:'Standard', sub:'週5・専業', days:5, per:6, rate:50, fee:500, comm:55, price:5500 },
@@ -540,16 +550,16 @@ const STORY = [
   { time:'07:40', img:'assets/manga/s00-1.jpg', alt:'朝、ベッドで予約表を見るセラピスト', bubble:{ l:'60%', t:'4%', w:'32%', h:'29%', text:'今日も予約、\n埋まってるな' }, q:'', b:'起きて最初に見るのは、シフトと予約表。' },
   { time:'10:00', img:'assets/manga/s00-2.jpg', alt:'無表情で施術を続けるセラピスト', bubble:null, q:'考えなくても、手が勝手に動く。', b:'一人目。60分の全身もみほぐし。' },
   { time:'13:30', img:'assets/manga/s00-3.jpg', alt:'指名客に感謝されるセラピストと明細', bubble:{ l:'70%', t:'4.5%', w:'27.5%', h:'26%', text:'また指名して\nくれたんですね' }, q:'', b:'嬉しい。でも、もしこのお店を辞めたら、この関係も終わってしまう。' },
-  { time:'17:00', img:'assets/manga/s00-4.jpg', alt:'手首の痛みをこらえるセラピスト', bubble:{ l:'65.5%', t:'6.6%', w:'32%', h:'26%', text:'休んだら、\n収入はゼロ…' }, q:'', b:'手首に、小さな痛み。だから言い出せない。' },
+  { benefit:'kyosai', time:'17:00', img:'assets/manga/s00-4.jpg', alt:'手首の痛みをこらえるセラピスト', bubble:{ l:'65.5%', t:'6.6%', w:'32%', h:'26%', text:'休んだら、\n収入はゼロ…' }, q:'', b:'手首に、小さな痛み。だから言い出せない。' },
   { time:'21:10', img:'assets/manga/s00-5.jpg', alt:'夜道をひとりで帰るセラピスト', bubble:{ l:'58.5%', t:'3.7%', w:'34%', h:'25%', text:'10年後も、\n続けられるのかな' }, q:'', b:'帰り道。ふと浮かんで、すぐに考えるのをやめる。' },
   { time:'22:30', img:'assets/manga/s00-6.jpg', alt:'寝る前にスマホで求人を見るセラピスト', bubble:null, q:'寝る前に、そっと求人を開く。', b:'——今、このページを見ているあなたのように。', last:true },
 ];
 const STORY1 = [
   { l:'56%', t:'2.3%', w:'31%', h:'25%', text:'30分だけ、\n話を聞いてみよう', tag:'WEB面接', cap:'スマホで30分のWEB面接。来社不要、話を聞くだけでもOK。', alt:'スマホでWEB面接を受けるセラピスト' },
-  { l:'66.6%', t:'6.4%', w:'32%', h:'34%', text:'休んでも、\n収入が保障される…？', tag:'収入保障共済', cap:'業務委託でも、ケガ・病気のときの収入が保障されると知る。', alt:'収入保障の話に驚くセラピスト' },
+  { benefit:'kyosai', l:'66.6%', t:'6.4%', w:'32%', h:'34%', text:'休んでも、\n収入が保障される…？', tag:'収入保障共済', cap:'業務委託でも、ケガ・病気のときの収入が保障されると知る。', alt:'収入保障の話に驚くセラピスト' },
   { l:'70.8%', t:'3.5%', w:'28%', h:'25.5%', text:'施術が、楽しい', tag:'15メニュー研修', cap:'15のメニューから、学びたい技術を選んで習得。', alt:'研修で講師から学ぶセラピスト' },
   { l:'69.2%', t:'3%', w:'29.4%', h:'27%', text:'私の技術が、\n認められた', tag:'認定証', cap:'静岡リラクゼーション事業協同組合の認定証を取得。', alt:'認定証を受け取るセラピスト' },
-  { l:'64.4%', t:'3.9%', w:'30%', h:'27%', text:'休めるって、\nこんなに安心なんだ', tag:'収入保障共済', cap:'手首を痛めても、収入の心配をせずに休める。', alt:'自宅で安心して休むセラピスト' },
+  { benefit:'kyosai', l:'64.4%', t:'3.9%', w:'30%', h:'27%', text:'休めるって、\nこんなに安心なんだ', tag:'収入保障共済', cap:'手首を痛めても、収入の心配をせずに休める。', alt:'自宅で安心して休むセラピスト' },
   { l:'54.9%', t:'3.5%', w:'26.6%', h:'22.3%', text:'移籍して、\n本当によかった', tag:'', cap:'仲間と一緒に、長く続けられる場所に。', alt:'仲間と笑い合うセラピスト' },
 ].map((d, i) => ({ ...d, no: String(i + 1).padStart(2, '0'), img: 'assets/manga/s01-' + (i + 1) + '.jpg' }));
 const STORY2 = [
@@ -560,13 +570,13 @@ const STORY2 = [
 ].map((d, i) => ({ ...d, no: String(i + 1).padStart(2, '0'), img: 'assets/manga/s02-' + (i + 1) + '.jpg' }));
 const REALITIES = [
   { no:'01', t:'頑張っても、稼ぎが頭打ちになる。', b:'担当できるのはほぐし中心の低単価メニューだけ。客数もお店の集客力次第で、技術が上がっても収入に反映されにくい構造です。' },
-  { no:'02', t:'ケガや病気で休めば、収入はゼロ。', b:'業務委託は自由な反面、手や腰を痛めて休んだ瞬間に収入が止まります。体が資本の仕事なのに、守る仕組みがないのが当たり前でした。' },
+  { benefit:'kyosai', no:'02', t:'ケガや病気で休めば、収入はゼロ。', b:'業務委託は自由な反面、手や腰を痛めて休んだ瞬間に収入が止まります。体が資本の仕事なのに、守る仕組みがないのが当たり前でした。' },
   { no:'03', t:'その技術を、証明するものがない。', b:'何年積み上げても、評価されるのはお店の中だけ。外に出れば、経験年数を口で伝えるしかありません。' },
   { no:'04', t:'辞めたら、お客様との関係も終わる。', b:'独立するには、退職してゼロから開業するしかない。何年も通ってくれたお客様とも、そこで途切れてしまいます。' },
 ];
 const COMPARE = [
   { k:'習得できる技術', a:'1〜3メニュー程度', b:'15メニューから選んで習得' },
-  { k:'ケガ・病気で休んだとき', a:'業務委託は収入ゼロ', b:'収入保障共済で収入を保障' },
+  { benefit:'kyosai', k:'ケガ・病気で休んだとき', a:'業務委託は収入ゼロ', b:'収入保障共済で収入を保障' },
   { k:'技術の証明', a:'お店の中だけの評価', b:'協同組合の認定証を発行' },
   { k:'集客', a:'自分でも集客が必要なことも', b:'本部が集客。施術に集中' },
   { k:'独立するとき', a:'退職して、ゼロから開業', b:'独立支援制度で、店内独立も' },
@@ -588,13 +598,13 @@ const FAQS = [
   { q:'報酬はいつ支払われますか？', a:'月末締め・翌月払いです。支払日の詳細は契約時にご案内します。' },
   { q:'何歳まで働けますか？', a:'年齢の上限はありません。50代で手取り月70万円を稼ぐセラピストもいます（※個別事例）。' },
   { q:'経験者でも研修はありますか？', a:'経験や得意な手技に合わせて、研修期間を短縮できる場合があります。新しい技術は、15メニューから選んで習得できます。' },
-  { q:'収入保障共済の掛金や保障内容は？', a:'保障の対象・金額・期間、掛金については、面接で詳しくご説明します。' },
+  { benefit:'kyosai', q:'収入保障共済の掛金や保障内容は？', a:'保障の対象・金額・期間、掛金については、面接で詳しくご説明します。' },
   { q:'どの店舗で働けますか？', a:'131店舗の中から、通いやすい店舗をご相談いただけます。' },
 ];
 const r1 = v => (Math.round(v * 10) / 10).toFixed(1);
 
 class Component extends DCLogic {
-  state = { certName:'', years:0, intro:0, days:5, per:6, rate:50, fee:500, comm:55, price:5500, preset:1, faq:0, fromQuiz:false, dNet:0, dGross:0, dYear:0 };
+  state = { ben: window.MK_BENEFITS || {}, certName:'', years:0, intro:0, days:5, per:6, rate:50, fee:500, comm:55, price:5500, preset:1, faq:0, fromQuiz:false, dNet:0, dGross:0, dYear:0 };
   yrsRef = React.createRef(); rootRef = React.createRef(); heroRef = React.createRef(); progRef = React.createRef(); simRef = React.createRef();
   timers = [];
   later(fn, ms) { const t = setTimeout(fn, ms); this.timers.push(t); }
@@ -625,6 +635,8 @@ class Component extends DCLogic {
   set(patch) { this.setState(patch, () => this.tween()); }
 
   componentDidMount() {
+    this.onBen = e => this.setState({ ben: (e && e.detail) || window.MK_BENEFITS || {} });
+    window.addEventListener('mk:benefits', this.onBen); if (window.MK_BENEFITS) this.onBen();
     try { const r = JSON.parse(localStorage.getItem(KEY) || 'null'); if (r && r.a2 === 'relax') this.setState({ fromQuiz:true }); } catch (e) {}
     if (!(this.props.intro ?? true) || this.reduced()) this.setState({ intro:3 });
     else {
@@ -671,6 +683,7 @@ class Component extends DCLogic {
     if (root) root.addEventListener('pointerdown', this.onDown);
   }
   componentWillUnmount() {
+    window.removeEventListener('mk:benefits', this.onBen);
     this.timers.forEach(clearTimeout); cancelAnimationFrame(this.raf);
     document.removeEventListener('scroll', this.onScroll, true);
     if (this.io) this.io.disconnect();
@@ -708,7 +721,7 @@ class Component extends DCLogic {
   };
   openBooking = () => {
     if (window.IVBooking && window.IVBooking.open) window.IVBooking.open({ eventType:'interview_online', jobCategory:'リラクゼーション' });
-    else window.location.href = 'https://lin.ee/PFy8myp';
+    else window.location.href = 'https://lin.ee/XzuQHup';
   };
 
   yearsVals(y) {
@@ -725,14 +738,14 @@ class Component extends DCLogic {
         { k:'習得した技術', v:'お店によって限られる' },
         { k:'施術時間が残したもの', v: y === 0 ? '—' : '収入のみ' },
         { k:'技術の証明', v:'お店の中だけの評価' },
-        { k:'ケガ・病気で休んだら', v:'収入ゼロ' },
+        { benefit:'kyosai', k:'ケガ・病気で休んだら', v:'収入ゼロ' },
         { k:'独立するなら', v:'退職して、ゼロから開業' },
       ],
       mk: [
         { k:'習得した技術', v: menus + 'メニュー（15まで）', on: y > 0 ? 1 : 0, bg: y > 0 ? hit : '#FFFFFF' },
         { k:'施術時間が残したもの', v: y === 0 ? '加盟金 50万円' : fee > 0 ? '収入＋加盟金 残り' + (Math.round(fee * 10) / 10) + '万円' : '収入＋加盟金0円＋リスクのない独立の道', on: y > 0 ? 1 : 0, bg: fee === 0 ? hit : '#FFFFFF' },
         { k:'技術の証明', v: y >= 1 ? '協同組合の認定証' : '認定に向けて研修中', on: y >= 1 ? 1 : 0, bg: y >= 1 ? hit : '#FFFFFF' },
-        { k:'ケガ・病気で休んだら', v:'収入保障共済で保障', on:1, bg:hit },
+        { benefit:'kyosai', k:'ケガ・病気で休んだら', v:'収入保障共済で保障', on:1, bg:hit },
         { k:'独立するなら', v: fee === 0 ? '店内独立をいつでも選べる' : '店内独立に向けて準備中', on: fee === 0 ? 1 : 0, bg: fee === 0 ? hit : '#FFFFFF' },
       ],
     };
@@ -746,15 +759,16 @@ class Component extends DCLogic {
       fromQuiz: s.fromQuiz,
       openBooking:this.openBooking,
       goSim: () => this.scrollToEl(this.simRef.current),
-      realities: REALITIES,
-      story1: STORY1,
+      realities: renumber(byBen(REALITIES, s.ben), 'no', /^\d+/),
+      story1: renumber(byBen(STORY1, s.ben), 'no', /^\d+/),
+      kyosai: !!s.ben.kyosai, heroSpan: s.ben.kyosai ? 'auto' : '1 / -1', a3no: s.ben.kyosai ? '03' : '02', a4no: s.ben.kyosai ? '04' : '03',
       story2: STORY2,
-      story: STORY.map(d => ({ ...d, tc: d.last ? '#F5B800' : 'rgba(255,255,255,0.6)', dot: d.last ? '#F5B800' : 'rgba(255,255,255,0.35)', qc: d.last ? '#F5B800' : '#FFFFFF' })),
+      story: byBen(STORY, s.ben).map(d => ({ ...d, tc: d.last ? '#F5B800' : 'rgba(255,255,255,0.6)', dot: d.last ? '#F5B800' : 'rgba(255,255,255,0.35)', qc: d.last ? '#F5B800' : '#FFFFFF' })),
       certName: (s.certName || '').trim() || 'あなたの名前',
       certFont: (() => { const n = [...((s.certName || '').trim() || 'あなたの名前')].length; return n <= 5 ? '5.4cqi' : n <= 7 ? '4.2cqi' : '3.3cqi'; })(),
       certLs: [...((s.certName || '').trim() || 'あなたの名前')].length <= 5 ? '0.18em' : '0.06em',
       onCertName: e => this.setState({ certName: e.target.value }),
-      yrsRef: this.yrsRef, yr: this.yearsVals(s.years),
+      yrsRef: this.yrsRef, yr: (v => ({ ...v, gen: byBen(v.gen, s.ben), mk: byBen(v.mk, s.ben) }))(this.yearsVals(s.years)),
       onYears: e => this.setState({ years: +e.target.value }),
       presets: PRESETS.map((p, i) => ({ ...p, bg: s.preset === i ? '#F5B800' : 'transparent', pick: () => this.set({ days:p.days, per:p.per, rate:p.rate, fee:p.fee, comm:p.comm, price:p.price, preset:i }) })),
       comms: [50,55,60].map(v => ({ v, bg: s.comm === v ? '#FFF8DC' : '#FFFFFF', bd: s.comm === v ? '#F5B800' : 'rgba(26,26,46,0.12)', pick: () => this.set({ comm:v, preset:-1 }) })),
@@ -768,8 +782,8 @@ class Component extends DCLogic {
       ],
       calc: c,
       disp: { net: r1(s.dNet), gross: r1(s.dGross), nomYear: r1(s.dYear) },
-      compare: COMPARE, menus: MENUS, indepA: INDEP_A, indepB: INDEP_B,
-      faqs: FAQS.map((f, i) => { const open = s.faq === i; return { ...f, open, exp: open ? 'true' : 'false', rot: open ? '45deg' : '0deg', ibg: open ? '#F5B800' : '#F2F2EE', toggle: () => this.setState(st => ({ faq: st.faq === i ? -1 : i })) }; }),
+      compare: byBen(COMPARE, s.ben), menus: MENUS, indepA: INDEP_A, indepB: INDEP_B,
+      faqs: byBen(FAQS, s.ben).map((f, i) => { const open = s.faq === i; return { ...f, open, exp: open ? 'true' : 'false', rot: open ? '45deg' : '0deg', ibg: open ? '#F5B800' : '#F2F2EE', toggle: () => this.setState(st => ({ faq: st.faq === i ? -1 : i })) }; }),
       flow: FLOW.map((f, i) => ({ ...f, no: i + 1, line: i < FLOW.length - 1, bg: i === 0 ? '#F5B800' : '#FFFFFF' })),
       showSticky: this.props.stickyBar ?? true,
     };

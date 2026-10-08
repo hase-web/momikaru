@@ -1,0 +1,222 @@
+{
+  "_meta": {
+    "version": "0.1",
+    "note": "TODO の項目を埋めてから Claude Code に渡す。attributes は true / false",
+    "attribute_keys": [
+      "osteo",
+      "mom",
+      "relax",
+      "esthe",
+      "side-job"
+    ],
+    "store_id_rule": "momikaru.com の既存店舗ページのスラッグと一致させる",
+    "benefit_keys": {
+      "kyosai": "収入保障共済。true の店舗を指定したときだけ、LP と店舗ページに共済の記述を表示する（SPEC.md §12）"
+    }
+  },
+  "stores": [
+    {
+      "store_id": "nishiwaki",
+      "store_name": "もみかる 総本店",
+      "store_type": "直営",
+      "operator": {
+        "company_name": "株式会社ドラミカンパニー",
+        "company_url": "https://dorami.co.jp/"
+      },
+      "address": {
+        "postal_code": "TODO",
+        "region": "静岡県",
+        "locality": "静岡市駿河区",
+        "street": "西脇11-1 2F"
+      },
+      "access": "大浜街道沿い スギ薬局2階 大型無料駐車場あり",
+      "geo": {
+        "lat": 34.950562,
+        "lng": 138.395966
+      },
+      "contract_type": "業務委託",
+      "pay": "TODO",
+      "shift": "稼働日時はご自身で自由に決められます",
+      "photos": [],
+      "voice": [],
+      "apply_to": {
+        "line": "https://lin.ee/XzuQHup",
+        "tel": "080-4152-5665",
+        "email": "info@dorami.co.jp"
+      },
+      "attributes": {
+        "osteo": true,
+        "mom": false,
+        "relax": true,
+        "esthe": true,
+        "side-job": true
+      },
+      "updated_by": "",
+      "updated_at": "2026-10-08",
+      "official_url": "https://www.momikaru.com/nishiwaki/",
+      "business_hours": "TODO",
+      "sub_locations": [],
+      "benefits": {
+        "kyosai": true
+      }
+    },
+    {
+      "store_id": "ryutsudori",
+      "store_name": "もみかる 流通通り店",
+      "store_type": "直営",
+      "operator": {
+        "company_name": "株式会社ドラミカンパニー",
+        "company_url": "https://dorami.co.jp/"
+      },
+      "address": {
+        "postal_code": "TODO",
+        "region": "静岡県",
+        "locality": "静岡市葵区",
+        "street": "東千代田2丁目1-26"
+      },
+      "access": "前面駐車場4台",
+      "geo": {
+        "lat": 35.00238,
+        "lng": 138.406616
+      },
+      "contract_type": "業務委託",
+      "pay": "TODO",
+      "shift": "稼働日時はご自身で自由に決められます",
+      "photos": [
+        "https://www.momikaru.com/re/img/shop/ryutsudori/view.jpg",
+        "https://www.momikaru.com/re/img/shop/ryutsudori/view2.jpg",
+        "https://www.momikaru.com/re/img/shop/ryutsudori/view3.jpg"
+      ],
+      "voice": [],
+      "apply_to": {
+        "line": "https://lin.ee/XzuQHup",
+        "tel": "080-4152-5665",
+        "email": "info@dorami.co.jp"
+      },
+      "attributes": {
+        "osteo": true,
+        "mom": true,
+        "relax": true,
+        "esthe": true,
+        "side-job": true
+      },
+      "updated_by": "",
+      "updated_at": "2026-10-08",
+      "official_url": "https://www.momikaru.com/ryutsudori/",
+      "business_hours": "9:00〜24:00（最終受付23:00）",
+      "sub_locations": [],
+      "benefits": {
+        "kyosai": true
+      }
+    },
+    {
+      "store_id": "toyama",
+      "store_name": "もみかる 富山本店",
+      "store_type": "直営",
+      "operator": {
+        "company_name": "株式会社ドラミカンパニー",
+        "company_url": "https://dorami.co.jp/"
+      },
+      "address": {
+        "postal_code": "TODO",
+        "region": "富山県",
+        "locality": "富山市",
+        "street": "二口町4丁目4-2 B室"
+      },
+      "access": "南富山駅より車6分",
+      "geo": {
+        "lat": 36.668152,
+        "lng": 137.206375
+      },
+      "contract_type": "業務委託",
+      "pay": "TODO",
+      "shift": "稼働日時はご自身で自由に決められます",
+      "photos": [],
+      "voice": [],
+      "apply_to": {
+        "line": "https://lin.ee/XzuQHup",
+        "tel": "080-4152-5665",
+        "email": "info@dorami.co.jp"
+      },
+      "attributes": {
+        "osteo": true,
+        "mom": true,
+        "relax": true,
+        "esthe": true,
+        "side-job": true
+      },
+      "updated_by": "",
+      "updated_at": "2026-10-08",
+      "official_url": "https://www.momikaru.com/toyama/",
+      "business_hours": "TODO",
+      "sub_locations": [
+        {
+          "name": "もみかる 富山本店 リラックス館",
+          "official_url": "https://www.momikaru.com/toyama-relax/",
+          "address": {
+            "region": "富山県",
+            "locality": "富山市",
+            "street": "二口町4丁目9-10 アオイビル2F"
+          },
+          "note": "求人は富山本店に統合。勤務地として併記",
+          "geo": {
+            "lat": 36.668674,
+            "lng": 137.205093
+          }
+        }
+      ],
+      "benefits": {
+        "kyosai": true
+      }
+    },
+    {
+      "store_id": "gifu",
+      "store_name": "もみかる 岐阜長良店",
+      "store_type": "直営",
+      "operator": {
+        "company_name": "株式会社ドラミカンパニー",
+        "company_url": "https://dorami.co.jp/"
+      },
+      "address": {
+        "postal_code": "TODO",
+        "region": "岐阜県",
+        "locality": "岐阜市",
+        "street": "長良東2丁目37 1F"
+      },
+      "access": "TODO",
+      "geo": {
+        "lat": 35.450027,
+        "lng": 136.786331
+      },
+      "contract_type": "業務委託",
+      "pay": "TODO",
+      "shift": "稼働日時はご自身で自由に決められます",
+      "photos": [
+        "https://www.momikaru.com/re/img/shop/gifu/view.jpg",
+        "https://www.momikaru.com/re/img/shop/gifu/view2.jpg",
+        "https://www.momikaru.com/re/img/shop/gifu/view3.jpg"
+      ],
+      "voice": [],
+      "apply_to": {
+        "line": "https://lin.ee/XzuQHup",
+        "tel": "080-4152-5665",
+        "email": "info@dorami.co.jp"
+      },
+      "attributes": {
+        "osteo": true,
+        "mom": true,
+        "relax": true,
+        "esthe": true,
+        "side-job": true
+      },
+      "updated_by": "",
+      "updated_at": "2026-10-08",
+      "official_url": "https://www.momikaru.com/gifu/",
+      "business_hours": "10:00〜25:00（最終受付24:00）",
+      "sub_locations": [],
+      "benefits": {
+        "kyosai": true
+      }
+    }
+  ]
+}
