@@ -18,11 +18,12 @@
 | 2026-10-08 | 完了 | store-recruit ブランチにコミット・push（f05d95c、空コミット 90a5e87・9ece91c）。Netlify ブランチデプロイで公開を確認（§14）。main へのマージはしていない |
 | 2026-10-08 | 完了 | JobPosting を1ページ1件に統合、URL を末尾スラッシュなしに統一（§15） |
 | 2026-10-08 | 完了 | 募集なし店舗の扱い、郵便番号の取得、.html 付きURLの 301、差し替え用 .htaccess（§16） |
+| 2026-10-08 | 完了 | プレビューで §16 の3点を確認（下記）。差し替え後の基準を https://www.momikaru.com/recruit に統一（§17） |
 
 ## 1. 目的と前提
 
 - 店舗軸を追加する。試験対象は直営4店舗（`data/stores.json`）だけ
-- 最終的には momikaru.com/recruit/ と差し替える前提で作る
+- 最終的には www.momikaru.com/recruit/ と差し替える前提で作る
 - 完了条件：4店舗分のページを生成し、ローカルで表示を確認できる状態にする。**コミットとデプロイはしない**
 
 ### 厳守事項
@@ -41,7 +42,7 @@
 
 ## 2. 実装内容（依頼原文の要約）
 
-1. サイト全体を noindex にする（試験中、既存の momikaru.com/recruit/ との重複を避けるため）
+1. サイト全体を noindex にする（試験中、既存の www.momikaru.com/recruit/ との重複を避けるため）
 2. 店舗別ページを静的に生成する
    - オンになっている属性のセクションだけ表示する
    - sub_locations がある店舗は勤務地を併記する
@@ -155,7 +156,7 @@ store-context.js の動き（?store= があるときだけ）：
 
 ### 4.7 ローカル確認
 - `tools/serve.mjs`：Pretty URLs（`/osteo` → `osteo.html`、`/stores/x/` → `stores/x/index.html`）を再現する簡易サーバー
-- リンクの基点は `SITE_BASE`（ビルド設定）で切り替える：ローカルは `''`、試験環境は `https://momikaru-recruit.netlify.app`、本番は `https://momikaru.com/recruit`
+- リンクの基点は `SITE_BASE`（ビルド設定）で切り替える：ローカルは `''`、試験環境は `https://momikaru-recruit.netlify.app`、本番は `https://www.momikaru.com/recruit`
 
 ### 4.8 stores.json の想定スキーマ（実ファイルを受け取ったら合わせる）
 ```json
@@ -176,7 +177,7 @@ store-context.js の動き（?store= があるときだけ）：
 ## 5. 未決事項（承認時に決めること）
 1. stores.json の入手 → 受領済み。ただし未入力の項目がある（§7）
 2. Netlify の Base / Publish directory の設定値、Pretty URLs が有効か
-3. canonical と JobPosting の URL の基点：試験ドメインにするか、本番の `momikaru.com/recruit` にするか
+3. canonical と JobPosting の URL の基点：試験ドメインにするか、本番の `www.momikaru.com/recruit` にするか
 4. 応募時の店舗の受け渡し：jobCategory に付ける案でよいか（widget 側の改修は対象外）
 5. 店舗の帯や近隣案内を LP に「追加」すること、index に検索ブロックを「追加」することは、「デザインを変更しない」に抵触しないか
 6. SPEC.md と CLAUDE_CODE_PROMPT.md が公開ディレクトリから配信される問題（`_redirects` で 404 にするか）
@@ -254,7 +255,7 @@ store-context.js の動き（?store= があるときだけ）：
 ### 回答がなかった項目への暫定判断（実装者判断。変更は容易）
 | # | 暫定判断 |
 |---|---|
-| T1 | **（§10 で置き換え）** canonical と JobPosting の URL は本番を想定した `https://momikaru.com/recruit` を基点にする（試験中は noindex なので影響なし。差し替え時に書き換え不要） |
+| T1 | **（§10 で置き換え）** canonical と JobPosting の URL は本番を想定した `https://www.momikaru.com/recruit` を基点にする（試験中は noindex なので影響なし。差し替え時に書き換え不要） |
 | T2 | 応募時の店舗の受け渡しは、IVBooking.open をラップして jobCategory に店舗名と store_id を付ける（widget は改修しない） |
 | T3 | **（§10 で置き換え）** 近隣判定：geo が null なので同じ都道府県（address.region）で判定する。geo が入れば30km以内を優先 |
 | T4 | 店舗の帯は LP の React 描画領域の外（body 先頭）に差し込む。index の店舗検索は、テンプレートに空のマウント要素を1つ追加して、そこへ描画する |
@@ -280,7 +281,7 @@ node tools/serve.mjs 8080       # http://localhost:8080/ でローカル確認�
 | `stores/index.html`、`stores/{nishiwaki,ryutsudori,toyama,gifu}/index.html` | 生成物（手で編集しない） |
 
 ### 既存ファイルへの変更（これだけ。元ファイルとの比較で確認済み）
-- 全7ページの `<head>`：`<meta name="robots" content="noindex, nofollow">` と canonical（`https://momikaru.com/recruit/{属性}/`）を追加
+- 全7ページの `<head>`：`<meta name="robots" content="noindex, nofollow">` と canonical（`https://www.momikaru.com/recruit/{属性}/`）を追加
 - index と5LPに store-context.js の読み込みを追加（owner には入れない）
 - index.html：「6つの働き方から、直接選ぶ。」の直後に `<div id="store-search-mount"></div>` を1行追加
 - 連絡先の置き換え（D3）：LINE `PFy8myp` → `XzuQHup`、`tel:0542855665` → `tel:08041525665`、表示の `054-285-5665` → `080-4152-5665`（各ページの header、CTA、sticky、openBooking の LINE フォールバック）
@@ -556,7 +557,7 @@ node tools/serve.mjs 8080       # http://localhost:8080/ でローカル確認�
 - 店舗一覧で「現在募集なし」が2件。本番データ（4店舗とも募集あり）では従来どおり JobPosting 1件ずつ
 
 ### 差し替え手順：Apache（.htaccess）での設定
-Netlify の `_redirects`、`_headers` と同じ動きを、momikaru.com/recruit/ に配置したときに再現する設定。momikaru-recruit の中身を配置した `/recruit/` ディレクトリに `.htaccess` として置く。macOS 付属の Apache 2.4.62（mod_rewrite、mod_headers）で、`/recruit/` 配下に配置したコピーを使って下表の21件を確認済み（2026-10-08）。
+Netlify の `_redirects`、`_headers` と同じ動きを、www.momikaru.com/recruit/ に配置したときに再現する設定。momikaru-recruit の中身を配置した `/recruit/` ディレクトリに `.htaccess` として置く。macOS 付属の Apache 2.4.62（mod_rewrite、mod_headers）で、`/recruit/` 配下に配置したコピーを使い、Host ヘッダーを www.momikaru.com と momikaru.com に切り替えて下表の動作を確認済み（2026-10-08）。検証環境は http のため Location は http:// だったが、本番の HTTPS サーバーでは https:// になる
 
 ```apache
 # もみかる採用（/recruit/）— momikaru-recruit の中身を配置するディレクトリに置く（SPEC.md §16）
@@ -573,6 +574,10 @@ RewriteBase /recruit/
 <IfModule mod_headers.c>
   Header always set X-Robots-Tag "noindex, nofollow"
 </IfModule>
+
+# 0) ホストを www 付きに統一：momikaru.com/recruit/… → https://www.momikaru.com/recruit/…（クエリは引き継ぐ）
+RewriteCond %{HTTP_HOST} ^momikaru\.com$ [NC]
+RewriteRule ^(.*)$ https://www.momikaru.com/recruit/$1 [R=301,L]
 
 # 1) 内部資料・開発ツールは 404
 RewriteRule ^(SPEC\.md|CLAUDE_CODE_PROMPT\.md|tools(/.*)?)$ - [R=404,L]
@@ -596,6 +601,8 @@ RewriteRule ^(.+)$ $1.html [L]
 確認した動作（Apache 2.4.62）：
 | リクエスト | 結果 |
 |---|---|
+| momikaru.com/recruit/…（www なし） | 301 → https://www.momikaru.com/recruit/…（パス・クエリ保持） |
+| momikaru.com/recruit（www なし・スラッシュなし） | 301 → momikaru.com/recruit/ → 301 → https://www.momikaru.com/recruit/（2段階） |
 | /recruit | 301 → /recruit/（クエリ保持） |
 | /recruit/ | 200（フェイス） |
 | /recruit/index.html | 301 → /recruit/ |
@@ -612,5 +619,17 @@ RewriteRule ^(.+)$ $1.html [L]
 注意：
 - `/recruit/stores` はディレクトリ（stores/）と店舗一覧（stores.html）が同名のため、そのパスだけ `DirectorySlash Off` にしている。全体を Off にすると `/recruit` → `/recruit/` の転送が効かなくなる（検証で確認）
 - サーバーの設定で `AllowOverride` が `FileInfo`、`Options`、`Indexes` を含む（または All）こと、mod_rewrite と mod_headers が有効であることが前提
-- 差し替え時は tools/site.config.json の siteBase を `https://momikaru.com/recruit` にして build し直す（canonical、JobPosting、_redirects 以外の参照に反映）。本番公開時は X-Robots-Tag のブロックと、各ページの `<meta name="robots">` を外す
+- 差し替え時は tools/site.config.json の siteBase を `https://www.momikaru.com/recruit` にして build し直す（canonical と JobPosting の URL に反映。www なしの momikaru.com は .htaccess で www 付きへ 301）。本番公開時は X-Robots-Tag のブロックと、各ページの `<meta name="robots">` を外す
 - Netlify の `_redirects` は自動生成だが、この .htaccess は店舗が増えても書き換え不要（パターンで処理）
+
+### §16 のプレビュー確認（89feac2、https://store-recruit--momikaru-recruit.netlify.app/）
+- .html 付き14件（/index.html、既存LP6本、/stores.html、店舗4件、クエリ付き）がすべて拡張子なしへ 301。拡張子なしは 200、/SPEC.md と /tools/* は 404 のまま
+- 郵便番号：4店舗とリラックス館の JobPosting の postalCode と、ページ表示の〒に反映
+- 募集なし店舗：実データ（4店舗とも募集あり）では発生しないため、プレビューでは JobPosting 1件ずつ（validThrough なし）を確認。募集なしの表示は試験用コピーでのみ確認（§16 R14）
+
+## 17. 差し替え後の基準ドメイン（2026-10-08 オーナー指示）
+
+- 差し替え後の基準は **https://www.momikaru.com/recruit**（www 付き）に統一する
+- `tools/site.config.json`：siteBase は試験中のため `https://momikaru-recruit.netlify.app` のまま。_note の差し替え後の値を www 付きに更新した。差し替え時に siteBase を `https://www.momikaru.com/recruit` に変えて build する（フェイスの canonical は `https://www.momikaru.com/recruit/`、ほかはスラッシュなし）
+- SPEC.md 内の差し替え先の記述（§1、§4.7、§5、§8 T1、§9、§16）、`_headers` と build-stores.mjs のコメントを www 付きに統一した
+- `.htaccess`（§16）に、www なしの `momikaru.com/recruit/…` を `https://www.momikaru.com/recruit/…` へ 301 するルールを最初に追加した。Apache で検証済み（www なし → www 付き、パスとクエリを保持）。`.html` 付きや末尾スラッシュ付きを www なしで開いた場合は、www 付きへの 301 → 拡張子なしへの 301 の2段階になる

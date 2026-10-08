@@ -1,4 +1,4 @@
 {
-  "_note": "正規URL（canonical）と構造化データ（JobPosting の url・logo）の基準。ここだけを書き換えて node tools/build-stores.mjs を実行すると、店舗ページと既存7ページの canonical に反映される。試験中は https://momikaru-recruit.netlify.app、差し替え後は https://momikaru.com/recruit。URL は末尾スラッシュなしで統一（SPEC.md §15）",
+  "_note": "正規URL（canonical）と構造化データ（JobPosting の url・logo）の基準。ここだけを書き換えて node tools/build-stores.mjs を実行すると、店舗ページと既存7ページの canonical に反映される。試験中は https://momikaru-recruit.netlify.app、差し替え後は https://www.momikaru.com/recruit。URL は末尾スラッシュなしで統一（SPEC.md §15）",
   "siteBase": "https://momikaru-recruit.netlify.app"
 }

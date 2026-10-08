@@ -20,7 +20,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 // canonical / JobPosting の基準は tools/site.config.json だけで管理する（SPEC.md §10）
 const SITE = JSON.parse(readFileSync(join(ROOT, 'tools/site.config.json'), 'utf8'));
 const SITE_BASE = String(SITE.siteBase).replace(/\/$/, '');
-// 正規URLは末尾スラッシュなしに統一（SPEC.md §15）。フェイスだけはディレクトリの入口なので {base}/（例：https://momikaru.com/recruit/）
+// 正規URLは末尾スラッシュなしに統一（SPEC.md §15）。フェイスだけはディレクトリの入口なので {base}/（例：https://www.momikaru.com/recruit/）
 const ROOT_PAGES = ['index', 'osteo', 'mom', 'relax', 'esthe', 'side-job', 'owner'];
 const pageUrl = page => page === 'index' ? `${SITE_BASE}/` : `${SITE_BASE}/${page}`;
 const storeUrl = id => `${SITE_BASE}/stores/${id}`;
