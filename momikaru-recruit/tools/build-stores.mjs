@@ -6,6 +6,7 @@
  * 入力: data/stores.json（店舗情報の唯一のデータ源）, data/attributes.json（属性LPの表示用メタ）
  * 出力: stores.html（店舗一覧 → /stores）, stores/{store_id}.html（店舗別ページ → /stores/{store_id}）。URL は末尾スラッシュなし（SPEC.md §15）
  *       既存7ページ（index と属性LP）の <link rel="canonical"> の href だけを書き換える
+ *       _redirects の自動生成部分（.html 付きURL → 拡張子なしへ 301。SPEC.md §16）
  *       data/stores.js（stores.json と attributes.json を window.MK_DATA として同期読み込みできる形にしたもの）
  * 設定: tools/site.config.json の siteBase（canonical と JobPosting の基準。ここだけで切り替える）
  *
@@ -19,10 +20,9 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 // canonical / JobPosting の基準は tools/site.config.json だけで管理する（SPEC.md §10）
 const SITE = JSON.parse(readFileSync(join(ROOT, 'tools/site.config.json'), 'utf8'));
 const SITE_BASE = String(SITE.siteBase).replace(/\/$/, '');
-// 正規URLは末尾スラッシュなしに統一（SPEC.md §15）。フェイスだけは、基準がドメイン直下なら "/"（https://x.netlify.app/）、
-// パス付き（https://momikaru.com/recruit）ならそのまま
+// 正規URLは末尾スラッシュなしに統一（SPEC.md §15）。フェイスだけはディレクトリの入口なので {base}/（例：https://momikaru.com/recruit/）
 const ROOT_PAGES = ['index', 'osteo', 'mom', 'relax', 'esthe', 'side-job', 'owner'];
-const pageUrl = page => page === 'index' ? (new URL(SITE_BASE).pathname === '/' ? `${SITE_BASE}/` : SITE_BASE) : `${SITE_BASE}/${page}`;
+const pageUrl = page => page === 'index' ? `${SITE_BASE}/` : `${SITE_BASE}/${page}`;
 const storeUrl = id => `${SITE_BASE}/stores/${id}`;
 const storesUrl = `${SITE_BASE}/stores`;
 // 予約ウィジェット（既存LPと同じもの・同じ版）
@@ -61,6 +61,18 @@ function postalAddress(a) {
   if (has(a.street)) o.streetAddress = a.street;
   return o;
 }
+
+// 近隣の募集中店舗（いずれかの属性が true）：store-context.js と同じ基準（30km 以内、近い順、最大3件。SPEC.md §10・§16）
+const NEAR_KM = 30, NEAR_MAX = 3;
+function distKm(a, b) {
+  const R = 6371, rad = Math.PI / 180, dLat = (b.lat - a.lat) * rad, dLng = (b.lng - a.lng) * rad;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+const nearbyRecruiting = s => stores
+  .filter(x => x.store_id !== s.store_id && onAttrs(x).length)
+  .map(x => ({ x, d: distKm(s.geo, x.geo) })).filter(o => o.d <= NEAR_KM)
+  .sort((a, b) => a.d - b.d).slice(0, NEAR_MAX).map(o => o.x);
 
 // JobPosting：1ページ1件（SPEC.md §15）。募集中の属性は description 本文に含める。
 // 雇用形態は CONTRACTOR、勤務地は sub_locations を含める。baseSalary は出さない（D6）
@@ -288,67 +300,13 @@ const storeCard = (s, rel) => {
   return `<a class="card" href="${rel}stores/${esc(s.store_id)}"><span style="display:flex;flex-direction:column;gap:2px;min-width:0">
   <span class="t">${esc(s.store_name)}</span>
   <span class="s">${esc([s.address.region, s.address.locality].filter(has).join(' '))}${subs ? `（勤務地 ${subs + 1}か所）` : ''}</span>
-  <span class="a">${on.map(k => `<span>${esc(ATTRS[k].short)}</span>`).join('')}</span>
+  <span class="a">${on.length ? on.map(k => `<span>${esc(ATTRS[k].short)}</span>`).join('') : '<span>現在募集なし</span>'}</span>
 </span><span class="arrow">→</span></a>`;
 };
 
-// ---------- 店舗別ページ ----------
-function storePage(s) {
-  const rel = '../';  // /stores/{id} から見た相対の基点
-  const c = contactOf(s);
-  const on = onAttrs(s);
-  const tag = `${s.store_name}（store:${s.store_id}）`;
-  const locs = [{ name: s.store_name, address: s.address, official_url: s.official_url, main: true }, ...(s.sub_locations || [])];
-  const multi = locs.length > 1;
-  const others = stores.filter(x => x.store_id !== s.store_id);
-
-  const info = [
-    ['所在地', `${esc(addrText(s.address))}<br><a href="${esc(mapUrl(s.address))}" target="_blank" rel="noopener">地図を開く</a>`],
-    has(s.access) && ['アクセス', esc(s.access)],
-    has(s.business_hours) && ['営業時間', esc(s.business_hours)],
-    multi && ['勤務地', locs.map(l => esc(l.name)).join('<br>')],
-    ['契約形態', esc(s.contract_type)],
-    has(s.shift) && ['稼働日時', esc(s.shift)],
-  ].filter(Boolean);
-
-  const photos = (s.photos || []).filter(has);
-
-  return `${head({
-    title: `${s.store_name}のセラピスト募集（業務委託）｜もみかる`,
-    description: `${s.store_name}（${[s.address.region, s.address.locality].filter(has).join('')}）で業務委託のセラピストを募集しています。募集中の働き方：${on.map(k => ATTRS[k].short).join('・')}。${has(s.shift) ? s.shift + '。' : ''}`,
-    canonical: storeUrl(s.store_id),
-    rel,
-    ld: [jsonLd(jobPosting(s))],
-  })}
-<body>
-<div class="page">
-${header(rel, s.store_name, c)}
-
-<section class="hero"><div class="wrap hero-in">
-  <div class="hero-l">
-    <nav class="crumb" aria-label="パンくず"><a href="${rel}">もみかるで働く</a><span>›</span><a href="${rel}stores">店舗一覧</a><span>›</span><span>${esc(s.store_name)}</span></nav>
-    <div class="eyebrow"><i></i><span>STORE_${esc(s.store_id.toUpperCase())}</span></div>
-    <h1>${esc(s.store_name)}</h1>
-    <p class="sub">業務委託のセラピストを募集しています。</p>
-    <div class="badges">${on.map(k => `<span class="badge y">${esc(ATTRS[k].short)}</span>`).join('')}<span class="badge">${esc(s.contract_type)}</span></div>
-    ${bookBtn(tag, '面談を予約する（WEB・来店OK）')}
-  </div>
-  <div style="display:flex;flex-direction:column;gap:12px">
-    ${photos.length ? `<div class="gallery">${photos.map((p, i) => `<img src="${esc(p)}" alt="${esc(s.store_name)}の店内 ${i + 1}" loading="${i ? 'lazy' : 'eager'}" width="640" height="480">`).join('')}</div>` : ''}
-    <dl class="info">${info.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
-  </div>
-</div></section>
-
-${multi ? `<section><div class="wrap sec">
-  <div style="display:flex;flex-direction:column;gap:12px">
-    <div class="eyebrow"><i></i><span>WORK_LOCATIONS [${locs.length}]</span></div>
-    <h2>勤務地</h2>
-    <p class="lead">${esc(s.store_name)}の募集では、次の${locs.length}か所が勤務地になります。</p>
-  </div>
-  <div class="locs">${locs.map(l => `<div class="loc"><b>${esc(l.name)}</b><span>${esc(addrText(l.address))}</span><span><a href="${esc(mapUrl(l.address))}" target="_blank" rel="noopener">地図</a>${has(l.official_url) ? ` ／ <a href="${esc(l.official_url)}" target="_blank" rel="noopener">店舗ページ</a>` : ''}</span></div>`).join('')}</div>
-</div></section>` : ''}
-
-<section class="${multi ? 'alt' : ''}"><div class="wrap sec">
+// 募集中の働き方（attributes が true の属性ごと）
+function positionsSection(s, on, rel, tag, multi) {
+  return `<section class="${multi ? 'alt' : ''}"><div class="wrap sec">
   <div style="display:flex;flex-direction:column;gap:12px">
     <div class="eyebrow"><i></i><span>OPEN_POSITIONS [${on.length}]</span></div>
     <h2>${esc(s.store_name)}で募集中の働き方</h2>
@@ -370,7 +328,84 @@ ${on.map((k, i) => {
 }).join('\n')}
   </div>
   <div class="note">もみかるとは雇用契約ではなく、個人事業主として業務委託契約を結びます。働く日や時間はご自身で決められ、施術した分が報酬になります。確定申告などはじめての方にも、面談で流れをご説明します。</div>
+</div></section>`;
+}
+
+// 募集なしの店舗：「現在募集を行っていません」＋近隣の募集中店舗（なければ店舗一覧）へ案内（SPEC.md §16）
+function closedSection(s, near, rel, multi) {
+  return `<section id="nearby" class="${multi ? 'alt' : ''}"><div class="wrap sec">
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div class="eyebrow"><i></i><span>NOT_RECRUITING</span></div>
+    <h2>${esc(s.store_name)}は、現在募集を行っていません</h2>
+    <p class="lead">${near.length ? '近くで募集中の店舗をご案内します。' : '近くに募集中の店舗がありません。店舗一覧からお探しください。'}</p>
+  </div>
+  ${near.length ? `<div class="cards">${near.map(x => storeCard(x, rel)).join('')}</div>` : ''}
+  <a class="cta ghost" href="${rel}stores" style="max-width:420px">店舗一覧から探す →</a>
+</div></section>`;
+}
+
+// ---------- 店舗別ページ ----------
+function storePage(s) {
+  const rel = '../';  // /stores/{id} から見た相対の基点
+  const c = contactOf(s);
+  const on = onAttrs(s);
+  const open = on.length > 0;  // attributes がすべて false なら募集なし（JobPosting を出さない。SPEC.md §16）
+  const tag = open ? `${s.store_name}（store:${s.store_id}）` : '店舗ページから相談';
+  const near = open ? [] : nearbyRecruiting(s);
+  const locs = [{ name: s.store_name, address: s.address, official_url: s.official_url, main: true }, ...(s.sub_locations || [])];
+  const multi = locs.length > 1;
+  const others = stores.filter(x => x.store_id !== s.store_id);
+
+  const info = [
+    ['所在地', `${esc(addrText(s.address))}<br><a href="${esc(mapUrl(s.address))}" target="_blank" rel="noopener">地図を開く</a>`],
+    has(s.access) && ['アクセス', esc(s.access)],
+    has(s.business_hours) && ['営業時間', esc(s.business_hours)],
+    multi && ['勤務地', locs.map(l => esc(l.name)).join('<br>')],
+    ['契約形態', esc(s.contract_type)],
+    has(s.shift) && ['稼働日時', esc(s.shift)],
+  ].filter(Boolean);
+
+  const photos = (s.photos || []).filter(has);
+
+  return `${head({
+    title: open ? `${s.store_name}のセラピスト募集（業務委託）｜もみかる` : `${s.store_name}（現在募集を行っていません）｜もみかる`,
+    description: open
+      ? `${s.store_name}（${[s.address.region, s.address.locality].filter(has).join('')}）で業務委託のセラピストを募集しています。募集中の働き方：${on.map(k => ATTRS[k].short).join('・')}。${has(s.shift) ? s.shift + '。' : ''}`
+      : `${s.store_name}（${[s.address.region, s.address.locality].filter(has).join('')}）は、現在セラピストの募集を行っていません。近くの募集中の店舗をご案内しています。`,
+    canonical: storeUrl(s.store_id),
+    rel,
+    ld: open ? [jsonLd(jobPosting(s))] : [],
+  })}
+<body>
+<div class="page">
+${header(rel, s.store_name, c)}
+
+<section class="hero"><div class="wrap hero-in">
+  <div class="hero-l">
+    <nav class="crumb" aria-label="パンくず"><a href="${rel}">もみかるで働く</a><span>›</span><a href="${rel}stores">店舗一覧</a><span>›</span><span>${esc(s.store_name)}</span></nav>
+    <div class="eyebrow"><i></i><span>STORE_${esc(s.store_id.toUpperCase())}</span></div>
+    <h1>${esc(s.store_name)}</h1>
+    ${open ? `<p class="sub">業務委託のセラピストを募集しています。</p>
+    <div class="badges">${on.map(k => `<span class="badge y">${esc(ATTRS[k].short)}</span>`).join('')}<span class="badge">${esc(s.contract_type)}</span></div>
+    ${bookBtn(tag, '面談を予約する（WEB・来店OK）')}` : `<p class="sub">現在募集を行っていません。</p>
+    <a class="cta" href="#nearby">${near.length ? '近くの募集中の店舗を見る ↓' : 'ほかの店舗を探す ↓'}</a>`}
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px">
+    ${photos.length ? `<div class="gallery">${photos.map((p, i) => `<img src="${esc(p)}" alt="${esc(s.store_name)}の店内 ${i + 1}" loading="${i ? 'lazy' : 'eager'}" width="640" height="480">`).join('')}</div>` : ''}
+    <dl class="info">${info.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
+  </div>
 </div></section>
+
+${multi ? `<section><div class="wrap sec">
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div class="eyebrow"><i></i><span>WORK_LOCATIONS [${locs.length}]</span></div>
+    <h2>勤務地</h2>
+    <p class="lead">${esc(s.store_name)}の募集では、次の${locs.length}か所が勤務地になります。</p>
+  </div>
+  <div class="locs">${locs.map(l => `<div class="loc"><b>${esc(l.name)}</b><span>${esc(addrText(l.address))}</span><span><a href="${esc(mapUrl(l.address))}" target="_blank" rel="noopener">地図</a>${has(l.official_url) ? ` ／ <a href="${esc(l.official_url)}" target="_blank" rel="noopener">店舗ページ</a>` : ''}</span></div>`).join('')}</div>
+</div></section>` : ''}
+
+${open ? positionsSection(s, on, rel, tag, multi) : closedSection(s, near, rel, multi)}
 
 ${others.length ? `<section class="alt"><div class="wrap sec">
   <div style="display:flex;flex-direction:column;gap:12px">
@@ -450,6 +485,10 @@ writeFileSync(join(ROOT, 'stores.html'), indexPage());
 const jpProblems = [];
 for (const s of stores) {
   writeFileSync(join(OUT, s.store_id + '.html'), storePage(s));
+  if (!onAttrs(s).length) {
+    console.log(`stores/${s.store_id}.html  募集なし（JobPosting なし）  近隣の募集中: ${nearbyRecruiting(s).map(x => x.store_id).join(', ') || 'なし → 店舗一覧'}`);
+    continue;
+  }
   const { req, rec } = checkJobPosting(jobPosting(s));
   if (req.length) jpProblems.push(`${s.store_id}: 必須項目の不足 ${req.join(', ')}`);
   console.log(`stores/${s.store_id}.html  属性: ${onAttrs(s).join(', ')}  JobPosting: 1件  必須: ${req.length ? 'NG ' + req.join(',') : 'OK'}  推奨の未設定: ${rec.join(', ') || 'なし'}`);
@@ -472,4 +511,24 @@ for (const page of ROOT_PAGES) {
   const out = src.replace(re, `<link rel="canonical" href="${esc(pageUrl(page))}">`);
   if (out !== src) writeFileSync(file, out);
   console.log(`${page}.html  canonical: ${pageUrl(page)}${out !== src ? '（更新）' : ''}`);
+}
+
+// _redirects：.html 付きURLを拡張子なしへ 301（SPEC.md §16）。マーカーの間だけを書き換え、手書きのルール（404 など）は残す
+{
+  const BEGIN = '# BEGIN generated by tools/build-stores.mjs（手で編集しない）';
+  const END = '# END generated by tools/build-stores.mjs';
+  const rules = [
+    ['/index.html', '/'],
+    ...ROOT_PAGES.filter(p => p !== 'index').map(p => [`/${p}.html`, `/${p}`]),
+    ['/stores.html', '/stores'],
+    ...stores.map(s => [`/stores/${s.store_id}.html`, `/stores/${s.store_id}`]),
+  ];
+  const w = Math.max(...rules.map(r => r[0].length)) + 2;
+  const block = [BEGIN, '# .html 付きURL → 拡張子なしURLへ 301（ファイルが存在しても転送するため 301!）', ...rules.map(([f, t]) => f.padEnd(w) + t.padEnd(w) + '301!'), END].join('\n');
+  const file = join(ROOT, '_redirects');
+  const cur = existsSync(file) ? readFileSync(file, 'utf8') : '';
+  const re = new RegExp(BEGIN.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[\\s\\S]*?' + END.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const next = re.test(cur) ? cur.replace(re, block) : cur.replace(/\s*$/, '\n\n') + block + '\n';
+  if (next !== cur) writeFileSync(file, next);
+  console.log(`_redirects  .html → 拡張子なし ${rules.length}件`);
 }

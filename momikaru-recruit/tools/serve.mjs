@@ -20,13 +20,13 @@ const TYPES = {
   '.jpeg': 'image/jpeg', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.ico': 'image/x-icon', '.md': 'text/plain; charset=utf-8',
 };
 
-// _redirects のうち 404 を返すルールだけを読む（このサイトで使うのはそれだけ）
-async function load404Rules() {
+// _redirects の 404 ルールと 301 ルールを読む（このサイトで使うのはその2種類。SPEC.md §10・§16）
+async function loadRules() {
   let txt = '';
   try { txt = await readFile(join(ROOT, '_redirects'), 'utf8'); } catch { return []; }
   return txt.split('\n').map(l => l.replace(/#.*/, '').trim()).filter(Boolean)
-    .map(l => l.split(/\s+/)).filter(([, , st]) => st && st.startsWith('404'))
-    .map(([from, to]) => ({ to, test: from.endsWith('/*') ? p => p.startsWith(from.slice(0, -1)) : p => p === from }));
+    .map(l => l.split(/\s+/)).filter(([, , st]) => st && /^(404|301)/.test(st))
+    .map(([from, to, st]) => ({ to, status: Number(st.slice(0, 3)), test: from.endsWith('/*') ? p => p.startsWith(from.slice(0, -1)) : p => p === from }));
 }
 
 async function isFile(p) { try { return (await stat(p)).isFile(); } catch { return false; } }
@@ -49,7 +49,8 @@ async function send404(res, to = '/404.html') {
 
 createServer(async (req, res) => {
   const u = new URL(req.url, 'http://localhost');
-  const rule = (await load404Rules()).find(r => r.test(decodeURIComponent(u.pathname)));
+  const rule = (await loadRules()).find(r => r.test(decodeURIComponent(u.pathname)));
+  if (rule?.status === 301) { res.writeHead(301, { Location: rule.to + u.search }); res.end(); console.log(req.method, u.pathname, '→ 301', rule.to); return; }
   if (rule || /^\/_(headers|redirects)$/.test(u.pathname)) { await send404(res, rule?.to); console.log(req.method, u.pathname, '→ 404（_redirects）'); return; }
   // /stores/toyama/ のように末尾スラッシュ付きで来て、stores/toyama.html があれば /stores/toyama へ 301（SPEC.md §15）
   if (u.pathname.length > 1 && u.pathname.endsWith('/') && (await isFile(join(ROOT, u.pathname.slice(0, -1) + '.html')))) {

@@ -17,6 +17,7 @@
 | 2026-10-08 | 完了 | 悩みの描写も kyosai で出し分け、店舗データの同期読み込みでずれを解消、電話受付時間を統一（§13） |
 | 2026-10-08 | 完了 | store-recruit ブランチにコミット・push（f05d95c、空コミット 90a5e87・9ece91c）。Netlify ブランチデプロイで公開を確認（§14）。main へのマージはしていない |
 | 2026-10-08 | 完了 | JobPosting を1ページ1件に統合、URL を末尾スラッシュなしに統一（§15） |
+| 2026-10-08 | 完了 | 募集なし店舗の扱い、郵便番号の取得、.html 付きURLの 301、差し替え用 .htaccess（§16） |
 
 ## 1. 目的と前提
 
@@ -521,3 +522,95 @@ node tools/serve.mjs 8080       # http://localhost:8080/ でローカル確認�
 - Netlify：`stores/toyama.html` を置くと、/stores/toyama で配信され、/stores/toyama/ は /stores/toyama に 301 される（Pretty URLs の挙動。プレビューで確認）
 - ローカル（tools/serve.mjs）：末尾スラッシュ付きで、対応する `.html` があれば 301 する処理を追加
 - 相対パスの基点：店舗ページ（/stores/{id}）は `../`、店舗一覧（/stores）は `''`
+
+### プレビューでの確認（ecddddc、https://store-recruit--momikaru-recruit.netlify.app/）
+- JobPosting：4店舗とも1件。title「セラピスト（業務委託）｜もみかる 総本店／流通通り店／富山本店／岐阜長良店」、勤務地は富山2か所、他1か所
+- canonical と JobPosting の url：`https://momikaru-recruit.netlify.app/stores/{id}`（一致、スラッシュなし）。店舗一覧は `…/stores`
+- リダイレクト：/stores/toyama/ → 301 /stores/toyama（クエリ保持）、/stores/ → 301 /stores。旧URLの /stores/toyama/index.html は 404
+- 店舗帯のリンク、フェイスの店舗検索のリンクも `/stores/{id}` と `/stores`。コンソールエラーなし
+- 残る重複URL：`/stores/toyama.html` は 200 のまま（Netlify の Pretty URLs が .html を外すリダイレクトをしていない）。canonical が /stores/toyama を指すので検索上の問題は小さい。消すなら Netlify の Pretty URLs を有効にするか、_redirects に店舗ごとの 301 を追加する
+
+## 16. 修正（2026-10-08 オーナー依頼 その6）
+
+| # | 依頼 | 対応 |
+|---|---|---|
+| R14 | validThrough は設定しない。attributes がすべて false の店舗は JobPosting を出さず、「現在募集を行っていません」と表示して近隣の募集中店舗へ案内する | build-stores.mjs：`open = onAttrs(s).length > 0`。募集なしなら JSON-LD を出さず、ヒーローに「現在募集を行っていません。」と表示し、「募集中の働き方」の代わりに `closedSection`（近隣の募集中店舗＝いずれかの属性が true、30km 以内、近い順に最大3件。なければ店舗一覧へ）を出す。title、description、面談ボタンの jobCategory（「店舗ページから相談」。店舗指定なし）も切り替える。店舗一覧とフェイスの店舗検索のカードは「現在募集なし」と表示する。LP の `?store=` は従来どおり属性ごとの案内帯になる |
+| R15 | 郵便番号を日本郵便の公式データから取得して stores.json に入れる | 日本郵便の郵便番号データ（UTF-8 版 utf_ken_all.zip、2026-09-24 版）を取得し、都道府県・市区町村・町名の完全一致で照合した。出典は stores.json の `_meta.postal_code_source` に記録 |
+| R16 | .html 付きURLを _redirects で拡張子なしURLへ 301。店舗ページは build で自動生成し、既存LPも同様。SPEC の差し替え手順に同じ内容の .htaccess を追記 | build-stores.mjs が `_redirects` のマーカー（`# BEGIN generated …` 〜 `# END generated …`）の間を書き換える（手書きの 404 ルールは残す）。対象：/index.html → /、/osteo.html などの既存7ページ、/stores.html → /stores、/stores/{id}.html → /stores/{id}（店舗の増減に自動で追従）。ファイルが存在しても転送するため `301!`。ローカルサーバーも _redirects の 301 を再現する |
+
+### R15 取得した郵便番号
+| 店舗 | 住所 | 郵便番号 |
+|---|---|---|
+| もみかる 総本店 | 静岡県静岡市駿河区西脇11-1 2F | 422-8044 |
+| もみかる 流通通り店 | 静岡県静岡市葵区東千代田2丁目1-26 | 420-0801 |
+| もみかる 富山本店 | 富山県富山市二口町4丁目4-2 B室 | 939-8211 |
+| もみかる 富山本店 リラックス館 | 富山県富山市二口町4丁目9-10 アオイビル2F | 939-8211 |
+| もみかる 岐阜長良店 | 岐阜県岐阜市長良東2丁目37 1F | 502-0082 |
+
+- 岐阜は前方一致だと「長良東郷町（502-0022）」と「長良東町（502-0043）」も当たるため、完全一致の「長良東」を採用した
+- これで JobPosting の推奨項目で未設定なのは validThrough（設定しない決定）と baseSalary（D6）だけになった
+
+### R14 の確認（試験用コピーで、流通通り店と岐阜長良店を募集なしにして build）
+- 流通通り店：JobPosting 0件、「現在募集を行っていません」、近隣の募集中店舗として総本店（5.8km）を表示
+- 岐阜長良店：JobPosting 0件、近隣なし → 「近くに募集中の店舗がありません」＋店舗一覧へのボタン（ヒーローのボタンは「ほかの店舗を探す ↓」）
+- 店舗一覧で「現在募集なし」が2件。本番データ（4店舗とも募集あり）では従来どおり JobPosting 1件ずつ
+
+### 差し替え手順：Apache（.htaccess）での設定
+Netlify の `_redirects`、`_headers` と同じ動きを、momikaru.com/recruit/ に配置したときに再現する設定。momikaru-recruit の中身を配置した `/recruit/` ディレクトリに `.htaccess` として置く。macOS 付属の Apache 2.4.62（mod_rewrite、mod_headers）で、`/recruit/` 配下に配置したコピーを使って下表の21件を確認済み（2026-10-08）。
+
+```apache
+# もみかる採用（/recruit/）— momikaru-recruit の中身を配置するディレクトリに置く（SPEC.md §16）
+Options -MultiViews +FollowSymLinks
+# /recruit/stores はディレクトリ（stores/）と店舗一覧（stores.html）が同名のため、ここだけ末尾スラッシュの自動付与を止める
+<If "%{REQUEST_URI} =~ m#^/recruit/stores$#">
+  DirectorySlash Off
+</If>
+DirectoryIndex index.html
+RewriteEngine On
+RewriteBase /recruit/
+
+# 試験中のみ：検索エンジンに登録させない（本番公開時はこのブロックを削除）
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+
+# 1) 内部資料・開発ツールは 404
+RewriteRule ^(SPEC\.md|CLAUDE_CODE_PROMPT\.md|tools(/.*)?)$ - [R=404,L]
+
+# 2) .html 付きURL → 拡張子なしへ 301（index.html はフェイス /recruit/ へ）。クエリは引き継ぐ
+RewriteCond %{THE_REQUEST} \s/recruit/index\.html[?\s]
+RewriteRule ^index\.html$ /recruit/ [R=301,L]
+RewriteCond %{THE_REQUEST} \s/recruit/.+\.html[?\s]
+RewriteRule ^(.+)\.html$ /recruit/$1 [R=301,L]
+
+# 3) 末尾スラッシュ付き → なしへ 301（同名の .html があるもの。例：/recruit/stores/toyama/ → /recruit/stores/toyama）
+RewriteCond %{DOCUMENT_ROOT}/recruit/$1.html -f
+RewriteRule ^(.+)/$ /recruit/$1 [R=301,L]
+
+# 4) 拡張子なし → .html を内部で配信（例：/recruit/stores/toyama → stores/toyama.html）
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/recruit/$1.html -f
+RewriteRule ^(.+)$ $1.html [L]
+```
+
+確認した動作（Apache 2.4.62）：
+| リクエスト | 結果 |
+|---|---|
+| /recruit | 301 → /recruit/（クエリ保持） |
+| /recruit/ | 200（フェイス） |
+| /recruit/index.html | 301 → /recruit/ |
+| /recruit/osteo | 200 |
+| /recruit/osteo.html、/recruit/mom.html?store=… | 301 → 拡張子なし（クエリ保持） |
+| /recruit/stores | 200（店舗一覧） |
+| /recruit/stores/、/recruit/stores.html | 301 → /recruit/stores |
+| /recruit/stores/toyama | 200 |
+| /recruit/stores/toyama/、/recruit/stores/toyama.html | 301 → /recruit/stores/toyama（クエリ保持） |
+| /recruit/data/stores.js、/recruit/assets/… | 200 |
+| /recruit/SPEC.md、/recruit/CLAUDE_CODE_PROMPT.md、/recruit/tools、/recruit/tools/… | 404 |
+| すべて | X-Robots-Tag: noindex, nofollow（試験中のみ） |
+
+注意：
+- `/recruit/stores` はディレクトリ（stores/）と店舗一覧（stores.html）が同名のため、そのパスだけ `DirectorySlash Off` にしている。全体を Off にすると `/recruit` → `/recruit/` の転送が効かなくなる（検証で確認）
+- サーバーの設定で `AllowOverride` が `FileInfo`、`Options`、`Indexes` を含む（または All）こと、mod_rewrite と mod_headers が有効であることが前提
+- 差し替え時は tools/site.config.json の siteBase を `https://momikaru.com/recruit` にして build し直す（canonical、JobPosting、_redirects 以外の参照に反映）。本番公開時は X-Robots-Tag のブロックと、各ページの `<meta name="robots">` を外す
+- Netlify の `_redirects` は自動生成だが、この .htaccess は店舗が増えても書き換え不要（パターンで処理）

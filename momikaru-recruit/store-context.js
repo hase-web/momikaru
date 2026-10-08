@@ -264,7 +264,7 @@
         return '<a class="mk-card" href="' + esc(storeUrl(s.store_id)) + '"><span style="display:flex;flex-direction:column;gap:2px;min-width:0">' +
           '<span class="mk-card-t">' + esc(s.store_name) + '</span>' +
           '<span class="mk-card-s">' + esc(locText(s.address)) + ((s.sub_locations || []).length ? '（勤務地 ' + (s.sub_locations.length + 1) + 'か所）' : '') + '</span>' +
-          '<span class="mk-card-a">' + on.map(function (k) { return '<span>' + esc(d.attrs.attributes[k].short) + '</span>'; }).join("") + '</span>' +
+          '<span class="mk-card-a">' + (on.length ? on.map(function (k) { return '<span>' + esc(d.attrs.attributes[k].short) + '</span>'; }).join("") : '<span>現在募集なし</span>') + '</span>' +
           '</span><span class="mk-arrow">→</span></a>';
       }).join("") : '<p class="mk-empty">条件に合う店舗が見つかりませんでした。</p>';
     }
