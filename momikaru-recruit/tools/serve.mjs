@@ -51,6 +51,10 @@ createServer(async (req, res) => {
   const u = new URL(req.url, 'http://localhost');
   const rule = (await load404Rules()).find(r => r.test(decodeURIComponent(u.pathname)));
   if (rule || /^\/_(headers|redirects)$/.test(u.pathname)) { await send404(res, rule?.to); console.log(req.method, u.pathname, '→ 404（_redirects）'); return; }
+  // /stores/toyama/ のように末尾スラッシュ付きで来て、stores/toyama.html があれば /stores/toyama へ 301（SPEC.md §15）
+  if (u.pathname.length > 1 && u.pathname.endsWith('/') && (await isFile(join(ROOT, u.pathname.slice(0, -1) + '.html')))) {
+    res.writeHead(301, { Location: u.pathname.slice(0, -1) + u.search }); res.end(); console.log(req.method, u.pathname, '→ 301', u.pathname.slice(0, -1)); return;
+  }
   // ディレクトリに末尾スラッシュなしで来たらリダイレクト（相対パスを正しく解決させるため）
   if (!u.pathname.endsWith('/') && !extname(u.pathname) && !(await isFile(join(ROOT, u.pathname + '.html'))) && (await isFile(join(ROOT, u.pathname, 'index.html')))) {
     res.writeHead(301, { Location: u.pathname + '/' + u.search }); res.end(); return;

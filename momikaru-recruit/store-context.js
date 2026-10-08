@@ -36,7 +36,7 @@
     var mo = new MutationObserver(function () { if (document.body) { mo.disconnect(); fn(); } });
     mo.observe(document.documentElement, { childList: true });
   }
-  function storeUrl(id) { return url("stores/" + encodeURIComponent(id) + "/"); }
+  function storeUrl(id) { return url("stores/" + encodeURIComponent(id)); }  // 末尾スラッシュなし（SPEC.md §15）
   function lpUrl(attrKey, id) { return url(attrKey + (id ? "?store=" + encodeURIComponent(id) : "")); }
   function locText(a) { return a ? [a.region, a.locality].filter(Boolean).join(" ") : ""; }
 
@@ -151,7 +151,7 @@
 
   // ?store= をサイト内リンクに引き継ぐ。React 管理のリンクも扱えるよう、押された瞬間に href を書き換える。
   // 対象外：owner（店舗展開の対象外）、店舗ページ・データ・画像、外部サイト、同一ページ内アンカー
-  var SKIP_PATH = /(^|\/)(owner(\.html)?|stores\/.*|data\/.*|assets\/.*)$/;
+  var SKIP_PATH = /(^|\/)(owner(\.html)?|stores(\.html|\/.*)?|data\/.*|assets\/.*)$/;
   function carryStore(id) {
     function rewrite(e) {
       var a = e.target && e.target.closest && e.target.closest("a[href]");
@@ -203,8 +203,8 @@
         '<span class="mk-chips">' +
         (near.length
           ? near.map(function (s) { return '<a class="mk-chip" href="' + esc(lpUrl(ATTR, s.store_id)) + '">' + esc(shortName(s)) + ' →</a>'; }).join("") +
-            '<a class="mk-list" href="' + esc(url("stores/")) + '">店舗一覧</a>'
-          : '<a class="mk-chip" href="' + esc(url("stores/")) + '">店舗一覧から探す →</a>') +
+            '<a class="mk-list" href="' + esc(url("stores")) + '">店舗一覧</a>'
+          : '<a class="mk-chip" href="' + esc(url("stores")) + '">店舗一覧から探す →</a>') +
         '</span></div></div>';
     } else {
       bookingLabel = store.store_name + "（store:" + store.store_id + "）";
@@ -216,7 +216,7 @@
         '<span class="mk-tag">STORE</span>' +
         '<span class="mk-name">' + esc(store.store_name) + '</span>' +
         '<span class="mk-sub">' + esc(locText(store.address)) + (subs.length ? '／勤務地：' + esc([store.store_name].concat(subs).join("・")) : "") + '</span>' +
-        '<span class="mk-links"><a href="' + esc(storeUrl(store.store_id)) + '">店舗ページ</a><a href="' + esc(url("stores/")) + '">店舗を変える</a></span>' +
+        '<span class="mk-links"><a href="' + esc(storeUrl(store.store_id)) + '">店舗ページ</a><a href="' + esc(url("stores")) + '">店舗を変える</a></span>' +
         '</div></div>';
     }
     // body の先頭に、ページ本体より先に入れる（後から押し下げない）
@@ -244,7 +244,7 @@
       d.attrs.order.map(function (k) { return '<button type="button" data-v="' + esc(k) + '" aria-pressed="false">' + esc(d.attrs.attributes[k].short) + '</button>'; }).join("") + '</div>' +
       '</div>' +
       '<div class="mk-grid" aria-live="polite"></div>' +
-      '<a class="mk-more" href="' + esc(url("stores/")) + '">店舗一覧を見る →</a>' +
+      '<a class="mk-more" href="' + esc(url("stores")) + '">店舗一覧を見る →</a>' +
       '</div></section>';
 
     var grid = mount.querySelector(".mk-grid");

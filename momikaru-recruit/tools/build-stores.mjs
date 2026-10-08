@@ -4,10 +4,10 @@
  *   node tools/build-stores.mjs
  *
  * 入力: data/stores.json（店舗情報の唯一のデータ源）, data/attributes.json（属性LPの表示用メタ）
- * 出力: stores/index.html（店舗一覧）, stores/{store_id}/index.html（店舗別ページ）
+ * 出力: stores.html（店舗一覧 → /stores）, stores/{store_id}.html（店舗別ページ → /stores/{store_id}）。URL は末尾スラッシュなし（SPEC.md §15）
  *       既存7ページ（index と属性LP）の <link rel="canonical"> の href だけを書き換える
  *       data/stores.js（stores.json と attributes.json を window.MK_DATA として同期読み込みできる形にしたもの）
- * 設定: tools/site.config.json の siteBase / trailingSlash（canonical と JobPosting の基準。ここだけで切り替える）
+ * 設定: tools/site.config.json の siteBase（canonical と JobPosting の基準。ここだけで切り替える）
  *
  * 依存パッケージなし。生成物は手で編集しないこと（再生成で上書きされる）。
  */
@@ -19,9 +19,12 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 // canonical / JobPosting の基準は tools/site.config.json だけで管理する（SPEC.md §10）
 const SITE = JSON.parse(readFileSync(join(ROOT, 'tools/site.config.json'), 'utf8'));
 const SITE_BASE = String(SITE.siteBase).replace(/\/$/, '');
-// 既存ページの正規URL：フェイスは {base}/、属性LPは {base}/{page}（trailingSlash なら末尾 /）
+// 正規URLは末尾スラッシュなしに統一（SPEC.md §15）。フェイスだけは、基準がドメイン直下なら "/"（https://x.netlify.app/）、
+// パス付き（https://momikaru.com/recruit）ならそのまま
 const ROOT_PAGES = ['index', 'osteo', 'mom', 'relax', 'esthe', 'side-job', 'owner'];
-const pageUrl = page => page === 'index' ? `${SITE_BASE}/` : `${SITE_BASE}/${page}${SITE.trailingSlash ? '/' : ''}`;
+const pageUrl = page => page === 'index' ? (new URL(SITE_BASE).pathname === '/' ? `${SITE_BASE}/` : SITE_BASE) : `${SITE_BASE}/${page}`;
+const storeUrl = id => `${SITE_BASE}/stores/${id}`;
+const storesUrl = `${SITE_BASE}/stores`;
 // 予約ウィジェット（既存LPと同じもの・同じ版）
 const BOOKING = 'https://interview-booking-api.netlify.app/widget';
 const BOOKING_VER = '7';
@@ -59,30 +62,51 @@ function postalAddress(a) {
   return o;
 }
 
-// JobPosting（SPEC.md §4.4）。雇用形態は CONTRACTOR、勤務地は sub_locations を含める。baseSalary は出さない（D6）
-function jobPosting(s, k) {
-  const a = ATTRS[k];
-  const locs = [{ name: s.store_name, address: s.address }, ...(s.sub_locations || [])];
+// JobPosting：1ページ1件（SPEC.md §15）。募集中の属性は description 本文に含める。
+// 雇用形態は CONTRACTOR、勤務地は sub_locations を含める。baseSalary は出さない（D6）
+const shortStoreName = s => String(s.store_name).replace(/^もみかる\s*/, '');
+function jobPosting(s) {
+  const locs = [{ name: s.store_name, address: s.address, geo: s.geo }, ...(s.sub_locations || [])];
+  const on = onAttrs(s);
   const desc = [
-    `<p>${esc(s.store_name)}で、業務委託のセラピストを募集しています（${esc(a.title)}）。</p>`,
-    `<p>${esc(a.tagline)}</p>`,
-    '<ul>' + pointsFor(s, a).map(p => `<li>${esc(p)}</li>`).join('') + '</ul>',
+    `<p>${esc(s.store_name)}で、業務委託のセラピストを募集しています。</p>`,
+    `<p>募集中の働き方：${on.map(k => esc(ATTRS[k].short)).join('、')}</p>`,
+    ...on.map(k => {
+      const a = ATTRS[k];
+      return `<h3>${esc(a.title)}</h3><p>${esc(a.tagline)}</p><ul>` + pointsFor(s, a).map(p => `<li>${esc(p)}</li>`).join('') + '</ul>';
+    }),
     `<p>契約形態：${esc(s.contract_type)}。${has(s.shift) ? esc(s.shift) + '。' : ''}</p>`,
-    locs.length > 1 ? '<p>勤務地：' + locs.map(l => esc(l.name)).join('、') + '</p>' : '',
+    '<p>勤務地：' + locs.map(l => `${esc(l.name)}（${esc(addrPlain(l.address))}）`).join('、') + '</p>',
   ].join('');
   return {
     '@context': 'https://schema.org',
     '@type': 'JobPosting',
-    title: `業務委託セラピスト（${a.short}）`,
+    title: `セラピスト（業務委託）｜もみかる ${shortStoreName(s)}`,
     description: desc,
-    identifier: { '@type': 'PropertyValue', name: s.operator.company_name, value: `${s.store_id}-${k}` },
+    identifier: { '@type': 'PropertyValue', name: s.operator.company_name, value: s.store_id },
     datePosted: s.updated_at,
     employmentType: 'CONTRACTOR',
     hiringOrganization: { '@type': 'Organization', name: s.operator.company_name, sameAs: s.operator.company_url, logo: `${SITE_BASE}/assets/logo-momikaru.png` },
     jobLocation: locs.map(l => ({ '@type': 'Place', name: l.name, address: postalAddress(l.address), ...(l.geo ? { geo: { '@type': 'GeoCoordinates', latitude: l.geo.lat, longitude: l.geo.lng } } : {}) })),
     directApply: false,
-    url: `${SITE_BASE}/stores/${s.store_id}/`,
+    url: storeUrl(s.store_id),
   };
+}
+
+// Google 求人構造化データの必須項目（title, description, datePosted, hiringOrganization, jobLocation）の不足と、
+// 推奨項目のうち未設定のものを返す
+function checkJobPosting(j) {
+  const req = [];
+  if (!has(j.title)) req.push('title');
+  if (!has(j.description)) req.push('description');
+  if (!/^\d{4}-\d{2}-\d{2}/.test(j.datePosted || '')) req.push('datePosted');
+  if (!has(j.hiringOrganization?.name)) req.push('hiringOrganization.name');
+  if (!Array.isArray(j.jobLocation) || !j.jobLocation.length || j.jobLocation.some(l => !has(l.address?.addressCountry) || !has(l.address?.addressRegion) || !has(l.address?.addressLocality))) req.push('jobLocation.address');
+  const rec = [];
+  if (!j.validThrough) rec.push('validThrough');
+  if (!j.baseSalary) rec.push('baseSalary（D6 で非表示）');
+  j.jobLocation.forEach(l => { if (!l.address.postalCode) rec.push(`postalCode（${l.name}）`); if (!l.address.streetAddress) rec.push(`streetAddress（${l.name}）`); });
+  return { req, rec };
 }
 
 // ---------- 共通パーツ ----------
@@ -220,7 +244,7 @@ function header(rel, label, c) {
 function footer(rel, company) {
   return `<footer class="ft"><div class="wrap ft-in">
   <img src="${rel}assets/logo-momikaru.png" alt="もみかる">
-  <a href="${rel}stores/">店舗一覧</a>
+  <a href="${rel}stores">店舗一覧</a>
   <span>© ${esc(company)}</span>
 </div></footer>`;
 }
@@ -261,7 +285,7 @@ function sticky(c, job) {
 const storeCard = (s, rel) => {
   const on = onAttrs(s);
   const subs = (s.sub_locations || []).length;
-  return `<a class="card" href="${rel}stores/${esc(s.store_id)}/"><span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+  return `<a class="card" href="${rel}stores/${esc(s.store_id)}"><span style="display:flex;flex-direction:column;gap:2px;min-width:0">
   <span class="t">${esc(s.store_name)}</span>
   <span class="s">${esc([s.address.region, s.address.locality].filter(has).join(' '))}${subs ? `（勤務地 ${subs + 1}か所）` : ''}</span>
   <span class="a">${on.map(k => `<span>${esc(ATTRS[k].short)}</span>`).join('')}</span>
@@ -270,7 +294,7 @@ const storeCard = (s, rel) => {
 
 // ---------- 店舗別ページ ----------
 function storePage(s) {
-  const rel = '../../';
+  const rel = '../';  // /stores/{id} から見た相対の基点
   const c = contactOf(s);
   const on = onAttrs(s);
   const tag = `${s.store_name}（store:${s.store_id}）`;
@@ -292,9 +316,9 @@ function storePage(s) {
   return `${head({
     title: `${s.store_name}のセラピスト募集（業務委託）｜もみかる`,
     description: `${s.store_name}（${[s.address.region, s.address.locality].filter(has).join('')}）で業務委託のセラピストを募集しています。募集中の働き方：${on.map(k => ATTRS[k].short).join('・')}。${has(s.shift) ? s.shift + '。' : ''}`,
-    canonical: `${SITE_BASE}/stores/${s.store_id}/`,
+    canonical: storeUrl(s.store_id),
     rel,
-    ld: on.map(k => jsonLd(jobPosting(s, k))),
+    ld: [jsonLd(jobPosting(s))],
   })}
 <body>
 <div class="page">
@@ -302,7 +326,7 @@ ${header(rel, s.store_name, c)}
 
 <section class="hero"><div class="wrap hero-in">
   <div class="hero-l">
-    <nav class="crumb" aria-label="パンくず"><a href="${rel}">もみかるで働く</a><span>›</span><a href="${rel}stores/">店舗一覧</a><span>›</span><span>${esc(s.store_name)}</span></nav>
+    <nav class="crumb" aria-label="パンくず"><a href="${rel}">もみかるで働く</a><span>›</span><a href="${rel}stores">店舗一覧</a><span>›</span><span>${esc(s.store_name)}</span></nav>
     <div class="eyebrow"><i></i><span>STORE_${esc(s.store_id.toUpperCase())}</span></div>
     <h1>${esc(s.store_name)}</h1>
     <p class="sub">業務委託のセラピストを募集しています。</p>
@@ -369,14 +393,14 @@ ${bookingScript(c.line)}
 
 // ---------- 店舗一覧 ----------
 function indexPage() {
-  const rel = '../';
+  const rel = '';  // /stores（ルート直下）から見た相対の基点
   const c = CONTACT;
   const regions = [...new Set(stores.map(s => s.address.region).filter(has))];
   const company = stores[0]?.operator?.company_name || '株式会社ドラミカンパニー';
   return `${head({
     title: '店舗一覧｜もみかるのセラピスト募集（業務委託）',
     description: 'もみかるの店舗ごとに、募集中の働き方と勤務地を確認できます。',
-    canonical: `${SITE_BASE}/stores/`,
+    canonical: storesUrl,
     rel,
   })}
 <body>
@@ -417,16 +441,21 @@ for (const s of stores) {
 if (errors.length) { console.error('stores.json の検証エラー:\n  ' + errors.join('\n  ')); process.exit(1); }
 
 const OUT = join(ROOT, 'stores');
-// 古い店舗ディレクトリを掃除（stores.json から消えた店舗）
-if (existsSync(OUT)) for (const d of readdirSync(OUT, { withFileTypes: true })) if (d.isDirectory() && !ids.has(d.name)) rmSync(join(OUT, d.name), { recursive: true });
-mkdirSync(OUT, { recursive: true });
-writeFileSync(join(OUT, 'index.html'), indexPage());
-for (const s of stores) {
-  mkdirSync(join(OUT, s.store_id), { recursive: true });
-  writeFileSync(join(OUT, s.store_id, 'index.html'), storePage(s));
-  console.log(`stores/${s.store_id}/index.html  属性: ${onAttrs(s).join(', ')}  JobPosting: ${onAttrs(s).length}件`);
+// 旧レイアウト（stores/index.html、stores/{id}/index.html）と、stores.json から消えた店舗のファイルを掃除
+if (existsSync(OUT)) for (const d of readdirSync(OUT, { withFileTypes: true })) {
+  if (d.isDirectory() || d.name === 'index.html' || (d.name.endsWith('.html') && !ids.has(d.name.slice(0, -5)))) rmSync(join(OUT, d.name), { recursive: true });
 }
-console.log(`stores/index.html  ${stores.length}店舗`);
+mkdirSync(OUT, { recursive: true });
+writeFileSync(join(ROOT, 'stores.html'), indexPage());
+const jpProblems = [];
+for (const s of stores) {
+  writeFileSync(join(OUT, s.store_id + '.html'), storePage(s));
+  const { req, rec } = checkJobPosting(jobPosting(s));
+  if (req.length) jpProblems.push(`${s.store_id}: 必須項目の不足 ${req.join(', ')}`);
+  console.log(`stores/${s.store_id}.html  属性: ${onAttrs(s).join(', ')}  JobPosting: 1件  必須: ${req.length ? 'NG ' + req.join(',') : 'OK'}  推奨の未設定: ${rec.join(', ') || 'なし'}`);
+}
+console.log(`stores.html  ${stores.length}店舗`);
+if (jpProblems.length) { console.error('JobPosting の検証エラー:\n  ' + jpProblems.join('\n  ')); process.exit(1); }
 
 // 各ページが <head> で同期読み込みする店舗データ（SPEC.md §13）。中身は stores.json / attributes.json と同じ
 writeFileSync(join(ROOT, 'data/stores.js'),

@@ -15,6 +15,8 @@
 | 2026-10-08 | 完了 | 修正依頼4件に対応（§11） |
 | 2026-10-08 | 完了 | 店舗ごとの制度（benefits）の仕組みを導入。kyosai を店舗データで出し分け、「業界初」を「業界でも珍しい」に変更（§12） |
 | 2026-10-08 | 完了 | 悩みの描写も kyosai で出し分け、店舗データの同期読み込みでずれを解消、電話受付時間を統一（§13） |
+| 2026-10-08 | 完了 | store-recruit ブランチにコミット・push（f05d95c、空コミット 90a5e87・9ece91c）。Netlify ブランチデプロイで公開を確認（§14）。main へのマージはしていない |
+| 2026-10-08 | 完了 | JobPosting を1ページ1件に統合、URL を末尾スラッシュなしに統一（§15） |
 
 ## 1. 目的と前提
 
@@ -480,3 +482,42 @@ node tools/serve.mjs 8080       # http://localhost:8080/ でローカル確認�
 ### 13.2 予約ウィジェットの受付時間（フォルダ外のため変更していない）
 - 場所：`interview-booking-api/public/widget/config.js` 12行目 `brand.businessHours: "平日 10:00〜19:00"`（公開URL：https://interview-booking-api.netlify.app/widget/config.js）
 - なお、booking.js は今のところ `businessHours` を表示に使っていない（フォールバック表示は `brand.phone` と `email` だけで、phone は空）。表記を合わせるなら `平日 10:00〜18:00` に変更する
+
+## 14. ブランチデプロイ（2026-10-08）
+
+- ブランチ：`store-recruit`（origin に push 済み、main へのマージはしていない）。コミットは momikaru-recruit 配下だけ
+- プレビューURL：https://store-recruit--momikaru-recruit.netlify.app/ （Netlify のブランチデプロイに store-recruit を追加済み。push のたびに更新される）
+- 確認（9ece91c の push から約30秒で公開）：
+  - 200：/、/stores/、/stores/nishiwaki/、/stores/toyama/、/osteo、/mom、/data/stores.js、/store-context.js
+  - 404：/SPEC.md、/CLAUDE_CODE_PROMPT.md、/tools/*、存在しないパス（_redirects が有効）
+  - 全パスに `X-Robots-Tag: noindex, nofollow`（_headers が有効）
+  - /stores/toyama/：JobPosting 5件、canonical は site.config.json の siteBase（https://momikaru-recruit.netlify.app/stores/toyama/）
+  - /mom?store=nishiwaki：案内帯「総本店では「ママ・主婦」の募集はありません。近くの店舗：流通通り店 →」、MK_BENEFITS は {}
+  - /mom?store=ryutsudori：店舗帯あり、共済の記述あり。コンソールエラーなし
+
+## 15. 修正（2026-10-08 オーナー依頼 その5）
+
+| # | 依頼 | 対応 |
+|---|---|---|
+| R12 | JobPosting を1ページ1件にまとめる。title は「セラピスト（業務委託）｜もみかる {店舗名}」、募集中の属性は description 本文に入れる。必須項目を確認する | `jobPosting(s)` を店舗単位にした。title の店舗名は store_name から先頭の「もみかる」を除いたもの（例：セラピスト（業務委託）｜もみかる 富山本店）。description：導入文、「募集中の働き方：…」、属性ごとの見出し・タグライン・特徴（benefits で出し分け）、契約形態と稼働日時、勤務地（sub_locations を含む住所付き）。identifier は store_id。build 時に必須項目を検証し、不足があればエラーで止まる |
+| R13 | 正規URL、構造化データ内のURL、サイト内リンクを末尾スラッシュなしに統一。/stores/toyama/ は /stores/toyama へ 301 | 出力レイアウトを `stores/{id}.html`（→ /stores/{id}）と `stores.html`（→ /stores）に変更。旧 `stores/{id}/index.html` と `stores/index.html` は build が削除する。canonical、JobPosting の url、サイト内リンク（店舗ページ、店舗一覧、store-context.js の店舗帯・案内帯・店舗検索）をスラッシュなしにした。site.config.json の trailingSlash は廃止（常にスラッシュなし。フェイスだけは、基準がドメイン直下のとき `https://…/`） |
+
+### Google 求人構造化データの必須項目の確認（4店舗とも）
+| 項目 | 状態 |
+|---|---|
+| title | OK（例：セラピスト（業務委託）｜もみかる 富山本店） |
+| description | OK（HTML、募集中の属性を含む） |
+| datePosted | OK（2026-10-08） |
+| hiringOrganization | OK（name：株式会社ドラミカンパニー、sameAs、logo） |
+| jobLocation | OK（PostalAddress：addressCountry、addressRegion、addressLocality、streetAddress。富山は2か所） |
+
+推奨項目で未設定のもの（必須ではない）：
+- `validThrough`（掲載終了日）：未設定。Google は期限がない求人なら省略可としているが、設定すると掲載終了が明示できる
+- `baseSalary`：D6 により出していない
+- `postalCode`：stores.json が TODO のため全店舗で未設定（富山はリラックス館も）
+- 設定済みの推奨項目：employmentType（CONTRACTOR）、identifier、directApply（false）、geo
+
+### 301 の実装
+- Netlify：`stores/toyama.html` を置くと、/stores/toyama で配信され、/stores/toyama/ は /stores/toyama に 301 される（Pretty URLs の挙動。プレビューで確認）
+- ローカル（tools/serve.mjs）：末尾スラッシュ付きで、対応する `.html` があれば 301 する処理を追加
+- 相対パスの基点：店舗ページ（/stores/{id}）は `../`、店舗一覧（/stores）は `''`
